@@ -13,9 +13,7 @@ const Steps = [
   { Top: Step3Top, Bottom: Step3Bottom },
 ];
 
-export default function MultiSteps({
-  children,
-}: Readonly<{ children?: React.ReactNode }>) {
+export default function MultiSteps(_: Readonly<{ children?: React.ReactNode }>) {
   const params = useSearchParams();
   const router = useRouter();
   const step = useMemo(() => Number(params?.get("open1")) || 0, [params]);

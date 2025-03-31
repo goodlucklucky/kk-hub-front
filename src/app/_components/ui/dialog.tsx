@@ -2,9 +2,6 @@
 
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-
-// import DialogContainer from "@/src/_components/shared/dialog-container";
-import { SetStateAction } from "react";
 import { cn } from "@/app/_lib/utils";
 import DialogContainer from "../shared/dialog-container";
 
@@ -61,7 +58,6 @@ const DialogContent = React.forwardRef<
       <DialogOverlay {...overlayProps} />
       <DialogPrimitive.Content
         ref={ref}
-        // eslint-disable-next-line jsx-a11y/aria-props
         aria-describedby=""
         className={cn(
           `fixed px-3 left-[50%] border-none outline-none top-1/2`,

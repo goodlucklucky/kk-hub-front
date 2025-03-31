@@ -1,4 +1,4 @@
-import { CashIcon, KeyIcon, StarIcon, TimerIcon } from "@assets/svg/etc";
+import { TimerIcon } from "@assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
 import React from "react";
 import SpinnerBox from "../spinner/box";

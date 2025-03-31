@@ -6,11 +6,7 @@ import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { spinnerProbability, TSpinner } from "./probabilities";
 import { SpeakerIcon, UsdIcon } from "@/app/_assets/svg/etc";
 import Spinner3dIcon from "@/app/_assets/svg/spinner";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/app/_components/ui/dialog";
+import { Dialog, DialogContent } from "@/app/_components/ui/dialog";
 import { cn } from "@/app/_lib/utils";
 import Button from "@/app/_components/shared/button";
 
@@ -43,6 +39,7 @@ export default function SpinnerBox() {
     setTotalSpins((prev) => Math.max(0, prev - 1));
     setOpenReward(true);
     setLoading(false);
+    console.log("result", _result);
   }, []);
 
   const handleCloseReward = useCallback((bool: boolean) => {

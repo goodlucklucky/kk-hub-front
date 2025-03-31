@@ -65,7 +65,7 @@ function Spinner({
         finalRotation = 360 - randomSegment * segmentAngle;
       }
 
-      setTargetRotation((_p) => finalRotation + randomSpins * 360 + 15);
+      setTargetRotation(() => finalRotation + randomSpins * 360 + 15);
 
       setTimeout(() => {
         isSpinning.current = false;

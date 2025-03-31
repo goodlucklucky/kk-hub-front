@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { cn } from "./_lib/utils";
 import { bumperStickerFont, madeTommySoftFont } from "./_lib/fonts";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,7 +24,7 @@ export default function RootLayout({
           madeTommySoftFont.variable
         )}
       >
-        {children}
+        <Suspense fallback={<></>}>{children}</Suspense>
         <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
       </body>
     </html>

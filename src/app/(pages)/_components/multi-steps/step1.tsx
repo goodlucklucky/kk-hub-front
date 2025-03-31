@@ -60,7 +60,7 @@ export function Step1Top() {
                   name: "Koko Snake",
                   prize: { amount: 498.05, currency: "USD" },
                 },
-              ]?.map(({ key, Icon, name, prize }, index) => (
+              ]?.map(({ Icon, name, prize }, index) => (
                 <tr
                   key={index}
                   className={cn(
