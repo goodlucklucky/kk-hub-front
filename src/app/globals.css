@@ -11,6 +11,8 @@
   --color-foreground: var(--foreground);
   --color-golden-brown: rgba(95, 63, 87, 1);
   --color-golden-bright: rgba(255, 208, 147, 1);
+  --color-golden: rgba(167, 78, 54, 1);
+  --color-golden-2: rgba(163, 84, 5, 1);
   --color-golden-dark: rgba(128, 67, 6, 1);
   --color-golden-darker: rgba(107, 52, 10, 1);
   --color-light: rgba(255, 240, 214, 1);
@@ -19,6 +21,7 @@
   --color-gold-dark: rgba(224, 150, 0, 1);
   --color-gold-darker: rgba(169, 100, 21, 1);
   --color-green: rgba(146, 146, 9, 1);
+  --color-green-2: rgba(157, 186, 38, 1);
   --color-green-light: rgba(224, 219, 141, 1);
   --color-green-dark: rgba(87, 83, 10, 1);
   --color-blue-light: rgba(162, 145, 255, 1);
@@ -26,8 +29,13 @@
   --color-blown: rgba(238, 209, 184, 1);
   --color-blown-light: rgba(252, 234, 208, 1);
   --color-blown-dark: rgba(227, 190, 170, 1);
+  --color-yellow-green: rgba(219, 220, 14, 1);
   --color-yellow: rgba(255, 206, 54, 1);
+  --color-yellow-2: rgba(255, 201, 32, 1);
   --color-yellow-dark: rgba(251, 182, 0, 1);
+  --color-red: rgba(192, 63, 33, 1);
+  --color-red-light: rgba(237, 71, 33, 1);
+  --color-purple: rgba(188, 70, 159, 1);
 
   /* fonts */
   --font-bumper-sticker: var(--font-bumper-sticker);

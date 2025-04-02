@@ -3,6 +3,8 @@ import { cn } from "@/app/_lib/utils";
 import React, { useEffect, useState } from "react";
 import RandomUsd from "@/app/_components/etc/random-usd";
 import { SnakeIcon } from "@/app/_assets/svg/snake";
+import Button from "@/app/_components/shared/button";
+import Link from "next/link";
 
 export function Step1Top() {
   const [isClient, setIsClient] = useState(false);
@@ -65,9 +67,7 @@ export function Step1Top() {
                   key={index}
                   className={cn(
                     "text-golden-brown",
-                    index % 2 != 0
-                      ? "bg-amber-500/10"
-                      : "bg-yellow-700/20",
+                    index % 2 != 0 ? "bg-amber-500/10" : "bg-yellow-700/20",
                     "[&_td]:p-0.5 [&_td]:px-2"
                   )}
                 >
@@ -116,16 +116,16 @@ export function Step1Bottom() {
           </p>
         </div>
       </div>
-      <button
-        className={cn(
-          "text-white flex gap-2 items-center justify-center",
-          "mx-8 mt-auto p-2 rounded-2xl font-bold",
-          "bg-gradient-to-b from-blue-light to-blue"
-        )}
-      >
-        <KeyIcon />
-        <span className="drop-shadow-md">Enter Now</span>
-      </button>
+      <Link href={"/home"} className="mx-8 mt-auto">
+        <Button
+          className={cn(
+            "flex gap-2 items-center justify-center rounded-2xl font-bold w-full"
+          )}
+        >
+          <KeyIcon />
+          <span className="drop-shadow-md">Enter Now</span>
+        </Button>
+      </Link>
       <p className="text-green-light flex gap-1 justify-center items-center my-4 font-bumper-sticker">
         <StarIcon />
         <span>the Most Rewarding Mini-Gaming Platform</span>

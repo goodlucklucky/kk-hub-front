@@ -3,6 +3,8 @@ import { cn } from "@/app/_lib/utils";
 import React from "react";
 import poweredAvalanche from "@assets/images/powered-avalanche.png";
 import Image from "next/image";
+import Link from "next/link";
+import Button from "@/app/_components/shared/button";
 
 export function Step3Top() {
   return (
@@ -59,16 +61,16 @@ export function Step3Bottom() {
         <BackHandIcon className="size-14" />
         <span>Return to THE Wheel and Spin for a free gift!</span>
       </p>
-      <button
-        className={cn(
-          "text-white font-bold flex gap-2 items-center justify-center",
-          "mx-8 mb-8 p-2 rounded-2xl",
-          "bg-gradient-to-b from-blue-light to-blue"
-        )}
-      >
-        <KeyIcon />
-        <span className="drop-shadow-md">Enter Now</span>
-      </button>
+      <Link href={"/home"} className="mx-8 mb-8">
+        <Button
+          className={cn(
+            "flex gap-2 items-center justify-center rounded-2xl font-bold w-full p-2"
+          )}
+        >
+          <KeyIcon />
+          <span className="drop-shadow-md">Enter Now</span>
+        </Button>
+      </Link>
     </>
   );
 }
