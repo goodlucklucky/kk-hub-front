@@ -3,7 +3,7 @@ export const games = [
     key: "snake",
     name: "Koko Snake",
     image: "/images/kokosnake.jpg",
-    link: "https://snake-frontend-zeta.vercel.app",
+    link: "https://snake-v1-webapp.vercel.app/",
     page: "snake",
     type: "Tournaments",
   },
