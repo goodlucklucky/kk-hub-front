@@ -1,10 +1,14 @@
 import { TrophyIcon } from "@/app/_assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export type TItems = {
   title?: string;
   soon?: string;
+  image?: string;
+  link?: string;
 };
 
 export type TGamesCardProps = {
@@ -22,7 +26,7 @@ export default function GamesCard({
     <div className="p-2 space-y-2">
       <div className="flex justify-between">
         <p className="flex items-center gap-2 px-1 text-golden-brown font-bold">
-          <Icon />
+          <Icon className="size-5" />
           <span>{title}</span>
         </p>
         <button
@@ -47,7 +51,12 @@ export default function GamesCard({
             one?.soon ? (
               <CommingSoonCard key={index} />
             ) : (
-              <GameItemCard title={one?.title || ""} key={index} />
+              <GameItemCard
+                title={one?.title || ""}
+                image={one?.image}
+                link={one?.link}
+                key={index}
+              />
             )
           )}
       </div>
@@ -55,14 +64,22 @@ export default function GamesCard({
   );
 }
 
-export type TGameItemCardProps = {
-  title: string;
-};
+export type TGameItemCardProps = Omit<TItems, "soon">;
 
-export function GameItemCard({ title }: TGameItemCardProps) {
+export function GameItemCard({ title, image, link }: TGameItemCardProps) {
   return (
-    <div className="rounded-lg contain-content">
-      <div className="aspect-square bg-white/20"></div>
+    <Link href={link || "#"} className="rounded-lg contain-content">
+      <div className="aspect-square bg-white/20">
+        {image && (
+          <Image
+            src={`${image}`}
+            alt={`${title}`}
+            className="object-cover size-full"
+            height={100}
+            width={100}
+          />
+        )}
+      </div>
       <p
         className={cn(
           "bg-golden-brown/30 p-1 px-1.5",
@@ -71,7 +88,7 @@ export function GameItemCard({ title }: TGameItemCardProps) {
       >
         {title}
       </p>
-    </div>
+    </Link>
   );
 }
 

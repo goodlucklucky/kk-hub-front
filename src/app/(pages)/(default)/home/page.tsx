@@ -1,4 +1,3 @@
-import { TrophyIcon } from "@/app/_assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
 import React from "react";
 import XpBar from "../_components/xp-bar";
@@ -6,8 +5,13 @@ import Gifts from "../_components/gifts";
 import GamesCard from "../_components/games/card";
 import AddToHome from "../_components/add-to-home";
 import Chat from "../_components/chat";
+import { games } from "@/constants/games";
+import _ from "lodash";
+import { typeIcons } from "@/app/_constants/types";
 
 export default function HomePage() {
+  const groupedGames = Object.entries(_?.groupBy(games, (game) => game?.type));
+
   return (
     <>
       <XpBar />
@@ -22,16 +26,18 @@ export default function HomePage() {
           </div>
         </div>
         <div className="bg-white/40 pt-1 divide-y divide-golden-brown/30">
-          <GamesCard
-            Icon={TrophyIcon}
-            title="Tournaments"
-            items={[{ title: "Koko Snake" }, { title: "Koko Snake" }]}
-          />
-          <GamesCard
-            Icon={TrophyIcon}
-            title="Tournaments"
-            items={[{ title: "One Million One" }]}
-          />
+          {groupedGames?.slice(0, 2)?.map(([type, games]) => (
+            <GamesCard
+              key={type}
+              Icon={typeIcons?.[type]}
+              title={type}
+              items={games?.map((game) => ({
+                title: game?.name,
+                image: game?.image,
+                link: `/games/${game?.page}`,
+              }))}
+            />
+          ))}
         </div>
       </div>
       <div className="grid grid-cols-[1fr_auto] gap-2 mx-2 mt-2">
