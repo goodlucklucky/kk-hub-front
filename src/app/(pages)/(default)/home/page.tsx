@@ -34,7 +34,7 @@ export default function HomePage() {
               items={games?.map((game) => ({
                 title: game?.name,
                 image: game?.image,
-                link: `/games/${game?.page}`,
+                link: `/games/${game?.page}/`,
               }))}
             />
           ))}
