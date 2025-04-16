@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import PanelHolder from "@assets/images/panel-holder.png"
 import PanelHome from "@assets/images/panel-home.png"
+import ButtonSlot from "@assets/images/button-slot.png"
 
 export function Step1Top() {
   const [isClient, setIsClient] = useState(false);
@@ -121,7 +122,7 @@ export function Step1Bottom() {
         className={cn(
           "bg-gradient-to-b from-golden-bright to-golden-brown",
           "p-0.5 rounded-2xl contain-content grid",
-          "-mx-1 shadow-sm font-bumper-sticker"
+          "-mx-1 -my-8 mb-5 hadow-sm font-bumper-sticker"
         )}
       >
         <div
@@ -158,20 +159,23 @@ export function Step1Bottom() {
           </p>
         </div>
       </div>
-      <Link href={"/home"} className="mx-8 mt-auto">
+      <section className="relative rounded-3xl p-1 mt-auto">
+      <Link href={"/home"} className="mx-8">
+        <Image src={ButtonSlot} alt="button-slot" width={800} height={100} className="absolute inset-0 z-0 top-3 h-[80px]" priority/>
         <Button
           className={cn(
-            "flex gap-2 items-center justify-center rounded-2xl font-bold w-full"
+            "flex gap-2 items-center justify-center rounded-2xl font-bold w-[calc(100%-2rem)] mx-auto p-2"
           )}
-        >
+          >
           <KeyIcon />
-          <span className="drop-shadow-md">Enter Now</span>
+          <span className="drop-shadow-md font-made-tommy font-bold text-[20px] leading-none">Enter Now</span>
         </Button>
       </Link>
       <p className="text-green-light flex gap-1 justify-center items-center my-4 font-bumper-sticker">
         <StarIcon />
         <span>the Most Rewarding Mini-Gaming Platform</span>
       </p>
+      </section>
     </>
   );
 }

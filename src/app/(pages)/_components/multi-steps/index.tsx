@@ -32,7 +32,7 @@ export default function MultiSteps(_: Readonly<{ children?: React.ReactNode }>) 
         className={cn(
           "bg-gradient-to-b from-golden-bright to-golden-brown scale-90",
           "p-0.5 rounded-2xl contain-content grid",
-          "m-10 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl"
+          "m-15 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl"
         )}
       >
         <div
