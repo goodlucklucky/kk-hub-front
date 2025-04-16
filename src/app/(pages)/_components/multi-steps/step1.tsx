@@ -121,19 +121,34 @@ export function Step1Bottom() {
         className={cn(
           "bg-gradient-to-b from-golden-bright to-golden-brown",
           "p-0.5 rounded-2xl contain-content grid",
-          "mx-4 shadow-sm font-bumper-sticker"
+          "-mx-1 shadow-sm font-bumper-sticker"
         )}
       >
         <div
           className={cn(
-            "bg-background rounded-[0.875rem] p-2",
-            "flex gap-2 justify-center"
+            "bg-background rounded-[0.875rem] p-1",
+            "flex gap-2 justify-center",
+            "relative overflow-hidden"
           )}
         >
-          <CashIcon />
+          {/* {Masking wood texture} */}
+          <div className="absolute inset-0">
+            <Image
+              src="/images/wood-texture.png"
+              alt="Wood texture"
+              fill
+              className="object-cover object-center"
+              style={{
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))'
+              }}
+            />
+          </div>
+          
+          <CashIcon className="z-20"/>
           <p
             className={cn(
-              "text-center",
+              "text-center font-bumper-sticker",
               "drop-shadow-[0_0.2ch_var(--color-golden-darker)] text-golden-bright"
             )}
           >
