@@ -9,7 +9,7 @@ export default async function Home() {
   const userAgent = headersList.get("user-agent") || "";
   const mobileCheck = isMobile(userAgent);
   return mobileCheck ? (
-    <main className="text-background min-h-dvh flex flex-col">
+    <main className="flex flex-col justify-center items-center min-h-dvh text-center z-10 bg-center bg-cover p-4" style={{ backgroundImage: `url(/images/splash.png)` }}>
       <KokomoLogo className="mx-auto my-8 max-w-full" />
       <MultiSteps />
     </main>
