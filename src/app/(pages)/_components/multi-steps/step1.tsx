@@ -1,4 +1,4 @@
-import { CashIcon, KeyIcon, StarIcon, UsdIcon } from "@assets/svg/etc";
+import { CashIcon, KeyIcon, StarIcon, TrophyIcon, UsdIcon } from "@assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
 import { useEffect, useState } from "react";
 import RandomUsd from "@/app/_components/etc/random-usd";
@@ -7,6 +7,7 @@ import Button from "@/app/_components/shared/button";
 import Link from "next/link";
 import Image from "next/image";
 import PanelHolder from "@assets/images/panel-holder.png"
+import PanelHome from "@assets/images/panel-home.png"
 
 export function Step1Top() {
   const [isClient, setIsClient] = useState(false);
@@ -31,63 +32,84 @@ export function Step1Top() {
         <span className="tracking-wider">with crypto rewards</span>
       </h2>
       </section>
-      <div className="text-golden-bright px-8 relative font-bold">
-        <h3 className="text-center">Recent Wins</h3>
-        <div className="bg-light w-full rounded-b-2xl rounded-t p-0.5 contain-content">
-          <table className="w-full rounded-b-2xl rounded-t-sm contain-content">
-            <tbody>
-              {[
-                {
-                  Icon: SnakeIcon,
-                  key: "snake",
-                  name: "Koko Snake",
-                  prize: { amount: 27.82, currency: "USD" },
-                },
-                {
-                  Icon: SnakeIcon,
-                  key: "snake",
-                  name: "Koko Snake",
-                  prize: { amount: 1011.4, currency: "USD" },
-                },
-                {
-                  Icon: SnakeIcon,
-                  key: "snake",
-                  name: "Koko Snake",
-                  prize: { amount: 50.49, currency: "USD" },
-                },
-                {
-                  Icon: SnakeIcon,
-                  key: "snake",
-                  name: "Koko Snake",
-                  prize: { amount: 122.5, currency: "USD" },
-                },
-                {
-                  Icon: SnakeIcon,
-                  key: "snake",
-                  name: "Koko Snake",
-                  prize: { amount: 498.05, currency: "USD" },
-                },
-              ]?.map(({ Icon, name, prize }, index) => (
-                <tr
-                  key={index}
-                  className={cn(
-                    "text-golden-brown",
-                    index % 2 != 0 ? "bg-amber-500/10" : "bg-yellow-700/20",
-                    "[&_td]:p-0.5 [&_td]:px-2"
-                  )}
-                >
-                  <td>{Icon && <Icon />}</td>
-                  <td className="w-full">{name}</td>
-                  <td className="whitespace-nowrap bg-amber-500/15 text-golden-dark flex gap-2 items-center">
-                    <UsdIcon className="text-green-800" /> {prize?.amount}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <section className="relative">
+      <Image src={PanelHome} alt="panel-home" width={1062} height={362} className="absolute -top-[30px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center" priority/>
+        {/* { Bottom blur effect} */}
+        <div className="absolute -bottom-0 rounded-b-2xl left-1/2 -translate-x-1/2 w-[90%] h-[20%] bg-[linear-gradient(180deg,rgba(225,199,175,0)_0%,#E1C7AF_100%)] pointer-events-none z-20" />
+
+        <div className="text-golden-bright px-4.5 relative font-bold">
+          <div className="flex items-center justify-center gap-2 -mt-1">
+            <TrophyIcon className="text-grape"/>
+            <h3 className="text-center text-grape text-xl">Recent Wins</h3>
+          </div>
+          <div className="bg-light w-full rounded-b-2xl rounded-t p-0.5 contain-content overflow-y-auto h-[160px] mt-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <table className="w-full rounded-b-2xl rounded-t-sm contain-content">
+              <tbody>
+                {[
+                  {
+                    Icon: SnakeIcon,
+                    key: "snake",
+                    name: "Koko Snake",
+                    prize: { amount: 27.82, currency: "USD" },
+                  },
+                  {
+                    Icon: SnakeIcon,
+                    key: "snake",
+                    name: "Koko Snake",
+                    prize: { amount: 1011.4, currency: "USD" },
+                  },
+                  {
+                    Icon: SnakeIcon,
+                    key: "snake",
+                    name: "Koko Snake",
+                    prize: { amount: 50.49, currency: "USD" },
+                  },
+                  {
+                    Icon: SnakeIcon,
+                    key: "snake",
+                    name: "Koko Snake",
+                    prize: { amount: 122.5, currency: "USD" },
+                  },
+                  {
+                    Icon: SnakeIcon,
+                    key: "snake",
+                    name: "Koko Snake",
+                    prize: { amount: 498.05, currency: "USD" },
+                  },
+                  {
+                    Icon: SnakeIcon,
+                    key: "snake",
+                    name: "Koko Snake",
+                    prize: { amount: 498.05, currency: "USD" },
+                  },
+                  {
+                    Icon: SnakeIcon,
+                    key: "snake",
+                    name: "Koko Snake",
+                    prize: { amount: 498.05, currency: "USD" },
+                  },
+                ]?.map(({ Icon, name, prize }, index) => (
+                  <tr
+                    key={index}
+                    className={cn(
+                      "text-golden-brown",
+                      index % 2 != 0 ? "bg-blown-light" : "bg-blown-dark",
+                      "[&_td]:py-1 [&_td]:px-2"
+                    )}
+                  >
+                    <td>{Icon && <Icon />}</td>
+                    <td className="w-full text-left">{name}</td>
+                    <td className="whitespace-nowrap bg-amber-500/15 text-golden-dark flex gap-2 items-center">
+                      <UsdIcon className="text-green-800" /> {prize?.amount}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <RandomUsd />
         </div>
-        <RandomUsd />
-      </div>
+      </section>
     </>
   );
 }

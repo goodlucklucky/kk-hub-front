@@ -36,6 +36,7 @@
   --color-red: rgba(192, 63, 33, 1);
   --color-red-light: rgba(237, 71, 33, 1);
   --color-purple: rgba(188, 70, 159, 1);
+  --color-grape: rgba(95, 63, 87, 1);
 
   /* fonts */
   --font-bumper-sticker: var(--font-bumper-sticker);

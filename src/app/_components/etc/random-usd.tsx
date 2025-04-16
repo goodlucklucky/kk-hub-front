@@ -10,18 +10,18 @@ export default function RandomUsd() {
         const isLeft = index % 2 == 0;
         const bottom = 0.5 + index * 1.5;
         const colors = [
-          "var(--color-green)",
-          "var(--color-green-light)",
+          "var(--color-green-dark)",
+          "var(--color-yellow-dark)",
           "var(--color-white)",
         ];
-        const sizeRange = [1, 2];
+        const sizeRange = [1.5, 1.8];
 
         return (
           <span
             key={index}
             className={cn("absolute font-bold")}
             style={{
-              [isLeft ? "left" : "right"]: `0.5rem`,
+              [isLeft ? "left" : "right"]: `-${Math.random() * 1}rem`,
               bottom: `${bottom}rem`,
               rotate: `${isLeft ? "-" : ""}25deg`,
               color: colors?.[Math.floor(Math.random() * colors.length)],
