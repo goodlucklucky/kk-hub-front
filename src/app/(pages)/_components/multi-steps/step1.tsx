@@ -1,10 +1,12 @@
 import { CashIcon, KeyIcon, StarIcon, UsdIcon } from "@assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RandomUsd from "@/app/_components/etc/random-usd";
 import { SnakeIcon } from "@/app/_assets/svg/snake";
 import Button from "@/app/_components/shared/button";
 import Link from "next/link";
+import Image from "next/image";
+import PanelHolder from "@assets/images/panel-holder.png"
 
 export function Step1Top() {
   const [isClient, setIsClient] = useState(false);
@@ -16,16 +18,19 @@ export function Step1Top() {
   if (!isClient) return;
   return (
     <>
-      <h2
-        className={cn(
-          "text-golden-bright drop-shadow-[0_0.2ch_var(--color-golden-darker)]",
-          "mb-8 text-2xl text-center font-bumper-sticker"
-        )}
+      <section className="relative z-20">
+        <Image src={PanelHolder} alt="panel-holder" width={338} height={103} className="absolute -top-[10px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center" priority/>
+        <h2
+          className={cn(
+            "text-golden-bright drop-shadow-[0_0.2ch_var(--color-golden-darker)]",
+            "mb-8 text-2xl text-center font-bumper-sticker"
+          )}
       >
-        <small>legendary games</small>
+        <small className="tracking-wider">legendary games</small>
         <br />
-        <span>with crypto rewards</span>
+        <span className="tracking-wider">with crypto rewards</span>
       </h2>
+      </section>
       <div className="text-golden-bright px-8 relative font-bold">
         <h3 className="text-center">Recent Wins</h3>
         <div className="bg-light w-full rounded-b-2xl rounded-t p-0.5 contain-content">
