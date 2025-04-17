@@ -26,7 +26,7 @@ export default function MultiSteps(_: Readonly<{ children?: React.ReactNode }>) 
   );
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="flex-1 flex flex-col p-4">
       <Top key={`top-${step}`} />
       <div
         className={cn(
