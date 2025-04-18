@@ -26,19 +26,19 @@ export default function MultiSteps(_: Readonly<{ children?: React.ReactNode }>) 
   );
 
   return (
-    <div className="flex-1 flex flex-col p-4">
+    <div className={cn("flex-1 flex flex-col", `${step == 0 ? "p-4" : ""}`)}>
       <Top key={`top-${step}`} />
       <div
         className={cn(
           "bg-gradient-to-b from-golden-bright to-golden-brown scale-90",
           "p-0.5 rounded-2xl contain-content grid",
-          "m-15 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl"
+          "my-12 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl"
         )}
       >
         <div
           className={cn(
             "bg-background rounded-[0.875rem] text-golden-bright",
-            "p-1 flex gap-2 [&>*]:flex-1 relative overflow-hidden"
+            "p-1.5 flex gap-1 [&>*]:flex-1 relative overflow-hidden"
           )}
         >
           {/* {Masking wood texture} */}

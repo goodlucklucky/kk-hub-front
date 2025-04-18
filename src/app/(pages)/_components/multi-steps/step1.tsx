@@ -6,9 +6,9 @@ import { SnakeIcon } from "@/app/_assets/svg/snake";
 import Button from "@/app/_components/shared/button";
 import Link from "next/link";
 import Image from "next/image";
-import PanelHolder from "@assets/images/panel-holder.png"
+import headerBoard from "@assets/images/header-board.png"
 import PanelHome from "@assets/images/panel-home.png"
-import ButtonSlot from "@assets/images/button-slot.png"
+import ButtonSlot from "@assets/images/single-button-slot.png"
 
 export function Step1Top() {
   const [isClient, setIsClient] = useState(false);
@@ -21,7 +21,7 @@ export function Step1Top() {
   return (
     <>
       <section className="relative z-20">
-        <Image src={PanelHolder} alt="panel-holder" width={338} height={103} className="absolute -top-[10px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center" priority/>
+        <Image src={headerBoard} alt="panel-holder" width={338} height={103} className="absolute -top-[10px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center" priority/>
         <h2
           className={cn(
             "text-golden-bright drop-shadow-[0_0.2ch_var(--color-golden-darker)]",
@@ -122,12 +122,12 @@ export function Step1Bottom() {
         className={cn(
           "bg-gradient-to-b from-golden-bright to-golden-brown",
           "p-0.5 rounded-2xl contain-content grid",
-          "-mx-1 -my-8 mb-5 hadow-sm font-bumper-sticker"
+          "-mx-1 -my-4 mb-5 hadow-sm font-bumper-sticker"
         )}
       >
         <div
           className={cn(
-            "bg-background rounded-[0.875rem] p-1",
+            "bg-background rounded-[0.875rem] p-2",
             "flex gap-2 justify-center",
             "relative overflow-hidden"
           )}
@@ -149,7 +149,7 @@ export function Step1Bottom() {
           <CashIcon className="z-20"/>
           <p
             className={cn(
-              "text-center font-bumper-sticker",
+              "text-center font-bumper-sticker font-[400] text-md",
               "drop-shadow-[0_0.2ch_var(--color-golden-darker)] text-golden-bright"
             )}
           >
