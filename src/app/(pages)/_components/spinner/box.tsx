@@ -2,13 +2,14 @@
 
 import Spinner from "@/app/_components/spinner";
 import { formatBigNumber, shuffleArray } from "@/app/_utils/number";
-import React, { useCallback, useMemo, useState, useEffect } from "react";
+import { useCallback, useMemo, useState, useEffect } from "react";
 import { spinnerProbability, TSpinner } from "./probabilities";
 import { SpeakerIcon, UsdIcon } from "@/app/_assets/svg/etc";
-import Spinner3dIcon from "@/app/_assets/svg/spinner";
 import { Dialog, DialogContent } from "@/app/_components/ui/dialog";
 import { cn } from "@/app/_lib/utils";
 import Button from "@/app/_components/shared/button";
+import Image from "next/image";
+import board from "@assets/images/single-button-slot.png";
 
 export default function SpinnerBox() {
   const [isClient, setIsClient] = useState(false);
@@ -90,19 +91,29 @@ export default function SpinnerBox() {
         onSpinEnd={handleEndSpin}
       >
         {({ handelClick, isSpinning }) => (
-          <Button
-            className={cn(
-              "w-[min(80dvw,100%)] mx-auto text-green-dark bg-green",
-              "drop-shadow-[0_0.3ch_color-mix(in_srgb,_var(--color-green),_black_25%)]",
-              "flex gap-2 items-center justify-center"
-            )}
-            onClick={() => handleClick(handelClick)}
-            disabled={loading || isSpinning || totalSpins <= 0}
-          >
-            <Spinner3dIcon />
-            <span>Spin</span>
-            <span>({totalSpins})</span>
-          </Button>
+          <section className="relative rounded-3xl p-1 mt-auto">
+            <Image 
+               src={board} 
+               alt="board" 
+               width={800} 
+               height={150} 
+               className="absolute inset-0 -top-3 z-0 h-[80px]" 
+               priority
+               />
+            <Button
+              className={cn(
+                "w-[calc(100%-2rem)] mx-auto text-green-dark bg-yellow-green",
+                "drop-shadow-[0_0.3ch_color-mix(in_srgb,_var(--color-green),_black_25%)]",
+                "flex gap-2 items-center justify-center p-2 rounded-2xl"
+              )}
+              onClick={() => handleClick(handelClick)}
+              disabled={loading || isSpinning || totalSpins <= 0}
+            >
+              {/* <Spinner3dIcon /> */}
+              <span className="font-made-tommy font-bold text-[20px] leading-none">Spin</span>
+              <span className="font-made-tommy font-bold text-[20px] leading-none">({totalSpins})</span>
+            </Button>
+          </section>
         )}
       </Spinner>
       <Dialog open={openReward} onOpenChange={handleCloseReward}>
