@@ -11,7 +11,7 @@ export default async function Home() {
   return mobileCheck ? (
     <main className="flex flex-col justify-center items-center min-h-dvh text-center z-10 bg-center bg-cover" style={{ backgroundImage: `url(/images/splash.png)` }}>
       <KokomoLogo className="mx-auto mt-5 mb-10 max-w-full" />
-      <MultiSteps />
+      <MultiSteps  />
     </main>
   ) : (
     <div className=" flex justify-center items-center min-h-screen text-2xl">
