@@ -5,20 +5,24 @@ import poweredAvalanche from "@assets/images/powered-avalanche.png";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/app/_components/shared/button";
+import headerBoard from "@assets/images/header-board.png";
 
 export function Step3Top() {
   return (
     <>
-      <h2
-        className={cn(
-          "text-golden-bright drop-shadow-[0_0.2ch_var(--color-golden-darker)]",
-          "mb-8 text-2xl text-center font-bumper-sticker"
-        )}
-      >
-        <small>TENS OF GAMES</small>
-        <br />
-        <span>MILLIONS IN PRIZES</span>
-      </h2>
+      <section className="relative z-20">
+          <Image src={headerBoard} alt="panel-holder" width={338} height={103} className="absolute -top-[10px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center" priority/>
+          <h2
+            className={cn(
+              "text-golden-bright drop-shadow-[0_0.2ch_var(--color-golden-darker)]",
+              "mb-8 text-2xl text-center font-bumper-sticker"
+            )}
+          >
+            <small>TENS OF GAMES</small>
+            <br />
+            <span>MILLIONS IN PRIZES</span>
+          </h2>
+      </section>
       <div className="text-golden-bright px-8 relative font-bold">
         <h3 className="text-center">Live Overview</h3>
         <div className="bg-light w-full rounded-b-2xl rounded-t p-0.5 contain-content">
