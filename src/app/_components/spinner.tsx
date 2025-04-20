@@ -14,7 +14,7 @@ import spinnerImage from "@assets/images/spinning-wheel-v3.png";
 import ativoImage from "@assets/images/spinning-ativo.png";
 import { cn } from "@/app/_lib/utils";
 import toast from "react-hot-toast";
-
+import headerBoard from "@assets/images/header-board.png";
 interface ISpinnerProps {
   segments?: {
     value: number;
@@ -160,7 +160,7 @@ function Spinner({
 
       <div
         style={{
-          // backgroundImage: `url(/images/Wheel_Border.png)`,
+          backgroundImage: `url(/images/Wheel_Border.png)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
           backgroundPosition: "center",
@@ -223,6 +223,16 @@ function Spinner({
           animation: isPushing ? "pushingDownEffect 1s ease" : "",
         }}
       >
+        <div className="h-4 flex items-start justify-center">
+          <Image
+            src={headerBoard}
+            alt="footer"
+            width={800}
+            height={800}
+            priority
+            className="h-auto w-[65%] -translate-y-4"
+          />
+        </div>
         <div className="p-4 text-golden-brown space-y-4 z-10">
           {children?.({ isSpinning: isSpinning.current, handelClick })}
         </div>

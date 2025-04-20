@@ -6,6 +6,7 @@ import { cn } from "@/app/_lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Step2Bottom, Step2Top } from "./step2";
 import { Step3Bottom, Step3Top } from "./step3";
+import Image from "next/image";
 
 const Steps = [
   { Top: Step1Top, Bottom: Step1Bottom },
@@ -25,27 +26,40 @@ export default function MultiSteps(_: Readonly<{ children?: React.ReactNode }>) 
   );
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className={cn("flex-1 flex flex-col", `${step == 0 ? "p-4" : ""}`)}>
       <Top key={`top-${step}`} />
       <div
         className={cn(
-          "bg-gradient-to-b from-golden-bright to-golden-brown",
+          "bg-gradient-to-b from-golden-bright to-golden-brown scale-90",
           "p-0.5 rounded-2xl contain-content grid",
-          "m-6 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl"
+          "my-12 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl"
         )}
       >
         <div
           className={cn(
             "bg-background rounded-[0.875rem] text-golden-bright",
-            "p-2 flex gap-2 [&>*]:flex-1"
+            "p-1.5 flex gap-1 [&>*]:flex-1 relative overflow-hidden"
           )}
         >
+          {/* {Masking wood texture} */}
+          <div className="absolute inset-0">
+            <Image
+              src="/images/wood-texture.png"
+              alt="Wood texture"
+              fill
+              className="object-cover object-center"
+              style={{
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))'
+              }}
+            />
+          </div>
           {Array.from({ length: 3 }).map((_, index) => (
             <button
               key={index}
               className={cn(
                 "bg-gradient-to-b from-gold-light to-gold",
-                "h-6 rounded-md contain-content",
+                "h-5 rounded-lg contain-content",
                 index == step && "bg-gold-dark",
                 "border-2 border-solid border-gold-darker"
               )}
