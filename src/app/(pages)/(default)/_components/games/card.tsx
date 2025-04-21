@@ -1,14 +1,20 @@
+'use client';
+
+//import modules
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+//import components
 import { TrophyIcon } from "@/app/_assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
 
+//import assets
 import { RightArrow } from '@assets/svg/right-arrow';
 import { WarIcon } from "@/app/_assets/svg/war";
 import { CupIcon } from "@/app/_assets/svg/cup";
 
+//interface
 export type TItems = {
   title?: string;
   soon?: string;
@@ -46,7 +52,7 @@ export default function GamesCard({
             null
         }
       </div>
-     
+
 
       <div className={cn("flex gap-2 p-1 bg-black/40 backdrop-blur-[25px]", title === "Games" ? "rounded-lg" : "rounded-b-lg rounded-tr-lg")}>
         {(
@@ -74,7 +80,7 @@ export default function GamesCard({
           <RightArrow />
         </div>
       </div>
-      
+
     </div>
   );
 }

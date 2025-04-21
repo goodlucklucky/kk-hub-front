@@ -1,8 +1,13 @@
+
+//import modules
 import React from "react";
 import Image from "next/image";
-import { SnakeItalicIcon } from "@/app/_assets/svg/snake";
+
+//import utils
 import { cn } from "@/app/_lib/utils";
 
+//import assets
+import { SnakeItalicIcon } from "@/app/_assets/svg/snake";
 import headerBack from '@assets/images/header-back.png';
 import { KIcon } from "@/app/_assets/svg/etc";
 import kokoLog from '@/app/_assets/images/koko-logo.png'
