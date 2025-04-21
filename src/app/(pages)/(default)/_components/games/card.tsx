@@ -46,6 +46,7 @@ export default function GamesCard({
             null
         }
       </div>
+     
 
       <div className={cn("flex gap-2 p-1 bg-black/40 backdrop-blur-[25px]", title === "Games" ? "rounded-lg" : "rounded-b-lg rounded-tr-lg")}>
         {(
@@ -73,6 +74,7 @@ export default function GamesCard({
           <RightArrow />
         </div>
       </div>
+      
     </div>
   );
 }
@@ -82,7 +84,7 @@ export type TGameItemCardProps = Omit<TItems, "soon">;
 export function GameItemCard({ title, image, link, isNew, number }: TGameItemCardProps) {
   return (
     <Link href={link || "#"} className="rounded-lg w-[70px] relative overflow-hidden">
-      {number &&  <p className="absolute top-0 right-0 bg-red-light px-1 text-white text-[10px] rounded-bl-lg">{number}</p>}
+      {number && <p className="absolute top-0 right-0 bg-red-light px-1 text-white text-[10px] rounded-bl-lg">{number}</p>}
       {isNew && <p className="absolute top-0 right-1 bg-red-light px-1 text-white text-[10px] rounded-sm">New</p>}
       <div className="bg-white/20">
         {image && (

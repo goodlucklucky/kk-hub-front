@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import _ from "lodash";
-
 //import components
 import XpBar from "../_components/xp-bar";
 import Gifts from "../_components/gifts";
@@ -34,7 +33,7 @@ export default function HomePage() {
   return (
     <>
       <XpBar />
-      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-3")}>
+      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
         <Image src={mainBack} alt="main-back" className="absolute inset-0 w-full h-full -z-10 object-cover object-center" loading='lazy' />
         <Image src={forestBack} alt="main-back" className="absolute inset-0 w-full h-[505px] top-[115px] -z-10 rotate-180" loading='lazy' />
         <Gifts setIsOpen={() => setIsMintDialogOpen(!isMintDialogOpen)} isOpen={isMintDialogOpen} setIsMinting={setIsMinting} />
@@ -54,7 +53,8 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <div className="bg-white/20 pt-1 rounded-b-2xl">
+
+          <div className="bg-[#000000]/20 pt-1 rounded-b-2xl">
             {groupedGames?.slice(0, 2)?.map(([type, games]) => (
               <GamesCard
                 key={type}
