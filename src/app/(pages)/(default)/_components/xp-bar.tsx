@@ -4,7 +4,12 @@ import React from "react";
 
 export default function XpBar() {
   return (
-    <div className="flex items-center bg-white gap-3 shadow-sm">
+    <div className={cn(
+      "flex items-center bg-white gap-3",
+      "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
+      "bg-white/20",
+      "backdrop-blur-[12.5px]"
+    )}>
       <div
         className={cn(
           "bg-yellow-2 text-golden-darker font-bold",
@@ -23,7 +28,7 @@ export default function XpBar() {
         >
           <div
             className={cn(
-              "h-full rounded-4xl",
+              "h-full rounded-l-4xl",
               "bg-gradient-to-b from-[#FFC920] to-[#EFB500]"
             )}
             style={{ width: `${(745 / 3250) * 100}%` }}

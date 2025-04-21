@@ -27,7 +27,7 @@ export function DailyBarge({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="bg-purple rounded-md px-1 pt-0.5 h-fit -mt-1">
+    <div className="bg-[#FFC920] text-[#653F56] rounded-md px-1 pt-0.5 h-fit -mt-1">
       {children}
     </div>
   );
