@@ -1,10 +1,16 @@
 import { games } from "@/constants/games";
 import type { NextConfig } from "next";
+import { RemotePattern } from "next/dist/shared/lib/image-config";
 
 const nextConfig: NextConfig = {
   async rewrites() {
     const gameRewrites =
       games?.flatMap((game) => {
+        // Skip if link is # or invalid
+        if (game.link === '#' || !game.link) {
+          return [];
+        }
+
         const baseRewrites = [
           // Main game page rewrite
           {
@@ -66,14 +72,22 @@ const nextConfig: NextConfig = {
 
   // Required for Next.js image optimization to work
   images: {
-    remotePatterns:
+    remotePatterns: (
       games
-        ?.filter((g) => g.webtype === "nextjs")
-        .map((game) => ({
-          protocol: "https",
-          hostname: new URL(game.link).hostname,
-          pathname: "/images/**",
-        })) || [],
+        ?.filter((g) => g.webtype === "nextjs" && g.link !== '#' && g.link)
+        .map((game) => {
+          try {
+            return {
+              protocol: "https",
+              hostname: new URL(game.link).hostname,
+              pathname: "/images/**",
+            };
+          } catch {
+            return null;
+          }
+        })
+        .filter(Boolean) || []
+    ) as RemotePattern[],
   },
 };
 

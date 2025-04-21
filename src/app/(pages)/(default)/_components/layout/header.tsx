@@ -1,16 +1,17 @@
-import { KIcon } from "@/app/_assets/svg/etc";
+import React from "react";
+import Image from "next/image";
 import { SnakeItalicIcon } from "@/app/_assets/svg/snake";
 import { cn } from "@/app/_lib/utils";
-import React from "react";
 
 import headerBack from '@assets/images/header-back.png';
-import Image from "next/image";
+import { KIcon } from "@/app/_assets/svg/etc";
+import kokoLog from '@/app/_assets/images/koko-logo.png'
 
 export default function Header() {
   return (
     <header
       className={cn(
-        "flex justify-between items-center gap-4 h-[75px] px-4",
+        "flex justify-between items-center gap-4 h-[75px] px-2",
       )}
     >
       <div
@@ -32,15 +33,13 @@ export default function Header() {
       </div>
       <div
         className={cn(
-          "flex flex-col rounded-b-md",
-          "bg-gradient-to-b from-golden from-40% via-golden-darker via-50% to-golden-2",
-          "relative w-13"
+          "flex flex-col",
+          "relative w-13 h-[75px]"
         )}
       >
-        <div className={cn("-mx-0.5", "aspect-square rounded-full border")}>
-          image
-        </div>
-        <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-0.5 shadow-[0_1px_0_0_#00000033]">LVL 100</span>
+        <Image src={kokoLog} alt="koko-logo" width={54} height={72} className="absolute w-[54px] h-[72px] top-0 left-0 inset-0 object-cover object-center rounded-b-md" />
+        <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-1 right-0 ">
+         LVL 100</span>
       </div>
       <Image src={headerBack} alt="header-back" height={75} className="absolute w-full inset-0 -z-8 h-[75px]" />
     </header>

@@ -556,19 +556,23 @@ export function FireIcon(props: React.ComponentProps<"svg">) {
 
 export function TickIcon(props: React.ComponentProps<"svg">) {
   return (
-    <svg
-      width="10"
-      height="8"
-      viewBox="0 0 10 8"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path
-        d="M9.63397 2.07147L3.7501 7.95539L0.366211 4.57147L2.13398 2.80371L3.7501 4.41982L7.86622 0.303711L9.63397 2.07147Z"
-        fill="currentColor"
-      />
+    <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g filter="url(#filter0_d_799_41934)">
+        <path d="M9.63397 2.07245L3.7501 7.95636L0.366211 4.57245L2.13398 2.80469L3.7501 4.4208L7.86622 0.304688L9.63397 2.07245Z" fill="#917377" />
+      </g>
+      <defs>
+        <filter id="filter0_d_799_41934" x="0.366211" y="0.304688" width="9.26758" height="8.65234" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="1" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_799_41934" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_799_41934" result="shape" />
+        </filter>
+      </defs>
     </svg>
+
   );
 }
 
