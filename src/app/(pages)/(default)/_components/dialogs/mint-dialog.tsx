@@ -1,25 +1,37 @@
 'use client';
 
+//import modules
+import Image from "next/image";
+import { useEffect } from "react";
+
+//import components
 import {
   Dialog,
-  DialogContent,
   DialogOverlay,
   DialogPortal,
 } from "@/app/_components/ui/dialog";
-import Image from "next/image";
+import Button from "@/app/_components/shared/button";
 
-import { useEffect } from "react";
-
+//import assets
 import SpinnerIcon from "@assets/images/spinner.svg";
 import AvalancheIcon from "@assets/images/powered-avalanche.png";
 import confirmBack from "@assets/images/confirm-back.png";
 
+//import icons
 import { CheckIcon } from "@assets/svg/check";
-import Button from "@/app/_components/shared/button";
 
-const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: { isMinting: boolean, isOpen: boolean, onClose: () => void, setIsMinting: (isMinting: boolean) => void }) => {
+//interface
+interface MintDialogProps {
+  isMinting: boolean;
+  isOpen: boolean;
+  onClose: () => void;
+  setIsMinting: (isMinting: boolean) => void;
+}
+
+const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: MintDialogProps) => {
   useEffect(() => {
     if (isMinting) {
+      //To do: call api to mint
       const interval = setInterval(() => {
         setIsMinting(false);
       }, 4000);
@@ -72,7 +84,6 @@ const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: { isMinting: b
           </div>
         </div>
       </DialogPortal>
-
     </Dialog>
   );
 }

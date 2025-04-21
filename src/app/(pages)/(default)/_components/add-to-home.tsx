@@ -1,7 +1,11 @@
+
+//import modules
 import React from "react";
 
+//import utils
 import { cn } from "@/app/_lib/utils";
 
+//import assets
 import { PlusIcon } from "@/app/_assets/svg/plus";
 
 export default function AddToHome() {

@@ -21,12 +21,12 @@ export function RightArrow(props: React.ComponentProps<"svg">) {
   );
 }
 
-export function RightArrow2(props: React.ComponentProps<"svg">) {
+export function RightArrow2({ color = "#917377", arrowColor = "#E3BEAA", ...props }: React.ComponentProps<"svg"> & { color?: string, arrowColor?: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="29" height="53" viewBox="0 0 29 53" fill="none" {...props}>
-      <path d="M0 0H24C26.7614 0 29 2.23858 29 5V48C29 50.7614 26.7614 53 24 53H0V0Z" fill="#917377" />
+      <path d="M0 0H24C26.7614 0 29 2.23858 29 5V48C29 50.7614 26.7614 53 24 53H0V0Z" fill={color} />
       <g filter="url(#filter0_d_799_41929)">
-        <path d="M16.2031 28.0494L9.95662 21.8029L12.9783 18.8828L21.967 27.8967L12.75 37.0885L9.90625 34.2699L16.2031 28.0494Z" fill="#E3BEAA" />
+        <path d="M16.2031 28.0494L9.95662 21.8029L12.9783 18.8828L21.967 27.8967L12.75 37.0885L9.90625 34.2699L16.2031 28.0494Z" fill={arrowColor} />
       </g>
       <defs>
         <filter id="filter0_d_799_41929" x="9.90625" y="18.8828" width="12.0605" height="19.207" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">

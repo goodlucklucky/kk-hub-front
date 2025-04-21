@@ -1,3 +1,11 @@
+
+//import modules
+import React from "react";
+
+//import utils
+import { cn } from "@/app/_lib/utils";
+
+//import assets
 import {
   MissionIcon,
   PetIcon,
@@ -5,8 +13,6 @@ import {
   SpeakerIcon,
   StoreIcon,
 } from "@/app/_assets/svg/etc";
-import { cn } from "@/app/_lib/utils";
-import React from "react";
 
 export default function Footer() {
   return (

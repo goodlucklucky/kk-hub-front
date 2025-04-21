@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
@@ -25,18 +25,41 @@ import mainBack from '@assets/images/main-back.png';
 import MintDialog from "../_components/dialogs/mint-dialog";
 
 export default function HomePage() {
-  const groupedGames = Object.entries(_?.groupBy(games, (game) => game?.type));
+  const groupedGames = Object.entries(_.groupBy(games, (game) => game?.type));
 
-  const [isMinting, setIsMinting] = useState(true);
+  const [isMinting, setIsMinting] = useState(false);
   const [isMintDialogOpen, setIsMintDialogOpen] = useState(false);
+
+  const handleMintDialogToggle = useCallback(() => {
+    setIsMintDialogOpen(prev => !prev);
+  }, []);
+
+  const handleMintDialogClose = useCallback(() => {
+    setIsMintDialogOpen(false);
+  }, []);
 
   return (
     <>
-      <XpBar />
+      <XpBar currentXp={745} maxXp={3250} />
       <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
-        <Image src={mainBack} alt="main-back" className="absolute inset-0 w-full h-full -z-10 object-cover object-center" loading='lazy' />
-        <Image src={forestBack} alt="main-back" className="absolute inset-0 w-full h-[505px] top-[115px] -z-10 rotate-180" loading='lazy' />
-        <Gifts setIsOpen={() => setIsMintDialogOpen(!isMintDialogOpen)} isOpen={isMintDialogOpen} setIsMinting={setIsMinting} />
+        <Image 
+          src={mainBack} 
+          alt="Main background" 
+          className="absolute inset-0 w-full h-full -z-10 object-cover object-center" 
+          loading='lazy' 
+          priority={false}
+        />
+        <Image 
+          src={forestBack} 
+          alt="Forest background" 
+          className="absolute inset-0 w-full h-[505px] top-[115px] -z-10 rotate-180" 
+          loading='lazy'
+          priority={false}
+        />
+        <Gifts 
+          setIsOpen={handleMintDialogToggle} 
+          setIsMinting={setIsMinting} 
+        />
 
         <div className={cn("rounded-2xl contain-content flex-1 relative h-full", "mx-2")}>
           <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-xl">
@@ -76,7 +99,12 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <MintDialog isMinting={isMinting} isOpen={isMintDialogOpen} onClose={() => setIsMintDialogOpen(false)} setIsMinting={setIsMinting} />
+      <MintDialog 
+        isMinting={isMinting} 
+        isOpen={isMintDialogOpen} 
+        onClose={handleMintDialogClose} 
+        setIsMinting={setIsMinting} 
+      />
     </>
   );
 }
