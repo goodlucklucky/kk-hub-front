@@ -35,7 +35,7 @@ const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: { isMinting: b
           <div className="flex flex-col justify-center items-center flex-1">
             {isMinting
               ?
-              <>
+              <div className="flex flex-col justify-center items-center">
                 <Image
                   priority
                   src={SpinnerIcon}
@@ -48,7 +48,7 @@ const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: { isMinting: b
                     Minting in progress...
                   </p>
                 </div>
-              </>
+              </div>
               :
               <div className="w-full flex flex-col justify-center items-center relative h-[154px] gap-y-1">
                 <div className="w-full flex justify-center items-center gap-1">
@@ -56,7 +56,6 @@ const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: { isMinting: b
                   <span className="text-[#745061] text-center font-made-tommy text-[18px] font-bold leading-normal">Claim Successful!</span>
                 </div>
                 <span className="text-[#745061] text-center font-made-tommy text-[16px] font-medium leading-normal">Check your Kokomo platform wallet</span>
-
                 <Image
                   priority
                   src={confirmBack}

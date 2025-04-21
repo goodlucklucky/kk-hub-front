@@ -34,10 +34,10 @@ export default function Header() {
       <div
         className={cn(
           "flex flex-col",
-          "relative w-13 h-[75px]"
+          "relative w-14 h-[75px]"
         )}
       >
-        <Image src={kokoLog} alt="koko-logo" width={54} height={72} className="absolute w-[54px] h-[72px] top-0 left-0 inset-0 object-cover object-center rounded-b-md" />
+        <Image src={kokoLog} alt="koko-logo" width={54} height={72} className="absolute w-[54px] h-[72px] top-0 right-0 inset-0 object-cover object-center rounded-b-md" />
         <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-1 right-0 ">
          LVL 100</span>
       </div>
