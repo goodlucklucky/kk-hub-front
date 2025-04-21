@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/app/_components/shared/button";
 import headerBoard from "@assets/images/header-board.png";
-
+import { EyeIcon } from "lucide-react";
 export function Step3Top() {
   return (
     <>
@@ -24,7 +24,10 @@ export function Step3Top() {
           </h2>
       </section>
       <div className="text-golden-bright px-8 relative font-bold">
-        <h3 className="text-center">Live Overview</h3>
+        <div className="flex items-center justify-center gap-2 -mt-2">
+          <EyeIcon className="text-grape"/>
+          <h3 className="text-center text-grape text-xl">Live Overview</h3>
+        </div>
         <div className="bg-light w-full rounded-b-2xl rounded-t p-0.5 contain-content">
           <div className="w-full rounded-b-2xl rounded-t-sm contain-content text-center bg-golden-bright text-golden-dark">
             <div className="bg-golden-dark/15 py-3">
