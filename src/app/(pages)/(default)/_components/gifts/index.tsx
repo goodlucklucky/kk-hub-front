@@ -5,7 +5,7 @@ import DayBarge from "./day-barge";
 
 export default function Gifts() {
   return (
-    <div className="flex items-center mt-2 gap-3 p-2 pl-0">
+    <div className="flex items-center gap-3 p-2 pl-0">
       <GiftBarge />
       <div
         className={cn(
