@@ -25,9 +25,91 @@ import { TopArrow } from "@/app/_assets/svg/top-arrow";
 import Social from "../_components/profile/social";
 import NavigationButton from "../_components/profile/navigateBtn";
 import Button from "@/app/_components/shared/button";
-import TabButton from "@/app/_components/profile/tab-button";
-import { CustomRightArrow, RightArrow } from "@/app/_assets/svg/right-arrow";
+import TabButton from "../_components/profile/tab-button";
+import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
+import lootbox1 from "@assets/images/loot1.png";
+import lootbox2 from "@assets/images/loot2.png";
+import lootbox3 from "@assets/images/loot3.png";
+import lootbox4 from "@assets/images/loot4.png";
+import pet1 from "@assets/images/pet1.png";
+import pet2 from "@assets/images/pet2.png";
+import pet3 from "@assets/images/pet3.png";
+import pet4 from "@assets/images/pet4.png";
+import InventorySection from "../_components/profile/inventory-section";
 
+const lootboxes = [
+  {
+    id: 1,
+    title: "LOOTBOX",
+    name: 'Tier 1',
+    image: lootbox1,
+    badge: 4,
+    nameColor: '#745162',
+    titleColor: '#745162'
+  },
+  {
+    id: 2,
+    title: "LOOTBOX",
+    name: 'Tier 2',
+    image: lootbox2,
+    badge: 4,
+    nameColor: '#126529',
+    titleColor: '#745162'
+  },
+  {
+    id: 3,
+    title: "LOOTBOX",
+    name: 'Tier 3',
+    image: lootbox3,
+    badge: 4,
+    nameColor: '#3C2BA0',
+    titleColor: '#745162'
+  },
+  {
+    id: 4,
+    title: "LOOTBOX",
+    name: 'Tier 4',
+    image: lootbox4,
+    badge: 1,
+    nameColor: '#3C2BA0',
+    titleColor: '#745162'
+  },
+]
+
+const pets = [
+  {
+    id: 1,
+    title: "OG NFT",
+    name: 'NFT',
+    image: pet1,
+    nameColor: '#853834',
+    titleColor: '#853834'
+  },
+  {
+    id: 2,
+    title: "COLLECTIBLE",
+    name: 'NFT',
+    image: pet2,
+    nameColor: '#853834',
+    titleColor: '#853834'
+  },
+  {
+    id: 3,
+    title: "SLUG",
+    name: 'NFT',
+    image: pet3,
+    nameColor: '#71335E',
+    titleColor: '#71335E'
+  },
+  {
+    id: 4,
+    title: "FERRET",
+    name: 'NFT',
+    image: pet4,
+    nameColor: '#608532',
+    titleColor: '#608532'
+  },
+]
 export default function Profile() {
   const [activeComponent, setActiveComponent] = useState("social");
 
@@ -126,7 +208,34 @@ export default function Profile() {
           </div>
         );
       case "inventory":
-        return <div>Inventory Component</div>;
+        return (
+          <div className="w-[328px] h-[453px] bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-scroll">
+            <InventorySection
+              title="Lootboxes"
+              count={13}
+              items={lootboxes}
+              itemPadding="px-2 py-2"
+              itemWidth={50}
+              itemHeight={50}
+            />
+            <InventorySection
+              title="Items & Koko Pets"
+              count={10}
+              items={pets}
+              itemPadding="px-0.5 pt-0.5 pb-1"
+              itemWidth={58}
+              itemHeight={58}
+            />
+             <InventorySection
+              title="Items & Koko Pets"
+              count={10}
+              items={pets}
+              itemPadding="px-0.5 pt-0.5 pb-1"
+              itemWidth={58}
+              itemHeight={58}
+            />
+          </div>
+        );
       default:
         return <Social />;
     }
@@ -140,7 +249,7 @@ export default function Profile() {
           <Image alt="profile-image" src={profile} className=" w-[70px] h-[70px]" />
           <div className="flex-1">
             <div className=" bg-[#CDAA98] flex justify-between items-center rounded-md w-full p-0.5 border-[2px] border-[#CDAA98]">
-              <p className=" text-[#5F3F57] font-bumper-sticker text-[18px]/[28px] pl-2 py-0.5">
+              <p className=" text-[#5F3F57] font-bumper-sticker text-lg/[28px] pl-2 py-0.5">
                 McKOKOMON118
               </p>
               <div className=" bg-[#917377] w-[34px] h-full p-[3.7px] rounded">
