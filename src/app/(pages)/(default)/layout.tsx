@@ -9,7 +9,9 @@ export default function Layout({
   return (
     <div className={cn("min-h-dvh flex flex-col")}>
       <Header />
-      <main className="grow flex flex-col">{children}</main>
+      <main className="grow bg-[url(/images/main_background_new_kokoman.png)] ">
+        {children}
+      </main>
       <Footer />
     </div>
   );
