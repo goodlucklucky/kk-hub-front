@@ -10,7 +10,7 @@ import { cn } from "@/app/_lib/utils";
 //import assets
 import profile from "@assets/images/profile.svg";
 import edit from "@assets/svg/edit.svg";
-import leftAllow from "@assets/svg/left-arrow.svg";
+import rightArrow from "@assets/svg/right-arrow.svg";
 import topup from "@assets/svg/topup.svg";
 import topupwhite from "@assets/svg/topup-white.svg";
 import social from "@assets/svg/social.svg";
@@ -140,16 +140,16 @@ export default function Profile() {
 
   return (
     <>
-      <div className="absolute  top-0 left-0 bg-black/80 w-full h-full" />
-      <div className="bg-[url(/images/board_2.png)] bg-cover bg-center fixed top-10 bottom-12 w-[100S%] z-50 border-2 border-[#FAC485] rounded-3xl mx-3 p-2">
-        <div className=" flex gap-5 items-center bg-[#F5D6B1] rounded-2xl p-5 shadow-md border-2 border-[#A96415]">
-          <Image alt="profile-image" src={profile} className=" w-20 h-20" />
-          <div className=" w-full">
-            <div className=" bg-[#CDAA98] flex justify-between rounded-md w-full p-0.5">
-              <p className=" text-[#5F3F57] font-bumper-sticker text-xl pl-2 py-1">
+      <div className="absolute top-0 left-0 bg-black/80 w-full h-full" />
+      <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-10 bottom-12 w-[100S%] z-50 border-2 border-[#FAC485] rounded-3xl mx-3 p-2">
+        <div className="flex justify-between items-center gap-x-3 bg-[#F5D6B1] rounded-2xl p-4 shadow-md border-2 border-[#A96415]">
+          <Image alt="profile-image" src={profile} className=" w-[70px] h-[70px]" />
+          <div className="flex-1">
+            <div className=" bg-[#CDAA98] flex justify-between items-center rounded-md w-full p-0.5 border-[2px] border-[#CDAA98]">
+              <p className=" text-[#5F3F57] font-bumper-sticker text-[18px]/[28px] pl-2 py-0.5">
                 McKOKOMON118
               </p>
-              <div className=" bg-[#917377] w-[34px] p-[3.7px] m-[0.7px] rounded">
+              <div className=" bg-[#917377] w-[34px] h-full p-[3.7px] rounded">
                 <Image alt="edit-icon" src={edit} />
               </div>
             </div>
@@ -162,7 +162,7 @@ export default function Profile() {
                   26
                 </p>
               </div>
-              <div className="flex gap-1.5 items-center py-1 px-2 border-r-2 border-[#DDB7A2]">
+              <div className="flex gap-1.5 items-center py-1 px-2">
                 <p className=" text-[#917377] text-md font-made-tommy font-semibold">
                   Rank
                 </p>
@@ -170,14 +170,14 @@ export default function Profile() {
                   SILVER
                 </p>
               </div>
-              <div className=" bg-[#917377] w-[34px] p-[3.7px] m-[0.7px] rounded">
-                <Image alt="edit-icon" src={leftAllow} />
+              <div className=" bg-[#917377] w-[34px] p-[3.7px] m-[0.7px] rounded flex items-center justify-center">
+                <Image alt="edit-icon" src={rightArrow} />
               </div>
             </div>
           </div>
         </div>
-        <div className=" bg-[#F5D6B1]  rounded-2xl p-5 mt-3 shadow-md border-2 border-[#A96415]">
-          <div className=" flex justify-center gap-1 items-center ">
+        <div className="flex flex-col gap-1 px-[9px] py-3 bg-[#F5D6B1] rounded-2xl shadow-md border-2 border-[#A96415]">
+          <div className="flex justify-center gap-1 items-center ">
             <Image src={topup} alt="top-up" className=" h-4 w-5" />
             <p className=" text-[#917377] text-md font-made-tommy font-semibold">
               Top up your wallet for more fun!
@@ -186,15 +186,15 @@ export default function Profile() {
           <Button
             onClick={() => setActiveComponent("social")}
             className={cn(
-              "flex gap-2 items-center justify-center rounded-md font-bold w-full"
+              "flex gap-1 items-center justify-center rounded-md font-bold w-full py-[2px]"
             )}
           >
             <Image src={topupwhite} alt="top-up" className=" h-4 w-5" />
-            <span className="drop-shadow-md">Enter Now</span>
+            <span className="drop-shadow-md text-[16px]">VIEW WALLET</span>
           </Button>
         </div>
-        <div className=" bg-[#F5D6B1]  rounded-2xl p-3 mt-3 shadow-md border-2 border-[#A96415]">
-          <div className=" flex justify-between gap-1.5">
+        <div className="bg-[#F5D6B1] rounded-2xl p-3 shadow-md border-2 border-[#A96415] flex-1">
+          <div className=" flex justify-center gap-1.5">
             <Button
               onClick={() => setActiveComponent("social")}
               className={cn(
@@ -202,7 +202,7 @@ export default function Profile() {
               )}
             >
               <Image src={social} alt="social" className=" h-4 w-5" />
-              <span className="drop-shadow-md text-[#E3BEAA] font-made-tommy">
+              <span className="drop-shadow-md text-[#E3BEAA] font-made-tommy text-[15px]">
                 Social
               </span>
             </Button>
@@ -213,7 +213,7 @@ export default function Profile() {
               )}
             >
               <Image src={starscore} alt="starscore" className=" h-4 w-5" />
-              <span className="drop-shadow-md text-[#745061] font-made-tommy">
+              <span className="drop-shadow-md text-[#745061] font-made-tommy text-[15px]">
                 Scores
               </span>
             </Button>
@@ -223,8 +223,8 @@ export default function Profile() {
                 " bg-[#E3BEAA] border-2 border-[#91737733] drop-shadow-none flex gap-0.5 items-center justify-center rounded-lg font-bold w-full h-7"
               )}
             >
-              <Image src={inventory} alt="inventory" width={20} height={24} />
-              <span className="drop-shadow-md text-[#745061] font-made-tommy">
+              <Image src={inventory} alt="inventory" width={20} height={16} />
+              <span className="drop-shadow-md text-[#745061] font-made-tommy text-[15px]">
                 Inventory
               </span>
             </Button>
