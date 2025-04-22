@@ -3,13 +3,13 @@ import React from "react";
 import Slider from "react-slick";
 
 //import utils
-import { cn } from "@/app/_lib/utils";
+// import { cn } from "@/app/_lib/utils";
 
 //import components
 import { GiftSlide } from "./slides";
 
 //import assets
-import { RightArrow2 } from "@/app/_assets/svg/right-arrow";
+// import { RightArrow2 } from "@/app/_assets/svg/right-arrow";
 
 //interface
 interface GiftsProps {

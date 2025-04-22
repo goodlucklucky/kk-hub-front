@@ -37,7 +37,7 @@ const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: MintDialogProp
       }, 4000);
       return () => clearInterval(interval);
     }
-  }, [isMinting]);
+  }, [isMinting, setIsMinting]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
