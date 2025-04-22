@@ -61,9 +61,9 @@ export default function HomePage() {
           setIsMinting={setIsMinting} 
         />
 
-        <div className={cn("rounded-2xl contain-content flex-1 relative h-full", "mx-2")}>
-          <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-xl">
-            <div className="py-1.5 bg-white text-golden-brown flex justify-center">
+        <div className={cn("rounded-2xl flex-1 relative h-full", "mx-2")}>
+          <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-xl rounded-tr-2xl rounded-tl-2xl">
+            <div className="py-1.5 bg-white text-golden-brown flex justify-center rounded-tl-2xl">
               <div className="flex gap-x-2 items-center">
                 <GameIcon />
                 <span>PLAY</span>
