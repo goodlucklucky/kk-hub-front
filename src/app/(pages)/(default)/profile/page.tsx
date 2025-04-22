@@ -19,14 +19,10 @@ import starscore from "@assets/svg/star-score.svg";
 import starscoreClick from "@assets/svg/star-score-click.svg";
 import inventory from "@assets/svg/inventory.svg";
 import inventoryClick from "@assets/svg/inventory-click.svg";
-import { DollarIcon, DollarScoreIcon } from "@/app/_assets/svg/dollar";
-import { TopArrow } from "@/app/_assets/svg/top-arrow";
 //import components
 import Social from "../_components/profile/social";
 import NavigationButton from "../_components/profile/navigateBtn";
 import Button from "@/app/_components/shared/button";
-import TabButton from "../_components/profile/tab-button";
-import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 import lootbox1 from "@assets/images/loot1.png";
 import lootbox2 from "@assets/images/loot2.png";
 import lootbox3 from "@assets/images/loot3.png";
@@ -36,6 +32,10 @@ import pet2 from "@assets/images/pet2.png";
 import pet3 from "@assets/images/pet3.png";
 import pet4 from "@assets/images/pet4.png";
 import InventorySection from "../_components/profile/inventory-section";
+import EarningsSection from "../_components/profile/earnings-section";
+import CurrentScores from "../_components/profile/current-scores";
+import PreviousResults from "../_components/profile/previous-results";
+import TournamentItem from "../_components/profile/tournament-item";
 
 const lootboxes = [
   {
@@ -110,6 +110,7 @@ const pets = [
     titleColor: '#608532'
   },
 ]
+
 export default function Profile() {
   const [activeComponent, setActiveComponent] = useState("social");
 
@@ -122,87 +123,48 @@ export default function Profile() {
       case "scores":
         return (
           <div className="w-[328px] h-full flex flex-col gap-2">
-            <div className="w-full justify-between bg-[#EED1B8] rounded-[10px] flex items-center gap-2 px-3 py-2.5">
-              <div className="flex gap-2 items-center">
-                <DollarScoreIcon />
-                <span className="text-[#5F3F57] font-small font-bumper-sticker text-[18px]/[28px]">
-                  All Time Earnings
-                </span>
-              </div>
-              <div className="bg-[#917377] rounded-[3px] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] h-[28px] flex items-center justify-end px-1 gap-1">
-                <DollarIcon />
-                <span className="text-[#FFE4D4] font-made-tommy text-[18px] leading-[28px] font-bold drop-shadow-[0px_1px_0px_rgba(0,0,0,0.20)]">
-                  235.50
-                </span>
-              </div>
-            </div>
-            <div className="w-full justify-between bg-[#EED1B8] rounded-[10px] flex flex-col items-center gap-1 px-3 py-2.5">
-              <div className="flex gap-2 items-center w-full">
-                <TopArrow />
-                <span className="text-[#5F3F57] font-small font-bumper-sticker text-[18px]/[28px] ">
-                  Your Current Scores
-                </span>
-              </div>
-              <div className="rounded-[14px] border border-[#F7D8B7] bg-[#DDC2A7] bg-gradient-to-b from-[rgba(95,63,87,0.20)] to-transparent shadow-[inset_0px_2px_0px_0px_rgba(95,63,87,0.20)] p-1.5 flex gap-1.5">
-                <TabButton label="Daily" isActive={true} />
-                <TabButton label="Weekly" />
-              </div>
-            </div>
-            <div className="flex justify-between">
-              <div className="p-2 px-4 w-[160px] rounded-full bg-[#91737754] flex text-[14px] text-[#653F56] font-made-tommy font-semibold items-center justify-between">
-                Previous Results
-                <CustomRightArrow color='#653F5654' />
-              </div>
-              <div className="p-2 px-4 w-[160px] rounded-full bg-[#A2BAA6] flex text-[14px] text-[#126529] font-made-tommy font-semibold items-center justify-between">
-                Previous Results
-                <CustomRightArrow color='#12652980' />
-              </div>
-            </div>
+            <EarningsSection amount="235.50" />
+            <CurrentScores 
+              activeTab="daily" 
+              onTabChange={(tab) => console.log(tab)} 
+            />
+            <PreviousResults 
+              leftColor="#653F5654" 
+              rightColor="#12652980" 
+            />
             <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2 max-h-[250px]">
               <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
-
-                <div className="w-full flex flex-col justify-between items-center">
-                  <div className="rounded-t-[6px] bg-[#ECB56E] w-full flex items-center justify-between text-[#745061] text-[14px] font-made-tommy font-semibold px-3 py-2">Koko Raffle <CustomRightArrow color="#917377" /></div>
-                  <div className="w-full rounded-b-[6px] bg-[#E3BEAA] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[#745061] text-[12px] font-made-tommy font-semibold px-3 py-1">Numbers drawn. Check your ticket!</div>
-                </div>
-
-                <div className="w-full flex flex-col justify-between items-center">
-                  <div className="rounded-t-[6px] bg-[#E99F8C] w-full flex items-center justify-between text-[#745061] text-[14px] font-made-tommy font-semibold px-3 py-2">Snake: $0.25 Tournament <CustomRightArrow color="#917377" /></div>
-                  <div className="w-full rounded-b-[6px] bg-[#D7BDA4] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[#745061] text-[12px] font-made-tommy font-semibold px-3 py-1">
-                    Current Estimated Earnings: $100
-                  </div>
-                </div>
-
-                <div className="w-full flex flex-col justify-between items-center">
-                  <div className="rounded-t-[6px] bg-[#D49FC4] font-semibold w-full flex items-center justify-between text-[#745061] text-[14px] font-made-tommy px-3 py-2">
-                    Flappy Dunk: $10 1v1
-                    <CustomRightArrow color="#917377" />
-                  </div>
-                  <div className="w-full rounded-b-[6px] bg-[#E99F8C] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[#853834] text-[12px] font-made-tommy font-semibold px-3 py-1">
-                    Improve your Score to qualify for a prize!
-                  </div>
-                </div>
-
-                <div className="w-full flex flex-col justify-between items-center">
-                  <div className="rounded-t-[6px] bg-[#B5C2C9] font-semibold w-full flex items-center justify-between text-[#745061] text-[14px] font-made-tommy px-3 py-2">
-                    50 KOKO Entry Tournament
-                    <CustomRightArrow color="#917377" />
-                  </div>
-                  <div className="w-full rounded-b-[6px] bg-[#D7BDA4] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[#745061] text-[12px] font-made-tommy font-semibold px-3 py-1">
-                    Improve your Score to qualify for a prize!
-                  </div>
-                </div>
-
-                <div className="w-full flex flex-col justify-between items-center">
-                  <div className="rounded-t-[6px] bg-[#B5D48E] font-semibold w-full flex items-center justify-between text-[#745061] text-[14px] font-made-tommy px-3 py-2">
-                    $10 Challenge
-                    <CustomRightArrow color="#917377" />
-                  </div>
-                  <div className="w-full rounded-b-[6px] bg-[#D7BDA4] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[#745061] text-[12px] font-made-tommy font-semibold px-3 py-1">
-                    Improve your Score to qualify for a prize!
-                  </div>
-                </div>
-
+                <TournamentItem
+                  title="Koko Raffle"
+                  message="Numbers drawn. Check your ticket!"
+                  bgColor="bg-[#ECB56E]"
+                  messageBgColor="bg-[#E3BEAA]"
+                />
+                <TournamentItem
+                  title="Snake: $0.25 Tournament"
+                  message="Current Estimated Earnings: $100"
+                  bgColor="bg-[#E99F8C]"
+                  messageBgColor="bg-[#D7BDA4]"
+                />
+                <TournamentItem
+                  title="Flappy Dunk: $10 1v1"
+                  message="Improve your Score to qualify for a prize!"
+                  bgColor="bg-[#D49FC4]"
+                  messageBgColor="bg-[#E99F8C]"
+                  messageTextColor="#853834"
+                />
+                <TournamentItem
+                  title="50 KOKO Entry Tournament"
+                  message="Improve your Score to qualify for a prize!"
+                  bgColor="bg-[#B5C2C9]"
+                  messageBgColor="bg-[#D7BDA4]"
+                />
+                <TournamentItem
+                  title="$10 Challenge"
+                  message="Improve your Score to qualify for a prize!"
+                  bgColor="bg-[#B5D48E]"
+                  messageBgColor="bg-[#D7BDA4]"
+                />
               </div>
             </div>
           </div>
