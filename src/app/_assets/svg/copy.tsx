@@ -104,7 +104,7 @@ export function CopyIcon(props: React.ComponentProps<"svg">) {
           width="6.02344"
           height="7.02344"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix

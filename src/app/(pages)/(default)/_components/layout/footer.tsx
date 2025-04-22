@@ -24,7 +24,7 @@ export default function Footer() {
     >
       <Item Icon={SpeakerIcon} label="TASKS" />
       <Item Icon={StoreIcon} label="Store" />
-      <Item
+      {/* <Item
         Icon={PlayIcon}
         isPlay
         label={
@@ -34,7 +34,7 @@ export default function Footer() {
             play
           </>
         }
-      />
+      /> */}
       <Item Icon={MissionIcon} label="MISSIONS" />
       <Item Icon={PetIcon} label="Koko pets" />
     </footer>
