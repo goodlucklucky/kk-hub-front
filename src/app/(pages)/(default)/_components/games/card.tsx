@@ -6,7 +6,7 @@ import Link from "next/link";
 import React from "react";
 
 //import components
-import { TrophyIcon } from "@/app/_assets/svg/etc";
+// import { TrophyIcon } from "@/app/_assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
 
 //import assets
@@ -32,7 +32,7 @@ export type TGamesCardProps = {
 
 export default function GamesCard({
   title = "Games",
-  Icon = TrophyIcon,
+  // Icon = TrophyIcon,
   items = [],
 }: TGamesCardProps) {
   return (

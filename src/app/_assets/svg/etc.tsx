@@ -554,7 +554,7 @@ export function FireIcon(props: React.ComponentProps<"svg">) {
   );
 }
 
-export function TickIcon(props: React.ComponentProps<"svg">) {
+export function TickIcon(_props: React.ComponentProps<"svg">) {
   return (
     <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_d_799_41934)">
