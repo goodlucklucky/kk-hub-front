@@ -1,49 +1,51 @@
-import { cn } from "@/app/_lib/utils";
+//import modules
 import React from "react";
-import { DailyBarge, GiftBarge } from "./barge";
-import DayBarge from "./day-barge";
+import Slider from "react-slick";
 
-export default function Gifts() {
+//import utils
+import { cn } from "@/app/_lib/utils";
+
+//import components
+import { GiftSlide } from "./slides";
+
+//import assets
+import { RightArrow2 } from "@/app/_assets/svg/right-arrow";
+
+//interface
+interface GiftsProps {
+  setIsOpen: () => void;
+  setIsMinting: (isMinting: boolean) => void;
+} 
+
+//custom react carousel settings
+const settings = {
+  dots: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  infinite: true,
+  fade: true,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  appendDots: (dots: any) => (
+    <div>
+      {dots}
+    </div>
+  ),
+};
+
+export default function Gifts({ setIsOpen, setIsMinting }: GiftsProps) {
   return (
-    <div className="flex items-center mt-2 gap-3 p-2 pl-0">
-      <GiftBarge />
-      <div
-        className={cn(
-          "flex-1 flex rounded-2xl",
-          "bg-green-2 shadow-sm",
-          "font-bumper-sticker"
-        )}
-      >
-        <div className="flex-1">
-          <div
-            className={cn(
-              "flex gap-2 rounded-md w-fit pl-2",
-              "-mt-1 -ml-1 ",
-              "bg-golden-brown shadow-[0_0.25ch_rgba(0,0,0,0.2)]"
-            )}
-          >
-            <p className="pt-0.5">daily claim</p>
-            <DailyBarge>
-              <span>4/28</span>
-            </DailyBarge>
-            <DailyBarge>
-              <span>23:39:01</span>
-            </DailyBarge>
-          </div>
-          <div className={cn("px-1 py-2 text-green-dark", "flex gap-2")}>
-            <DayBarge checked />
-            <DayBarge />
-            <DayBarge />
-          </div>
-        </div>
-        <button
-          className={cn(
-            "font-made-tommy flex items-center justify-center",
-            "bg-green-dark/40 px-2"
-          )}
-        >
-          {">"}
-        </button>
+    <div className="flex items-center justify-center gap-3 pl-0 w-[335px]">
+      {/* <GiftBarge /> */}
+      <div className="w-full">
+        <Slider {...settings}>
+          <GiftSlide type="daily" />
+          <GiftSlide type="invite" />
+          <GiftSlide type="og" />
+          <GiftSlide type="nft" setIsOpen={setIsOpen} setIsMinting={setIsMinting} />
+        </Slider>
       </div>
     </div>
   );
