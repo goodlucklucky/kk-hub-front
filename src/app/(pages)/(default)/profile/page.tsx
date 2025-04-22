@@ -19,11 +19,14 @@ import starscore from "@assets/svg/star-score.svg";
 import starscoreClick from "@assets/svg/star-score-click.svg";
 import inventory from "@assets/svg/inventory.svg";
 import inventoryClick from "@assets/svg/inventory-click.svg";
-
+import { DollarIcon, DollarScoreIcon } from "@/app/_assets/svg/dollar";
+import { TopArrow } from "@/app/_assets/svg/top-arrow";
 //import components
 import Social from "../_components/profile/social";
 import NavigationButton from "../_components/profile/navigateBtn";
 import Button from "@/app/_components/shared/button";
+import TabButton from "@/app/_components/profile/tab-button";
+import { CustomRightArrow, RightArrow } from "@/app/_assets/svg/right-arrow";
 
 export default function Profile() {
   const [activeComponent, setActiveComponent] = useState("social");
@@ -35,11 +38,97 @@ export default function Profile() {
           <Social />
         );
       case "scores":
-        return <div>Scores Component</div>;
+        return (
+          <div className="w-[328px] h-full flex flex-col gap-2">
+            <div className="w-full justify-between bg-[#EED1B8] rounded-[10px] flex items-center gap-2 px-3 py-2.5">
+              <div className="flex gap-2 items-center">
+                <DollarScoreIcon />
+                <span className="text-[#5F3F57] font-small font-bumper-sticker text-[18px]/[28px]">
+                  All Time Earnings
+                </span>
+              </div>
+              <div className="bg-[#917377] rounded-[3px] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] h-[28px] flex items-center justify-end px-1 gap-1">
+                <DollarIcon />
+                <span className="text-[#FFE4D4] font-made-tommy text-[18px] leading-[28px] font-bold drop-shadow-[0px_1px_0px_rgba(0,0,0,0.20)]">
+                  235.50
+                </span>
+              </div>
+            </div>
+            <div className="w-full justify-between bg-[#EED1B8] rounded-[10px] flex flex-col items-center gap-1 px-3 py-2.5">
+              <div className="flex gap-2 items-center w-full">
+                <TopArrow />
+                <span className="text-[#5F3F57] font-small font-bumper-sticker text-[18px]/[28px] ">
+                  Your Current Scores
+                </span>
+              </div>
+              <div className="rounded-[14px] border border-[#F7D8B7] bg-[#DDC2A7] bg-gradient-to-b from-[rgba(95,63,87,0.20)] to-transparent shadow-[inset_0px_2px_0px_0px_rgba(95,63,87,0.20)] p-1.5 flex gap-1.5">
+                <TabButton label="Daily" isActive={true} />
+                <TabButton label="Weekly" />
+              </div>
+            </div>
+            <div className="flex justify-between">
+              <div className="p-2 px-4 w-[160px] rounded-full bg-[#91737754] flex text-[14px] text-[#653F56] font-made-tommy font-semibold items-center justify-between">
+                Previous Results
+                <CustomRightArrow color='#653F5654' />
+              </div>
+              <div className="p-2 px-4 w-[160px] rounded-full bg-[#A2BAA6] flex text-[14px] text-[#126529] font-made-tommy font-semibold items-center justify-between">
+                Previous Results
+                <CustomRightArrow color='#12652980' />
+              </div>
+            </div>
+            <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2 max-h-[250px]">
+              <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
+
+                <div className="w-full flex flex-col justify-between items-center">
+                  <div className="rounded-t-[6px] bg-[#ECB56E] w-full flex items-center justify-between text-[#745061] text-[14px] font-made-tommy font-semibold px-3 py-2">Koko Raffle <CustomRightArrow color="#917377" /></div>
+                  <div className="w-full rounded-b-[6px] bg-[#E3BEAA] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[#745061] text-[12px] font-made-tommy font-semibold px-3 py-1">Numbers drawn. Check your ticket!</div>
+                </div>
+
+                <div className="w-full flex flex-col justify-between items-center">
+                  <div className="rounded-t-[6px] bg-[#E99F8C] w-full flex items-center justify-between text-[#745061] text-[14px] font-made-tommy font-semibold px-3 py-2">Snake: $0.25 Tournament <CustomRightArrow color="#917377" /></div>
+                  <div className="w-full rounded-b-[6px] bg-[#D7BDA4] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[#745061] text-[12px] font-made-tommy font-semibold px-3 py-1">
+                    Current Estimated Earnings: $100
+                  </div>
+                </div>
+
+                <div className="w-full flex flex-col justify-between items-center">
+                  <div className="rounded-t-[6px] bg-[#D49FC4] font-semibold w-full flex items-center justify-between text-[#745061] text-[14px] font-made-tommy px-3 py-2">
+                    Flappy Dunk: $10 1v1
+                    <CustomRightArrow color="#917377" />
+                  </div>
+                  <div className="w-full rounded-b-[6px] bg-[#E99F8C] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[#853834] text-[12px] font-made-tommy font-semibold px-3 py-1">
+                    Improve your Score to qualify for a prize!
+                  </div>
+                </div>
+
+                <div className="w-full flex flex-col justify-between items-center">
+                  <div className="rounded-t-[6px] bg-[#B5C2C9] font-semibold w-full flex items-center justify-between text-[#745061] text-[14px] font-made-tommy px-3 py-2">
+                    50 KOKO Entry Tournament
+                    <CustomRightArrow color="#917377" />
+                  </div>
+                  <div className="w-full rounded-b-[6px] bg-[#D7BDA4] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[#745061] text-[12px] font-made-tommy font-semibold px-3 py-1">
+                    Improve your Score to qualify for a prize!
+                  </div>
+                </div>
+
+                <div className="w-full flex flex-col justify-between items-center">
+                  <div className="rounded-t-[6px] bg-[#B5D48E] font-semibold w-full flex items-center justify-between text-[#745061] text-[14px] font-made-tommy px-3 py-2">
+                    $10 Challenge
+                    <CustomRightArrow color="#917377" />
+                  </div>
+                  <div className="w-full rounded-b-[6px] bg-[#D7BDA4] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[#745061] text-[12px] font-made-tommy font-semibold px-3 py-1">
+                    Improve your Score to qualify for a prize!
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        );
       case "inventory":
         return <div>Inventory Component</div>;
       default:
-        return <div>Social Component</div>;
+        return <Social />;
     }
   };
 
@@ -98,7 +187,7 @@ export default function Profile() {
             <span className="drop-shadow-md text-[16px]">VIEW WALLET</span>
           </Button>
         </div>
-        <div className="bg-[#F5D6B1] rounded-2xl p-3 shadow-md border-2 border-[#A96415] flex-1">
+        <div className="bg-[#F5D6B1] rounded-2xl p-3 shadow-md border-2 border-[#A96415] flex-1 flex flex-col">
           <div className="flex justify-center gap-1.5">
             <NavigationButton
               icon={activeComponent === "social" ? socialClick : social}
@@ -119,7 +208,7 @@ export default function Profile() {
               onClick={() => setActiveComponent("inventory")}
             />
           </div>
-          <div className="bg-[#E3BEAA] mt-3 rounded-2xl">
+          <div className="mt-3 rounded-2xl flex-1">
             {renderComponent()}
           </div>
         </div>
