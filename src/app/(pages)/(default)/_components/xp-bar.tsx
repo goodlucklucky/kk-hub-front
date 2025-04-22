@@ -8,52 +8,67 @@ interface XpBarProps {
   className?: string;
 }
 
-const XpBar: React.FC<XpBarProps> = ({ currentXp, maxXp, className }) => {
-  const percentage = (currentXp / maxXp) * 100;
-
-  return (
-    <div className={cn(
-      "bg-[#F5D6B1] rounded-2xl p-3 shadow-md border-2 border-[#A96415]",
-      "flex items-center gap-3",
+const XpLabel: React.FC<{ className?: string }> = ({ className }) => (
+  <div
+    className={cn(
+      "bg-yellow-2 text-golden-darker font-bold",
+      "aspect-square p-2",
       className
-    )}>
-      <div className={cn(
-        "bg-[#653F56] text-[#E3BEAA]",
-        "aspect-square p-2 rounded-lg",
-        "flex items-center justify-center",
-        "font-made-tommy text-[15px] font-bold"
-      )}>
-        XP
-      </div>
-      
-      <div className="flex-1 flex items-center gap-4">
-        <span className="text-[15px] font-made-tommy font-bold text-[#745061]">
-          {currentXp} / {maxXp}
-        </span>
-        <div className={cn(
-          "flex-1 rounded-4xl h-3",
-          "bg-[#E3BEAA] border-2 border-[#91737733]"
-        )}>
-          <div
-            className={cn(
-              "h-full rounded-l-4xl",
-              "bg-[#653F56]"
-            )}
-            style={{ width: `${percentage}%` }}
-          />
-        </div>
-      </div>
+    )}
+  >
+    XP
+  </div>
+);
 
-      <div className={cn(
-        "aspect-square h-full",
-        "bg-[#653F56] text-[#E3BEAA]",
-        "flex items-center justify-center rounded-lg",
-        "border-2 border-[#91737733]"
-      )}>
-        <BoxIcon className="size-full p-1" />
+const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({ currentXp, maxXp }) => {
+  const percentage = (currentXp / maxXp) * 100;
+  
+  return (
+    <div className="flex-1 flex items-center gap-4">
+      <span className="text-[15px] font-bold text-golden-darker">
+        {currentXp} / {maxXp}
+      </span>
+      <div
+        className={cn(
+          "flex-1 rounded-4xl h-3",
+          "bg-gradient-to-b from-[#655364] to-[#978396] shadow-[0_2px_0_0_#00000033]"
+        )}
+      >
+        <div
+          className={cn(
+            "h-full rounded-l-4xl",
+            "bg-gradient-to-b from-[#FFC920] to-[#EFB500]"
+          )}
+          style={{ width: `${percentage}%` }}
+        />
       </div>
     </div>
   );
 };
 
-export default XpBar;
+const BoxButton: React.FC<{ className?: string }> = ({ className }) => (
+  <div
+    className={cn(
+      "aspect-square h-full flex items-center justify-center",
+      "bg-red text-yellow-2",
+      className
+    )}
+  >
+    <BoxIcon className="size-full p-1" />
+  </div>
+);
+
+export default function XpBar({ currentXp, maxXp, className }: XpBarProps) {
+  return (
+    <div className={cn(
+      "flex items-center gap-3",
+      "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
+      "bg-white/20 backdrop-blur-[12.5px]",
+      className
+    )}>
+      <XpLabel />
+      <XpProgress currentXp={currentXp} maxXp={maxXp} />
+      <BoxButton />
+    </div>
+  );
+}
