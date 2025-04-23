@@ -132,7 +132,7 @@ export default function Profile() {
               leftColor="#653F5654" 
               rightColor="#12652980" 
             />
-            <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2 max-h-[240px]">
+            <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2 max-h-[230px]">
               <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
                 <TournamentItem
                   title="Koko Raffle"
@@ -171,7 +171,7 @@ export default function Profile() {
         );
       case "inventory":
         return (
-          <div className="h-[453px] bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-scroll">
+          <div className="h-[436px] bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-scroll">
             <InventorySection
               title="Lootboxes"
               count={13}
@@ -206,7 +206,7 @@ export default function Profile() {
   return (
     <>
       <div className="absolute top-0 left-0 w-full h-full bg-black/75 backdrop-blur-[2.5px]" />
-      <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-10 bottom-12 w-[100S%] z-50 border-2 border-[#FAC485] rounded-3xl mx-3 p-2">
+      <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-10 bottom-12 w-[100S%] z-50 border-2 border-[#FAC485] rounded-3xl mx-3 p-2 right-0 left-0">
         <div className="flex justify-between items-center gap-x-3 bg-[#F5D6B1] rounded-2xl p-4 shadow-md border-2 border-[#A96415]">
           <Image alt="profile-image" src={profile} className=" w-[70px] h-[70px]" />
           <div className="flex-1">
