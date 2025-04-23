@@ -30,7 +30,7 @@ export default function InventorySection({
   `;
 
   const contentClasses = `
-    flex justify-between items-center 
+    flex justify-between items-center
     overflow-hidden transition-all duration-300 ease-in-out
     ${isExpanded ? "max-h-[200px] opacity-100 px-3 py-2" : "max-h-0 opacity-0 !p-0"}
   `;
