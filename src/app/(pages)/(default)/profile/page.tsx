@@ -122,9 +122,9 @@ export default function Profile() {
         );
       case "scores":
         return (
-          <div className="w-[328px] h-full flex flex-col gap-2">
+          <div className="h-full flex flex-col gap-2">
             <EarningsSection amount="235.50" />
-            <CurrentScores 
+            <CurrentScores
               activeTab="daily" 
               onTabChange={(tab) => console.log(tab)} 
             />
@@ -132,7 +132,7 @@ export default function Profile() {
               leftColor="#653F5654" 
               rightColor="#12652980" 
             />
-            <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2 max-h-[250px]">
+            <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2 max-h-[240px]">
               <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
                 <TournamentItem
                   title="Koko Raffle"
@@ -171,7 +171,7 @@ export default function Profile() {
         );
       case "inventory":
         return (
-          <div className="w-[328px] h-[453px] bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-scroll">
+          <div className="h-[453px] bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-scroll">
             <InventorySection
               title="Lootboxes"
               count={13}
@@ -184,7 +184,7 @@ export default function Profile() {
               title="Items & Koko Pets"
               count={10}
               items={pets}
-              itemPadding="px-0.5 pt-0.5 pb-1"
+              itemPadding="px-1 pt-1 pb-1"
               itemWidth={58}
               itemHeight={58}
             />
@@ -192,7 +192,7 @@ export default function Profile() {
               title="Items & Koko Pets"
               count={10}
               items={pets}
-              itemPadding="px-0.5 pt-0.5 pb-1"
+              itemPadding="px-1 pt-1 pb-1"
               itemWidth={58}
               itemHeight={58}
             />
