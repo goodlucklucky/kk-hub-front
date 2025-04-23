@@ -1,6 +1,9 @@
+import React from "react";
+
 import { BoxIcon } from "@/app/_assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
-import React from "react";
+
+import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 
 interface XpBarProps {
   currentXp: number;
@@ -20,9 +23,22 @@ const XpLabel: React.FC<{ className?: string }> = ({ className }) => (
   </div>
 );
 
+const LeftBack: React.FC<{ className?: string }> = ({ className }) => (
+  <div
+    className={cn(
+      "border border-[#B1B5CC] bg-[#B1B5CC] backdrop-blur-[12.5px]",
+      "aspect-square p-2 h-10",
+      "flex items-center justify-center",
+      className
+    )}
+  >
+    <CustomRightArrow className="w-[14px] h-[21px] rotate-180"/>
+  </div>
+);
+
 const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({ currentXp, maxXp }) => {
   const percentage = (currentXp / maxXp) * 100;
-  
+
   return (
     <div className="flex-1 flex items-center gap-4">
       <span className="text-[15px] font-bold text-golden-darker">
@@ -58,7 +74,7 @@ const BoxButton: React.FC<{ className?: string }> = ({ className }) => (
   </div>
 );
 
-export default function XpBar({ currentXp, maxXp, className }: XpBarProps) {
+export const XpBar = ({ currentXp, maxXp, className }: XpBarProps) => {
   return (
     <div className={cn(
       "flex items-center gap-3",
@@ -69,6 +85,22 @@ export default function XpBar({ currentXp, maxXp, className }: XpBarProps) {
       <XpLabel />
       <XpProgress currentXp={currentXp} maxXp={maxXp} />
       <BoxButton />
+    </div>
+  );
+}
+
+export const NavBar = ({className}: {className?: string}) => {
+  return (
+    <div className={cn(
+      "flex items-center gap-3",
+      "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
+      "bg-black/20 backdrop-blur-[12.5px]",
+      className
+    )}>
+      <LeftBack />
+      <span className="text-[#ECEFFF] text-2xl font-normal leading-normal font-bumper-sticker [text-shadow:0px_1px_0px_rgba(0,0,0,0.20)]">
+        STORE
+      </span>
     </div>
   );
 }
