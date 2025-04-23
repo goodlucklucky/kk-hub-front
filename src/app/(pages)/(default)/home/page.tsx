@@ -4,7 +4,7 @@ import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
-import XpBar from "../_components/xp-bar";
+import { XpBar } from "../_components/xp-bar";
 import Gifts from "../_components/gifts";
 import GamesCard from "../_components/games/card";
 import AddToHome from "../_components/add-to-home";
@@ -42,23 +42,23 @@ export default function HomePage() {
     <>
       <XpBar currentXp={745} maxXp={3250} />
       <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
-        <Image 
-          src={mainBack} 
-          alt="Main background" 
-          className="absolute inset-0 w-full h-full -z-10 object-cover object-center" 
-          loading='lazy' 
-          priority={false}
-        />
-        <Image 
-          src={forestBack} 
-          alt="Forest background" 
-          className="absolute inset-0 w-full h-[505px] top-[115px] -z-10 rotate-180" 
+        <Image
+          src={mainBack}
+          alt="Main background"
+          className="absolute inset-0 w-full h-full -z-10 object-cover object-center"
           loading='lazy'
           priority={false}
         />
-        <Gifts 
-          setIsOpen={handleMintDialogToggle} 
-          setIsMinting={setIsMinting} 
+        <Image
+          src={forestBack}
+          alt="Forest background"
+          className="absolute inset-0 w-full h-[505px] top-[115px] -z-10 rotate-180"
+          loading='lazy'
+          priority={false}
+        />
+        <Gifts
+          setIsOpen={handleMintDialogToggle}
+          setIsMinting={setIsMinting}
         />
 
         <div className={cn("rounded-2xl flex-1 relative h-full", "mx-2")}>
@@ -99,11 +99,11 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <MintDialog 
-        isMinting={isMinting} 
-        isOpen={isMintDialogOpen} 
-        onClose={handleMintDialogClose} 
-        setIsMinting={setIsMinting} 
+      <MintDialog
+        isMinting={isMinting}
+        isOpen={isMintDialogOpen}
+        onClose={handleMintDialogClose}
+        setIsMinting={setIsMinting}
       />
     </>
   );
