@@ -1,5 +1,6 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
+
 import { DollarIcon } from "@/app/_assets/svg/dollar";
 import { HotIcon } from "@/app/_assets/svg/hot";
 
@@ -10,6 +11,7 @@ interface CosmeticCardProps {
   price: number;
   showInfo?: boolean;
   isHot?: boolean;
+  onClick?: () => void;
 }
 
 const CosmeticCard: React.FC<CosmeticCardProps> = ({
@@ -19,9 +21,10 @@ const CosmeticCard: React.FC<CosmeticCardProps> = ({
   price,
   showInfo = false,
   isHot = false,
+  onClick
 }) => {
   return (
-    <div className="flex flex-col gap-1 rounded-[10px] border border-[rgba(145,115,119,0.20)] bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] p-1 relative">
+    <div className="flex flex-col gap-1 rounded-[10px] border border-[rgba(145,115,119,0.20)] bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] p-1 relative" onClick={onClick}>
       <Image src={image} alt={title} />
       {isHot && (
         <div className="absolute top-2 -right-0.5 rounded-[3px] bg-[#ED4721] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.20)] flex gap-1 font-made-tommy text-[12px]/[10px] font-medium text-white px-1 py-0.5 pt-1"><HotIcon />Hot</div>
