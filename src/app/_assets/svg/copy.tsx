@@ -135,3 +135,19 @@ export function CopyIcon(props: React.ComponentProps<"svg">) {
     </svg>
   );
 }
+
+export function TapCopyIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 11 11" fill="none" {...props}>
+    <g clip-path="url(#clip0_1137_12881)">
+      <path d="M0 0H6.875V2.75H2.75V6.875H0V0Z" fill="#EED1B8"/>
+      <path d="M11 4.125H4.125V11H11V4.125Z" fill="#EED1B8"/>
+    </g>
+    <defs>
+      <clipPath id="clip0_1137_12881">
+        <rect width="11" height="11" fill="white"/>
+      </clipPath>
+    </defs>
+  </svg>
+  );
+}
