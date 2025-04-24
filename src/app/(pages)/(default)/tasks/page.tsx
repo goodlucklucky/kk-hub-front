@@ -29,7 +29,7 @@ import NavigationButton from "../_components/profile/navigateBtn";
 
 // Types
 type StoreCategory = 'featured' | 'items' | 'kokitos' | 'social';
-type ProductCategory = 'COSMETICS' | 'BUNDLES' | 'COLLECTIBLES';
+type TasksCategory = 'Claim OG' | 'Koko Tasks' | 'Partner';
 
 // Memoized CosmeticCard component
 const MemoizedCosmeticCard = memo(CosmeticCard);
@@ -38,25 +38,25 @@ const MemoizedCosmeticCard = memo(CosmeticCard);
 const MemoizedNavigationButton = memo(NavigationButton);
 
 // Product category buttons component
-const ProductCategoryButtons = memo(({ activeCategory, onCategoryChange }: { activeCategory: ProductCategory, onCategoryChange: (category: ProductCategory) => void }) => (
+const TasksCategoryButtons = memo(({ activeCategory, onCategoryChange }: { activeCategory: TasksCategory, onCategoryChange: (category: TasksCategory) => void }) => (
   <div className="w-full flex gap-x-1">
-    {(['COSMETICS', 'BUNDLES', 'COLLECTIBLES'] as const).map((category) => (
+    {(['Claim OG', 'Koko Tasks', 'Partner'] as const).map((category) => (
       <MemoizedNavigationButton
         key={category}
         label={category}
         isActive={activeCategory === category}
         onClick={() => onCategoryChange(category)}
-        className="rounded-full !text-sm !font-normal font-bumper-sticker"
+        className="rounded-[9px] !text-sm !font-normal font-bumper-sticker border-[#9C7B8F]"
       />
     ))}
   </div>
 ));
 
-ProductCategoryButtons.displayName = 'ProductCategoryButtons';
+TasksCategoryButtons.displayName = 'TasksCategoryButtons';
 
-export default function StorePage() {
+export default function TasksPage() {
   const [activeComponent, setActiveComponent] = useState<StoreCategory>("featured");
-  const [activeProductCategory, setActiveProductCategory] = useState<ProductCategory>("COSMETICS");
+  const [activeProductCategory, setActiveProductCategory] = useState<TasksCategory>("Claim OG");
   const [isSkinDialogOpen, setIsSkinDialogOpen] = useState(false);
 
   const handleSkinDialogToggle = useCallback(() => {
@@ -67,13 +67,13 @@ export default function StorePage() {
     setActiveComponent(category);
   }, []);
 
-  const handleProductCategoryChange = useCallback((category: ProductCategory) => {
+  const handleProductCategoryChange = useCallback((category: TasksCategory) => {
     setActiveProductCategory(category);
   }, []);
 
   return (
     <>
-      <NavBar title={'Store'} />
+      <NavBar title={'Tasks'} />
       <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
         <Image
           src={mainBack}
@@ -94,36 +94,13 @@ export default function StorePage() {
           sizes="100vw"
         />
         <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-32 bottom-25 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0">
-          <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col">
-            <div className="flex justify-center gap-1.5">
-              <MemoizedNavigationButton
-                icon={activeComponent === "featured" ? starscoreClick : starscore}
-                label="Featured"
-                isActive={activeComponent === "featured"}
-                onClick={() => handleCategoryChange("featured")}
-                className="shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)]"
-              />
-              <MemoizedNavigationButton
-                icon={activeComponent === "items" ? itemClick : item}
-                label="Items"
-                isActive={activeComponent === "items"}
-                onClick={() => handleCategoryChange("items")}
-                className="shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)]"
-              />
-              <MemoizedNavigationButton
-                icon={activeComponent === "kokitos" ? inventoryClick : inventory}
-                label="Kokitos"
-                isActive={activeComponent === "kokitos"}
-                onClick={() => handleCategoryChange("kokitos")}
-                className="shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)]"
+          <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col flex-1 overflow-y-auto gap-2">
+            <div className="rounded-[14px] border border-[#F7D8B7] bg-[#DDC2A7] shadow-[inset_0px_2px_0px_0px_rgba(95,63,87,0.20)] [background:linear-gradient(180deg,rgba(95,63,87,0.20)_-577.52%,rgba(95,63,87,0.00)_248.61%),#DDC2A7] p-[5px]">
+              <TasksCategoryButtons
+                activeCategory={activeProductCategory}
+                onCategoryChange={handleProductCategoryChange}
               />
             </div>
-          </div>
-          <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col flex-1 overflow-y-auto gap-2">
-            <ProductCategoryButtons 
-              activeCategory={activeProductCategory}
-              onCategoryChange={handleProductCategoryChange}
-            />
             <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2 pt-3">
               <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 px-1 overflow-y-auto">
                 <div className="flex justify-start items-center">
