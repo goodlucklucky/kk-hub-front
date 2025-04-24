@@ -89,17 +89,17 @@ export const XpBar = ({ currentXp, maxXp, className }: XpBarProps) => {
   );
 }
 
-export const NavBar = ({className}: {className?: string}) => {
+export const NavBar = ({className, title}: {className?: string, title: string}) => {
   return (
     <div className={cn(
       "flex items-center gap-3",
       "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
-      "bg-black/20 backdrop-blur-[12.5px]",
+      "bg-[rgba(0,0,0,0.20)] backdrop-blur-[12.5px]",
       className
     )}>
       <LeftBack />
       <span className="text-[#ECEFFF] text-2xl font-normal leading-normal font-bumper-sticker [text-shadow:0px_1px_0px_rgba(0,0,0,0.20)]">
-        STORE
+        {title}
       </span>
     </div>
   );
