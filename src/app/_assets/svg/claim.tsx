@@ -24,3 +24,24 @@ export function ClaimIcon(props: React.ComponentProps<"svg">) {
     </svg>
   );
 }
+
+export function ClaimRaffleIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" viewBox="0 0 16 13" fill="none" {...props}>
+      <g filter="url(#filter0_d_1088_11969)">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M16 0H0V4C1.10457 4 2 4.89543 2 6C2 7.10457 1.10457 8 0 8V12H16V8C14.8954 8 14 7.10457 14 6C14 4.89543 14.8954 4 16 4V0ZM8 8C9.10457 8 10 7.10457 10 6C10 4.89543 9.10457 4 8 4C6.89543 4 6 4.89543 6 6C6 7.10457 6.89543 8 8 8Z" fill="#EFF6FF" />
+      </g>
+      <defs>
+        <filter id="filter0_d_1088_11969" x="0" y="0" width="16" height="13" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="1" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0.243137 0 0 0 0 0.141176 0 0 0 0 0.411765 0 0 0 0.2 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1088_11969" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1088_11969" result="shape" />
+        </filter>
+      </defs>
+    </svg>
+  );
+}

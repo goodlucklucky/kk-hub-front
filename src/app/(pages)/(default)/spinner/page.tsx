@@ -8,6 +8,9 @@ import { XpBar } from "../_components/xp-bar";
 import PageTitleBanner from "@/app/_components/shared/page-title-banner";
 import Spinner from "@/app/_components/spinner";
 
+import WithdrawDialog from "../_components/dialogs/withdraw-dialog";
+import MoreSpinsDialog from "../_components/dialogs/more-dialog";
+
 //import utils
 import { formatBigNumber, shuffleArray } from "@/app/_utils/number";
 import { cn } from "@/app/_lib/utils";
@@ -18,8 +21,7 @@ import spinnerBack from '@assets/images/spinner-back.png';
 import usdt from '@assets/images/usdt.png';
 import spinBtn from '@assets/images/spin-btn.png';
 import moreBtn from '@assets/images/more-btn.png';
-import WithdrawDialog from "../_components/dialogs/withdraw-dialog";
-import MoreSpinsDialog from "../_components/dialogs/more-dialog";
+import card from '@assets/images/card.png';
 
 export const spinnerProbability = [
   {
