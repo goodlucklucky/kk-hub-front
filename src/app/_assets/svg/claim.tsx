@@ -29,7 +29,7 @@ export function ClaimRaffleIcon({ color = "#EFF6FF", ...props }: React.Component
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" viewBox="0 0 16 13" fill="none" {...props}>
       <g filter="url(#filter0_d_1088_11969)">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M16 0H0V4C1.10457 4 2 4.89543 2 6C2 7.10457 1.10457 8 0 8V12H16V8C14.8954 8 14 7.10457 14 6C14 4.89543 14.8954 4 16 4V0ZM8 8C9.10457 8 10 7.10457 10 6C10 4.89543 9.10457 4 8 4C6.89543 4 6 4.89543 6 6C6 7.10457 6.89543 8 8 8Z" fill={color} />
+        <path fillRule="evenodd" clipRule="evenodd" d="M16 0H0V4C1.10457 4 2 4.89543 2 6C2 7.10457 1.10457 8 0 8V12H16V8C14.8954 8 14 7.10457 14 6C14 4.89543 14.8954 4 16 4V0ZM8 8C9.10457 8 10 7.10457 10 6C10 4.89543 9.10457 4 8 4C6.89543 4 6 4.89543 6 6C6 7.10457 6.89543 8 8 8Z" fill={color} />
       </g>
       <defs>
         <filter id="filter0_d_1088_11969" x="0" y="0" width="16" height="13" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
