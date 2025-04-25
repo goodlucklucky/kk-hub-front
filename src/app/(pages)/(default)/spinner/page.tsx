@@ -18,6 +18,8 @@ import spinnerBack from '@assets/images/spinner-back.png';
 import usdt from '@assets/images/usdt.png';
 import spinBtn from '@assets/images/spin-btn.png';
 import moreBtn from '@assets/images/more-btn.png';
+import WithdrawDialog from "../_components/dialogs/withdraw-dialog";
+import MoreSpinsDialog from "../_components/dialogs/more-dialog";
 
 export const spinnerProbability = [
   {
@@ -82,10 +84,11 @@ export const spinnerProbability = [
   },
 ];
 
-
 export default function SpinPage() {
   const [loading, setLoading] = useState(false);
   const [spinsList, setSpinsList] = useState(spinnerProbability);
+  const [withdrawDialog, setWithdrawDialog] = useState(false);
+  const [moreSpinsDialog, setMoreSpinsDialog] = useState(true);
 
   useEffect(() => {
     // Only shuffle on client-side
@@ -128,7 +131,6 @@ export default function SpinPage() {
       </div>
       <div className="my-auto">
         <PageTitleBanner
-          // topImageClassName={topImageClassName}
           className={`relative m-0 top-6 mx-auto ${loading ? "push-effect" : ""
             }`}
           titleBanner={
@@ -189,6 +191,8 @@ export default function SpinPage() {
           )}
         </Spinner>
       </div>
+      <WithdrawDialog isOpen={withdrawDialog} onClose={() => setWithdrawDialog(false)} />
+      <MoreSpinsDialog isOpen={moreSpinsDialog} onClose={() => setMoreSpinsDialog(false)} />
     </>
   );
 }
