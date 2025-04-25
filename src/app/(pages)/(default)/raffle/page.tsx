@@ -154,12 +154,12 @@ export default function RafflePage() {
         </div>
       </div>
       <RaffleDialog
-        isOpen={true}
+        isOpen={false}
         onClose={() => {}}
         tickets={tickets}
-        isWinner={true}
+        isWinner={false}
         winningNumbers={[23, 3, 3223]}
-        showWinner={true}
+        showWinner={false}
         isClaiming={false}
       />
       <TicketDialog
