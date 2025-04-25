@@ -160,6 +160,7 @@ export default function RafflePage() {
         isWinner={true}
         winningNumbers={[23, 3, 3223]}
         showWinner={true}
+        isClaiming={false}
       />
       <TicketDialog
         isOpen={ticketDialogOpen}
