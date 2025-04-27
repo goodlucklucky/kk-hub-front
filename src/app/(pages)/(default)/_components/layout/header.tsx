@@ -47,7 +47,7 @@ export default function Header() {
         <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-1 right-0 ">
           LVL 100</span>
       </div>
-      <Image src={headerBack} alt="header-back" height={75} className="absolute w-full inset-0 -z-8 h-[75px]" />
+      <Image src={headerBack} alt="header-back" width={75} height={75} className="absolute w-full inset-0 -z-8 h-[75px]" />
     </header>
   );
 }
