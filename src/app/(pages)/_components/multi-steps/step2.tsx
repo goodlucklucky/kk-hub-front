@@ -1,26 +1,23 @@
 import { TimerIcon } from "@assets/svg/etc";
-import { cn } from "@/app/_lib/utils";
 import React from "react";
 import SpinnerBox from "../spinner/box";
-import headerBoard from "@assets/images/header-board.png"
-import Image from "next/image";
+import PageTitleBanner from "@/app/_components/shared/page-title-banner";
+
 export function Step2Top() {
   return (
     <>
-      <section className="relative z-20">
-        <Image src={headerBoard} alt="header-board" width={241} height={73} className="absolute -top-[9px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center" priority />
-        <h2
-          className={cn(
-            "text-golden-bright drop-shadow-[0_0.2ch_var(--color-golden-darker)]",
-            "text-xl text-center font-bumper-sticker leading-[1.1]"
-          )}
-        >
-          <span className="tracking-wider font-[22px]">Koko</span>
-          <br />
-          <span className="tracking-wider font-[22px]">Spinner</span>
-        </h2>
-      </section>
-      <div className="flex-1 -mt-2">
+      <PageTitleBanner
+        className={`relative top-6 mx-auto}`}
+        titleBanner={
+          <p className="text-center text-2xl leading-5">
+            KOKO
+            <br />
+            spinner
+          </p>
+        }
+        spinner
+      />
+      <div className="flex-1">
         <SpinnerBox />
       </div>
     </>

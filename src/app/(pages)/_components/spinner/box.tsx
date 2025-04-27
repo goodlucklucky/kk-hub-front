@@ -91,29 +91,17 @@ export default function SpinnerBox() {
         onSpinEnd={handleEndSpin}
       >
         {({ handelClick, isSpinning }) => (
-          <section className="relative rounded-3xl p-1 mt-auto">
-            <Image 
-               src={board} 
-               alt="board" 
-               width={800} 
-               height={150} 
-               className="absolute inset-0 -top-3 z-0 h-[80px]" 
-               priority
-               />
+          <div className=" bg-[url(/images/board_2.png)] bg-cover bg-center rounded-4xl p-3">
             <Button
-              className={cn(
-                "w-[calc(100%-2rem)] mx-auto text-green-dark bg-yellow-green",
-                "drop-shadow-[0_0.3ch_color-mix(in_srgb,_var(--color-green),_black_25%)]",
-                "flex gap-2 items-center justify-center p-2 rounded-2xl"
-              )}
               onClick={() => handleClick(handelClick)}
               disabled={loading || isSpinning || totalSpins <= 0}
+              className={cn(
+                "flex bg-[#DDDB0A] gap-2 items-center justify-center rounded-2xl font-bold w-full"
+              )}
             >
-              {/* <Spinner3dIcon /> */}
-              <span className="font-made-tommy font-bold text-[20px] leading-none">Spin</span>
-              <span className="font-made-tommy font-bold text-[20px] leading-none">({totalSpins})</span>
+              <span className="drop-shadow-md text-[#715F16CC]">Spin</span>
             </Button>
-          </section>
+          </div>
         )}
       </Spinner>
       <Dialog open={openReward} onOpenChange={handleCloseReward}>
