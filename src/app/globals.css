@@ -243,3 +243,46 @@ body {
 .slick-dots li button:before {
   display: none;
 }
+
+@keyframes number-roll {
+  0% {
+    transform: translateY(100%) rotate(-2deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotate(-2deg);
+    opacity: 1;
+  }
+}
+
+.animate-number-roll {
+  animation: number-roll 0.1s ease-out;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scaleUp {
+  animation: scaleUp 0.7s ease-out forwards;
+}
+
+@keyframes fade-cycle {
+  0%, 100% { opacity: 1; }
+  16.67% { opacity: 0; }
+  33.33% { opacity: 1; }
+  50% { opacity: 0; }
+  66.67% { opacity: 1; }
+  83.33% { opacity: 0; }
+}
+
+.animate-fade-cycle {
+  animation: fade-cycle 3s ease-in-out;
+}

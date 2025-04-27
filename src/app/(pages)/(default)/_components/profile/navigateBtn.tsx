@@ -3,31 +3,33 @@ import { cn } from "@/app/_lib/utils";
 import Button from "@/app/_components/shared/button";
 
 interface NavigationButtonProps {
-  icon: string;
+  icon?: string;
   label: string;
   isActive: boolean;
   onClick: () => void;
+  className?: string;
 }
 
-export default function NavigationButton({ icon, label, isActive, onClick }: NavigationButtonProps) {
+export default function NavigationButton({ icon, label, isActive, onClick, className }: NavigationButtonProps) {
   return (
     <Button
       onClick={onClick}
       className={cn(
-        "drop-shadow-none flex gap-0.5 items-center justify-center rounded-lg font-bold w-full h-7",
+        "drop-shadow-none flex gap-0.5 items-center justify-center rounded-[6px] font-bold w-full h-7 text-[15x] font-made-tommy border border-white bg-gradient-to-br from-[rgba(255,248,183,0.75)] to-[rgba(246,237,197,0.75)]",
+        className,
         isActive
           ? "bg-[#653F56]"
           : "bg-[#E3BEAA] border-2 border-[#91737733]"
       )}
     >
-      <Image
+      {icon && <Image
         src={icon}
         alt={label.toLowerCase()}
         className="h-4 w-5"
-      />
+      />}
       <span
         className={cn(
-          "drop-shadow-md font-made-tommy text-[15px]",
+          "drop-shadow-md",
           isActive
             ? "text-[#E3BEAA]"
             : "text-[#745061]"
