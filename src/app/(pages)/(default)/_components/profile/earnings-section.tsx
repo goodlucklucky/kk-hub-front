@@ -1,0 +1,26 @@
+"use client"
+
+import { DollarIcon, DollarScoreIcon } from "@/app/_assets/svg/dollar";
+
+interface EarningsSectionProps {
+  amount: string;
+}
+
+export default function EarningsSection({ amount }: EarningsSectionProps) {
+  return (
+    <div className="w-full justify-between bg-[#EED1B8] rounded-[10px] flex items-center gap-2 px-3 py-2.5">
+      <div className="flex gap-2 items-center">
+        <DollarScoreIcon />
+        <span className="text-[#5F3F57] font-small font-bumper-sticker text-[18px]/[28px]">
+          All Time Earnings
+        </span>
+      </div>
+      <div className="bg-[#917377] rounded-[3px] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] h-[28px] flex items-center justify-end px-1 gap-1">
+        <DollarIcon />
+        <span className="text-[#FFE4D4] font-made-tommy text-[18px] leading-[28px] font-bold drop-shadow-[0px_1px_0px_rgba(0,0,0,0.20)]">
+          {amount}
+        </span>
+      </div>
+    </div>
+  );
+} 

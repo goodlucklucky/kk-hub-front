@@ -11,6 +11,7 @@ import { SnakeItalicIcon } from "@/app/_assets/svg/snake";
 import headerBack from '@assets/images/header-back.png';
 import { KIcon } from "@/app/_assets/svg/etc";
 import kokoLog from '@/app/_assets/images/koko-logo.png'
+import profile from '@/app/_assets/images/profile.svg'
 
 export default function Header() {
   return (
@@ -44,7 +45,7 @@ export default function Header() {
       >
         <Image src={kokoLog} alt="koko-logo" width={54} height={72} className="absolute w-[54px] h-[72px] top-0 right-0 inset-0 object-cover object-center rounded-b-md" />
         <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-1 right-0 ">
-         LVL 100</span>
+          LVL 100</span>
       </div>
       <Image src={headerBack} alt="header-back" height={75} className="absolute w-full inset-0 -z-8 h-[75px]" />
     </header>

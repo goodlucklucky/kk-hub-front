@@ -14,7 +14,9 @@ const Steps = [
   { Top: Step3Top, Bottom: Step3Bottom },
 ];
 
-export default function MultiSteps(_: Readonly<{ children?: React.ReactNode }>) {
+export default function MultiSteps(
+  _: Readonly<{ children?: React.ReactNode }>
+) {
   const params = useSearchParams();
   const router = useRouter();
   const step = useMemo(() => Number(params?.get("open1")) || 0, [params]);
@@ -37,8 +39,8 @@ export default function MultiSteps(_: Readonly<{ children?: React.ReactNode }>) 
       >
         <div
           className={cn(
-            "bg-background rounded-[0.875rem] text-golden-bright",
-            "p-1.5 flex gap-1 [&>*]:flex-1 relative overflow-hidden"
+            "bg-[url(/images/board_2.png)] rounded-2xl bg-cover bg-center text-golden-bright",
+            "p-1 flex gap-2 [&>*]:flex-1"
           )}
         >
           {/* {Masking wood texture} */}

@@ -10,11 +10,12 @@ import React, {
   useRef,
   useState,
 } from "react";
+import headerBoard from "@assets/images/header-board.png";
 import spinnerImage from "@assets/images/spinning-wheel-v3.png";
 import ativoImage from "@assets/images/spinning-ativo.png";
 import { cn } from "@/app/_lib/utils";
 import toast from "react-hot-toast";
-import headerBoard from "@assets/images/header-board.png";
+
 interface ISpinnerProps {
   segments?: {
     value: number;
@@ -217,8 +218,18 @@ function Spinner({
           </div>
         </div>
       </div>
+      <div className="h-4 -mt-4 flex items-start justify-center">
+        <Image
+          src={headerBoard}
+          alt="footer"
+          width={800}
+          height={800}
+          priority
+          className="h-auto w-[65%] -translate-y-4"
+        />
+      </div>
       <section
-        className="relative rounded-3xl p-1 mt-auto w-full -translate-y-2 z-[1] pointer-events-auto"
+        className="relative -mt-3 rounded-3xl p-1 w-full -translate-y-2 z-[1] pointer-events-auto"
         style={{
           animation: isPushing ? "pushingDownEffect 1s ease" : "",
         }}
