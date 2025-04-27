@@ -13,6 +13,7 @@ import React, {
 import headerBoard from "@assets/images/header-board.png";
 import spinnerImage from "@assets/images/spinning-wheel-v3.png";
 import ativoImage from "@assets/images/spinning-ativo.png";
+import board from "@assets/images/board.png";
 import { cn } from "@/app/_lib/utils";
 import toast from "react-hot-toast";
 
@@ -238,15 +239,23 @@ function Spinner({
           <Image
             src={headerBoard}
             alt="footer"
+            priority
+            className="h-auto w-[58%] -translate-y-4"
+          />
+        </div>
+        <section className="relative rounded-3xl p-1 w-full z-[1] pointer-events-auto px-6 h-30">
+          <Image
+            src={board}
+            alt="board"
             width={800}
             height={800}
             priority
-            className="h-auto w-[65%] -translate-y-4"
+            className="absolute inset-0 size-full -z-10 translate-y-1 w-[90%] mx-auto"
           />
-        </div>
-        <div className="p-4 text-golden-brown space-y-4 z-10">
-          {children?.({ isSpinning: isSpinning.current, handelClick })}
-        </div>
+          <div className="p-4 text-golden-brown space-y-4 z-10">
+            {children?.({ isSpinning: isSpinning.current, handelClick })}
+          </div>
+        </section>
       </section>
     </div>
   );

@@ -1,27 +1,29 @@
 import React from "react";
 
-export function RightArrow(props: React.ComponentProps<"svg">, color?: string) {
+export function RightArrow({ color = "#ffffff", shadow = true, ...props }: React.ComponentProps<"svg"> & { color?: string, shadow?: boolean }) {
   return (
     <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <g filter="url(#filter0_d_799_42110)">
         <path d="M6.29688 9.16663L0.050375 2.92013L3.07206 0L12.0608 9.01388L2.84375 18.2057L0 15.3871L6.29688 9.16663Z" fill={color ? color : 'white'} />
       </g>
-      <defs>
-        <filter id="filter0_d_799_42110" x="0" y="0" width="12.0605" height="20.207" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-          <feOffset dy="2" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
-          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_799_42110" />
-          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_799_42110" result="shape" />
-        </filter>
-      </defs>
+      {shadow && (
+        <defs>
+          <filter id="filter0_d_799_42110" x="0" y="0" width="12.0605" height="20.207" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+            <feOffset dy="2" />
+            <feComposite in2="hardAlpha" operator="out" />
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_799_42110" />
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_799_42110" result="shape" />
+          </filter>
+        </defs>
+      )}
     </svg>
   );
 }
 
-export function CustomRightArrow({ color = "#ffffff", ...props }: React.ComponentProps<"svg"> & { color?: string}) {
+export function CustomRightArrow({ color = "#ffffff", ...props }: React.ComponentProps<"svg"> & { color?: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none" {...props}>
       <path d="M4.17677 5.97456L0.0334144 10.0918L2.03773 12L8 6.07524L1.90299 0L0 1.87441L4.17677 5.97456Z" fill={color} />
