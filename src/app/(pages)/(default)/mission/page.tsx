@@ -62,7 +62,7 @@ export default function MissionPage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center fixed top-32 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0">
+        <div className="bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1] rounded-[15px] border border-[#A96415] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] p-3 py-2.5 flex flex-col">
           <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col">
             <div className="flex justify-center gap-1.5">
               <MemoizedNavigationButton
