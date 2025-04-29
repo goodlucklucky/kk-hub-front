@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
 import { XpBar } from "../_components/xp-bar";
-import TicketDialog from "../_components/dialogs/ticket-dialog";
-import RaffleDialog from "../_components/dialogs/raffle-dialog";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -15,26 +13,12 @@ import claimBack from "@assets/images/claim-back.png";
 import banner from "@assets/images/header-board.png";
 
 import { ClockIcon } from "@/app/_assets/svg/clock";
-import kokoSelect from "@assets/images/koko-chest-select.png";
+import { CheckIcon } from "@/app/_assets/svg/check";
 import spinner from "@assets/images/spinner.png";
 import chestLock from "@assets/images/chest-lock.png";
-import { CheckIcon } from "@/app/_assets/svg/check";
 import starClaim from "@assets/images/star-claim.png";
+
 export default function ClaimPage() {
-  const [isSkinDialogOpen, setIsSkinDialogOpen] = useState(false);
-  const [startAnimation, setStartAnimation] = useState(false);
-
-  const [claimTicket, setClaimTicket] = useState(false);
-  const [tickets, setTickets] = useState([124, 312, 242, 434, 734]);
-  const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
-  const handleSkinDialogToggle = useCallback(() => {
-    setIsSkinDialogOpen((prev) => !prev);
-  }, []);
-
-  const handleClaimTicket = useCallback(() => {
-    setStartAnimation(true);
-    setClaimTicket(true);
-  }, []);
 
   return (
     <>
@@ -53,7 +37,7 @@ export default function ClaimPage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center w-[90%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 relative">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center w-[90%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 relative mt-10">
           <div className="w-full h-16 flex justify-center items-center absolute -top-10">
             <Image
               src={banner}
@@ -225,20 +209,6 @@ export default function ClaimPage() {
           </div>
         </div>
       </div>
-      <RaffleDialog
-        isOpen={false}
-        onClose={() => { }}
-        tickets={tickets}
-        isWinner={false}
-        winningNumbers={[23, 3, 3223]}
-        showWinner={false}
-        isClaiming={false}
-      />
-      <TicketDialog
-        isOpen={ticketDialogOpen}
-        onClose={() => setTicketDialogOpen(false)}
-        tickets={tickets}
-      />
     </>
   );
 }
