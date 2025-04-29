@@ -556,9 +556,9 @@ export function FireIcon(props: React.ComponentProps<"svg">) {
 
 export function TickIcon(_props: React.ComponentProps<"svg">) {
   return (
-    <svg width="10" height="9" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="12" height="10" viewBox="0 0 10 9" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_d_799_41934)">
-        <path d="M9.63397 2.07245L3.7501 7.95636L0.366211 4.57245L2.13398 2.80469L3.7501 4.4208L7.86622 0.304688L9.63397 2.07245Z" fill="#917377" />
+        <path d="M9.63397 2.07245L3.7501 7.95636L0.366211 4.57245L2.13398 2.80469L3.7501 4.4208L7.86622 0.304688L9.63397 2.07245Z" fill={_props.fill} />
       </g>
       <defs>
         <filter id="filter0_d_799_41934" x="0.366211" y="0.304688" width="9.26758" height="8.65234" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
@@ -728,4 +728,173 @@ export function ArrowLeftIcon(props: React.ComponentProps<"svg">) {
       />
     </svg>
     )
+}
+
+export function ClockIcon(props: React.ComponentProps<"svg">) {
+   return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12">
+    <path fill="#745061" fillRule="evenodd" d="M6 12A6 6 0 1 0 6 0a6 6 0 0 0 0 12Zm-.75-9.75v4.06l2.47 2.47 1.06-1.06-2.03-2.03V2.25h-1.5Z" clipRule="evenodd"/>
+  </svg>
+   )
+}
+
+export function GiftIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg
+    width={21}
+    height={21}
+    viewBox="0 0 21 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g clipPath="url(#clip0_799_28636)">
+      <g filter="url(#filter0_d_799_28636)">
+        <path
+          d="M3.9375 3.9375V0H6.5625C8.73712 0 10.5 1.76288 10.5 3.9375C10.5 1.76288 12.2629 0 14.4375 0H17.0625V3.9375H21V7.875H0V3.9375H3.9375Z"
+          fill={props.fill}
+        />
+      </g>
+      <g filter="url(#filter1_d_799_28636)">
+        <path d="M1.3125 10.5H9.1875V19.6875H1.3125V10.5Z" fill={props.fill} />
+      </g>
+      <g filter="url(#filter2_d_799_28636)">
+        <path d="M19.6875 10.5H11.8125V19.6875H19.6875V10.5Z" fill={props.fill} />
+      </g>
+    </g>
+    <defs>
+      <filter
+        id="filter0_d_799_28636"
+        x={0}
+        y={0}
+        width={21}
+        height={9.875}
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity={0} result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy={2} />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0.243137 0 0 0 0 0.141176 0 0 0 0 0.411765 0 0 0 0.2 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_799_28636"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_799_28636"
+          result="shape"
+        />
+      </filter>
+      <filter
+        id="filter1_d_799_28636"
+        x={1.3125}
+        y={10.5}
+        width={7.875}
+        height={11.1875}
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity={0} result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy={2} />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0.243137 0 0 0 0 0.141176 0 0 0 0 0.411765 0 0 0 0.2 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_799_28636"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_799_28636"
+          result="shape"
+        />
+      </filter>
+      <filter
+        id="filter2_d_799_28636"
+        x={11.8125}
+        y={10.5}
+        width={7.875}
+        height={11.1875}
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity={0} result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy={2} />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0.243137 0 0 0 0 0.141176 0 0 0 0 0.411765 0 0 0 0.2 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_799_28636"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_799_28636"
+          result="shape"
+        />
+      </filter>
+      <clipPath id="clip0_799_28636">
+        <rect width={21} height={21} fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+  )
+}
+
+export function dotIcon(props: React.ComponentProps<"svg">) {
+      return (
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="17" height="17" rx="8.5" fill="#745061"/>
+        </svg>
+      )
+}
+
+export function ThreeIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="17" height="17" rx="8.5" fill="#745061" />
+      <path d="M10.7147 7.918C11.6947 8.324 12.2827 9.066 12.2827 10.228C12.2827 12.118 10.7147 13.168 8.47473 13.168C6.65473 13.168 5.28273 12.37 4.75073 11.04C4.63873 10.76 4.82073 10.438 5.11473 10.382L7.01873 9.962C7.18673 9.92 7.35473 10.004 7.42473 10.158C7.57873 10.438 7.88673 10.662 8.37673 10.662C8.99273 10.662 9.27273 10.27 9.27273 9.794C9.27273 9.318 8.93673 9.024 8.34873 9.024H7.64873C7.43873 9.024 7.27073 8.856 7.27073 8.646V7.302C7.27073 7.092 7.43873 6.924 7.64873 6.924H8.34873C8.83873 6.924 9.17473 6.7 9.17473 6.21C9.17473 5.734 8.85273 5.482 8.36273 5.482C8.04073 5.482 7.76073 5.622 7.62073 5.86C7.53673 6.014 7.38273 6.098 7.21473 6.056L5.47873 5.664C5.18473 5.608 5.01673 5.286 5.12873 4.992C5.61873 3.802 6.75273 3.018 8.47473 3.018C10.7007 3.018 12.0447 4.138 12.0447 5.846C12.0447 6.742 11.5687 7.47 10.7147 7.918Z" fill="#E3BEAA" />
+    </svg>
+  )
+}
+
+export function ThreeIconClick(props: React.ComponentProps<"svg">) {
+     return (
+       <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <rect width="17" height="17" rx="8.5" fill="#E3BEAA" />
+         <path d="M10.7147 7.918C11.6947 8.324 12.2827 9.066 12.2827 10.228C12.2827 12.118 10.7147 13.168 8.47473 13.168C6.65473 13.168 5.28273 12.37 4.75073 11.04C4.63873 10.76 4.82073 10.438 5.11473 10.382L7.01873 9.962C7.18673 9.92 7.35473 10.004 7.42473 10.158C7.57873 10.438 7.88673 10.662 8.37673 10.662C8.99273 10.662 9.27273 10.27 9.27273 9.794C9.27273 9.318 8.93673 9.024 8.34873 9.024H7.64873C7.43873 9.024 7.27073 8.856 7.27073 8.646V7.302C7.27073 7.092 7.43873 6.924 7.64873 6.924H8.34873C8.83873 6.924 9.17473 6.7 9.17473 6.21C9.17473 5.734 8.85273 5.482 8.36273 5.482C8.04073 5.482 7.76073 5.622 7.62073 5.86C7.53673 6.014 7.38273 6.098 7.21473 6.056L5.47873 5.664C5.18473 5.608 5.01673 5.286 5.12873 4.992C5.61873 3.802 6.75273 3.018 8.47473 3.018C10.7007 3.018 12.0447 4.138 12.0447 5.846C12.0447 6.742 11.5687 7.47 10.7147 7.918Z" fill="#745061" />
+       </svg>
+     )
 }
