@@ -11,7 +11,6 @@ import { SnakeItalicIcon } from "@/app/_assets/svg/snake";
 import headerBack from '@assets/images/header-back.png';
 import { KIcon } from "@/app/_assets/svg/etc";
 import kokoLog from '@/app/_assets/images/koko-logo.png'
-import profile from '@/app/_assets/images/profile.svg'
 
 export default function Header() {
   return (

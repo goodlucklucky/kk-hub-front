@@ -9,7 +9,6 @@ import {
   DialogOverlay,
   DialogPortal,
 } from "@/app/_components/ui/dialog";
-import Button from "@/app/_components/shared/button";
 
 //import assets
 import confirmBack from "@assets/images/confirm-back.png";

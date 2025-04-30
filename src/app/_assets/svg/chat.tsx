@@ -1,6 +1,6 @@
 import React from "react";
 
-export function DotIcon({ color = "#745061", shadow = true, ...props }: React.ComponentProps<"svg"> & { color?: string, shadow?: boolean }) {
+export function DotIcon({ color = "#745061", ...props }: React.ComponentProps<"svg"> & { color?: string, shadow?: boolean }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none" {...props}>
       <g filter="url(#filter0_d_1422_12672)">
