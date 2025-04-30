@@ -14,6 +14,7 @@ import MoreSpinsDialog from "../_components/dialogs/more-dialog";
 //import utils
 import { formatBigNumber, shuffleArray } from "@/app/_utils/number";
 import { cn } from "@/app/_lib/utils";
+import { spinnerProbability, SpinnerItem } from "./spinner-config";
 
 //import images
 import flashingEffect from '@assets/images/flashing-effect.png';
@@ -21,74 +22,16 @@ import spinnerBack from '@assets/images/spinner-back.png';
 import usdt from '@assets/images/usdt.png';
 import spinBtn from '@assets/images/spin-btn.png';
 import moreBtn from '@assets/images/more-btn.png';
-import card from '@assets/images/card.png';
 
-export const spinnerProbability = [
-  {
-    kokos: 1,
-    prob: 75.0,
-    type: "kokos",
-    value: 10000,
-  },
-  {
-    kokos: 2,
-    prob: 15.0,
-    type: "kokos",
-    value: 25000,
-  },
-  {
-    kokos: 3,
-    prob: 7.8,
-    type: "kokos",
-    value: 50000,
-  },
-  {
-    kokos: 4,
-    prob: 0.085,
-    type: "USDT",
-    value: 0.1,
-  },
-  {
-    kokos: 5,
-    prob: 0.035,
-    type: "USDT",
-    value: 0.25,
-  },
-  {
-    kokos: 6,
-    prob: 0.00125,
-    type: "USDT",
-    value: 1,
-  },
-  {
-    kokos: 7,
-    prob: 0.000025,
-    type: "USDT",
-    value: 5,
-  },
-  {
-    kokos: 7,
-    prob: 0.00000025,
-    type: "USDT",
-    value: 10,
-  },
-  {
-    kokos: 9,
-    prob: 0.000000015,
-    type: "USDT",
-    value: 50,
-  },
-  {
-    kokos: 10,
-    prob: 2.0,
-    type: "spin",
-    value: 1,
-  },
-];
+interface SpinnerSegment {
+  value: number;
+  element: JSX.Element;
+  color?: string;
+}
 
 export default function SpinPage() {
   const [loading, setLoading] = useState(false);
-  const [spinsList, setSpinsList] = useState(spinnerProbability);
+  const [spinsList, setSpinsList] = useState<SpinnerItem[]>(spinnerProbability);
   const [withdrawDialog, setWithdrawDialog] = useState(false);
   const [moreSpinsDialog, setMoreSpinsDialog] = useState(true);
 
@@ -97,7 +40,7 @@ export default function SpinPage() {
     setSpinsList(shuffleArray(spinnerProbability));
   }, []);
 
-  const getSpinNumber = useCallback(async () => {
+  const getSpinNumber = useCallback(async (): Promise<number | undefined> => {
     const random = Math.random() * 100;
     let cumulativeProb = 0;
 
@@ -108,8 +51,42 @@ export default function SpinPage() {
       }
     }
 
-    return 1; // Default fallback
+    return undefined; // Return undefined instead of 1 to match Spinner component's interface
   }, [spinsList]);
+
+  const handleSpinEnd = useCallback((result: number) => {
+    // Handle spin end logic here
+    console.log('Spin ended with result:', result);
+  }, []);
+
+  const segments: SpinnerSegment[] = spinsList.map((one) => ({
+    value: one.kokos,
+    element: (
+      <div key={one.kokos} className="flex flex-col text-center font-bold text-white">
+        <span className="text-xl">
+          {one.type === "USDT" && "$"}
+          {formatBigNumber(one.value, 3)}
+        </span>
+        {one.type === "USDT" ? (
+          <Image
+            src={usdt}
+            alt="usdt"
+            width={800}
+            height={800}
+            priority
+            className="size-10 mx-auto"
+          />
+        ) : one.type === "kokos" ? (
+          <p className="flex flex-col font-semibold">
+            <span>KOKO</span>
+            <small>POINTS</small>
+          </p>
+        ) : (
+          <p>SPIN</p>
+        )}
+      </div>
+    ),
+  }));
 
   return (
     <>
@@ -133,8 +110,7 @@ export default function SpinPage() {
       </div>
       <div className="my-auto">
         <PageTitleBanner
-          className={`relative m-0 top-6 mx-auto ${loading ? "push-effect" : ""
-            }`}
+          className={`relative m-0 top-6 mx-auto ${loading ? "push-effect" : ""}`}
           titleBanner={
             <p className="text-center text-2xl leading-5">
               KOKO
@@ -146,36 +122,9 @@ export default function SpinPage() {
         />
         <Spinner
           className="p-2 pb-0 pt-4"
-          segments={spinsList?.map((one) => ({
-            value: one.kokos,
-            element: (
-              <div className="flex flex-col text-center font-bold text-white">
-                <span className="text-xl">
-                  {one?.type == "USDT" && "$"}
-                  {formatBigNumber(one?.value, 3)}
-                </span>
-                {one?.type == "USDT" ? (
-                  <Image
-                    src={usdt}
-                    alt="usdt"
-                    width={800}
-                    height={800}
-                    priority
-                    className="size-10 mx-auto"
-                  />
-                ) : one?.type == "kokos" ? (
-                  <p className="flex flex-col font-semibold">
-                    <span>KOKO</span>
-                    <small>POINTS</small>
-                  </p>
-                ) : (
-                  <p>SPIN</p>
-                )}
-              </div>
-            ),
-          }))}
+          segments={segments}
           getTargetNumber={getSpinNumber}
-          onSpinEnd={() => { }}
+          onSpinEnd={handleSpinEnd}
         >
           {({ handelClick, isSpinning }) => (
             <div className="flex flex-col gap-y-4">

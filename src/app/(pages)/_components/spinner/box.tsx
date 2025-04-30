@@ -8,8 +8,6 @@ import { SpeakerIcon, UsdIcon } from "@/app/_assets/svg/etc";
 import { Dialog, DialogContent } from "@/app/_components/ui/dialog";
 import { cn } from "@/app/_lib/utils";
 import Button from "@/app/_components/shared/button";
-import Image from "next/image";
-import board from "@assets/images/single-button-slot.png";
 
 export default function SpinnerBox() {
   const [isClient, setIsClient] = useState(false);
@@ -40,7 +38,6 @@ export default function SpinnerBox() {
     setTotalSpins((prev) => Math.max(0, prev - 1));
     setOpenReward(true);
     setLoading(false);
-    console.log("result", _result);
   }, []);
 
   const handleCloseReward = useCallback((bool: boolean) => {

@@ -13,25 +13,21 @@ import { cn } from "@/app/_lib/utils";
 import spinnerBack from "@assets/images/spinner-back.png";
 import banner from "@assets/images/header-board.png";
 
-import SkinDialog from "../_components/dialogs/skin-dialog";
 import { ClockIcon } from "@/app/_assets/svg/clock";
 import Button from "@/app/_components/shared/button";
 import card from "@assets/images/card.png";
-import { ClaimIcon, ClaimRaffleIcon } from "@/app/_assets/svg/claim";
+import { ClaimRaffleIcon } from "@/app/_assets/svg/claim";
 import { CheckIcon } from "@/app/_assets/svg/check";
 import TicketDialog from "../_components/dialogs/ticket-dialog";
 import RaffleDialog from "../_components/dialogs/raffle-dialog";
 
 export default function RafflePage() {
-  const [isSkinDialogOpen, setIsSkinDialogOpen] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
 
   const [claimTicket, setClaimTicket] = useState(false);
   const [tickets, setTickets] = useState([124, 312, 242, 434, 734]);
   const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
-  const handleSkinDialogToggle = useCallback(() => {
-    setIsSkinDialogOpen((prev) => !prev);
-  }, []);
+  
 
   const handleClaimTicket = useCallback(() => {
     setStartAnimation(true);

@@ -126,7 +126,7 @@ export default function Profile() {
             <EarningsSection amount="235.50" />
             <CurrentScores
               activeTab="daily" 
-              onTabChange={(tab) => console.log(tab)} 
+              onTabChange={(tab) => {}} 
             />
             <PreviousResults 
               leftColor="#653F5654" 

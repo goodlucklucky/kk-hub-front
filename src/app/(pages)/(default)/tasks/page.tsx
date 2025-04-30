@@ -5,7 +5,6 @@ import Image from "next/image";
 import _ from "lodash";
 //import components
 import { NavBar } from "../_components/xp-bar";
-import CosmeticCard from "../_components/store/cosmetic-card";
 import { ClaimOGSection } from "../_components/tasks/claim-og-section";
 import { KokoTasksSection } from "../_components/tasks/koko-tasks-section";
 import { PartnerSection } from "../_components/tasks/partner-section";
