@@ -1,7 +1,6 @@
-import { CashIcon, KeyIcon, StarIcon, TrophyIcon, UsdIcon } from "@assets/svg/etc";
+import { CashIcon, KeyIcon, StarIcon, UsdIcon } from "@assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
 import { useEffect, useState } from "react";
-import RandomUsd from "@/app/_components/etc/random-usd";
 import { SnakeIcon } from "@/app/_assets/svg/snake";
 import Button from "@/app/_components/shared/button";
 import Link from "next/link";

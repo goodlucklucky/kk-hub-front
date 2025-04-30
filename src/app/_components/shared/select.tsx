@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { cn } from "@/app/_lib/utils";
-import { TopArrow } from "@/app/_assets/svg/top-arrow";
 import { RightArrow } from "@/app/_assets/svg/right-arrow";
 
 export interface SelectProps extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> {

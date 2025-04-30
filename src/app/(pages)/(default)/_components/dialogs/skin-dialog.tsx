@@ -56,10 +56,6 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
     }, 4000);
   };
 
-  const handleError = () => {
-    setDialogState('error');
-  };
-
   const renderDialogContent = () => {
     switch (dialogState) {
       case 'initial':
@@ -225,7 +221,7 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
               className="bg-[#24BE62] w-[194px] h-[28px] text-white text-center font-made-tommy text-[18px] leading-[20px] font-extrabold"
               onClick={onClose}
             >
-              Let's Go!
+              {"Let's Go!"}
             </Button>
           </div>
         );
@@ -241,7 +237,7 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
               className="bg-[#24BE62] w-[194px] h-[28px] text-white text-center font-made-tommy text-[18px] leading-[20px] font-extrabold"
               onClick={onClose}
             >
-              Let's Go!
+              {"Let's Go!"}
             </Button>
           </div>
         );

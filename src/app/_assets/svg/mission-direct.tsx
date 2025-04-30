@@ -70,6 +70,7 @@ export function MissionClickIcon(props: React.ComponentProps<"svg">) {
       height="27"
       viewBox="0 0 27 27"
       fill="none"
+      {...props}
     >
       <g filter="url(#filter0_i_1566_12916)">
         <circle cx="13.5" cy="13.5" r="12.5" fill="#371D31" />
@@ -279,6 +280,7 @@ export function MissionCheckIcon(props: React.ComponentProps<"svg">) {
       height="28"
       viewBox="0 0 27 28"
       fill="none"
+      {...props}
     >
       <g filter="url(#filter0_d_1566_12915)">
         <circle
