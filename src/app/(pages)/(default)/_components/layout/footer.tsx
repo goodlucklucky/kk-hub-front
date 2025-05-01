@@ -14,17 +14,21 @@ import {
   StoreIcon,
 } from "@/app/_assets/svg/etc";
 
+import footerItem from '@assets/images/footer-item.svg'
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer
       className={cn(
-        "grid grid-cols-5 items-center p-2 mt-2",
+        "bg-[url(/images/footer-panel.png)]",
+        "grid grid-cols-5 items-center p-2 pt-2.5 px-4 mt-5",
         "text-center font-bumper-sticker text-xs text-golden-brown drop-shadow-[0_0.25ch_#fff4]"
       )}
     >
       <Item Icon={SpeakerIcon} label="TASKS" />
       <Item Icon={StoreIcon} label="Store" />
-      {/* <Item
+      <Item
         Icon={PlayIcon}
         isPlay
         label={
@@ -34,9 +38,9 @@ export default function Footer() {
             play
           </>
         }
-      /> */}
+      />
       <Item Icon={MissionIcon} label="MISSIONS" />
-      <Item Icon={PetIcon} label="Koko pets" />
+      <Item Icon={PetIcon} label="Pets" />
     </footer>
   );
 }
@@ -53,13 +57,14 @@ function Item({
   return (
     <div
       className={cn(
-        "relative flex flex-col items-center gap-2 p-1",
+        "relative flex flex-col items-center gap-1 p-1 pt-3",
         isPlay && "text-golden-2"
       )}
     >
-      {Icon && <Icon className="size-7" />}
+      {Icon && <Icon className={cn(isPlay ? "size-7 mt-0.5" : "size-7")} />}
       <p>{label}</p>
-      {isPlay && <FooterSvg className="absolute -z-[1] -top-0.5 w-full" />}
+      {isPlay && <FooterSvg className="absolute -z-[1] top-2 left-0 w-full" />}
+      {!isPlay && <Image className="absolute top-0 left-0 -z-10" src={footerItem} alt="footer-item" />}
     </div>
   );
 }
