@@ -29,7 +29,7 @@ export default function NavigationButton({ icon, label, isActive, onClick, class
       />}
       <span
         className={cn(
-          "drop-shadow-md",
+          "drop-shadow-md text-[16px]/[20px] font-made-tommy font-bold",
           isActive
             ? "text-[#E3BEAA]"
             : "text-[#745061]"

@@ -59,9 +59,9 @@ export default function MissionsPage() {
   const renderMissionSection = () => {
     switch (activeTaskCategory) {
       case 'Daily':
-        return <DailyRewardSection currentXp={dailyXp}/>;
+        return <DailyRewardSection currentXp={dailyXp} />;
       case 'Weekly':
-        return <WeeklyRewardSection currentXp={weeklyXp}/>;
+        return <WeeklyRewardSection currentXp={weeklyXp} />;
       default:
         return null;
     }
@@ -99,48 +99,48 @@ export default function MissionsPage() {
               />
             </div>
           </div>
-          
+
           <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col overflow-y-auto justify-between">
             {renderMissionSection()}
           </div>
 
-        <div className="flex items-center justify-center gap-1 my-2"> 
-           <Image 
+          <div className="flex items-center justify-center gap-1 my-2">
+            <Image
               src={arrowLeft}
               alt="Arrow"
               className="w-5 h-5 mx-3"
               loading="eager"
               priority
-           />
-           <Image 
+            />
+            <Image
               src={circleSelect}
               alt="circleSelect"
               className="w-5 h-5"
               loading="eager"
               priority
-           />
-            <Image 
+            />
+            <Image
               src={circle}
               alt="circle"
               className="w-5 h-5 mx-3"
               loading="eager"
               priority
-           />
-           <Image 
+            />
+            <Image
               src={circleTick}
               alt="circleTick"
               className="w-5 h-5"
               loading="eager"
               priority
-           />
-           <Image 
+            />
+            <Image
               src={arrowRight}
               alt="Arrow"
               className="w-5 h-5 mx-3"
               loading="eager"
               priority
-           />
-        </div>
+            />
+          </div>
         </div>
       </div >
     </>
