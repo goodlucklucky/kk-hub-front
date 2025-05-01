@@ -94,7 +94,7 @@ export const NavBar = ({className, title}: {className?: string, title: string}) 
     <div className={cn(
       "flex items-center gap-3",
       "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
-      "bg-[rgba(0,0,0,0.20)] backdrop-blur-[12.5px]",
+      "bg-[rgba(0,0,0,0.20)] backdrop-blur-[12.5px] z-10",
       className
     )}>
       <LeftBack />

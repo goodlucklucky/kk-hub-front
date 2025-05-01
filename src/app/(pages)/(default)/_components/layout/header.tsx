@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "flex justify-between items-center gap-4 h-[75px] px-2",
+        "flex justify-between items-center gap-4 h-[75px] px-2 z-10",
       )}
     >
       <div
