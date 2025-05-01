@@ -36,6 +36,7 @@ import EarningsSection from "../_components/profile/earnings-section";
 import CurrentScores from "../_components/profile/current-scores";
 import PreviousResults from "../_components/profile/previous-results";
 import TournamentItem from "../_components/profile/tournament-item";
+import { CloseIcon } from "@/app/_assets/svg/close";
 
 const lootboxes = [
   {
@@ -125,12 +126,12 @@ export default function Profile() {
           <div className="flex-1 flex flex-col gap-2 overflow-auto">
             <EarningsSection amount="235.50" />
             <CurrentScores
-              activeTab="daily" 
-              onTabChange={(tab) => {}} 
+              activeTab="daily"
+              onTabChange={(tab) => { }}
             />
-            <PreviousResults 
-              leftColor="#653F5654" 
-              rightColor="#12652980" 
+            <PreviousResults
+              leftColor="#653F5654"
+              rightColor="#12652980"
             />
             <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2">
               <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
@@ -188,7 +189,7 @@ export default function Profile() {
               itemWidth={58}
               itemHeight={58}
             />
-             <InventorySection
+            <InventorySection
               title="Items & Koko Pets"
               count={10}
               items={pets}
@@ -205,8 +206,11 @@ export default function Profile() {
 
   return (
     <>
-      <div className="absolute top-0 left-0 w-full h-full bg-black/75 backdrop-blur-[2.5px]" />
-      <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-10 w-[95%] max-h-[720px] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2 right-0 left-0">
+      <div className="absolute top-0 left-0 w-full h-full bg-black/75 backdrop-blur-[2.5px] z-10" />
+      <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-10 w-[95%] max-h-[90%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2 right-0 left-0">
+        <div className="flex justify-center items-center w-full absolute -bottom-5 right-0">
+          <CloseIcon />
+        </div>
         <div className="flex justify-between items-center gap-x-3 bg-[#F5D6B1] rounded-2xl p-4 shadow-md border-2 border-[#A96415]">
           <Image alt="profile-image" src={profile} className=" w-[70px] h-[70px]" />
           <div className="flex-1">
@@ -227,16 +231,18 @@ export default function Profile() {
                   26
                 </p>
               </div>
-              <div className="flex gap-1.5 items-center py-1 px-2">
-                <p className=" text-[#917377] text-md font-made-tommy font-semibold">
-                  Rank
-                </p>
-                <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-0.5">
-                  SILVER
-                </p>
-              </div>
-              <div className=" bg-[#917377] w-[34px] p-[3.7px] m-[0.7px] rounded flex items-center justify-center">
-                <Image alt="edit-icon" src={rightArrow} />
+              <div className="flex justify-between flex-1">
+                <div className="flex gap-1.5 items-center py-1 px-2">
+                  <p className=" text-[#917377] text-md font-made-tommy font-semibold">
+                    Rank
+                  </p>
+                  <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-0.5">
+                    SILVER
+                  </p>
+                </div>
+                <div className=" bg-[#917377] w-[34px] p-[3.7px] m-[0.7px] rounded flex items-center justify-center">
+                  <Image alt="edit-icon" src={rightArrow} />
+                </div>
               </div>
             </div>
           </div>

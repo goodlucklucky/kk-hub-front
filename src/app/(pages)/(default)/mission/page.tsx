@@ -43,7 +43,7 @@ export default function MissionPage() {
   return (
     <>
       <NavBar title={"Missions"} />
-      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
+      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5 pt-3")}>
         <Image
           src={mainBack}
           alt="Main background"
@@ -62,8 +62,8 @@ export default function MissionPage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1] rounded-[15px] border border-[#A96415] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] p-3 py-2.5 flex flex-col">
-          <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center w-[95%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2 right-0 left-0">
+          <div className="bg-[#F5D6B1] rounded-2xl p-2.5 py-2 shadow-md border-2 border-[#A96415] flex flex-col">
             <div className="flex justify-center gap-1.5">
               <MemoizedNavigationButton
                 icon={activeComponent === "daily" ? starscoreClick : starscore}
@@ -81,7 +81,7 @@ export default function MissionPage() {
               />
             </div>
           </div>
-          <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col flex-1 overflow-y-auto gap-2">
+          <div className="bg-[#F5D6B1] rounded-2xl p-2.5 shadow-md border-2 border-[#A96415] flex flex-col flex-1 overflow-y-auto gap-2">
             <div className="flex justify-between items-center">
               <span className="text-[#653F56] text-[18px] font-normal font-bumper-sticker">
                 description
@@ -94,20 +94,20 @@ export default function MissionPage() {
               </div>
             </div>
             <div className="rounded-[5px] bg-[#E3BEAA] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] py-[9px] px-[10px]">
-              <span className="text-[#745061] font-made-tommy text-[16px]/[16px] font-[800] tracking-[0.56px] text-center w-[80%]">
+              <div className="text-[#745061] font-made-tommy text-[16px]/[20px] font-bold tracking-[0.56px]">
                 Mission description or objective goes here.
-              </span>
+              </div>
             </div>
-            <div className="flex justify-between items-center gap-2 mt-2">
+            <div className="flex justify-between items-start gap-2 mt-2 h-full">
               <div className="flex flex-col gap-1 w-[40%]">
                 <span className="text-[#653F56] text-[18px] font-normal font-bumper-sticker">
                   progress
                 </span>
-                <div className="rounded-[5px] bg-[#E3BEAA] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] py-[9px] px-[10px]">
-                  <span className="text-[#745061] font-made-tommy text-[14px] font-[800] tracking-[0.56px] text-center">
+                <div className="rounded-[5px] bg-[#E3BEAA] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] py-[9px] px-[10px] h-[103px] flex flex-col justify-between">
+                  <div className="text-[#745061] font-made-tommy text-[16px]/[18px] font-[800] tracking-[0.56px]">
                     Koko Snake Played
-                  </span>
-                  <div className="">
+                  </div>
+                  <div className="flex flex-col flex-1 justify-end">
                     <span className="text-[#653F56] text-[18px] font-normal font-bumper-sticker">
                       1/3
                     </span>
@@ -151,11 +151,11 @@ export default function MissionPage() {
             </Button>
           </div>
           <div className="flex gap-3 justify-center items-center">
-           <MissionLeftIcon className="w-[20px]"/>
-           <MissionClickIcon className="w-[25px] h-[25px]"/>
-           <MissionIcon className="w-[25px] h-[25px]"/>
-           <MissionCheckIcon className="w-[25px] h-[25px]"/>
-           <MissionRightIcon className="w-[20px]"/>
+            <MissionLeftIcon className="w-[20px]" />
+            <MissionClickIcon className="w-[25px] h-[25px]" />
+            <MissionIcon className="w-[25px] h-[25px]" />
+            <MissionCheckIcon className="w-[25px] h-[25px]" />
+            <MissionRightIcon className="w-[20px]" />
           </div>
         </div>
       </div>

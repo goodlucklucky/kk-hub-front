@@ -51,7 +51,7 @@ export default function RafflePage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center w-[90%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 relative">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 relative">
           <div className="w-full h-16 flex justify-center items-center absolute -top-10">
             <Image
               src={banner}

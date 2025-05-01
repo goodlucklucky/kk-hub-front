@@ -37,7 +37,7 @@ export default function ClaimPage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center w-[90%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 relative mt-10">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 relative mt-12">
           <div className="w-full h-16 flex justify-center items-center absolute -top-10">
             <Image
               src={banner}
@@ -51,7 +51,7 @@ export default function ClaimPage() {
               Koko Chests
             </span>
           </div>
-          <div className="bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1] rounded-[15px] py-6 shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] border border-[#A96415] flex-1 flex flex-col overflow-y-auto pb-19">
+          <div className="bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1] rounded-[15px] py-6 shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] border border-[#A96415] flex-1 flex flex-col overflow-y-auto pb-21">
             <div className="px-5 flex flex-col items-center gap-2 pb-3">
               <span className="text-[#8F6E75] text-center text-[15px] font-made-tommy font-bold">
                 Collect daily rewards & win mystery prizes from Koko Chests!
@@ -67,7 +67,7 @@ export default function ClaimPage() {
                   </span>
                 </div>
               </div>
-              <div className="rounded-xl border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] w-full p-3 relative pb-8">
+              <div className="rounded-xl border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] w-full pt-3 relative pb-8">
                 <div className="w-full grid grid-cols-3 gap-2">
                   <div className="w-[76px] relative mt-8 mx-auto">
                     <Image
@@ -188,10 +188,10 @@ export default function ClaimPage() {
                     </div>
                   </div>
                 </div>
-                <div className="w-full px-5 absolute -bottom-20 left-0 right-0">
-                  <div className="bg-[#EFC6AC] rounded-[10px] border-2 border-[#cc7138] p-1">
+                <div className="w-full px-5 absolute -bottom-20.5 left-0 right-0">
+                  <div className="bg-[#EFC6AC] rounded-[10px] border-2 border-[#db8e5e] p-1">
                     <div className="flex px-2 gap-x-2">
-                      <Image src={starClaim} alt="koko select" className="w-20 h-auto" />
+                      <Image src={starClaim} alt="koko select" className="w-[30%] h-auto" />
                       <div className="flex flex-col gap-y-0.5 py-2 flex-1">
                         <span className="text-[#745061] text-[12px] font-bumper-sticker font-normal leading-normal tracking-[0.32px]">The Mega Reward</span>
                         <span className="text-[#A17A76] text-[12px] font-made-tommy font-bold leading-normal tracking-[0.32px]">Keep the streak to win something special...</span>
