@@ -20,3 +20,12 @@ export function StarIcon(props: React.ComponentProps<"svg">) {
     </svg>
   );
 }
+
+export function StarStatsIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" {...props}>
+      <circle cx="10" cy="10" r="10" fill="#5F3F57" />
+      <path d="M10 4L12.2249 7.4135L16 8.58359L13.6 11.8633L13.7082 16L10 14.6135L6.2918 16L6.4 11.8633L4 8.58359L7.77508 7.4135L10 4Z" fill="#EED1B8" />
+    </svg>
+  );
+}

@@ -72,7 +72,7 @@ const ChatContainer: React.FC = () => {
         "rounded-[15px]",
         "border border-[#A96415]",
         "bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1]",
-        "shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)]"
+        "shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] overflow-y-hidden"
       )}
     >
       {messages.map((message, index) => (

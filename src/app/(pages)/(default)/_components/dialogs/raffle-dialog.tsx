@@ -108,7 +108,7 @@ const RaffleDialog = ({
 
                 <div className="px-4 w-full">
                   {!showWinner && (
-                    <div className="rounded-[10px] border-2 border-[#CDAA98] bg-[#F9CB88] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] flex justify-center items-center p-2 w-full transition-all duration-700 w-full">
+                    <div className="rounded-[10px] border-2 border-[#CDAA98] bg-[#F9CB88] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] flex justify-center items-center p-2 w-full transition-all duration-70">
                       <Image
                         src={raffle}
                         alt="raffle"
@@ -117,7 +117,7 @@ const RaffleDialog = ({
                     </div>
                   )}
                   {showWinner && isWinner && (
-                    <div className="rounded-[10px] border-2 border-[#CDAA98] bg-[#F9CB88] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] flex justify-center items-center p-2 w-full transition-all duration-700 w-full">
+                    <div className="rounded-[10px] border-2 border-[#CDAA98] bg-[#F9CB88] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] flex justify-center items-center p-2 transition-all duration-700 w-full">
                       <WinningNumbers
                         numbers={[...winningNumbers, ...winningNumbers]}
                       />
@@ -207,7 +207,7 @@ const RaffleDialog = ({
                           </span>
                         </div>
                         <Button
-                          className="rounded-[6px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-11 flex gap-x-1 items-center justify-center py-1"
+                          className="rounded-[6px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-11 flex gap-x-1 items-center justify-center"
                           onClick={() => setOpenLootbox(true)}
                         >
                           <CheckIcon
@@ -217,7 +217,7 @@ const RaffleDialog = ({
                         </Button>
                       </div>
                     </div>
-                    <div className="rounded-[10px] border-2 border-[rgba(116,80,97,0.70)] bg-[rgba(116,80,97,0.10)] flex justify-between px-2 items-center p-1 gap-x-1 my-2 mb-4 px-4">
+                    <div className="rounded-[10px] border-2 border-[rgba(116,80,97,0.70)] bg-[rgba(116,80,97,0.10)] flex justify-between px-2 items-center p-1 gap-x-1 my-2 mb-4">
                       <div className="flex justify-between items-center gap-x-2">
                         <span className="text-[#653F56] font-made-tommy text-[18px] font-extrabold leading-normal tracking-[0.56px] text-center pl-2">
                           Send all to Inventory
