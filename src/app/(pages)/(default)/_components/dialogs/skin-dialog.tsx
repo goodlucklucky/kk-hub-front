@@ -159,8 +159,8 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
               </span>
             </div>
             <div className="flex gap-1.5 bg-[#7A5B6940] rounded-[5px] p-0.5 px-1 shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] w-30 h-14 items-center justify-around">
-              <Image src={coinbase} alt="wallet" width={44} height={44} />
               <Image src={metamask} alt="wallet" width={44} height={44} />
+              <Image src={coinbase} alt="wallet" width={44} height={44} />
             </div>
             <Button
               className="rounded-[10px] border w-[60%] mx-auto border-[#91FF6A] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] p-2 py-1 mb-2 flex flex-col"

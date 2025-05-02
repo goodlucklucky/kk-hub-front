@@ -13,12 +13,18 @@ import headerBack from '@assets/images/header-back.png';
 import { KIcon } from "@/app/_assets/svg/etc";
 import kokoLog from '@/app/_assets/images/koko-logo.png'
 import BankDialog from "../dialogs/bank-dialog";
+import ProfileDialog from "../dialogs/profile-dialog";
 
 export default function Header() {
   const [isBankDialogOpen, setIsBankDialogOpen] = useState(false);
+  const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
 
   const handleBankDialogToggle = useCallback(() => {
     setIsBankDialogOpen(prev => !prev);
+  }, []);
+
+  const handleProfileDialogToggle = useCallback(() => {
+    setIsProfileDialogOpen(prev => !prev);
   }, []);
 
   return (
@@ -50,6 +56,7 @@ export default function Header() {
           "flex flex-col",
           "relative w-14 h-[75px]"
         )}
+        onClick={handleProfileDialogToggle}
       >
         <Image src={kokoLog} alt="koko-logo" width={54} height={72} className="absolute w-[54px] h-[72px] top-0 right-0 inset-0 object-cover object-center rounded-b-md" />
         <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-1 right-0 ">
@@ -59,6 +66,10 @@ export default function Header() {
       <BankDialog
         isOpen={isBankDialogOpen}
         onClose={handleBankDialogToggle}
+      />
+      <ProfileDialog
+        isOpen={isProfileDialogOpen}
+        onClose={handleProfileDialogToggle}
       />
     </header>
   );
