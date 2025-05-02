@@ -243,15 +243,7 @@ function Spinner({
             className="h-auto w-[58%] -translate-y-4"
           />
         </div>
-        <section className="relative rounded-3xl p-1 w-full z-[1] pointer-events-auto px-6 h-30">
-          <Image
-            src={board}
-            alt="board"
-            width={800}
-            height={800}
-            priority
-            className="absolute inset-0 size-full -z-10 translate-y-1 w-[90%] mx-auto"
-          />
+        <section className="relative rounded-3xl p-1 w-full z-[1] pointer-events-auto">
           <div className="p-4 text-golden-brown space-y-4 z-10">
             {children?.({ isSpinning: isSpinning.current, handelClick })}
           </div>

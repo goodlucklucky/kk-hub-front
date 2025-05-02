@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { Step1Bottom, Step1Top } from "./step1";
-import { cn } from "@/app/_lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+
+import { cn } from "@/app/_lib/utils";
+import { Step1Bottom, Step1Top } from "./step1";
 import { Step2Bottom, Step2Top } from "./step2";
 import { Step3Bottom, Step3Top } from "./step3";
-import Image from "next/image";
 
 const Steps = [
   { Top: Step1Top, Bottom: Step1Bottom },
@@ -34,7 +35,7 @@ export default function MultiSteps(
         className={cn(
           "bg-gradient-to-b from-golden-bright to-golden-brown scale-90",
           "p-0.5 rounded-2xl contain-content grid",
-          "my-12 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl"
+          "mt-5 mb-9 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl"
         )}
       >
         <div

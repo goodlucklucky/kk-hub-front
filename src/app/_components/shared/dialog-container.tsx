@@ -22,7 +22,7 @@ export default function DialogContainer({
           {title}
         </DialogTitle>
       )}
-      <div className={cn("bg-blown rounded-2xl p-2", className)}>
+      <div className={cn("rounded-2xl p-2", className)}>
         {children}
       </div>
       <DialogCloseButton />
@@ -34,7 +34,7 @@ export function DialogCloseButton({ className }: { className?: string }) {
   return (
     <DialogClose
       className={cn(
-        "mx-auto w-fit flex items-center justify-center -mt-2",
+        "mx-auto w-fit flex items-center justify-center -mt-8 z-10",
         className
       )}
     >
