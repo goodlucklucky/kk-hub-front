@@ -25,10 +25,11 @@ import mainBack from '@assets/images/main-back.png';
 import MintDialog from "../_components/dialogs/mint-dialog";
 import BankDialog from "../_components/dialogs/bank-dialog";
 import ProfileDialog from "../_components/dialogs/profile-dialog";
+import ChatDialog from "../_components/dialogs/chat-dialog";
 import { useApp } from "@/app/_contexts/appContext";
 
 export default function HomePage() {
-  const { isBankingOpen, setIsBankingOpen, isProfileOpen, setIsProfileOpen } = useApp();
+  const { isBankingOpen, setIsBankingOpen, isProfileOpen, setIsProfileOpen, isChatOpen, setIsChatOpen } = useApp();
 
   const groupedGames = Object.entries(_.groupBy(games, (game) => game?.type));
 
@@ -118,6 +119,10 @@ export default function HomePage() {
       <ProfileDialog
         isOpen={isProfileOpen}
         onClose={() => setIsProfileOpen(!isProfileOpen)}
+      />
+      <ChatDialog
+        isOpen={isChatOpen}
+        onClose={() => setIsChatOpen(!isChatOpen)}
       />
     </>
   );

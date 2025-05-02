@@ -90,8 +90,8 @@ export type TGameItemCardProps = Omit<TItems, "soon">;
 export function GameItemCard({ title, image, link, isNew, number }: TGameItemCardProps) {
   return (
     <Link href={link || "#"} className="rounded-lg w-[70px] relative overflow-hidden">
-      {number && <p className="absolute top-0 right-0 bg-red-light px-1 text-white text-[10px] rounded-bl-lg">{number}</p>}
-      {isNew && <p className="absolute top-0 right-1 bg-red-light px-1 text-white text-[10px] rounded-sm">New</p>}
+      {number && <p className="absolute top-0 right-0.5 bg-red-light px-1 text-white text-[10px] rounded-lg">{number}</p>}
+      {isNew && <div className="absolute top-0 right-0.5 bg-red-light px-1 text-white text-[10px] rounded-sm font-made-tommy">New</div>}
       <div className="bg-white/20">
         {image && (
           <Image

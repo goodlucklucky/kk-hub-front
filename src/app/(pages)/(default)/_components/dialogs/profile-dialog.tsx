@@ -7,7 +7,6 @@ import Image from "next/image";
 //import components
 import {
   Dialog,
-  DialogOverlay,
   DialogPortal,
 } from "@/app/_components/ui/dialog";
 import NavigationButton from "@/app/(pages)/(default)/_components/profile/navigateBtn";
