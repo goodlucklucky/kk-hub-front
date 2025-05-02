@@ -11,7 +11,7 @@ export const WinningNumbers = ({ numbers }: WinningNumbersProps) => {
   const NumberBall = ({ number }: { number: number }) => (
     <div className="w-16 h-16 flex justify-center items-center">
       <WinNumberIcon className="w-16 h-16 absolute" />
-      <span className="text-[#745061] text-center font-made-tommy text-[20px] font-bold leading-normal tracking-[0.56px] text-center pb-2 w-full mt-1.5 z-20">
+      <span className="text-[#745061] font-made-tommy text-[20px] font-bold leading-normal tracking-[0.56px] text-center pb-2 w-full mt-1.5 z-20">
         {String(number).padStart(3, '0')}
       </span>
     </div>

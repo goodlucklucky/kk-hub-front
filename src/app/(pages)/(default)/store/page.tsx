@@ -47,6 +47,7 @@ const ProductCategoryButtons = memo(({ activeCategory, onCategoryChange }: { act
         isActive={activeCategory === category}
         onClick={() => onCategoryChange(category)}
         className="rounded-full !text-sm !font-normal font-bumper-sticker"
+        lableClassName="!text-[14px] font-made-tommy font-bold"
       />
     ))}
   </div>
@@ -93,7 +94,7 @@ export default function StorePage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-32 bottom-25 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-32 bottom-25 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 max-h-[560px] mb-10">
           <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col">
             <div className="flex justify-center gap-1.5">
               <MemoizedNavigationButton
@@ -102,6 +103,7 @@ export default function StorePage() {
                 isActive={activeComponent === "featured"}
                 onClick={() => handleCategoryChange("featured")}
                 className="shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)]"
+                lableClassName="!text-[15px] font-made-tommy font-bold"
               />
               <MemoizedNavigationButton
                 icon={activeComponent === "items" ? itemClick : item}
@@ -109,6 +111,7 @@ export default function StorePage() {
                 isActive={activeComponent === "items"}
                 onClick={() => handleCategoryChange("items")}
                 className="shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)]"
+                lableClassName="!text-[15px] font-made-tommy font-bold"
               />
               <MemoizedNavigationButton
                 icon={activeComponent === "kokitos" ? inventoryClick : inventory}
@@ -116,6 +119,7 @@ export default function StorePage() {
                 isActive={activeComponent === "kokitos"}
                 onClick={() => handleCategoryChange("kokitos")}
                 className="shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)]"
+                lableClassName="!text-[15px] font-made-tommy font-bold"
               />
             </div>
           </div>
@@ -125,7 +129,7 @@ export default function StorePage() {
               onCategoryChange={handleProductCategoryChange}
             />
             <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2 pt-3">
-              <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 px-1 overflow-y-auto">
+              <div className="w-full flex flex-col gap-1 bg-[#EED1B8] rounded-[22px] p-3 px-1 overflow-y-auto">
                 <div className="flex justify-start items-center">
                   <span className="text-[#5F3F57] text-[22px] font-bumper-sticker font-normal px-1">COSMETICS</span>
                   <DiscountBadge discount={-20} />
