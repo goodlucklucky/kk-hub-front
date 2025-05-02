@@ -23,12 +23,14 @@ import { StarIcon } from "@/app/_assets/svg/star";
 import forestBack from '@assets/images/forest-back.png';
 import mainBack from '@assets/images/main-back.png';
 import MintDialog from "../_components/dialogs/mint-dialog";
+import BankDialog from "../_components/dialogs/bank-dialog";
 
 export default function HomePage() {
   const groupedGames = Object.entries(_.groupBy(games, (game) => game?.type));
 
   const [isMinting, setIsMinting] = useState(false);
   const [isMintDialogOpen, setIsMintDialogOpen] = useState(false);
+  const [isBankDialogOpen, setIsBankDialogOpen] = useState(false);
 
   const handleMintDialogToggle = useCallback(() => {
     setIsMintDialogOpen(prev => !prev);
@@ -36,6 +38,10 @@ export default function HomePage() {
 
   const handleMintDialogClose = useCallback(() => {
     setIsMintDialogOpen(false);
+  }, []);
+
+  const handleBankDialogToggle = useCallback(() => {
+    setIsBankDialogOpen(prev => !prev);
   }, []);
 
   return (
@@ -105,6 +111,7 @@ export default function HomePage() {
         onClose={handleMintDialogClose}
         setIsMinting={setIsMinting}
       />
+      
     </>
   );
 }

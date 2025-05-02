@@ -1,6 +1,7 @@
+'use client';
 
 //import modules
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Image from "next/image";
 
 //import utils
@@ -11,8 +12,15 @@ import { SnakeItalicIcon } from "@/app/_assets/svg/snake";
 import headerBack from '@assets/images/header-back.png';
 import { KIcon } from "@/app/_assets/svg/etc";
 import kokoLog from '@/app/_assets/images/koko-logo.png'
+import BankDialog from "../dialogs/bank-dialog";
 
 export default function Header() {
+  const [isBankDialogOpen, setIsBankDialogOpen] = useState(false);
+
+  const handleBankDialogToggle = useCallback(() => {
+    setIsBankDialogOpen(prev => !prev);
+  }, []);
+
   return (
     <header
       className={cn(
@@ -25,6 +33,7 @@ export default function Header() {
           "bg-yellow-2 text-golden-darker font-bold text",
           "[&>div]:drop-shadow-[0_0.2ch_rgba(0,0,0,0.2)] shadow-[0_0.2ch] shadow-black/20",
         )}
+        onClick={handleBankDialogToggle}
       >
         <div className="flex items-center gap-2 p-2">
           <SnakeItalicIcon className="size-8" />
@@ -47,6 +56,10 @@ export default function Header() {
           LVL 100</span>
       </div>
       <Image src={headerBack} alt="header-back" width={75} height={75} className="absolute w-full inset-0 -z-8 h-[75px]" />
+      <BankDialog
+        isOpen={isBankDialogOpen}
+        onClose={handleBankDialogToggle}
+      />
     </header>
   );
 }
