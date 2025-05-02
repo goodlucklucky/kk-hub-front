@@ -5,6 +5,7 @@ import { cn } from "./_lib/utils";
 import { bumperStickerFont, madeTommySoftFont } from "./_lib/fonts";
 import { Suspense } from "react";
 import Script from "next/script";
+import { AppProvider } from "./_contexts/appContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -33,8 +34,10 @@ export default function RootLayout({
           madeTommySoftFont.variable
         )}
       >
-        <Suspense fallback={<></>}>{children}</Suspense>
-        <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
+        <AppProvider>
+          <Suspense fallback={<></>}>{children}</Suspense>
+          <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
+        </AppProvider>
       </body>
     </html>
   );

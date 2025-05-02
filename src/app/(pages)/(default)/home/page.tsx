@@ -24,13 +24,17 @@ import forestBack from '@assets/images/forest-back.png';
 import mainBack from '@assets/images/main-back.png';
 import MintDialog from "../_components/dialogs/mint-dialog";
 import BankDialog from "../_components/dialogs/bank-dialog";
+import ProfileDialog from "../_components/dialogs/profile-dialog";
+import { useApp } from "@/app/_contexts/appContext";
 
 export default function HomePage() {
+  const { isBankingOpen, setIsBankingOpen, isProfileOpen, setIsProfileOpen } = useApp();
+
   const groupedGames = Object.entries(_.groupBy(games, (game) => game?.type));
 
   const [isMinting, setIsMinting] = useState(false);
   const [isMintDialogOpen, setIsMintDialogOpen] = useState(false);
-  const [isBankDialogOpen, setIsBankDialogOpen] = useState(false);
+
 
   const handleMintDialogToggle = useCallback(() => {
     setIsMintDialogOpen(prev => !prev);
@@ -38,10 +42,6 @@ export default function HomePage() {
 
   const handleMintDialogClose = useCallback(() => {
     setIsMintDialogOpen(false);
-  }, []);
-
-  const handleBankDialogToggle = useCallback(() => {
-    setIsBankDialogOpen(prev => !prev);
   }, []);
 
   return (
@@ -111,7 +111,14 @@ export default function HomePage() {
         onClose={handleMintDialogClose}
         setIsMinting={setIsMinting}
       />
-      
+       <BankDialog
+        isOpen={isBankingOpen}
+        onClose={() => setIsBankingOpen(!isBankingOpen)}
+      />
+      <ProfileDialog
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(!isProfileOpen)}
+      />
     </>
   );
 }

@@ -8,6 +8,7 @@ interface SlideProps {
   setIsOpen?: () => void;
   setIsMinting?: (isMinting: boolean) => void;
   type: 'daily' | 'invite' | 'og' | 'nft';
+  onClick?: () => void;
 }
 
 const SlideContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -38,8 +39,9 @@ const SlideContainer: React.FC<{ children: React.ReactNode }> = ({ children }) =
   </div>
 );
 
-export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type }) => {
+export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type, onClick }) => {
   const handleClick = () => {
+    onClick?.();
     setIsOpen?.();
     setIsMinting?.(true);
   };
