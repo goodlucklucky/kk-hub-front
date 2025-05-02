@@ -18,7 +18,7 @@ export default function SpinnerBox() {
   const [isClient, setIsClient] = useState(false);
   const [loading, setLoading] = useState(false);
   const [totalSpins, setTotalSpins] = useState(3);
-  const [openReward, setOpenReward] = useState(true);
+  const [openReward, setOpenReward] = useState(false);
   const [reward, setReward] = useState<TSpinner | null>(null);
 
   const spinsList = useMemo(() => {

@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/navigation";
 
 import { BoxIcon } from "@/app/_assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
@@ -23,18 +24,24 @@ const XpLabel: React.FC<{ className?: string }> = ({ className }) => (
   </div>
 );
 
-const LeftBack: React.FC<{ className?: string }> = ({ className }) => (
-  <div
-    className={cn(
-      "border border-[#B1B5CC] bg-[#B1B5CC] backdrop-blur-[12.5px]",
-      "aspect-square p-2 h-10",
-      "flex items-center justify-center",
-      className
-    )}
-  >
-    <CustomRightArrow className="w-[14px] h-[21px] rotate-180"/>
-  </div>
-);
+const LeftBack: React.FC<{ className?: string }> = ({ className }) => {
+  const router = useRouter();
+
+  return (
+    <div
+      onClick={() => router.back()}
+      className={cn(
+        "border border-[#B1B5CC] bg-[#B1B5CC] backdrop-blur-[12.5px]",
+        "aspect-square p-2 h-10",
+        "flex items-center justify-center",
+        "cursor-pointer",
+        className
+      )}
+    >
+      <CustomRightArrow className="w-[14px] h-[21px] rotate-180"/>
+    </div>
+  );
+};
 
 const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({ currentXp, maxXp }) => {
   const percentage = (currentXp / maxXp) * 100;

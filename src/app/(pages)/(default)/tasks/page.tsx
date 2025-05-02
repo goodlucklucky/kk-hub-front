@@ -56,7 +56,10 @@ export default function TasksPage() {
   const renderTaskSection = () => {
     switch (activeTaskCategory) {
       case 'Claim OG':
-        return <ClaimOGSection onMintClick={() => setIsMintDialogOpen(true)} />;
+        return <ClaimOGSection onMintClick={() => {
+          setIsMintDialogOpen(true)
+          setIsMinting(true)
+        }} />;
       case 'Koko Tasks':
         return <KokoTasksSection />;
       case 'Partner':
