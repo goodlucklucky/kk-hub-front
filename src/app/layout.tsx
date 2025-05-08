@@ -4,6 +4,8 @@ import { Toaster } from "react-hot-toast";
 import { cn } from "./_lib/utils";
 import { bumperStickerFont, madeTommySoftFont } from "./_lib/fonts";
 import { Suspense } from "react";
+import Script from "next/script";
+import { AppProvider } from "./_contexts/appContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script id="focus-visible-polyfill" strategy="beforeInteractive">
+          {`
+            document.documentElement.classList.remove('js-focus-visible');
+            document.documentElement.removeAttribute('data-js-focus-visible');
+          `}
+        </Script>
+      </head>
       <body
         className={cn(
           "font-made-tommy",
@@ -24,8 +34,10 @@ export default function RootLayout({
           madeTommySoftFont.variable
         )}
       >
-        <Suspense fallback={<></>}>{children}</Suspense>
-        <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
+        <AppProvider>
+          <Suspense fallback={<></>}>{children}</Suspense>
+          <Toaster position="top-center" toastOptions={{ duration: 2000 }} />
+        </AppProvider>
       </body>
     </html>
   );

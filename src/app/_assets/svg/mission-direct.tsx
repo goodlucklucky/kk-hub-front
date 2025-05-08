@@ -103,9 +103,9 @@ export function MissionClickIcon(props: React.ComponentProps<"svg">) {
           width="27"
           height="27"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -137,9 +137,9 @@ export function MissionClickIcon(props: React.ComponentProps<"svg">) {
           width="13"
           height="14"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -172,8 +172,8 @@ export function MissionClickIcon(props: React.ComponentProps<"svg">) {
           y2="26"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#A23B00" />
-          <stop offset="1" stop-color="#8F5032" />
+          <stop stopColor="#A23B00" />
+          <stop offset="1" stopColor="#8F5032" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_1566_12916"
@@ -183,8 +183,8 @@ export function MissionClickIcon(props: React.ComponentProps<"svg">) {
           y2="19"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D94C26" />
-          <stop offset="1" stop-color="#E4623F" />
+          <stop stopColor="#D94C26" />
+          <stop offset="1" stopColor="#E4623F" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_1566_12916"
@@ -194,8 +194,8 @@ export function MissionClickIcon(props: React.ComponentProps<"svg">) {
           y2="19"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#A23B00" />
-          <stop offset="1" stop-color="#8F5032" />
+          <stop stopColor="#A23B00" />
+          <stop offset="1" stopColor="#8F5032" />
         </linearGradient>
       </defs>
     </svg>
@@ -310,9 +310,9 @@ export function MissionCheckIcon(props: React.ComponentProps<"svg">) {
           width="27"
           height="28"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -344,9 +344,9 @@ export function MissionCheckIcon(props: React.ComponentProps<"svg">) {
           width="15"
           height="13"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feBlend
             mode="normal"
             in="SourceGraphic"
@@ -379,8 +379,8 @@ export function MissionCheckIcon(props: React.ComponentProps<"svg">) {
           y2="26"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#D94C26" />
-          <stop offset="1" stop-color="#E4623F" />
+          <stop stopColor="#D94C26" />
+          <stop offset="1" stopColor="#E4623F" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_1566_12915"
@@ -390,8 +390,8 @@ export function MissionCheckIcon(props: React.ComponentProps<"svg">) {
           y2="26"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#A23B00" />
-          <stop offset="1" stop-color="#8F5032" />
+          <stop stopColor="#A23B00" />
+          <stop offset="1" stopColor="#8F5032" />
         </linearGradient>
       </defs>
     </svg>

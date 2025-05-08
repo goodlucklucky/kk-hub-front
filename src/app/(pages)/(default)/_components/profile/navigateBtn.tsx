@@ -8,9 +8,10 @@ interface NavigationButtonProps {
   isActive: boolean;
   onClick: () => void;
   className?: string;
+  lableClassName?: string;
 }
 
-export default function NavigationButton({ icon, label, isActive, onClick, className }: NavigationButtonProps) {
+export default function NavigationButton({ icon, label, isActive, onClick, className, lableClassName }: NavigationButtonProps) {
   return (
     <Button
       onClick={onClick}
@@ -29,7 +30,8 @@ export default function NavigationButton({ icon, label, isActive, onClick, class
       />}
       <span
         className={cn(
-          "drop-shadow-md",
+          "drop-shadow-md text-[16px]/[16px] font-made-tommy font-bold",
+          lableClassName,
           isActive
             ? "text-[#E3BEAA]"
             : "text-[#745061]"

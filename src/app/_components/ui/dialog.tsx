@@ -20,7 +20,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 bg-black/90 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "fixed inset-0 z-50 bg-black/90 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 pointer-events-none",
       className
     )}
     {...props}
@@ -54,31 +54,31 @@ const DialogContent = React.forwardRef<
     },
     ref
   ) => (
-    <DialogPortal>
-      <DialogOverlay {...overlayProps} />
-      <DialogPrimitive.Content
-        ref={ref}
-        aria-describedby=""
-        className={cn(
-          `fixed px-3 left-[50%] border-none outline-none top-1/2`,
-          `pb-[30px] pt-[10px] mt-[-42px] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg`,
-          className
-        )}
-        {...props}
-      >
-        {noContainer ? (
-          children
-        ) : (
-          <DialogContainer
-            title={title}
-            titleClassName={titleClassName}
-            className={cn(containerClassName)}
-          >
-            {children}
-          </DialogContainer>
-        )}
-      </DialogPrimitive.Content>
-    </DialogPortal>
+      <DialogPortal>
+        <DialogOverlay {...overlayProps} />
+        <DialogPrimitive.Content
+          ref={ref}
+          aria-describedby=""
+          className={cn(
+            `fixed px-3 left-[50%] border-none outline-none top-1/2`,
+            `pb-[30px] pt-[10px] mt-[-42px] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg`,
+            className
+          )}
+          {...props}
+        >
+          {noContainer ? (
+            children
+          ) : (
+            <DialogContainer
+              title={title}
+              titleClassName={titleClassName}
+              className={cn(containerClassName)}
+            >
+              {children}
+            </DialogContainer>
+          )}
+        </DialogPrimitive.Content>
+      </DialogPortal>
   )
 );
 DialogContent.displayName = DialogPrimitive.Content.displayName;

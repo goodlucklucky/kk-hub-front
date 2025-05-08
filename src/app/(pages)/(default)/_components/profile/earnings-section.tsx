@@ -13,7 +13,7 @@ export default function EarningsSection({ amount, className }: EarningsSectionPr
     <div className={cn("w-full justify-between bg-[#EED1B8] rounded-[10px] flex items-center gap-2 px-3 py-2.5", className)}>
       <div className="flex gap-2 items-center">
         <DollarScoreIcon />
-        <span className="text-[#5F3F57] font-small font-bumper-sticker text-[18px]/[28px]">
+        <span className="text-[#5F3F57] font-bold font-made-tommy text-[16px]/[28px]">
           All Time Earnings
         </span>
       </div>

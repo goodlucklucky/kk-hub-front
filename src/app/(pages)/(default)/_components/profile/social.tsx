@@ -17,7 +17,7 @@ import coinbase from "@assets/svg/coinbase.svg";
 import metamask from "@assets/svg/metamask.svg";
 
 export default function Social() {
-  return <div className="bg-[#E3BEAA] rounded-[7px] px-2 py-3 flex flex-col gap-2">
+  return <div className="bg-[#E3BEAA] rounded-[7px] px-2 py-3 flex flex-col h-full gap-2">
    
     <div className="flex flex-col p-2 bg-[#EED1B8] rounded-[15px] gap-1.5">
       <div className="flex gap-2 items-center justify-between pb-1 border-b-1 border-[#7450612e]">
@@ -50,8 +50,8 @@ export default function Social() {
         <div className="flex gap-2 items-center">
           <WalletIcon />
           <div className="flex gap-1.5 bg-[#7A5B6940] rounded-[5px] p-0.5 px-1">
-            <Image src={coinbase} alt="wallet" />
             <Image src={metamask} alt="wallet" />
+            <Image src={coinbase} alt="wallet" />
           </div>
         </div>
         <Button className="px-2 py-[3px] bg-gradient-to-b from-[#24BE62] to-[#1AB257] rounded-sm">

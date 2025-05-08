@@ -596,18 +596,69 @@ export function TrophyIcon(props: React.ComponentProps<"svg">) {
 
 export function PetIcon(props: React.ComponentProps<"svg">) {
   return (
-    <svg
-      width="31"
-      height="31"
-      viewBox="0 0 31 31"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path
-        d="M26.4601 4.53976C20.4071 -1.51325 10.5928 -1.51325 4.53976 4.53976C-1.51325 10.5928 -1.51325 20.4071 4.53976 26.4601C10.5928 32.5131 20.4071 32.5131 26.4601 26.4601C32.5131 20.4071 32.5131 10.5928 26.4601 4.53976ZM10.6151 20.3847C6.23962 16.0092 6.23962 8.91528 10.6151 4.53976C14.9548 0.20008 21.9682 0.165383 26.3514 4.43395C25.2231 3.36122 23.8928 2.94113 23.3357 3.49828C22.7604 4.0735 23.2267 5.47227 24.3771 6.62271C25.5276 7.77316 26.9264 8.23941 27.5016 7.66419C28.0587 7.10703 27.6386 5.7768 26.5659 4.64844C30.8345 9.03199 30.7998 16.0453 26.4601 20.3847C22.0846 24.7602 14.9907 24.7602 10.6151 20.3847Z"
-        fill="currentColor"
-      />
+    <svg xmlns="http://www.w3.org/2000/svg" width="31" height="32" viewBox="0 0 31 32" fill="none" {...props}>
+      <g filter="url(#filter0_d_799_42035)">
+        <path d="M12.0329 9.26845C13.9422 9.96753 16.2347 8.49793 17.154 5.98625C18.0727 3.47452 17.2699 0.872326 15.361 0.173673C13.4512 -0.524435 11.159 0.94474 10.2398 3.45642C9.32096 5.96815 10.1238 8.57034 12.0329 9.26845Z" fill="#584255" />
+      </g>
+      <g filter="url(#filter1_d_799_42035)">
+        <path d="M4.77807 13.2759C6.77534 13.1027 8.20976 10.8332 7.98277 8.20509C7.75529 5.57789 5.95171 3.58819 3.95445 3.76038C1.95736 3.93409 0.523 6.20407 0.750233 8.83175C0.977769 11.4589 2.78104 13.4486 4.77807 13.2759Z" fill="#584255" />
+      </g>
+      <g filter="url(#filter2_d_799_42035)">
+        <path d="M20.3324 13.1868C22.0853 14.2172 24.6041 13.1824 25.9588 10.8767C27.3134 8.56951 26.9905 5.86597 25.2373 4.8357C23.4844 3.80633 20.9651 4.84157 19.6107 7.14726C18.2561 9.45405 18.5795 12.1575 20.3324 13.1868Z" fill="#584255" />
+      </g>
+      <g filter="url(#filter3_d_799_42035)">
+        <path d="M29.7212 15.9167C28.5847 14.2655 25.9025 14.1379 23.7299 15.6325C21.5567 17.128 20.7169 19.6783 21.8531 21.33C22.9894 22.9811 25.6718 23.1089 27.8445 21.6137C30.0169 20.1186 30.8572 17.5683 29.7212 15.9167Z" fill="#584255" />
+      </g>
+      <g filter="url(#filter4_d_799_42035)">
+        <path d="M18.0509 16.2312C17.8341 14.7313 16.9147 13.3633 15.445 12.6696C13.9757 11.9763 12.335 12.1363 11.0397 12.922C9.60804 13.7908 8.6922 14.9258 7.4591 15.422C6.22618 15.918 2.77276 14.4406 0.622607 18.3451C-0.895974 21.1029 0.498062 24.5892 3.34493 25.9325C5.50876 26.9536 7.22133 26.8396 8.47859 27.4325C9.73567 28.0255 10.7364 29.4203 12.9 30.4412C15.7468 31.7846 19.3241 30.6448 20.4875 27.7192C22.1347 23.5774 18.7984 21.8509 18.3973 20.5837C17.9965 19.3168 18.2906 17.8882 18.0509 16.2312Z" fill="#584255" />
+      </g>
+      <defs>
+        <filter id="filter0_d_799_42035" x="9.85938" y="0" width="7.6748" height="10.4414" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="1" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_799_42035" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_799_42035" result="shape" />
+        </filter>
+        <filter id="filter1_d_799_42035" x="0.726562" y="3.75" width="7.28027" height="10.5352" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="1" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_799_42035" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_799_42035" result="shape" />
+        </filter>
+        <filter id="filter2_d_799_42035" x="18.7734" y="4.4375" width="8.02246" height="10.1484" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="1" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_799_42035" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_799_42035" result="shape" />
+        </filter>
+        <filter id="filter3_d_799_42035" x="21.3467" y="14.5898" width="8.88086" height="9.06641" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="1" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_799_42035" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_799_42035" result="shape" />
+        </filter>
+        <filter id="filter4_d_799_42035" x="0" y="12.2305" width="20.9414" height="19.7695" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+          <feOffset dy="1" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" />
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_799_42035" />
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_799_42035" result="shape" />
+        </filter>
+      </defs>
     </svg>
   );
 }
@@ -685,32 +736,32 @@ export function PvPIcon(props: React.ComponentProps<"svg">) {
 export function EyeIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg
-    width={31}
-    height={18}
-    viewBox="0 0 31 18"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
-    <path
-      d="M16.1171 8.47523C16.6489 8.4548 17.1408 8.47042 17.6303 8.70593C17.893 8.8333 18.1247 9.01234 18.3127 9.22983C18.5008 9.44732 18.6402 9.70086 18.7237 9.97242C18.8893 10.5059 18.8482 11.1211 18.5668 11.6126C18.2492 12.1665 17.6813 12.4838 17.0711 12.664C16.6228 12.7193 16.2566 12.7373 15.8183 12.5847C15.5368 12.4874 15.2803 12.336 15.0623 12.1377C14.8444 11.9406 14.6725 11.7015 14.5542 11.4372C14.3238 10.9097 14.345 10.3161 14.5841 9.79458C14.8867 9.1277 15.4409 8.73958 16.1184 8.47403L16.1171 8.47523Z"
-      fill="#5F3F57"
-    />
-    <path
-      d="M15.9067 1.31383C17.1012 1.2472 18.3334 1.31198 19.5047 1.54518C23.211 2.28087 26.3224 4.51202 28.7684 7.19846C29.288 7.76851 29.8143 8.34041 30.2469 8.97616C26.4508 6.07595 22.5466 4.68507 17.7202 4.31676C12.2468 4.12798 7.59511 5.87328 3.04004 8.64394C3.51612 7.91102 4.09166 7.2364 4.68748 6.58955C7.56132 3.4876 11.5901 1.5933 15.9067 1.31383Z"
-      fill="#5F3F57"
-    />
-    <path
-      d="M12.9725 6.58759L12.9908 6.61628C12.6586 6.9411 12.3679 7.26314 12.1072 7.64533C11.7364 8.17928 11.4786 8.77709 11.3492 9.40637C11.2198 10.0356 11.2207 10.6834 11.353 11.3118C11.6369 12.612 12.4809 13.8437 13.6484 14.572C14.8932 15.3437 16.4045 15.613 17.8559 15.3225C19.257 15.0263 20.4806 14.2111 21.2579 13.0552C21.986 11.9559 22.185 10.5835 21.8866 9.31753C21.7543 8.75026 21.5071 8.2126 21.1575 7.73694C20.8079 7.26128 20.3637 6.85688 19.85 6.54688C21.0571 6.80784 22.2632 7.07806 23.4316 7.4769C25.504 8.18576 27.4257 9.26478 29.3358 10.2985C28.8085 10.8685 28.2523 11.4136 27.6709 11.9327C24.6407 14.6321 21.1053 16.3154 16.9298 16.5144C12.9696 16.7032 8.69163 15.1485 5.49043 12.9951C4.53924 12.3556 3.68172 11.631 2.82324 10.8842C3.61413 10.5067 4.36542 9.98567 5.14086 9.56924C7.90364 8.08859 9.88037 7.27146 12.9725 6.58574V6.58759Z"
-      fill="#5F3F57"
-    />
-  </svg>
+      width={31}
+      height={18}
+      viewBox="0 0 31 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M16.1171 8.47523C16.6489 8.4548 17.1408 8.47042 17.6303 8.70593C17.893 8.8333 18.1247 9.01234 18.3127 9.22983C18.5008 9.44732 18.6402 9.70086 18.7237 9.97242C18.8893 10.5059 18.8482 11.1211 18.5668 11.6126C18.2492 12.1665 17.6813 12.4838 17.0711 12.664C16.6228 12.7193 16.2566 12.7373 15.8183 12.5847C15.5368 12.4874 15.2803 12.336 15.0623 12.1377C14.8444 11.9406 14.6725 11.7015 14.5542 11.4372C14.3238 10.9097 14.345 10.3161 14.5841 9.79458C14.8867 9.1277 15.4409 8.73958 16.1184 8.47403L16.1171 8.47523Z"
+        fill="#5F3F57"
+      />
+      <path
+        d="M15.9067 1.31383C17.1012 1.2472 18.3334 1.31198 19.5047 1.54518C23.211 2.28087 26.3224 4.51202 28.7684 7.19846C29.288 7.76851 29.8143 8.34041 30.2469 8.97616C26.4508 6.07595 22.5466 4.68507 17.7202 4.31676C12.2468 4.12798 7.59511 5.87328 3.04004 8.64394C3.51612 7.91102 4.09166 7.2364 4.68748 6.58955C7.56132 3.4876 11.5901 1.5933 15.9067 1.31383Z"
+        fill="#5F3F57"
+      />
+      <path
+        d="M12.9725 6.58759L12.9908 6.61628C12.6586 6.9411 12.3679 7.26314 12.1072 7.64533C11.7364 8.17928 11.4786 8.77709 11.3492 9.40637C11.2198 10.0356 11.2207 10.6834 11.353 11.3118C11.6369 12.612 12.4809 13.8437 13.6484 14.572C14.8932 15.3437 16.4045 15.613 17.8559 15.3225C19.257 15.0263 20.4806 14.2111 21.2579 13.0552C21.986 11.9559 22.185 10.5835 21.8866 9.31753C21.7543 8.75026 21.5071 8.2126 21.1575 7.73694C20.8079 7.26128 20.3637 6.85688 19.85 6.54688C21.0571 6.80784 22.2632 7.07806 23.4316 7.4769C25.504 8.18576 27.4257 9.26478 29.3358 10.2985C28.8085 10.8685 28.2523 11.4136 27.6709 11.9327C24.6407 14.6321 21.1053 16.3154 16.9298 16.5144C12.9696 16.7032 8.69163 15.1485 5.49043 12.9951C4.53924 12.3556 3.68172 11.631 2.82324 10.8842C3.61413 10.5067 4.36542 9.98567 5.14086 9.56924C7.90364 8.08859 9.88037 7.27146 12.9725 6.58574V6.58759Z"
+        fill="#5F3F57"
+      />
+    </svg>
   )
 }
 
 export function ArrowLeftIcon(props: React.ComponentProps<"svg">) {
-    return (
-      <svg
+  return (
+    <svg
       width={36}
       height={37}
       viewBox="0 0 36 37"
@@ -727,7 +778,176 @@ export function ArrowLeftIcon(props: React.ComponentProps<"svg">) {
         fill="#E0DB8D"
       />
     </svg>
-    )
+  )
+}
+
+export function ClockIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 12 12" {...props}>
+      <path fill="#745061" fillRule="evenodd" d="M6 12A6 6 0 1 0 6 0a6 6 0 0 0 0 12Zm-.75-9.75v4.06l2.47 2.47 1.06-1.06-2.03-2.03V2.25h-1.5Z" clipRule="evenodd" />
+    </svg>
+  )
+}
+
+export function GiftIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      width={21}
+      height={21}
+      viewBox="0 0 21 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g clipPath="url(#clip0_799_28636)">
+        <g filter="url(#filter0_d_799_28636)">
+          <path
+            d="M3.9375 3.9375V0H6.5625C8.73712 0 10.5 1.76288 10.5 3.9375C10.5 1.76288 12.2629 0 14.4375 0H17.0625V3.9375H21V7.875H0V3.9375H3.9375Z"
+            fill={props.fill}
+          />
+        </g>
+        <g filter="url(#filter1_d_799_28636)">
+          <path d="M1.3125 10.5H9.1875V19.6875H1.3125V10.5Z" fill={props.fill} />
+        </g>
+        <g filter="url(#filter2_d_799_28636)">
+          <path d="M19.6875 10.5H11.8125V19.6875H19.6875V10.5Z" fill={props.fill} />
+        </g>
+      </g>
+      <defs>
+        <filter
+          id="filter0_d_799_28636"
+          x={0}
+          y={0}
+          width={21}
+          height={9.875}
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy={2} />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.243137 0 0 0 0 0.141176 0 0 0 0 0.411765 0 0 0 0.2 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_799_28636"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_799_28636"
+            result="shape"
+          />
+        </filter>
+        <filter
+          id="filter1_d_799_28636"
+          x={1.3125}
+          y={10.5}
+          width={7.875}
+          height={11.1875}
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy={2} />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.243137 0 0 0 0 0.141176 0 0 0 0 0.411765 0 0 0 0.2 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_799_28636"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_799_28636"
+            result="shape"
+          />
+        </filter>
+        <filter
+          id="filter2_d_799_28636"
+          x={11.8125}
+          y={10.5}
+          width={7.875}
+          height={11.1875}
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity={0} result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy={2} />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.243137 0 0 0 0 0.141176 0 0 0 0 0.411765 0 0 0 0.2 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_799_28636"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_799_28636"
+            result="shape"
+          />
+        </filter>
+        <clipPath id="clip0_799_28636">
+          <rect width={21} height={21} fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  )
+}
+
+export function DotIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="17" height="17" rx="8.5" fill="#745061" />
+    </svg>
+  )
+}
+
+export function ThreeIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="17" height="17" rx="8.5" fill="#745061" />
+      <path d="M10.7147 7.918C11.6947 8.324 12.2827 9.066 12.2827 10.228C12.2827 12.118 10.7147 13.168 8.47473 13.168C6.65473 13.168 5.28273 12.37 4.75073 11.04C4.63873 10.76 4.82073 10.438 5.11473 10.382L7.01873 9.962C7.18673 9.92 7.35473 10.004 7.42473 10.158C7.57873 10.438 7.88673 10.662 8.37673 10.662C8.99273 10.662 9.27273 10.27 9.27273 9.794C9.27273 9.318 8.93673 9.024 8.34873 9.024H7.64873C7.43873 9.024 7.27073 8.856 7.27073 8.646V7.302C7.27073 7.092 7.43873 6.924 7.64873 6.924H8.34873C8.83873 6.924 9.17473 6.7 9.17473 6.21C9.17473 5.734 8.85273 5.482 8.36273 5.482C8.04073 5.482 7.76073 5.622 7.62073 5.86C7.53673 6.014 7.38273 6.098 7.21473 6.056L5.47873 5.664C5.18473 5.608 5.01673 5.286 5.12873 4.992C5.61873 3.802 6.75273 3.018 8.47473 3.018C10.7007 3.018 12.0447 4.138 12.0447 5.846C12.0447 6.742 11.5687 7.47 10.7147 7.918Z" fill="#E3BEAA" />
+    </svg>
+  )
+}
+
+export function ThreeIconClick(props: React.ComponentProps<"svg">) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <rect width="17" height="17" rx="8.5" fill="#E3BEAA" />
+      <path d="M10.7147 7.918C11.6947 8.324 12.2827 9.066 12.2827 10.228C12.2827 12.118 10.7147 13.168 8.47473 13.168C6.65473 13.168 5.28273 12.37 4.75073 11.04C4.63873 10.76 4.82073 10.438 5.11473 10.382L7.01873 9.962C7.18673 9.92 7.35473 10.004 7.42473 10.158C7.57873 10.438 7.88673 10.662 8.37673 10.662C8.99273 10.662 9.27273 10.27 9.27273 9.794C9.27273 9.318 8.93673 9.024 8.34873 9.024H7.64873C7.43873 9.024 7.27073 8.856 7.27073 8.646V7.302C7.27073 7.092 7.43873 6.924 7.64873 6.924H8.34873C8.83873 6.924 9.17473 6.7 9.17473 6.21C9.17473 5.734 8.85273 5.482 8.36273 5.482C8.04073 5.482 7.76073 5.622 7.62073 5.86C7.53673 6.014 7.38273 6.098 7.21473 6.056L5.47873 5.664C5.18473 5.608 5.01673 5.286 5.12873 4.992C5.61873 3.802 6.75273 3.018 8.47473 3.018C10.7007 3.018 12.0447 4.138 12.0447 5.846C12.0447 6.742 11.5687 7.47 10.7147 7.918Z" fill="#745061" />
+    </svg>
+  )
 }
 
 export function ClockIcon(props: React.ComponentProps<"svg">) {

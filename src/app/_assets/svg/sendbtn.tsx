@@ -31,12 +31,12 @@ export function SendBtnIcon(props: React.ComponentProps<"svg">) {
           <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_799_60499" result="shape" />
         </filter>
         <linearGradient id="paint0_linear_799_60499" x1="23" y1="-1.2517e-06" x2="23" y2="42" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#A291FF" />
-          <stop offset="1" stop-color="#856FFF" />
+          <stop stopColor="#A291FF" />
+          <stop offset="1" stopColor="#856FFF" />
         </linearGradient>
         <linearGradient id="paint1_linear_799_60499" x1="0" y1="0" x2="46.3533" y2="0.393596" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#CDEBEE" />
-          <stop offset="1" stop-color="#8843BE" />
+          <stop stopColor="#CDEBEE" />
+          <stop offset="1" stopColor="#8843BE" />
         </linearGradient>
       </defs>
     </svg>
