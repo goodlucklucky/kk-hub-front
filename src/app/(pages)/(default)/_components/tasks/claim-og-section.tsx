@@ -11,7 +11,7 @@ interface ClaimOGSectionProps {
 export const ClaimOGSection: React.FC<ClaimOGSectionProps> = ({ onMintClick }) => {
   return (
     <>
-      <div className="flex flex-col flex-1 gap-2 px-2">
+      <div className="flex flex-col gap-2 px-2">
         <div className="bg-[#D49FC4] rounded-[10px] p-3 px-4 flex items-center gap-x-2">
           <TaskIcon />
           <div className="flex flex-col">
@@ -24,7 +24,7 @@ export const ClaimOGSection: React.FC<ClaimOGSectionProps> = ({ onMintClick }) =
           </div>
         </div>
       </div>
-      <div className="rounded-[22px] border border-[#FFE0BF] bg-[#DDC2A7] shadow-[inset_0px_2px_1px_0px_rgba(95,63,87,0.20)] [background:linear-gradient(180deg,rgba(95,63,87,0.20)_11.66%,rgba(95,63,87,0.00)_248.61%),#DDC2A7] px-2 py-[9px] flex flex-col gap-y-2">
+      <div className="rounded-[22px] border border-[#FFE0BF] bg-[#DDC2A7] shadow-[inset_0px_2px_1px_0px_rgba(95,63,87,0.20)] [background:linear-gradient(180deg,rgba(95,63,87,0.20)_11.66%,rgba(95,63,87,0.00)_248.61%),#DDC2A7] px-2 py-[9px] flex flex-col gap-y-2 flex-1 overflow-y-auto">
         <TaskItem
           title="Follow us on X"
           reward="T2 Lootbox"

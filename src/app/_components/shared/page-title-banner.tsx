@@ -20,7 +20,7 @@ const PageTitleBanner = ({
       role="banner"
       data-testid="page-title-banner"
       className={cn(
-        "absolute z-10 -top-14 right-0 left-0 w-fit mx-auto mt-[60px] font-bumper-sticker flex items-center justify-center",
+        "absolute z-10 -top-14 right-0 left-0 w-fit mx-auto font-bumper-sticker flex items-center justify-center",
         className
       )}
     >

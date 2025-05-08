@@ -10,9 +10,9 @@ import ButtonSlot from "@assets/images/single-button-slot.png";
 import { ArrowLeftIcon, EyeIcon } from "@assets/svg/etc";
 export function Step3Top() {
   return (
-    <>
+    <div>
       <section className="relative z-20">
-          <Image src={headerBoard} alt="panel-holder" width={338} height={103} className="absolute -top-[10px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center" priority/>
+          <Image src={headerBoard} alt="panel-holder" width={338} height={103} className="absolute left-1/2 -translate-x-1/2 -translate-y-3 bg-contain bg-no-repeat bg-center" priority/>
           <h2
             className={cn(
               "text-golden-bright drop-shadow-[0_0.2ch_var(--color-golden-darker)]",
@@ -24,23 +24,23 @@ export function Step3Top() {
             <span>MILLIONS IN PRIZES</span>
           </h2>
       </section>
-      <section className="relative">
-        <Image src={panelHome} alt="panel-home" width={354} height={248} className="absolute -top-[30px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center" priority/>
-        <div className="text-golden-bright px-8 relative font-bold">
+      <section className="relative w-[95vw] mx-auto">
+        <Image src={panelHome} alt="panel-home" className="absolute -top-[20px] 2xs:-top-[25px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center w-full h-[calc(100%_+_40px)] 2xs:h-[calc(100%_+_55px)]" priority/>
+        <div className="text-golden-bright px-6 2xs:px 8 sm:px-10 md:px-12 lg:px-20 relative font-bold">
           <div className="flex items-center justify-center gap-2 -mt-2">
             <EyeIcon className="text-grape"/>
             <h3 className="text-center text-grape text-xl">Live Overview</h3>
           </div>
-          <div className="bg-light w-[320px] rounded-b-2xl rounded-t p-0.5 contain-content mx-auto mt-1.5">
+          <div className="bg-light w-full rounded-b-2xl rounded-t p-0.5 contain-content mx-auto 2xs:mt-1.5">
             <div className="w-full rounded-b-2xl rounded-t-sm contain-content text-center bg-golden-bright text-golden-dark">
-              <div className="bg-golden-dark/15 py-4">
+              <div className="bg-golden-dark/15 2xs:py-4">
                 <p className="flex gap-2 items-center justify-center text-lg font-bold">
                   <UsdIcon className="size-6" />
                   <span>101,039.03</span>
                 </p>
                 <p className="font-semibold">Total Prizes</p>
               </div>
-              <div className="py-4">
+              <div className="2xs:py-4">
                 <p className="flex gap-2 items-center justify-center text-lg font-bold">
                   <PlayIcon className="size-5" />
                   <span>757,493</span>
@@ -51,7 +51,7 @@ export function Step3Top() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

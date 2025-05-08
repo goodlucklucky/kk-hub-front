@@ -50,8 +50,8 @@ export default function Social() {
         <div className="flex gap-2 items-center">
           <WalletIcon />
           <div className="flex gap-1.5 bg-[#7A5B6940] rounded-[5px] p-0.5 px-1">
-            <Image src={coinbase} alt="wallet" />
             <Image src={metamask} alt="wallet" />
+            <Image src={coinbase} alt="wallet" />
           </div>
         </div>
         <Button className="px-2 py-[3px] bg-gradient-to-b from-[#24BE62] to-[#1AB257] rounded-sm">

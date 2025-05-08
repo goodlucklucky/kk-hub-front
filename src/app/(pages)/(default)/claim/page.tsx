@@ -15,6 +15,7 @@ import banner from "@assets/images/header-board.png";
 import { ClockIcon } from "@/app/_assets/svg/clock";
 import { CheckIcon } from "@/app/_assets/svg/check";
 import spinner from "@assets/images/spinner.png";
+import mainBack from '@assets/images/main-back.png';
 import chestLock from "@assets/images/chest-lock.png";
 import starClaim from "@assets/images/star-claim.png";
 
@@ -25,9 +26,18 @@ export default function ClaimPage() {
       <XpBar currentXp={745} maxXp={3250} />
       <div
         className={cn(
-          "flex flex-col flex-1 justify-center items-center gap-y-5"
+          "flex flex-col flex-1 justify-center items-center fixed top-28 bottom-20 pt-4 pb-14 z-0"
         )}
       >
+        <Image
+          src={mainBack}
+          alt="Main background"
+          className="absolute inset-0 w-full h-[100vh] -top-28 -z-10 object-cover object-center"
+          loading="eager"
+          priority
+          quality={75}
+          sizes="100vw"
+        />
         <Image
           src={claimBack}
           alt="Main background"
@@ -37,7 +47,7 @@ export default function ClaimPage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 relative mt-12">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 relative mt-12 h-full">
           <div className="w-full h-16 flex justify-center items-center absolute -top-10">
             <Image
               src={banner}
@@ -51,8 +61,8 @@ export default function ClaimPage() {
               Koko Chests
             </span>
           </div>
-          <div className="bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1] rounded-[15px] py-6 shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] border border-[#A96415] flex-1 flex flex-col overflow-y-auto pb-21">
-            <div className="px-5 flex flex-col items-center gap-2 pb-3">
+          <div className="bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1] rounded-[15px] py-6 shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] border border-[#A96415] flex flex-col overflow-y-auto pb-21 h-full">
+            <div className="px-5 flex flex-col items-center gap-2 pb-2 h-full">
               <span className="text-[#8F6E75] text-center text-[15px] font-made-tommy font-bold">
                 Collect daily rewards & win mystery prizes from Koko Chests!
               </span>
@@ -67,7 +77,7 @@ export default function ClaimPage() {
                   </span>
                 </div>
               </div>
-              <div className="rounded-xl border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] w-full pt-3 relative pb-8">
+              <div className="rounded-xl border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] w-full pt-3 relative pb-8 flex-1 overflow-y-auto">
                 <div className="w-full grid grid-cols-3 gap-2">
                   <div className="w-[76px] relative mt-8 mx-auto">
                     <Image
@@ -188,20 +198,20 @@ export default function ClaimPage() {
                     </div>
                   </div>
                 </div>
-                <div className="w-full px-5 absolute -bottom-20.5 left-0 right-0">
-                  <div className="bg-[#EFC6AC] rounded-[10px] border-2 border-[#db8e5e] p-1">
-                    <div className="flex px-2 gap-x-2">
-                      <Image src={starClaim} alt="koko select" className="w-[30%] h-auto" />
-                      <div className="flex flex-col gap-y-0.5 py-2 flex-1">
-                        <span className="text-[#745061] text-[12px] font-bumper-sticker font-normal leading-normal tracking-[0.32px]">The Mega Reward</span>
-                        <span className="text-[#A17A76] text-[12px] font-made-tommy font-bold leading-normal tracking-[0.32px]">Keep the streak to win something special...</span>
-                      </div>
+              </div>
+              <div className="w-full px-10 absolute bottom-4 left-0 right-0 z-11">
+                <div className="bg-[#EFC6AC] rounded-[10px] border-2 border-[#db8e5e] p-1">
+                  <div className="flex px-2 gap-x-2">
+                    <Image src={starClaim} alt="koko select" className="w-[30%] h-auto" />
+                    <div className="flex flex-col gap-y-0.5 py-2 flex-1">
+                      <span className="text-[#745061] text-[12px] font-bumper-sticker font-normal leading-normal tracking-[0.32px]">The Mega Reward</span>
+                      <span className="text-[#A17A76] text-[12px] font-made-tommy font-bold leading-normal tracking-[0.32px]">Keep the streak to win something special...</span>
                     </div>
-                    <div className="bg-[#BC9592] rounded-[4px] w-full flex justify-center items-center">
-                      <span className="text-[#724C48] text-[14px]/[0.9] font-bumper-sticker font-normal leading-normal tracking-[0.32px] py-[1px]">
-                        DAY 28
-                      </span>
-                    </div>
+                  </div>
+                  <div className="bg-[#BC9592] rounded-[4px] w-full flex justify-center items-center">
+                    <span className="text-[#724C48] text-[14px]/[0.9] font-bumper-sticker font-normal leading-normal tracking-[0.32px] py-[1px]">
+                      DAY 28
+                    </span>
                   </div>
                 </div>
               </div>

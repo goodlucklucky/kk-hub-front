@@ -23,12 +23,19 @@ import { StarIcon } from "@/app/_assets/svg/star";
 import forestBack from '@assets/images/forest-back.png';
 import mainBack from '@assets/images/main-back.png';
 import MintDialog from "../_components/dialogs/mint-dialog";
+import BankDialog from "../_components/dialogs/bank-dialog";
+import ProfileDialog from "../_components/dialogs/profile-dialog";
+import ChatDialog from "../_components/dialogs/chat-dialog";
+import { useApp } from "@/app/_contexts/appContext";
 
 export default function HomePage() {
+  const { isBankingOpen, setIsBankingOpen, isProfileOpen, setIsProfileOpen, isChatOpen, setIsChatOpen } = useApp();
+
   const groupedGames = Object.entries(_.groupBy(games, (game) => game?.type));
 
   const [isMinting, setIsMinting] = useState(false);
   const [isMintDialogOpen, setIsMintDialogOpen] = useState(false);
+
 
   const handleMintDialogToggle = useCallback(() => {
     setIsMintDialogOpen(prev => !prev);
@@ -41,7 +48,7 @@ export default function HomePage() {
   return (
     <>
       <XpBar currentXp={745} maxXp={3250} />
-      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
+      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-3 xs:gap-y-5")}>
         <Image
           src={mainBack}
           alt="Main background"
@@ -62,7 +69,7 @@ export default function HomePage() {
         />
 
         <div className={cn("rounded-2xl flex-1 relative h-full", "mx-2")}>
-          <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-xl rounded-tr-2xl rounded-tl-2xl">
+          <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-sm xs:text-xl rounded-tr-2xl rounded-tl-2xl">
             <div className="py-1.5 bg-white text-golden-brown flex justify-center rounded-tl-2xl">
               <div className="flex gap-x-2 items-center">
                 <GameIcon />
@@ -104,6 +111,18 @@ export default function HomePage() {
         isOpen={isMintDialogOpen}
         onClose={handleMintDialogClose}
         setIsMinting={setIsMinting}
+      />
+       <BankDialog
+        isOpen={isBankingOpen}
+        onClose={() => setIsBankingOpen(!isBankingOpen)}
+      />
+      <ProfileDialog
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(!isProfileOpen)}
+      />
+      <ChatDialog
+        isOpen={isChatOpen}
+        onClose={() => setIsChatOpen(!isChatOpen)}
       />
     </>
   );

@@ -14,7 +14,7 @@ interface DepositSectionProps {
 
 export const DepositSection = ({ isConnected, onConnect, onDisconnect }: DepositSectionProps) => {
   return (
-    <div className="mt-3 rounded-[7px] flex flex-1 flex-col w-full px-2 overflow-y-auto bg-[#E3BEAA] py-3">
+    <div className="mt-3 rounded-[7px] flex flex-1 flex-col w-full px-2 overflow-y-auto bg-[#E3BEAA] py-3 h-full max-h-[calc(100vh-200px)]">
       <div className="flex flex-col h-full p-2 pb-3 bg-[#EED1B8] rounded-t-[15px] gap-1.5 border-b-1 border-[#E3BEAA]">
         <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal pt-1 px-2">
           Deposit From EXTERNAL Wallet

@@ -10,6 +10,7 @@ import { cn } from "@/app/_lib/utils";
 import woodTexture from '@assets/images/wood-texture.png';
 import chatIcon from '@assets/images/chat-icon.png';
 import chatBottom from '@assets/images/chat-bottom.png';
+import { useApp } from "@/app/_contexts/appContext";
 
 //interface
 interface ChatMessage {
@@ -72,7 +73,7 @@ const ChatContainer: React.FC = () => {
         "rounded-[15px]",
         "border border-[#A96415]",
         "bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1]",
-        "shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)]"
+        "shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] overflow-y-hidden"
       )}
     >
       {messages.map((message, index) => (
@@ -83,6 +84,7 @@ const ChatContainer: React.FC = () => {
 };
 
 export default function Chat() {
+  const { isChatOpen, setIsChatOpen } = useApp();
   return (
     <div
       className={cn(
@@ -103,6 +105,7 @@ export default function Chat() {
       />
       <ChatContainer />
       <Button 
+        onClick={() => setIsChatOpen(!isChatOpen)}
         className="px-2 w-[94px] absolute left-19.5 -bottom-2"
       >
         Open Chat

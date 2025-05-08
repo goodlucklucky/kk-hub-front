@@ -5,9 +5,9 @@ import PageTitleBanner from "@/app/_components/shared/page-title-banner";
 
 export function Step2Top() {
   return (
-    <>
+    <div>
       <PageTitleBanner
-        className={`relative top-6 mx-auto}`}
+        className={`relative top-6 mx-auto -mt-6`}
         titleBanner={
           <p className="text-center text-2xl leading-5">
             KOKO
@@ -17,18 +17,16 @@ export function Step2Top() {
         }
         spinner
       />
-      <div className="flex-1">
-        <SpinnerBox />
-      </div>
-    </>
+      <SpinnerBox />
+    </div>
   );
 }
 
 export function Step2Bottom() {
   return (
     <>
-      <div className="bg-black/60 rounded-t-2xl p-4 px-8 text-green-light font-bumper-sticker">
-        <p className="flex gap-2 items-center w-fit pb-2 mb-2 border-b-2 border-b-current/40">
+      <div className="bg-black/60 rounded-t-2xl pt-2 px-4 2xs:p-4 2xs:px-8 text-green-light font-bumper-sticker">
+        <p className="flex gap-2 items-center w-fit 2xs:pb-2 2xs:mb-2 border-b-2 border-b-current/40">
           <TimerIcon />
           <span className="font-bumper-sticker font-light text-[22px]">04:59</span>
         </p>

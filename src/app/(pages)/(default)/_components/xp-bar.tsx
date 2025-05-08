@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/navigation";
 
 import { BoxIcon } from "@/app/_assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
@@ -23,18 +24,24 @@ const XpLabel: React.FC<{ className?: string }> = ({ className }) => (
   </div>
 );
 
-const LeftBack: React.FC<{ className?: string }> = ({ className }) => (
-  <div
-    className={cn(
-      "border border-[#B1B5CC] bg-[#B1B5CC] backdrop-blur-[12.5px]",
-      "aspect-square p-2 h-10",
-      "flex items-center justify-center",
-      className
-    )}
-  >
-    <CustomRightArrow className="w-[14px] h-[21px] rotate-180"/>
-  </div>
-);
+const LeftBack: React.FC<{ className?: string }> = ({ className }) => {
+  const router = useRouter();
+
+  return (
+    <div
+      onClick={() => router.back()}
+      className={cn(
+        "border border-[#B1B5CC] bg-[#B1B5CC] backdrop-blur-[12.5px]",
+        "aspect-square p-2 h-10 z-1",
+        "flex items-center justify-center",
+        "cursor-pointer",
+        className
+      )}
+    >
+      <CustomRightArrow className="w-[14px] h-[21px] rotate-180"/>
+    </div>
+  );
+};
 
 const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({ currentXp, maxXp }) => {
   const percentage = (currentXp / maxXp) * 100;
@@ -79,7 +86,7 @@ export const XpBar = ({ currentXp, maxXp, className }: XpBarProps) => {
     <div className={cn(
       "flex items-center gap-3",
       "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
-      "bg-white/20 backdrop-blur-[12.5px]",
+      "bg-white/20 backdrop-blur-[12.5px] z-1",
       className
     )}>
       <XpLabel />
@@ -94,7 +101,7 @@ export const NavBar = ({className, title}: {className?: string, title: string}) 
     <div className={cn(
       "flex items-center gap-3",
       "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
-      "bg-[rgba(0,0,0,0.20)] backdrop-blur-[12.5px]",
+      "bg-[rgba(0,0,0,0.20)] backdrop-blur-[12.5px] z-10",
       className
     )}>
       <LeftBack />

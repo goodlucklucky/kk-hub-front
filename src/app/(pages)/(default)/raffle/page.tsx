@@ -39,7 +39,7 @@ export default function RafflePage() {
       <NavBar title={"KoKo RAFFLE"} />
       <div
         className={cn(
-          "flex flex-col flex-1 justify-center items-center gap-y-5"
+          "flex flex-col flex-1 justify-center items-center gap-y-5 pt-10"
         )}
       >
         <Image
@@ -66,22 +66,22 @@ export default function RafflePage() {
           </div>
           <div className="bg-[#F5D6B1] rounded-2xl py-6 pb-3 shadow-md border-2 border-[#A96415] flex-1 flex flex-col overflow-y-auto">
             <div className="px-3 flex flex-col items-center gap-2 border-b border-[#A96415] pb-3">
-              <div className="rounded-[10px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] w-full justify-center items-center h-[154px]">
+              <div className="rounded-[10px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] w-full justify-center items-center h-[100px] 2xs:h-[154px]">
                 <div className="w-full h-full flex justify-center items-center mt-1">
                   <Image
                     src={card}
                     alt="card"
-                    className="object-cover w-auto h-30 fixed rotate-[5deg] origin-left"
+                    className="object-cover w-auto h-20 2xs:h-30 fixed rotate-[5deg] origin-left"
                   />
                   <Image
                     src={card}
                     alt="card"
-                    className="object-cover w-auto h-30 fixed rotate-[2.5deg] origin-left"
+                    className="object-cover w-auto h-20 2xs:h-30 fixed rotate-[2.5deg] origin-left"
                   />
                   <Image
                     src={card}
                     alt="card"
-                    className="object-cover w-auto h-30 fixed"
+                    className="object-cover w-auto h-20 2xs:h-30 fixed"
                   />
                   {startAnimation ? (
                     <CountUp
