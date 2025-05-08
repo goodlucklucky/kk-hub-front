@@ -9,8 +9,8 @@ export default async function Home() {
   const userAgent = headersList.get("user-agent") || "";
   const mobileCheck = isMobile(userAgent);
   return mobileCheck ? (
-    <main className=" bg-[url(/images/main_background_new_kokoman.png)] bg-cover bg-center bg-no-repeat text-background min-h-dvh flex flex-col">
-      <KokomoLogo className="mx-auto my-8 max-w-full" />
+    <main className="bg-[url(/images/main_background_new_kokoman.png)] bg-center bg-no-repeat bg-[length:100%_100%] text-background min-h-dvh flex flex-col">
+      <KokomoLogo className="mx-auto my-4 2xs:my-8 max-w-full" />
       <MultiSteps />
     </main>
   ) : (
