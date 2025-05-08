@@ -32,7 +32,7 @@ const LeftBack: React.FC<{ className?: string }> = ({ className }) => {
       onClick={() => router.back()}
       className={cn(
         "border border-[#B1B5CC] bg-[#B1B5CC] backdrop-blur-[12.5px]",
-        "aspect-square p-2 h-10",
+        "aspect-square p-2 h-10 z-1",
         "flex items-center justify-center",
         "cursor-pointer",
         className
@@ -86,7 +86,7 @@ export const XpBar = ({ currentXp, maxXp, className }: XpBarProps) => {
     <div className={cn(
       "flex items-center gap-3",
       "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
-      "bg-white/20 backdrop-blur-[12.5px]",
+      "bg-white/20 backdrop-blur-[12.5px] z-1",
       className
     )}>
       <XpLabel />

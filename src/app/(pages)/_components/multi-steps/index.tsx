@@ -29,64 +29,66 @@ export default function MultiSteps(
   );
 
   return (
-    <div className={cn("flex-1 flex flex-col", `${step == 0 ? "p-4" : ""}`)}>
-      <Top key={`top-${step}`} />
-      <div
-        className={cn(
-          "bg-gradient-to-b from-golden-bright to-golden-brown scale-90",
-          "p-0.5 rounded-2xl contain-content grid",
-          "mt-5 mb-9 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl"
-        )}
-      >
+    <div className={cn("flex-1 flex flex-col justify-between", `${step == 0 ? "p-1 2xs:p-4" : ""}`)}>
+      <div className="flex flex-1 flex-col justify-evenly">
+        <Top key={`top-${step}`} />
         <div
           className={cn(
-            "bg-[url(/images/board_2.png)] rounded-2xl bg-cover bg-center text-golden-bright",
-            "p-1 flex gap-2 [&>*]:flex-1"
+            "bg-gradient-to-b from-golden-bright to-golden-brown scale-90",
+            "p-0.5 rounded-2xl contain-content grid",
+            "2xs:mt-5 2xs:mb-5 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl"
           )}
         >
-          {/* {Masking wood texture} */}
-          <div className="absolute inset-0">
-            <Image
-              src="/images/wood-texture.png"
-              alt="Wood texture"
-              fill
-              className="object-cover object-center"
-              style={{
-                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))',
-                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))'
-              }}
-            />
+          <div
+            className={cn(
+              "bg-[url(/images/board_2.png)] rounded-2xl bg-cover bg-center text-golden-bright",
+              "p-1 flex gap-2 [&>*]:flex-1"
+            )}
+          >
+            {/* {Masking wood texture} */}
+            <div className="absolute inset-0">
+              <Image
+                src="/images/wood-texture.png"
+                alt="Wood texture"
+                fill
+                className="object-cover object-center"
+                style={{
+                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))',
+                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))'
+                }}
+              />
+            </div>
+            {Array.from({ length: 3 }).map((_, index) => (
+              <button
+                key={index}
+                className={cn(
+                  "bg-gradient-to-b from-gold-light to-gold",
+                  "h-5 rounded-lg contain-content",
+                  index == step && "bg-gold-dark",
+                  "border-2 border-solid border-gold-darker"
+                )}
+                disabled={index == step}
+                onClick={() => router?.push(`?open1=${index}`)}
+              >
+                {index == step && (
+                  <svg
+                    width="39"
+                    height="16"
+                    viewBox="0 0 39 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-full w-auto"
+                  >
+                    <path
+                      d="M0 5C0 2.23858 2.23858 0 5 0L16.5 0L38.5 16H5C2.23858 16 0 13.7614 0 11V5Z"
+                      fill="#FFD649"
+                      fillOpacity="0.5"
+                    />
+                  </svg>
+                )}
+              </button>
+            ))}
           </div>
-          {Array.from({ length: 3 }).map((_, index) => (
-            <button
-              key={index}
-              className={cn(
-                "bg-gradient-to-b from-gold-light to-gold",
-                "h-5 rounded-lg contain-content",
-                index == step && "bg-gold-dark",
-                "border-2 border-solid border-gold-darker"
-              )}
-              disabled={index == step}
-              onClick={() => router?.push(`?open1=${index}`)}
-            >
-              {index == step && (
-                <svg
-                  width="39"
-                  height="16"
-                  viewBox="0 0 39 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-full w-auto"
-                >
-                  <path
-                    d="M0 5C0 2.23858 2.23858 0 5 0L16.5 0L38.5 16H5C2.23858 16 0 13.7614 0 11V5Z"
-                    fill="#FFD649"
-                    fillOpacity="0.5"
-                  />
-                </svg>
-              )}
-            </button>
-          ))}
         </div>
       </div>
       <Bottom key={`bottom-${step}`} />

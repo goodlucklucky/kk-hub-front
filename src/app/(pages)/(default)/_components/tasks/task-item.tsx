@@ -22,7 +22,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
   isFriend = false
 }) => {
   return (
-    <div className="rounded-[14px] border border-[#F1DCB8] bg-[#E3BEAA] bg-opacity-50 shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] [background:linear-gradient(0deg,rgba(249,227,198,0.50)_0%,rgba(249,227,198,0.50)_100%),#E3BEAA] flex h-full">
+    <div className="rounded-[14px] border border-[#F1DCB8] bg-[#E3BEAA] bg-opacity-50 shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] [background:linear-gradient(0deg,rgba(249,227,198,0.50)_0%,rgba(249,227,198,0.50)_100%),#E3BEAA] flex">
       <div className={`flex flex-col w-6 rounded-[14px_0px_0px_14px] ${!isCompleted ? "bg-[#653F56]" : "bg-[#25BF63]"}`}>
         <div className={`flex flex-col h-6 rounded-[13px_0px_0px_0px] justify-center items-center text-[#EFF6FF] font-made-tommy font-bold text-xs leading-normal tracking-[0.16px] ${!isCompleted ? "bg-[#82616B]" : "bg-[#609F70]"}`}>
           {taskNumber}

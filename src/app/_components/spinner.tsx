@@ -169,7 +169,9 @@ function Spinner({
           padding: "11px 13px 14px 14px",
           zIndex: "2",
           animation: isPushing ? "scaleEffect 1s ease" : "",
+          width: 'min(90%, 50vh)',
         }}
+        className="max-w-[40ch]"
       >
         <div
           style={
@@ -195,7 +197,7 @@ function Spinner({
             height={800}
             objectFit="cover"
             priority
-            className="rotate-[18deg] w-screen"
+            className="rotate-[18deg] w-[min(90vw, 50vh)]"
           />
           <div className="absolute inset-0 size-full flex items-center justify-center">
             {segments.map((one, index) => {
@@ -230,7 +232,7 @@ function Spinner({
         />
       </div>
       <section
-        className="relative -mt-3 rounded-3xl p-1 w-full -translate-y-2 z-[1] pointer-events-auto"
+        className="relative -mt-3 rounded-3xl p-1 w-full -translate-y-2 z-[1] pointer-events-auto -mb-8"
         style={{
           animation: isPushing ? "pushingDownEffect 1s ease" : "",
         }}

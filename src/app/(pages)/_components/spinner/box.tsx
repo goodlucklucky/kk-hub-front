@@ -67,7 +67,7 @@ export default function SpinnerBox() {
   return (
     <>
       <Spinner
-        className="p-2 pb-0 -mb-10 max-w-[45ch] mx-auto"
+        className="p-2 pb-0 max-w-[45ch] mx-auto"
         segments={spinsList.map((one) => ({
           value: one.kokos,
           element: (

@@ -48,7 +48,7 @@ export default function HomePage() {
   return (
     <>
       <XpBar currentXp={745} maxXp={3250} />
-      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
+      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-3 xs:gap-y-5")}>
         <Image
           src={mainBack}
           alt="Main background"
@@ -69,7 +69,7 @@ export default function HomePage() {
         />
 
         <div className={cn("rounded-2xl flex-1 relative h-full", "mx-2")}>
-          <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-xl rounded-tr-2xl rounded-tl-2xl">
+          <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-sm xs:text-xl rounded-tr-2xl rounded-tl-2xl">
             <div className="py-1.5 bg-white text-golden-brown flex justify-center rounded-tl-2xl">
               <div className="flex gap-x-2 items-center">
                 <GameIcon />

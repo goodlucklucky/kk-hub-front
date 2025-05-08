@@ -43,7 +43,7 @@ export default function MissionPage() {
   return (
     <>
       <NavBar title={"Missions"} />
-      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5 pt-3")}>
+      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5 py-3")}>
         <Image
           src={mainBack}
           alt="Main background"
@@ -62,7 +62,7 @@ export default function MissionPage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center w-[95%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2 right-0 left-0">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center w-[95%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2 right-0 left-0 flex-1">
           <div className="bg-[#F5D6B1] rounded-2xl p-2.5 py-2 shadow-md border-2 border-[#A96415] flex flex-col">
             <div className="flex justify-center gap-1.5">
               <MemoizedNavigationButton
@@ -98,7 +98,7 @@ export default function MissionPage() {
                 Mission description or objective goes here.
               </div>
             </div>
-            <div className="flex justify-between items-start gap-2 mt-2 h-full">
+            <div className="flex justify-between items-start gap-2 mt-2 flex-1">
               <div className="flex flex-col gap-1 w-[40%]">
                 <span className="text-[#653F56] text-[18px] font-normal font-bumper-sticker">
                   progress

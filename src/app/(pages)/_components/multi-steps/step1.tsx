@@ -16,7 +16,7 @@ export function Step1Top() {
 
   if (!isClient) return;
   return (
-    <>
+    <div className="flex flex-col">
       <div
         className={cn(
           "text-golden-bright mx-8 bg-[url(/images/board_3.png)] bg-cover bg-center h-24 pt-2 drop-shadow-[0_0.2ch_var(--color-golden-darker)]",
@@ -31,7 +31,7 @@ export function Step1Top() {
         <div className=" bg-[url(/images/board.png)] bg-cover rounded-4xl px-2.5 py-3.5">
           <div className="bg-light rounded-3xl border-3 border-[#5F3F57]">
             <div className="py-2 flex items-center justify-center gap-2">
-              <Image src={cup} alt="cup" />
+              <Image src={cup} alt="cup"/>
               <h3 className=" font-made-tommy  text-[#5F3F57]">Recent Wins</h3>
             </div>
             <div className="bg-light w-full rounded-3xl rounded-t p-0.5 contain-content">
@@ -90,18 +90,18 @@ export function Step1Top() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
 export function Step1Bottom() {
   return (
-    <div className="flex flex-1 flex-col w-full justify-between">
+    <div className="flex flex-col w-full justify-between">
       <div
         className={cn(
           "bg-gradient-to-b from-golden-bright to-golden-brown",
           "p-0.5 rounded-2xl contain-content grid",
-          "-mx-1 -my-4 mb-5 hadow-sm font-bumper-sticker"
+          "-mx-1 mb-4 shadow-sm font-bumper-sticker"
         )}
       >
         <div
