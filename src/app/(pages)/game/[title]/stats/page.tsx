@@ -4,8 +4,8 @@ import React from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
-import { NavBar } from "../(default)/_components/xp-bar";
-import Chat from "../(default)/_components/chat";
+import { NavBar } from "../../../(default)/_components/xp-bar";
+import Chat from "../../../(default)/_components/chat";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -16,20 +16,19 @@ import { cn } from "@/app/_lib/utils";
 import statsBack from "@assets/images/stats-back.png";
 import statsIcon from "@assets/images/stats-icon.png";
 import statsPanel from "@assets/images/stats-panel.png";
-import Header from "../(default)/_components/layout/header";
+import Header from "../../../(default)/_components/layout/header";
 import Button from "@/app/_components/shared/button";
 import { StatsWalletIcon } from "@/app/_assets/svg/stats-wallet";
-import EarningsSection from "../(default)/_components/profile/earnings-section";
 import { DollarIcon, DollarScoreIcon } from "@/app/_assets/svg/dollar";
 import { TopArrow } from "@/app/_assets/svg/top-arrow";
 import { StarStatsIcon } from "@/app/_assets/svg/star";
 import { SunIcon } from "@/app/_assets/svg/sun";
 import { CalendarIcon } from "@/app/_assets/svg/calendar";
-import PreviousResults from "../(default)/_components/profile/previous-results";
+import PreviousResults from "../../../(default)/_components/profile/previous-results";
 import stars_svg from "@assets/svg/stars_svg.svg";
 import money_sack from "@assets/svg/money-sack.svg";
 import caution_sign from "@assets/svg/caution-sign.svg";
-import ResultsItem from "../_components/stats/results-item";
+import ResultsItem from "../../../_components/stats/results-item";
 
 export default function StatsPage() {
   return (

@@ -3,8 +3,8 @@
 import React, { useCallback, useState } from "react";
 import Image from "next/image";
 //import components
-import { NavBar } from "../../(default)/_components/xp-bar";
-import Chat from "../../(default)/_components/chat";
+import { NavBar } from "../../../../(default)/_components/xp-bar";
+import Chat from "../../../../(default)/_components/chat";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -16,7 +16,7 @@ import statsBack from "@assets/images/stats-back.png";
 import statsIcon from "@assets/images/stats-icon.png";
 import Cup from "@assets/images/cup1.png";
 
-import Header from "../../(default)/_components/layout/header";
+import Header from "../../../../(default)/_components/layout/header";
 import { LeafIcon } from "@/app/_assets/svg/leaf";
 import { MarkPanelIcon } from "@/app/_assets/svg/mark-panel";
 import Button from "@/app/_components/shared/button";
@@ -24,8 +24,8 @@ import tour_progress_back from "@assets/images/tour-progress-back.png";
 import tour_your_scorebadge from "@assets/svg/tour-your-scorebadge.svg";
 import tour_pointing_arrow from "@assets/svg/tour-pointing-arrow.svg";
 import tour_refresh_back from "@assets/svg/tour-refresh-back.svg";
-import TourDialog from "../../(default)/_components/dialogs/tour-dialog";
-import PayDialog from "../../(default)/_components/dialogs/pay-dialog";
+import TourDialog from "../../../../(default)/_components/dialogs/tour-dialog";
+import PayDialog from "../../../../(default)/_components/dialogs/pay-dialog";
 
 export default function TournamentEntryPage() {
   const [openDialog, setOpenDialog] = useState(false);

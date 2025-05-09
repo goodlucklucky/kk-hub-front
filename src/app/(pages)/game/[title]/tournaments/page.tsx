@@ -4,8 +4,8 @@ import React, { useCallback } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 //import components
-import { NavBar } from "../(default)/_components/xp-bar";
-import Chat from "../(default)/_components/chat";
+import { NavBar } from "../../../(default)/_components/xp-bar";
+import Chat from "../../../(default)/_components/chat";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -20,7 +20,7 @@ import Tour1 from "@assets/images/tour-1.png";
 import Tour2 from "@assets/images/tour-2.png";
 import Tour3 from "@assets/images/tour-3.png";
 
-import Header from "../(default)/_components/layout/header";
+import Header from "../../../(default)/_components/layout/header";
 import { SunIcon } from "@/app/_assets/svg/sun";
 import { CalendarIcon } from "@/app/_assets/svg/calendar";
 import { LightningIcon } from "@/app/_assets/svg/lightning";
