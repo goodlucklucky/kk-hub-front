@@ -59,7 +59,7 @@ export default function HomePage() {
         <Image
           src={forestBack}
           alt="Forest background"
-          className="absolute inset-0 w-full h-[555px] top-[60px] -z-10 rotate-180"
+          className="absolute inset-0 w-full h-[555px] top-[70px] -z-10 rotate-180"
           loading='lazy'
           priority={false}
         />
