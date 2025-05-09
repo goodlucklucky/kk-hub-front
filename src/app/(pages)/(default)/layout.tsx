@@ -12,7 +12,7 @@ export default function Layout({
       <main className="grow flex flex-col">
         {children}
       </main>
-      <Footer />
+      <Footer footerCategory="home" />
     </div>
   );
 }

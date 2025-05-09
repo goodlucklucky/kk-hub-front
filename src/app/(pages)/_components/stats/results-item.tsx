@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 import { StaticImageData } from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface ResultsItemProps {
   alt: string;
@@ -11,6 +12,7 @@ interface ResultsItemProps {
   title: string;
   score: string;
   detail: string;
+  path: string;
 }
 
 const ResultsItem: React.FC<ResultsItemProps> = ({
@@ -20,10 +22,16 @@ const ResultsItem: React.FC<ResultsItemProps> = ({
   icon,
   title,
   score,
-  detail
+  detail,
+  path
 }) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(path);
+  }
+
   return (
-    <div className="rounded-[6px] border border-[#D7BDA4] w-full h-[60px] flex-shrink-0 overflow-hidden shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)]">
+    <div onClick={handleClick} className="rounded-[6px] border border-[#D7BDA4] w-full h-[60px] flex-shrink-0 overflow-hidden shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)]">
       <div className="w-full h-[36px] flex justify-between items-center px-2" style={{ backgroundColor: color }}>
         <div className="flex items-center gap-x-1">
           <Image alt={alt} src={icon} />

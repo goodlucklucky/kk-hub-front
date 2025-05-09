@@ -15,10 +15,12 @@ import {
   PlayIcon,
   SpeakerIcon,
   StoreIcon,
+  StatsIcon,
+  HomeIcon,
 } from "@/app/_assets/svg/etc";
 import footerItem from '@assets/images/footer-item.svg'
 
-export default function Footer() {
+export default function Footer({footerCategory = 'home'}: {footerCategory: string}) {
   const pathname = usePathname();
   
   const isPlayRoute = (path: string) => {
@@ -35,30 +37,65 @@ export default function Footer() {
     >
       <Item
         Icon={SpeakerIcon}
-        isPlay={isPlayRoute('tasks')}
+        isPlay={isPlayRoute(footerCategory === "home" ? "tasks" : "game/snake/tasks")}
         label="TASKS"
+        path={footerCategory === "home" ? "tasks" : "game/snake/tasks"}
       />
       <Item 
         Icon={StoreIcon} 
-        isPlay={isPlayRoute('store')} 
+        isPlay={isPlayRoute(footerCategory === "home" ? "store" : "game/snake/store")} 
         label="Store" 
+        path={footerCategory === "home" ? "store" : "game/snake/store"}
       />
-      <Item
-        Icon={PlayIcon}
-        isPlay={isPlayRoute('home')}
-        label="RANDOM PLAY"
-      />
-      <Item 
-        Icon={MissionIcon} 
-        isPlay={isPlayRoute('mission')} 
-        label="MISSIONS" 
-      />
-      <Item 
-        Icon={PetIcon} 
-        isPlay={isPlayRoute('pets')} 
-        label="Pets" 
-        isComing={true}
-      />
+      {footerCategory === "home" && (
+        <Item
+          Icon={PlayIcon}
+          isPlay={isPlayRoute("home")}
+          label="RANDOM PLAY"
+          path="home"
+        />
+      )}
+      {footerCategory === "game" && (
+        <Item
+          Icon={PlayIcon}
+          isPlay={isPlayRoute("/game/snake/play")}
+          label="PLAY"
+          path="game/snake/play"
+        />
+      )}
+      {footerCategory === "home" && (
+        <Item 
+          Icon={MissionIcon} 
+          isPlay={isPlayRoute('mission')} 
+          label="MISSIONS" 
+          path="mission"
+        />
+      )}
+      {footerCategory === "game" && (
+        <Item 
+          Icon={StatsIcon} 
+          isPlay={isPlayRoute('/game/snake/stats')} 
+          label="STATS" 
+          path="game/snake/stats"
+        />
+      )}
+      {footerCategory === "home" && (
+        <Item 
+          Icon={PetIcon} 
+          isPlay={isPlayRoute('pets')} 
+          label="Pets" 
+          isComing={true}
+          path="pets"
+        />
+      )}
+      {footerCategory === "game" && (
+        <Item 
+          Icon={HomeIcon}
+          isPlay={isPlayRoute('home')} 
+          label="Back To Hub"
+          path="home"
+        />
+      )}
     </footer>
   );
 }
@@ -67,25 +104,21 @@ function Item({
   label,
   Icon = PlayIcon,
   isPlay,
-  isComing
+  isComing,
+  path
 }: {
   label?: React.ReactNode | string;
   Icon: (props: React.ComponentProps<"svg">) => React.JSX.Element;
   isPlay?: boolean;
   isComing?: boolean;
+  path?: string;
 }) {
   const router = useRouter();
   
   const handleClick = () => {
     if (isComing) return;
-    
-    const path = label?.toString().toLowerCase();
-    console.log(path)
-    if (path === 'random play') {
-      router.push('/home');
-    } else {
-      router.push(`/${path}`);
-    }
+
+    router.push(`/${path}`);
   };
 
   return (

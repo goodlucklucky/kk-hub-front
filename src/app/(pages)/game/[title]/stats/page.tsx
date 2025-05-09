@@ -163,6 +163,7 @@ export default function StatsPage() {
                         title="Special Tournament"
                         score="No Score"
                         detail="👎 You have not joined this challenge."
+                        path="/game/snake/tournaments"
                       />
                       <ResultsItem
                         alt="money_sack"
@@ -172,6 +173,7 @@ export default function StatsPage() {
                         title="$10 Entry Tournament"
                         score="872 PTS"
                         detail="🤑 Current Estimated Earnings: $100"
+                        path="/game/snake/tournaments"
                       />
                       <ResultsItem
                         alt="caution_sign"
@@ -181,6 +183,7 @@ export default function StatsPage() {
                         title="$1 Entry Tournament"
                         score="872 PTS"
                         detail="‼️ Improve your Score to qualify for a prize!"
+                        path="/game/snake/tournaments"
                       />
                     </div>
                   </div>

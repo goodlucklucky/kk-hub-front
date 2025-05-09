@@ -33,7 +33,7 @@ export default function SpinPage() {
   const [loading, setLoading] = useState(false);
   const [spinsList, setSpinsList] = useState<SpinnerItem[]>(spinnerProbability);
   const [withdrawDialog, setWithdrawDialog] = useState(false);
-  const [moreSpinsDialog, setMoreSpinsDialog] = useState(false);
+  const [moreSpinsDialog, setMoreSpinsDialog] = useState(true);
   const [isClient, setIsClient] = useState(false);
   const [totalSpins, setTotalSpins] = useState(3);
 

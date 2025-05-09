@@ -29,7 +29,7 @@ import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 export default function StatsPage() {
   const router = useRouter();
   const navigateToEntry = useCallback(() => {
-    router.push("/tournaments/entry");
+    router.push("/game/snake/tournaments/entry");
   }, [router]);
 
   return (

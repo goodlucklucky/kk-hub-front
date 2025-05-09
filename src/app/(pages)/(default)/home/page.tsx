@@ -95,7 +95,7 @@ export default function HomePage() {
                   image: game?.image,
                   isNew: game?.isNew,
                   number: game?.number,
-                  link: `/games/${game?.page}/`,
+                  link: `${game?.page}/`,
                 }))}
               />
             ))}
