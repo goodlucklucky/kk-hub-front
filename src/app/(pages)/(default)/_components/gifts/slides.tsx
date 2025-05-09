@@ -19,7 +19,7 @@ const SlideContainer: React.FC<{ children: React.ReactNode }> = ({ children }) =
       "bg-[url('/images/claim-back.png')] w-[330px] bg-cover bg-no-repeat bg-center",
       "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
       "font-bumper-sticker",
-      "h-[85px] w-full px-2"
+      "h-[77px] w-full px-2"
     )}
   >
     <div
@@ -30,8 +30,8 @@ const SlideContainer: React.FC<{ children: React.ReactNode }> = ({ children }) =
         "bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1]",
         "shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)]",
         "font-bumper-sticker",
-        "h-[75px] w-full",
-        "flex justify-center items-center px-3 pt-1.5"
+        "h-[72px] w-full",
+        "flex justify-center items-end px-2 pb-1"
       )}
     >
       {children}
@@ -60,7 +60,7 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
                   "text-[#E3BEAA]"
                 )}
               >
-                <p className="pt-0.5">daily claim</p>
+                <p className="2xs:pt-0.5">daily claim</p>
                 <DailyBarge>
                   <span>4/28</span>
                 </DailyBarge>
@@ -89,7 +89,7 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
                   "text-[#E3BEAA]"
                 )}
               >
-                <p className="pt-0.5 pr-4">Invite Friends, Earn $$$!</p>
+                <p className="2xs:pt-0.5 pr-4">Invite Friends, Earn $$$!</p>
               </div>
               <div className="text-[#653F56] font-made-tommy text-[11px] font-bold leading-[14px] bg-[#CDAC9A] rounded-[3px] mx-2 mt-[3px] p-[1px]">
                 Invite friends to earn Spins and a lifetime revenue share of all fees they generate!
@@ -111,7 +111,7 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
                   "w-[218px]"
                 )}
               >
-                <p className="pt-0.5 pr-5">CLAIM OG</p>
+                <p className="2xs:pt-0.5 pr-5">CLAIM OG</p>
               </div>
               <div className="text-[var(--color-golden-brown)] font-made-tommy text-[11px] font-bold leading-[14px] bg-[var(--color-blown-dark)] rounded-[3px] mx-1 mt-[3px] p-[1px]">
                 <span>Complete 3 tasks to secure Kokomo OG status</span>
@@ -147,7 +147,7 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
                   "w-[218px]"
                 )}
               >
-                <p className="pt-0.5 pr-5">FREE KOKOMO NFT!</p>
+                <p className="2xs:pt-0.5 pr-5">FREE KOKOMO NFT!</p>
               </div>
               <div className="text-[var(--color-golden-brown)] font-made-tommy text-[12px] font-bold leading-[14px] bg-[var(--color-blown-dark)] rounded-[3px] mx-2 mt-[3px] p-[1px]">
                 Claim your free welcome gift - a Kokomo Collectible NFT!
