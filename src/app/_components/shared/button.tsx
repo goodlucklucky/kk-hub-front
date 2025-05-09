@@ -4,6 +4,9 @@ import React from "react";
 type TButtonProps = React.ComponentProps<"button">;
 
 export default function Button({ ...props }: TButtonProps) {
+  if (props?.className?.includes("#24BE62")) {
+    props.className = cn(props.className, "drop-shadow-[0px_2px_0px_rgba(37,112,94,0.9)]");
+  }
   return (
     <button
       {...props}

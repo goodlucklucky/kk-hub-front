@@ -34,7 +34,7 @@ export function DialogCloseButton({ className }: { className?: string }) {
   return (
     <DialogClose
       className={cn(
-        "mx-auto w-fit flex items-center justify-center -mt-8 z-10",
+        "mx-auto w-fit flex items-center justify-center -translate-y-[calc(50%+3px)] left-1/2",
         className
       )}
     >

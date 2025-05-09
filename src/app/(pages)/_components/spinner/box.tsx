@@ -120,19 +120,21 @@ export default function SpinnerBox() {
           className="text-golden-brown text-center gap-2 mx-auto flex justify-center flex-col"
           titleClassName="opacity-0"
           title={"You Won!"}
-          containerClassName={cn("flex flex-col gap-1 relative", "font-bold p-4 h-[433px]")}
+          containerClassName={cn("flex flex-col gap-1 relative", "font-bold p-4")}
         >
-          <Image src={spinModal} alt="spin banner" className="absolute top-0 pl-0 left-0 -z-10" />
-          <div className="text-[#491F36] text-center font-bumper-sticker text-[26px] font-normal leading-normal tracking-[0.26px] lowercase pt-1">
+          <Image src={spinModal} alt="spin modal" className="absolute top-0 pl-0 left-0 right-0 w-full -z-10 h-full" />
+          <div className="text-[#491F36] text-center font-bumper-sticker text-[26px] tracking-[0.26px] lowercase pt-1">
             You Won!
           </div>
-          <div className="flex flex-col w-full bg-[#EED1B8] rounded-[22px] p-2 mb-2 flex-1 relative">
-            <Image src={spinModalBlur} alt="spin banner" className="-mt-2 absolute top-2" />
-            <div className="flex justify-center items-center w-full h-[154px] z-10">
-              <Image src={pet2} alt="pet" className="w-25 h-25 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[5px]" />
+          <div className="flex flex-col w-full bg-[#EED1B8] rounded-[22px] p-2 flex-1 relative">
+            <div className="relative">
+              <Image src={spinModalBlur} alt="spin modal blur" className="-mt-2 top-2 w-full" />
+              <div className="flex justify-center items-center w-full h-[154px] z-10 absolute top-1/2 -translate-y-1/2">
+                <Image src={pet2} alt="pet" className="w-25 h-25 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] rounded-[5px]" />
+              </div>
             </div>
-            <div className="bg-blown-light rounded-xl p-2 text-golden-darker mt-3">
-              <p className="text-[#491F36] font-made-tommy text-[18px] font-bold leading-normal tracking-[0.18px]">
+            <div className="bg-blown-light rounded-xl p-2 text-golden-darker">
+              <p className="text-[#491F36] font-made-tommy text-[18px] font-bold tracking-[0.18px]">
                 Kokomo Collectible
               </p>
               <p className="opacity-60">Log In to Claim!</p>

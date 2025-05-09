@@ -65,7 +65,7 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
               <CloseIcon  onClick={onClose}/>
             </div>
             <div className="flex flex-col justify-center items-center">
-              <span className="text-[#491F36] text-bumper-sticker text-[22px] pt-2 pb-4 font-bold leading-normal">
+              <span className="text-[#491F36] font-bumper-sticker text-[22px] pt-2 pb-4 font-bold leading-normal">
                 CUSTOM SKINS
               </span>
             </div>
@@ -73,10 +73,10 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
               <div className="w-35 h-40 rounded-[6px] border border-white bg-gradient-to-br from-[rgba(255,248,183,0.75)] to-[rgba(246,237,197,0.75)] p-[15px] rotate-[8deg]">
                 <Image src={cosmetic} alt="cosmetic" width={120} height={120} />
               </div>
-              <span className="text-[#5F3F57] text-made-tommy text-[22px] font-bold leading-normal pt-4">
+              <span className="text-[#5F3F57] font-made-tommy text-[22px] font-bold leading-normal pt-4">
                 Slug
               </span>
-              <span className="text-[#745061] text-made-tommy text-[16px] font-bold leading-normal text-center">
+              <span className="text-[#745061] font-made-tommy text-[16px] font-bold leading-normal text-center">
                 Change the look of your Snake with a custom Skin!
               </span>
               <div className="bg-[#E3BEAA] rounded-[14px] p-2 w-full flex flex-col gap-y-2">
@@ -86,7 +86,7 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
                 >
                   <span className="text-[#EFF6FF] text-center text-shadow-[0px_1px_0px_rgba(62,36,105,0.20)] font-made-tommy text-[20px]/[20px] font-extrabold leading-normal tracking-[0.4px]">Buy</span>
                 </Button>
-                <span className="text-[#5F3F57] text-made-tommy text-[16px] font-bold leading-normal text-center">$2.99</span>
+                <span className="text-[#5F3F57] font-made-tommy text-[16px] font-bold leading-normal text-center">$2.99</span>
               </div>
             </div>
           </div>
@@ -100,14 +100,14 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
                 <CloseIcon />
               </div>
               <div className="flex flex-col justify-center items-center">
-                <span className="text-[#491F36] text-bumper-sticker text-[22px] pt-2 pb-4 font-bold leading-normal">
+                <span className="text-[#491F36] font-bumper-sticker text-[22px] pt-2 pb-4 font-bold leading-normal">
                   CONFIRM PURCHASE
                 </span>
               </div>
               <div className="px-2 flex flex-col gap-y-2">
                 <div>
                   <div className="bg-[#E3BEAA] rounded-t-[22px] p-2 w-full flex flex-col gap-y-1">
-                    <span className="text-[#6C4C5F] text-made-tommy text-[16px] font-bold leading-normal text-center">
+                    <span className="text-[#6C4C5F] font-made-tommy text-[16px] font-bold leading-normal text-center">
                       Confirm: Buy an Item
                     </span>
                     <div className="flex justify-center items-center gap-x-2 font-made-tommy text-[#5F3F57] text-[22px] font-bold leading-normal">
@@ -116,7 +116,7 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
                     </div>
                   </div>
                   <div className="bg-[#5F3F57] rounded-b-[22px] p-1 w-full flex flex-col gap-y-1">
-                    <span className="text-[#E3BEAA] text-made-tommy text-[16px] font-bold leading-normal text-center">
+                    <span className="text-[#E3BEAA] font-made-tommy text-[16px] font-bold leading-normal text-center">
                       SLUG SKIN
                     </span>
                   </div>
@@ -153,7 +153,7 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
               <CloseIcon />
             </div>
             <div className="flex flex-col justify-center items-center">
-              <span className="text-[#491F36] text-bumper-sticker text-[22px] pt-2 pb-4 font-bold leading-normal flex gap-2 items-center">
+              <span className="text-[#491F36] font-bumper-sticker text-[22px] pt-2 pb-4 font-bold leading-normal flex gap-2 items-center">
                 <WalletIcon color="#5F3F57" />
                 CONNECT WALLET
               </span>
@@ -178,7 +178,7 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
               <CloseIcon />
             </div>
             <div className="flex flex-col justify-center items-center">
-              <span className="text-[#491F36] text-bumper-sticker text-[22px] pt-2 font-bold leading-normal flex gap-2 items-center">
+              <span className="text-[#491F36] font-bumper-sticker text-[22px] pt-2 font-bold leading-normal flex gap-2 items-center">
                 PAY DIRECTLY
               </span>
             </div>
@@ -187,15 +187,15 @@ const SkinDialog = ({ isOpen, onClose }: SkinDialogProps) => {
                 <div className="flex bg-[#C7A797] w-full rounded-[17px] p-2 items-center gap-x-1">
                   <WalletIcon />
                   <div className="w-1 h-1 p-1 bg-[#126529] rounded-full" />
-                  <div className="flex justify-between items-center w-full text-[#5F3F57] text-bumper-sticker text-[16px] font-bold leading-normal">
+                  <div className="flex justify-between items-center w-full text-[#5F3F57] font-bumper-sticker text-[16px] font-bold leading-normal">
                     <span>CONNECTED</span>
-                    <span className="text-made-tommy text-[12px] font-bold leading-normal">0x10dx...5eab</span>
+                    <span className="font-made-tommy text-[12px] font-bold leading-normal">0x10dx...5eab</span>
                   </div>
                 </div>
                 <CloseSocialIcon className="w-10 h-10" />
               </div>
               <div className="">
-                <span className="text-[#745061] text-bumper-sticker text-2xl font-bold leading-normal">$2.99</span>
+                <span className="text-[#745061] font-bumper-sticker text-2xl font-bold leading-normal">$2.99</span>
               </div>
             </div>
             <Button
