@@ -33,7 +33,7 @@ export default function SpinPage() {
   const [loading, setLoading] = useState(false);
   const [spinsList, setSpinsList] = useState<SpinnerItem[]>(spinnerProbability);
   const [withdrawDialog, setWithdrawDialog] = useState(false);
-  const [moreSpinsDialog, setMoreSpinsDialog] = useState(true);
+  const [moreSpinsDialog, setMoreSpinsDialog] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [totalSpins, setTotalSpins] = useState(3);
 
@@ -173,7 +173,12 @@ export default function SpinPage() {
                   Spin
                 </span>
               </div>
-              <div className="flex justify-center relative -top-[3px] items-center h-9">
+              <div className="flex justify-center relative -top-[3px] items-center h-9"
+                onClick={() => {
+                  if (loading || isSpinning) return;
+                  setMoreSpinsDialog(true);
+                }}
+              >
                 <Image
                   src={moreBtn}
                   alt="spin-btn"

@@ -66,9 +66,9 @@ export default function Footer({footerCategory = 'home'}: {footerCategory: strin
       {footerCategory === "home" && (
         <Item 
           Icon={MissionIcon} 
-          isPlay={isPlayRoute('mission')} 
+          isPlay={isPlayRoute('missions')} 
           label="MISSIONS" 
-          path="mission"
+          path="missions"
         />
       )}
       {footerCategory === "game" && (

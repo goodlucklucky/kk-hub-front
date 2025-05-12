@@ -26,7 +26,7 @@ export default function ClaimPage() {
       <XpBar currentXp={745} maxXp={3250} />
       <div
         className={cn(
-          "flex flex-col flex-1 justify-center items-center fixed top-28 bottom-20 pt-4 pb-14 z-0"
+          "flex flex-col flex-1 justify-center items-center fixed top-22 bottom-16 pt-4 pb-14 z-0"
         )}
       >
         <Image
@@ -40,14 +40,14 @@ export default function ClaimPage() {
         />
         <Image
           src={claimBack}
-          alt="Main background"
-          className="absolute inset-0 w-full h-full -z-10 object-cover object-center"
+          alt="Claim background"
+          className="absolute inset-0 w-full h-[100vh] -top-10 -z-10 object-cover object-center"
           loading="eager"
           priority
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 relative mt-12 h-full">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0 relative mt-10 h-full">
           <div className="w-full h-16 flex justify-center items-center absolute -top-10">
             <Image
               src={banner}
