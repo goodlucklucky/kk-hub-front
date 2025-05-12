@@ -31,7 +31,7 @@ export default function Footer({footerCategory = 'home'}: {footerCategory: strin
     <footer
       className={cn(
         "bg-[url(/images/footer-panel.png)] bg-[length:100%_100%] bg-no-repeat w-full h-[95px]",
-        "grid grid-cols-5 items-center pt-4 px-3 xs:px-4",
+        "grid grid-cols-5 items-center pt-3.5 px-3 xs:px-4",
         "text-center font-bumper-sticker text-xs text-golden-brown drop-shadow-[0_0.25ch_#fff4]"
       )}
     >
@@ -132,8 +132,8 @@ function Item({
     >
       {Icon && <Icon className={cn(isPlay ? "size-7 mt-0.5" : "size-7")} />}
       <p>{label}</p>
-      {isPlay && <FooterSvg className="absolute -z-[1] top-0 left-0 w-full" />}
-      {!isPlay && <Image className="absolute -top-0 -z-10" src={footerItem} alt="footer-item" />}
+      {isPlay && <FooterSvg className="absolute -z-[1] top-0 left-0 w-full h-[76px]" />}
+      {!isPlay && <Image className="absolute -top-0 -z-10 h-[76px]" src={footerItem} alt="footer-item" />}
       {isComing && <div className="absolute -top-0 -z-10 w-full text-[10px] text-[#FFC920] text-center font-made-tommy font-bold leading-normal [text-shadow:0px_1px_0px_rgba(0,0,0,0.20)] rounded-[5px] border border-[#FFEBB3] bg-[#7D4000] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)]">Coming Soon</div>}
     </div>
   );

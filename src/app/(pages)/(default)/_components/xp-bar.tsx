@@ -48,7 +48,7 @@ const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({ currentXp,
   const percentage = (currentXp / maxXp) * 100;
 
   return (
-    <div className="flex-1 flex items-center gap-4 pr-18">
+    <div className="flex-1 flex items-center gap-4 pr-16">
       <span className="text-[15px] font-bold text-golden-darker">
         {currentXp} / {maxXp}
       </span>

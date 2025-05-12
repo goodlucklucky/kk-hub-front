@@ -5,7 +5,7 @@ import Image from "next/image";
 
 //import assets
 import { EarthIcon } from "@/app/_assets/svg/earth";
-import startchat from "@assets/images/star-chat.png";
+import startchat from "@assets/images/star-icon.png";
 //import components
 import { SendBtnIcon } from "@/app/_assets/svg/sendbtn";
 import { DotIcon } from "@/app/_assets/svg/chat";
