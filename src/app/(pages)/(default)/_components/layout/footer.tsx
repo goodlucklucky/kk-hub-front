@@ -49,9 +49,9 @@ export default function Footer({footerCategory = 'home'}: {footerCategory: strin
       />
       {footerCategory === "home" && (
         <Item
-          Icon={PlayIcon}
+          Icon={HomeIcon}
           isPlay={isPlayRoute("home")}
-          label="RANDOM PLAY"
+          label="Home"
           path="home"
         />
       )}
