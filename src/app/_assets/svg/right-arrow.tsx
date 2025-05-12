@@ -3,7 +3,7 @@ import React from "react";
 export function RightArrow({ color = "#ffffff", shadow = true, ...props }: React.ComponentProps<"svg"> & { color?: string, shadow?: boolean }) {
   return (
     <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <g filter="url(#filter0_d_799_42110)">
+      <g filter={shadow ? "url(#filter0_d_799_42110)" : "none"}>
         <path d="M6.29688 9.16663L0.050375 2.92013L3.07206 0L12.0608 9.01388L2.84375 18.2057L0 15.3871L6.29688 9.16663Z" fill={color ? color : 'white'} />
       </g>
       {shadow && (

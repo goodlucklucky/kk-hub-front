@@ -11,33 +11,29 @@ import { cn } from "@/app/_lib/utils";
 //import assets
 import { SnakeItalicIcon } from "@/app/_assets/svg/snake";
 import headerBack from '@assets/images/header-back.png';
-import { KIcon } from "@/app/_assets/svg/etc";
 import kokoLog from '@/app/_assets/images/koko-logo.png'
+import { RightArrow } from "@/app/_assets/svg/right-arrow";
 
 export default function Header() {
   const { isBankingOpen, setIsBankingOpen, isProfileOpen, setIsProfileOpen } = useApp();
   return (
     <header
       className={cn(
-        "flex justify-between items-center gap-4 h-[75px] px-2 z-10",
+        "flex justify-between items-center gap-4 h-[45px] z-10",
       )}
     >
       <div
         className={cn(
-          "flex rounded-[10px] text-lg",
+          "flex rounded-[0px_5px_5px_0px] text-lg",
           "bg-yellow-2 text-golden-darker font-bold text",
-          "[&>div]:drop-shadow-[0_0.2ch_rgba(0,0,0,0.2)] shadow-[0_0.2ch] shadow-black/20",
+          "[&>div:not(:has(svg))]:drop-shadow-[0_0.2ch_rgba(0,0,0,0.2)] [&>div:not(:has(svg))]:shadow-[0_0.2ch] [&>div:not(:has(svg))]:shadow-black/20",
         )}
         onClick={() => setIsBankingOpen(!isBankingOpen)}
       >
-        <div className="flex items-center gap-2 p-2">
-          <SnakeItalicIcon className="size-8" />
+        <div className="flex items-center gap-2 px-2 py-1">
+          <SnakeItalicIcon className="size-[22px]" />
           <p>105.04</p>
-        </div>
-        <div className="w-px bg-golden-darker/20" />
-        <div className="flex items-center gap-2 p-2">
-          <KIcon className="size-8" />
-          <p>93.44</p>
+          <RightArrow className="size-[13px]" color="#CCA11A" shadow={false}/>
         </div>
       </div>
       <div
@@ -51,7 +47,7 @@ export default function Header() {
         <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-1 right-0 ">
           LVL 100</span>
       </div>
-      <Image src={headerBack} alt="header-back" width={75} height={75} className="absolute w-full inset-0 -z-8 h-[75px]" />
+      <Image src={headerBack} alt="header-back" width={75} height={50} className="absolute w-full inset-0 -z-8 h-[45px]" />
      
     </header>
   );
