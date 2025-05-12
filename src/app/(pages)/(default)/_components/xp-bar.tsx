@@ -48,7 +48,7 @@ const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({ currentXp,
   const percentage = (currentXp / maxXp) * 100;
 
   return (
-    <div className="flex-1 flex items-center gap-4">
+    <div className="flex-1 flex items-center gap-4 pr-18">
       <span className="text-[15px] font-bold text-golden-darker">
         {currentXp} / {maxXp}
       </span>
@@ -92,7 +92,6 @@ export const XpBar = ({ currentXp, maxXp, className }: XpBarProps) => {
     )}>
       <XpLabel />
       <XpProgress currentXp={currentXp} maxXp={maxXp} />
-      <BoxButton />
     </div>
   );
 }

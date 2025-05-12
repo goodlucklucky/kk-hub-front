@@ -39,12 +39,12 @@ export default function Header() {
       <div
         className={cn(
           "flex flex-col",
-          "relative w-14 h-[75px]"
+          "relative w-[60px] h-[85px] mr-2"
         )}
         onClick={() => setIsProfileOpen(!isProfileOpen)}
       >
-        <Image src={kokoLog} alt="koko-logo" width={54} height={72} className="absolute w-[54px] h-[72px] top-0 right-0 inset-0 object-cover object-center rounded-b-md" />
-        <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-1 right-0 ">
+        <Image src={kokoLog} alt="koko-logo" width={60} height={85} className="absolute w-[60px] h-[85px] top-2 right-0 inset-0 object-cover object-center rounded-b-md" />
+        <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-[-6px] right-0 w-full text-center pl-3">
           LVL 100</span>
       </div>
       <Image src={headerBack} alt="header-back" width={75} height={50} className="absolute w-full inset-0 -z-8 h-[45px]" />
