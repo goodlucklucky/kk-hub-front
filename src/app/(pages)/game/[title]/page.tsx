@@ -4,7 +4,6 @@ import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
-import { XpBar } from "../../(default)/_components/xp-bar";
 import Gifts from "../../(default)/_components/gifts";
 
 //import utils
@@ -52,7 +51,6 @@ export default function HomePage() {
   return (
     <div className="h-full flex flex-col min-h-screen">
       <Header />
-      <XpBar currentXp={745} maxXp={3250} />
       <div
         className={cn(
           "flex flex-col flex-1 h-full items-center gap-y-3 xs:gap-y-5"

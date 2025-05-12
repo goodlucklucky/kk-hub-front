@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
-import { NavBar } from "../../../(default)/_components/xp-bar";
 import Chat from "../../../(default)/_components/chat";
 
 //import utils
@@ -35,7 +34,6 @@ export default function StatsPage() {
     <div className={cn("min-h-dvh flex flex-col")}>
       <Header />
       <main className="grow flex flex-col">
-        <NavBar title="Snake Home" className="bg-[#9981ae]" />
         <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
           <Image
             src={statsBack}

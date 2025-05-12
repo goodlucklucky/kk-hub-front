@@ -4,7 +4,6 @@ import React, { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
-import { XpBar } from "../_components/xp-bar";
 import PageTitleBanner from "@/app/_components/shared/page-title-banner";
 import Spinner from "@/app/_components/spinner";
 
@@ -115,7 +114,6 @@ export default function SpinPage() {
 
   return (
     <>
-      <XpBar currentXp={745} maxXp={3250} />
       <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
         <Image
           src={spinnerBack}

@@ -4,8 +4,6 @@ import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import _ from "lodash";
 import CountUp from "react-countup";
-//import components
-import { NavBar } from "../_components/xp-bar";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -36,7 +34,6 @@ export default function RafflePage() {
 
   return (
     <>
-      <NavBar title={"KoKo RAFFLE"} />
       <div
         className={cn(
           "flex flex-col flex-1 justify-center items-center gap-y-5 pt-10"

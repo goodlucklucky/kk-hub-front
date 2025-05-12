@@ -4,7 +4,6 @@ import React, { useState, useCallback, memo } from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
-import { NavBar } from "../../../(default)/_components/xp-bar";
 import CosmeticCard from "../../../(default)/_components/store/cosmetic-card";
 import DiscountBadge from "../../../(default)/_components/store/discount-badge";
 
@@ -76,7 +75,6 @@ export default function StorePage() {
   return (
     <div className="h-full flex flex-col min-h-screen">
       <Header />
-      <NavBar title={'Store'} />
       <div className={cn("flex flex-col flex-1 h-full items-center p-3 justify-center")}>
         <Image
           src={mainBack}

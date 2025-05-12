@@ -3,8 +3,6 @@
 import React from "react";
 import Image from "next/image";
 import _ from "lodash";
-//import components
-import { XpBar } from "../_components/xp-bar";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -23,7 +21,6 @@ export default function ClaimPage() {
 
   return (
     <>
-      <XpBar currentXp={745} maxXp={3250} />
       <div
         className={cn(
           "flex flex-col flex-1 justify-center items-center fixed top-22 bottom-16 pt-4 pb-14 z-0"

@@ -960,8 +960,8 @@ export function StatsIcon(props: React.ComponentProps<"svg">) {
     <path d="M1.9375 20.8086V29.0619C1.9375 29.7773 2.33081 30.4336 2.96099 30.7703C3.58922 31.1088 4.3555 31.0691 4.94935 30.6739L9.68751 27.5162L14.4247 30.6744C14.7483 30.8899 15.1227 30.9999 15.4995 30.9999C15.8134 30.9999 16.1278 30.9243 16.4135 30.7707C17.0437 30.4341 17.437 29.7773 17.437 29.0624V20.8086C15.2384 22.3431 12.571 23.2494 9.68751 23.2494C6.80402 23.2494 4.13608 22.3431 1.9375 20.8086Z" fill="#584255"/>
     </g>
     <defs>
-    <filter id="filter0_d_1793_18735" x="0" y="0" width="19.375" height="20.375" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <filter id="filter0_d_1793_18735" x="0" y="0" width="19.375" height="20.375" filterUnits="userSpaceOnUse" colorInterpolation-filters="sRGB">
+    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
     <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
     <feOffset dy="1"/>
     <feComposite in2="hardAlpha" operator="out"/>
@@ -969,8 +969,8 @@ export function StatsIcon(props: React.ComponentProps<"svg">) {
     <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1793_18735"/>
     <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1793_18735" result="shape"/>
     </filter>
-    <filter id="filter1_d_1793_18735" x="1.9375" y="20.8086" width="15.4995" height="11.1914" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <filter id="filter1_d_1793_18735" x="1.9375" y="20.8086" width="15.4995" height="11.1914" filterUnits="userSpaceOnUse" colorInterpolation-filters="sRGB">
+    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
     <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
     <feOffset dy="1"/>
     <feComposite in2="hardAlpha" operator="out"/>
@@ -990,8 +990,8 @@ export function HomeIcon(props: React.ComponentProps<"svg">) {
     <path d="M1.75 10.5V26.25H10.5V19.25C10.5 17.317 12.067 15.75 14 15.75C15.933 15.75 17.5 17.317 17.5 19.25V26.25H26.25V10.5L14 0L1.75 10.5Z" fill="#584255"/>
     </g>
     <defs>
-    <filter id="filter0_d_1793_18733" x="1.75" y="0" width="24.5" height="27.25" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+    <filter id="filter0_d_1793_18733" x="1.75" y="0" width="24.5" height="27.25" filterUnits="userSpaceOnUse" colorInterpolation-filters="sRGB">
+    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
     <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
     <feOffset dy="1"/>
     <feComposite in2="hardAlpha" operator="out"/>

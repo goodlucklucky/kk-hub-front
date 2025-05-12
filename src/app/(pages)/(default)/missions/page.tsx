@@ -3,8 +3,6 @@
 import React, { useState, useCallback, memo } from "react";
 import Image from "next/image";
 import _ from "lodash";
-//import components
-import { NavBar } from "../_components/xp-bar";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -42,7 +40,6 @@ export default function MissionPage() {
 
   return (
     <>
-      <NavBar title={"Missions"} />
       <div className={cn("flex flex-col flex-1 h-full justify-center items-center gap-y-5 px-3")}>
         <Image
           src={mainBack}

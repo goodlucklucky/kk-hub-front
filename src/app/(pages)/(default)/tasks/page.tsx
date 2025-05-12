@@ -4,7 +4,6 @@ import React, { useState, useCallback, memo } from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
-import { NavBar } from "../_components/xp-bar";
 import { ClaimOGSection } from "../_components/tasks/claim-og-section";
 import { KokoTasksSection } from "../_components/tasks/koko-tasks-section";
 import { PartnerSection } from "../_components/tasks/partner-section";
@@ -71,7 +70,6 @@ export default function TasksPage() {
 
   return (
     <>
-      <NavBar title={'Tasks'} />
       <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
         <Image
           src={mainBack}

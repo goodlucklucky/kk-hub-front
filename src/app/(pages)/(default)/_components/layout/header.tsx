@@ -17,6 +17,7 @@ import monkeyIcon from '@/app/_assets/images/monkey-icon.png'
 import ogIcon from '@/app/_assets/images/og-icon.png'
 import starIcon from '@/app/_assets/images/star-icon.png'
 import { RightArrow } from "@/app/_assets/svg/right-arrow";
+import { XpBar } from "../xp-bar";
 
 function KokoLogo({isMonkey = false, isOG = false, isStar = false, level = 0}: 
   {isMonkey: boolean, isOG: boolean, isStar: boolean, level: number}) {
@@ -37,36 +38,39 @@ function KokoLogo({isMonkey = false, isOG = false, isStar = false, level = 0}:
 export default function Header() {
   const { isBankingOpen, setIsBankingOpen, isProfileOpen, setIsProfileOpen } = useApp();
   return (
-    <header
-      className={cn(
-        "flex justify-between items-center gap-4 h-[45px] z-10",
-      )}
-    >
-      <div
+    <>
+      <header
         className={cn(
-          "flex rounded-[0px_5px_5px_0px] text-lg",
-          "bg-yellow-2 text-golden-darker font-bold text",
-          "[&>div:not(:has(svg))]:drop-shadow-[0_0.2ch_rgba(0,0,0,0.2)] [&>div:not(:has(svg))]:shadow-[0_0.2ch] [&>div:not(:has(svg))]:shadow-black/20",
+          "flex justify-between items-center gap-4 h-[45px] z-10",
         )}
-        onClick={() => setIsBankingOpen(!isBankingOpen)}
-      >
-        <div className="flex items-center gap-2 px-2 py-1">
-          <SnakeItalicIcon className="size-[22px]" />
-          <p>105.04</p>
-          <RightArrow className="size-[13px]" color="#CCA11A" shadow={false}/>
+        >
+        <div
+          className={cn(
+            "flex rounded-[0px_5px_5px_0px] text-lg",
+            "bg-yellow-2 text-golden-darker font-bold text",
+            "[&>div:not(:has(svg))]:drop-shadow-[0_0.2ch_rgba(0,0,0,0.2)] [&>div:not(:has(svg))]:shadow-[0_0.2ch] [&>div:not(:has(svg))]:shadow-black/20",
+          )}
+          onClick={() => setIsBankingOpen(!isBankingOpen)}
+          >
+          <div className="flex items-center gap-2 px-2 py-1">
+            <SnakeItalicIcon className="size-[22px]" />
+            <p>105.04</p>
+            <RightArrow className="size-[13px]" color="#CCA11A" shadow={false}/>
+          </div>
         </div>
-      </div>
-      <div
-        className={cn(
-          "flex flex-col",
-          "relative w-[64px] h-[45px] overflow-visible"
-        )}
-        onClick={() => setIsProfileOpen(!isProfileOpen)}
-      >
-        <KokoLogo isMonkey={true} isOG={true} isStar={true} level={100} />
-      </div>
-      <Image src={headerBack} alt="header-back" width={75} height={50} className="absolute w-full inset-0 -z-8 h-[45px]" />
-     
-    </header>
+        <div
+          className={cn(
+            "flex flex-col",
+            "relative w-[64px] h-[45px] overflow-visible"
+          )}
+          onClick={() => setIsProfileOpen(!isProfileOpen)}
+          >
+          <KokoLogo isMonkey={true} isOG={true} isStar={true} level={100} />
+        </div>
+        <Image src={headerBack} alt="header-back" width={75} height={50} className="absolute w-full inset-0 -z-8 h-[45px]" />
+      
+      </header>
+      <XpBar currentXp={745} maxXp={3250} />
+    </>
   );
 }
