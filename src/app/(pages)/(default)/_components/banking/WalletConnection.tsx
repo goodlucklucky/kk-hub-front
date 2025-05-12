@@ -29,9 +29,9 @@ export const WalletConnection = ({ isConnected, onConnect, onDisconnect }: Walle
       <div className="flex bg-[#C7A797] w-full rounded-[17px] p-2 items-center gap-x-1">
         <WalletIcon />
         <div className="w-1 h-1 p-1 bg-[#126529] rounded-full" />
-        <div className="flex justify-between items-center w-full text-[#5F3F57] text-bumper-sticker text-[16px] font-bold leading-normal">
+        <div className="flex justify-between items-center w-full text-[#5F3F57] font-bumper-sticker text-[16px] font-bold leading-normal">
           <span>CONNECTED</span>
-          <span className="text-made-tommy text-[12px] font-bold leading-normal">0x10dx...5eab</span>
+          <span className="font-made-tommy text-[12px] font-bold leading-normal">0x10dx...5eab</span>
         </div>
       </div>
       <CloseSocialIcon className="w-10 h-10" onClick={onDisconnect} />
