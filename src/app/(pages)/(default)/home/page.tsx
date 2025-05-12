@@ -84,21 +84,22 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          <div className="bg-[#000000]/20 pt-1 rounded-b-2xl">
-            {groupedGames?.slice(0, 2)?.map(([type, games]) => (
-              <GamesCard
-                key={type}
-                Icon={typeIcons?.[type]}
-                title={type}
-                items={games?.map((game) => ({
-                  title: game?.name,
-                  image: game?.image,
-                  isNew: game?.isNew,
-                  number: game?.number,
-                  link: `${game?.page}/`,
-                }))}
-              />
-            ))}
+            <div className="bg-[#000000]/20 pt-1 rounded-b-2xl">
+              {groupedGames?.slice(0, 2)?.map(([type, games]) => (
+                <GamesCard
+                  key={type}
+                  Icon={typeIcons?.[type]}
+                  title={type}
+                  items={games?.map((game) => ({
+                    title: game?.name,
+                    image: game?.image,
+                    isNew: game?.isNew,
+                    number: game?.number,
+                    link: `${game?.page}/`,
+                  }))}
+                />
+              ))}
+            </div>
           </div>
           <div className="flex gap-2 mt-1 mb-2 2xs:mt-2">
             <Chat />
