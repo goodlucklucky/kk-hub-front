@@ -59,7 +59,7 @@ export default function HomePage() {
         <Image
           src={forestBack}
           alt="Forest background"
-          className="absolute inset-0 w-full h-[505px] top-[115px] -z-10 rotate-180"
+          className="absolute inset-0 w-full h-[555px] top-[70px] -z-10 rotate-180"
           loading='lazy'
           priority={false}
         />
@@ -68,22 +68,22 @@ export default function HomePage() {
           setIsMinting={setIsMinting}
         />
 
-        <div className={cn("rounded-2xl flex-1 relative h-full", "mx-2")}>
-          <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-sm xs:text-xl rounded-tr-2xl rounded-tl-2xl">
-            <div className="py-1.5 bg-white text-golden-brown flex justify-center rounded-tl-2xl">
-              <div className="flex gap-x-2 items-center">
-                <GameIcon />
-                <span>PLAY</span>
+        <div className={cn("rounded-2xl flex-1 relative h-full flex flex-col justify-evenly ", "mx-2")}>
+          <div>
+            <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-sm 2xs:text-xl rounded-tr-2xl rounded-tl-2xl">
+              <div className="py-1.5 bg-white text-golden-brown flex justify-center rounded-tl-2xl">
+                <div className="flex gap-x-2 items-center">
+                  <GameIcon />
+                  <span>PLAY</span>
+                </div>
+              </div>
+              <div className="py-1.5 text-white flex justify-center">
+                <div className="flex gap-x-2 items-center">
+                  <StarIcon />
+                  <span>FAVOURITES</span>
+                </div>
               </div>
             </div>
-            <div className="py-1.5 text-white flex justify-center">
-              <div className="flex gap-x-2 items-center">
-                <StarIcon />
-                <span>FAVOURITES</span>
-              </div>
-            </div>
-          </div>
-
           <div className="bg-[#000000]/20 pt-1 rounded-b-2xl">
             {groupedGames?.slice(0, 2)?.map(([type, games]) => (
               <GamesCard
@@ -100,7 +100,7 @@ export default function HomePage() {
               />
             ))}
           </div>
-          <div className="flex gap-2 mt-4">
+          <div className="flex gap-2 mt-1 mb-2 2xs:mt-2">
             <Chat />
             <AddToHome />
           </div>

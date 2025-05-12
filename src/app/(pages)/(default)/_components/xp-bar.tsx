@@ -15,8 +15,9 @@ interface XpBarProps {
 const XpLabel: React.FC<{ className?: string }> = ({ className }) => (
   <div
     className={cn(
-      "bg-yellow-2 text-golden-darker font-bold",
-      "aspect-square p-2",
+      "bg-[#7A6879] text-[#D9CED9] font-made-tommy text-base font-extrabold",
+      "aspect-square px-1 leading-[32px]",
+      "[text-shadow:0px_1px_0px_rgba(0,0,0,0.20)]",
       className
     )}
   >
@@ -32,7 +33,7 @@ const LeftBack: React.FC<{ className?: string }> = ({ className }) => {
       onClick={() => router.back()}
       className={cn(
         "border border-[#B1B5CC] bg-[#B1B5CC] backdrop-blur-[12.5px]",
-        "aspect-square p-2 h-10 z-1",
+        "aspect-square p-2 h-[32px] z-1",
         "flex items-center justify-center",
         "cursor-pointer",
         className
@@ -72,7 +73,7 @@ const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({ currentXp,
 const BoxButton: React.FC<{ className?: string }> = ({ className }) => (
   <div
     className={cn(
-      "aspect-square h-full flex items-center justify-center",
+      "aspect-square h-[32px] flex items-center justify-center",
       "bg-red text-yellow-2",
       className
     )}
@@ -101,7 +102,7 @@ export const NavBar = ({className, title}: {className?: string, title: string}) 
     <div className={cn(
       "flex items-center gap-3",
       "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
-      "bg-[rgba(0,0,0,0.20)] backdrop-blur-[12.5px] z-10",
+      "bg-[rgba(255,255,255,0.20)] backdrop-blur-[12.5px] z-10 h-[32px]",
       className
     )}>
       <LeftBack />

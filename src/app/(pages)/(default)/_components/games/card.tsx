@@ -36,25 +36,15 @@ export default function GamesCard({
   items = [],
 }: TGamesCardProps) {
   return (
-    <div className={cn("p-2", title === "Games" ? "space-y-1" : "")}>
+    <div className="p-2 py-0.5 2xs:py-1">
       <div className="">
         <p className="flex items-center gap-2 text-white font-extrabold text-[18px]">
           <span className="bg-black/20 backdrop-blur-[25px] px-1.5 rounded-t-[5px] shadow-[0_2px_0_0_#00000033]">{title}</span>
         </p>
-        {
-          title === "Games" ?
-            <div className="rounded-[11px] rounded-tl-none w-full flex justify-center gap-x-1 items-center bg-black/33 backdrop-blur-[25px] text-[18px]/[28px] font-bold p-1">
-              <div className="text-[#8893A8] bg-white rounded-[7px] w-[20%] text-center">All</div>
-              <div className="text-white rounded-[7px] w-[50%] text-center flex justify-center items-center bg-[#653F56] backdrop-blur-[25px] gap-x-2"><CupIcon />Tournaments</div>
-              <div className="text-white rounded-[7px] w-[30%] text-center flex justify-center items-center bg-[#653F56] backdrop-blur-[25px] gap-x-2"><WarIcon />PvP</div>
-            </div>
-            :
-            null
-        }
       </div>
 
 
-      <div className={cn("flex gap-2 p-1 bg-black/40 backdrop-blur-[25px]", title === "Games" ? "rounded-lg" : "rounded-b-lg rounded-tr-lg")}>
+      <div className={cn("flex gap-2 p-1 bg-black/40 backdrop-blur-[25px]", "rounded-b-lg rounded-tr-lg")}>
         {(
           [
             ...items,
