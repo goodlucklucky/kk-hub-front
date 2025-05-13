@@ -10,7 +10,7 @@ interface EarningsSectionProps {
 
 export default function EarningsSection({ amount, className }: EarningsSectionProps) {
   return (
-    <div className={cn("w-full justify-between bg-[#EED1B8] rounded-[10px] flex items-center gap-2 px-3 py-2.5", className)}>
+    <div className={cn("w-full justify-between bg-[#EED1B8] rounded-[10px] flex items-center gap-2 p-2", className)}>
       <div className="flex gap-2 items-center">
         <DollarScoreIcon />
         <span className="text-[#5F3F57] font-bold font-made-tommy text-[16px]/[28px]">

@@ -10,7 +10,7 @@ interface CurrentScoresProps {
 
 export default function CurrentScores({ activeTab, onTabChange }: CurrentScoresProps) {
   return (
-    <div className="w-full justify-between bg-[#EED1B8] rounded-[10px] flex flex-col items-center gap-1 px-3 py-2.5">
+    <div className="w-full justify-between bg-[#EED1B8] rounded-[10px] flex flex-col items-center gap-1 p-2">
       <div className="flex gap-2 items-center w-full">
         <TopArrow />
         <span className="text-[#5F3F57] font-bold font-made-tommy text-[16px]/[28px]">
