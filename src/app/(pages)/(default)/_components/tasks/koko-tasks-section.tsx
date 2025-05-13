@@ -36,11 +36,16 @@ export const KokoTasksSection: React.FC = () => {
           Invite Friends for More Rewards!
         </div>
         <div className="flex flex-col flex-1 bg-[#E3BEAA] rounded-b-[15px] py-2 justify-center items-center gap-y-1">
-          <div className="text-[#5F3F57] text-shadow-[0px_1px_0px_rgba(0,0,0,0.20)] font-made-tommy text-sm font-extrabold leading-[18px] tracking-[-0.32px]">
-            1 Spin per each invitation
-          </div>
-          <div className="text-[#745061] text-shadow-[0px_1px_0px_rgba(0,0,0,0.20)] font-made-tommy text-xs font-bold leading-[18px] tracking-[-0.32px]">
-            +5% of volume fees your frens generate – forever!
+          <div className="flex flex-col items-center">
+            <p className="text-[#5F3F57] text-shadow-[0px_1px_0px_rgba(0,0,0,0.20)] font-made-tommy text-sm font-extrabold leading-[18px] tracking-[-0.32px]">
+              +1 Spin per Friend Invite
+            </p>
+            <p className="text-[#745061] text-center font-made-tommy text-xs font-bold leading-[14px]">
+              +
+            </p>
+            <p className="text-[#745061] text-shadow-[0px_1px_0px_rgba(0,0,0,0.20)] font-made-tommy text-xs font-bold leading-[18px] tracking-[-0.32px]">
+              Earn 5% of all fees your friends generate – forever!
+            </p>
           </div>
           <div className="flex gap-x-1.5 w-full px-6">
             <Button className='rounded-[2px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center'>
