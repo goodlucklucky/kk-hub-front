@@ -4,7 +4,6 @@ import React, { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
-import { XpBar } from "../_components/xp-bar";
 import PageTitleBanner from "@/app/_components/shared/page-title-banner";
 import Spinner from "@/app/_components/spinner";
 
@@ -33,7 +32,7 @@ export default function SpinPage() {
   const [loading, setLoading] = useState(false);
   const [spinsList, setSpinsList] = useState<SpinnerItem[]>(spinnerProbability);
   const [withdrawDialog, setWithdrawDialog] = useState(false);
-  const [moreSpinsDialog, setMoreSpinsDialog] = useState(true);
+  const [moreSpinsDialog, setMoreSpinsDialog] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [totalSpins, setTotalSpins] = useState(3);
 
@@ -115,7 +114,6 @@ export default function SpinPage() {
 
   return (
     <>
-      <XpBar currentXp={745} maxXp={3250} />
       <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
         <Image
           src={spinnerBack}
@@ -173,7 +171,12 @@ export default function SpinPage() {
                   Spin
                 </span>
               </div>
-              <div className="flex justify-center relative -top-[3px] items-center h-9">
+              <div className="flex justify-center relative -top-[3px] items-center h-9"
+                onClick={() => {
+                  if (loading || isSpinning) return;
+                  setMoreSpinsDialog(true);
+                }}
+              >
                 <Image
                   src={moreBtn}
                   alt="spin-btn"

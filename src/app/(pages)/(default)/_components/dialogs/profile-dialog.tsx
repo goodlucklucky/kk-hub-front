@@ -147,7 +147,7 @@ const ProfileDialog = ({ isOpen, onClose, }: ProfileDialogProps) => {
               leftColor="#653F5654"
               rightColor="#12652980"
             />
-            <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2">
+            <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] p-2 mb-2">
               <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
                 <TournamentItem
                   title="Koko Raffle"
@@ -224,11 +224,11 @@ const ProfileDialog = ({ isOpen, onClose, }: ProfileDialogProps) => {
         <div className="absolute top-0 left-0 w-full h-full bg-black/75 backdrop-blur-[2.5px] z-10" />
 
         <div className="fixed h-full left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg">
-          <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-h-[90%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2">
+          <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-h-[92%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2">
             <div className="flex justify-center items-center w-full absolute -bottom-5 right-0">
               <CloseIcon onClick={onClose} />
             </div>
-            <div className="flex justify-between items-center gap-x-1 bg-[#F5D6B1] rounded-2xl p-3 shadow-md border-2 border-[#A96415]">
+            <div className="flex justify-between items-center gap-x-1 bg-[#F5D6B1] rounded-2xl p-2 shadow-md border-2 border-[#A96415]">
               <Image alt="profile-image" src={profile} className=" w-[70px] h-[70px]" />
               <div className="flex-1">
                 <div className=" bg-[#CDAA98] flex justify-between items-center rounded-md w-full p-0.5 border-[2px] border-[#CDAA98]">
@@ -264,7 +264,7 @@ const ProfileDialog = ({ isOpen, onClose, }: ProfileDialogProps) => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-1 px-[9px] py-3 bg-[#F5D6B1] rounded-2xl shadow-md border-2 border-[#A96415]">
+            <div className="flex flex-col gap-1 p-2 bg-[#F5D6B1] rounded-2xl shadow-md border-2 border-[#A96415]">
               <div className="flex justify-center gap-1 items-center ">
                 <Image src={topup} alt="top-up" className=" h-4 w-5" />
                 <p className=" text-[#917377] text-md font-made-tommy font-semibold">
@@ -281,7 +281,7 @@ const ProfileDialog = ({ isOpen, onClose, }: ProfileDialogProps) => {
                 <span className="drop-shadow-md text-[16px]">VIEW WALLET</span>
               </Button>
             </div>
-            <div className="bg-[#F5D6B1] rounded-2xl p-3 shadow-md border-2 border-[#A96415] flex-1 flex flex-col overflow-y-auto">
+            <div className="bg-[#F5D6B1] rounded-2xl p-2 pb-0 shadow-md border-2 border-[#A96415] flex-1 flex flex-col overflow-y-auto">
               <div className="flex justify-center gap-1.5">
                 <NavigationButton
                   icon={activeComponent === "social" ? socialClick : social}
@@ -302,7 +302,7 @@ const ProfileDialog = ({ isOpen, onClose, }: ProfileDialogProps) => {
                   onClick={() => setActiveComponent("inventory")}
                 />
               </div>
-              <div className="mt-3 rounded-2xl flex flex-1 overflow-y-auto">
+              <div className="mt-2 rounded-2xl flex flex-1 overflow-y-auto">
                 {renderComponent()}
               </div>
             </div>

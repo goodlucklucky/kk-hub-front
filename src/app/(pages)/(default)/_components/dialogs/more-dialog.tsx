@@ -64,7 +64,7 @@ const MoreSpinsDialog = ({ isOpen, onClose }: MoreSpinsDialogProps) => {
                     Want more Spins?
                   </span>
                 </div>
-                <div className="flex flex-col justify-center items-center gap-1 rounded-[14px] bg-[#E3BEAA]">
+                <div className="flex flex-col justify-center items-center rounded-[14px] bg-[#E3BEAA]">
                   <div className="w-full py-1.5 border-b-1 border-b-[#EBD8BE]">
                     <span className="text-[#745061] text-center font-made-tommy text-[14px] font-bold leading-normal px-3">
                       Claim Your Daily Free Spins
@@ -76,7 +76,7 @@ const MoreSpinsDialog = ({ isOpen, onClose }: MoreSpinsDialogProps) => {
                     </Button>
                   </div>
                 </div>
-                <div className="flex flex-col justify-center items-center gap-1 rounded-[14px] bg-[#E3BEAA]">
+                <div className="flex flex-col justify-center items-center rounded-[14px] bg-[#E3BEAA]">
                   <div className="w-full py-1.5 border-b-1 border-b-[#EBD8BE]">
                     <span className="text-[#745061] text-center font-made-tommy text-[14px] font-bold leading-normal px-3">
                       Invite a Friend = 3 Spins and +5,000 Bonus
@@ -94,7 +94,7 @@ const MoreSpinsDialog = ({ isOpen, onClose }: MoreSpinsDialogProps) => {
                   </div>
                 </div>
                 <div className="flex flex-col gap-y-2">
-                  <div className="flex flex-col justify-center items-center gap-1 rounded-[14px] bg-[#E3BEAA]">
+                  <div className="flex flex-col justify-center items-center rounded-[14px] bg-[#E3BEAA]">
                     <div className="w-full py-1.5 border-b-1 border-b-[#EBD8BE]">
                       <span className="text-[#745061] text-center font-made-tommy text-[14px] font-bold leading-normal px-3">
                         Buy a Spin for $0.25

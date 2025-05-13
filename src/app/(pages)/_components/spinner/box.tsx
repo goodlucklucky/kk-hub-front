@@ -155,7 +155,7 @@ export default function SpinnerBox() {
                 className={cn(
                   "rounded-[6px] bg-gradient-to-r from-[#FBB600] from-[0.16%] to-[#FFCE36] to-[100%]",
                   "drop-shadow-[0_0.3ch_color-mix(in_srgb,_var(--color-yellow),_black_25%)]",
-                  "text-[#7D4000] font-made-tommy text-[17px] font-extrabold tracking-[0.4px] drop-shadow-[0px_1px_0px_rgba(186,135,0,0.20)]",
+                  "text-[#7D4000] font-made-tommy text-[17px] font-extrabold tracking-[0.4px]",
                   "flex gap-2 items-center justify-center text-center"
                 )}
               >

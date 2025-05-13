@@ -8,7 +8,7 @@ import { cn } from "@/app/_lib/utils";
 
 //import assets
 import woodTexture from '@assets/images/wood-texture.png';
-import chatIcon from '@assets/images/chat-icon.png';
+import starIcon from '@assets/images/star-icon.png';
 import chatBottom from '@assets/images/chat-bottom.png';
 import { useApp } from "@/app/_contexts/appContext";
 
@@ -38,7 +38,7 @@ const ChatCard: React.FC<ChatCardProps> = ({ message }) => {
         )}
       >
         <Image 
-          src={chatIcon} 
+          src={starIcon} 
           alt="chat icon" 
           className="absolute -top-1 -left-2" 
           width={18} 

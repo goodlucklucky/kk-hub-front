@@ -4,7 +4,6 @@ import React, { useState, useCallback, memo } from "react";
 import Image from "next/image";
 import _ from "lodash";
 //import components
-import { NavBar } from "../_components/xp-bar";
 import CosmeticCard from "../_components/store/cosmetic-card";
 import DiscountBadge from "../_components/store/discount-badge";
 
@@ -74,7 +73,6 @@ export default function StorePage() {
 
   return (
     <>
-      <NavBar title={'Store'} />
       <div className={cn("flex flex-col flex-1 h-full items-center p-3 justify-center")}>
         <Image
           src={mainBack}
@@ -94,7 +92,7 @@ export default function StorePage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-32 bottom-30 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 flex-1 overflow-y-auto">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-22 bottom-26 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 flex-1 overflow-y-auto">
           <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col">
             <div className="flex justify-center gap-1.5">
               <MemoizedNavigationButton

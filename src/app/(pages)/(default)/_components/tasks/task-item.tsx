@@ -37,7 +37,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
           {
             isCompleted
               ?
-              <CheckIcon color="#745061" className="w-4 h-4" />
+              <CheckIcon color="#25BF63" className="w-4 h-4" />
               :
               <Button className='rounded-[2px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5'>
                 <span className='text-white text-xs font-bold px-2 py-0'>{actionTitle}</span>
