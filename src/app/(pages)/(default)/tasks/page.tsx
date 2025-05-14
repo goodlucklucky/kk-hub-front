@@ -16,8 +16,6 @@ import { cn } from "@/app/_lib/utils";
 //import images
 import forestBack from '@assets/images/forest-back.png';
 import mainBack from '@assets/images/main-back.png';
-import { XIcon } from "@/app/_assets/svg/x";
-import { TwitterConnectCard } from "../_components/tasks/twitter-connect-card";
 
 // Types
 type TasksCategory = 'Claim OG' | 'Koko Tasks' | 'Partner';
@@ -47,7 +45,6 @@ export default function TasksPage() {
   const [activeTaskCategory, setActiveTaskCategory] = useState<TasksCategory>("Claim OG");
   const [isMintDialogOpen, setIsMintDialogOpen] = useState(false);
   const [isMinting, setIsMinting] = useState(false);
-  const [isConnectTwitter, setIsConnectTwitter] = useState(false);
 
   const handleTaskCategoryChange = useCallback((category: TasksCategory) => {
     setActiveTaskCategory(category);
@@ -98,7 +95,6 @@ export default function TasksPage() {
                 onCategoryChange={handleTaskCategoryChange}
                 categories={['Claim OG', 'Koko Tasks', 'Partner']}
               />
-              <TwitterConnectCard isConnected={isConnectTwitter} />
             </div>
             {renderTaskSection()}
           </div>

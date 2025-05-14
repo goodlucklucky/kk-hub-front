@@ -209,7 +209,7 @@ function Spinner({
               return (
                 <div
                   key={index}
-                  className="text-center h-full absolute mx-auto pt-[8%]"
+                  className="text-center h-full absolute mx-auto pt-[6%]"
                   style={{
                     transform: `rotate(${(midAngle * 180) / Math.PI + 90}deg)`,
                   }}
