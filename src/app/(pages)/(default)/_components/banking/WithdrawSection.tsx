@@ -1,9 +1,9 @@
-import { cn } from "@/app/_lib/utils";
-import { RightArrow } from "@/app/_assets/svg/right-arrow";
 import { CheckIcon } from "@/app/_assets/svg/check";
 import { SendIcon } from "@/app/_assets/svg/send";
 import Button from "@/app/_components/shared/button";
 import { WalletConnection } from "./WalletConnection";
+import { Select } from "@/app/_components/shared/select";
+import { USDCIcon, USDTIcon, AvalancheIcon, EthereumIcon, BSCIcon } from "@/app/_assets/svg/coin";
 
 interface WithdrawSectionProps {
   isConnected: boolean;
@@ -22,14 +22,30 @@ export const WithdrawSection = ({ isConnected, onConnect, onDisconnect }: Withdr
         {isConnected && (
           <div className="flex flex-col gap-2 bg-[#F5DDC4] border-1 border-[#D1B69F] rounded-[10px] p-2">
             <div className="flex gap-2 justify-center items-center">
-              <div className={cn(
-                "flex flex-col flex-1 items-center justify-between rounded-[10px] bg-[#D1B69F] p-1 text-sm text-[#745061]",
-              )}>
-                <div className="flex items-center gap-1 w-full justify-between px-2 py-1 h-7">
-                  <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px]">USDC</span>
-                  <RightArrow className="w-4 h-4 rotate-90" color="#917377" shadow={false} />
-                </div>
-              </div>
+              <Select
+                triggerClassName="flex-1 rounded-[20px]"
+                defaultValue="USDC"
+                options={[
+                  {
+                    value: "USDC",
+                    label: (
+                      <div className="flex items-center gap-1">
+                        <USDCIcon width={20} height={20} />
+                        <span>USDC</span>
+                      </div>
+                    ),
+                  },
+                  {
+                    value: "USDT",
+                    label: (
+                      <div className="flex items-center gap-1">
+                        <USDTIcon width={20} height={20} />
+                        <span>USDT</span>
+                      </div>
+                    ),
+                  },
+                ]}
+              />
               <div className="rounded-[5px] border border-[#D1B69F] bg-gradient-to-b from-[#D0D0D0] to-[#F4F4F0] shadow-[inset_0px_3px_6px_0px_rgba(0,0,0,0.20)] flex justify-start items-center px-2 h-full flex-1">
                 <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px]">999.99</span>
               </div>
@@ -39,9 +55,9 @@ export const WithdrawSection = ({ isConnected, onConnect, onDisconnect }: Withdr
                 ~4.06 USDC max.
               </span>
             </div>
-            <Button className="w-full flex gap-1 items-center justify-center bg-gradient-to-b from-[#24BE62] to-[#1AB257]">
+            <Button className="w-full flex gap-1 items-center justify-center bg-gradient-to-b from-[#24BE62] to-[#1AB257] py-0.5">
               <CheckIcon color="#ffffff" className="w-3 h-3 -mt-1" />
-              <span className="text-white font-made-tommy font-extrabold text-[12px] tracking-[0.32px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)]">
+              <span className="text-white font-made-tommy font-extrabold text-[14px] tracking-[0.32px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)]">
                 Confirm
               </span>
             </Button>
@@ -54,25 +70,64 @@ export const WithdrawSection = ({ isConnected, onConnect, onDisconnect }: Withdr
           <div className="flex gap-2">
             <div className="flex flex-col w-full">
               <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">Select Currency</span>
-              <div className={cn(
-                "flex flex-col w-full items-center justify-between rounded-[10px] bg-[#D1B69F] p-1 text-sm text-[#745061]",
-              )}>
-                <div className="flex items-center gap-1 w-full justify-between px-2 py-1 h-7">
-                  <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px]">USDC</span>
-                  <RightArrow className="w-4 h-4 rotate-90" color="#917377" shadow={false} />
-                </div>
-              </div>
+              <Select
+                defaultValue="USDC"
+                options={[
+                  {
+                    value: "USDC",
+                    label: (
+                      <div className="flex items-center gap-1">
+                        <USDCIcon width={20} height={20} />
+                        <span>USDC</span>
+                      </div>
+                    ),
+                  },
+                  {
+                    value: "USDT",
+                    label: (
+                      <div className="flex items-center gap-1">
+                        <USDTIcon width={20} height={20} />
+                        <span>USDT</span>
+                      </div>
+                    ),
+                  },
+                ]}
+              />
             </div>
             <div className="flex flex-col w-full">
               <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">Select Network</span>
-              <div className={cn(
-                "flex flex-col w-full items-center justify-between rounded-[10px] bg-[#D1B69F] p-1 text-sm text-[#745061]",
-              )}>
-                <div className="flex items-center gap-1 w-full justify-between px-2 py-1 h-7">
-                  <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px]">Avalanche</span>
-                  <RightArrow className="w-4 h-4 rotate-90" color="#917377" shadow={false} />
-                </div>
-              </div>
+              <Select
+                defaultValue="Avalanche"
+                options={[
+                  {
+                    value: "Avalanche",
+                    label: (
+                      <div className="flex items-center gap-1">
+                        <AvalancheIcon width={16} height={14} />
+                        <span>Avalanche</span>
+                      </div>
+                    ),
+                  },
+                  {
+                    value: "Ethereum",
+                    label: (
+                      <div className="flex items-center gap-1">
+                        <EthereumIcon width={16} height={18} />
+                        <span>Ethereum</span>
+                      </div>
+                    ),
+                  },
+                  {
+                    value: "BSC",
+                    label: (
+                      <div className="flex items-center gap-1">
+                        <BSCIcon width={16} height={14} />
+                        <span>BSC</span>
+                      </div>
+                    ),
+                  },
+                ]}
+              />
             </div>
           </div>
         </div>
@@ -81,15 +136,18 @@ export const WithdrawSection = ({ isConnected, onConnect, onDisconnect }: Withdr
             <div className="flex flex-col w-full">
               <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">Withdrawal Address</span>
               <div className="rounded-[5px] border border-[#D1B69F] bg-gradient-to-b from-[#D0D0D0] to-[#F4F4F0] shadow-[inset_0px_3px_6px_0px_rgba(0,0,0,0.20)] flex justify-center items-center px-2 h-full">
-                <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px] py-0.5 pt-1.5">
-                  0x10e0271ec47d55511a047516fxed3
-                </span>
+                <input
+                  type="text"
+                  className="text-[#5F3F57] font-made-tommy font-bold text-[14px] py-0.5 pt-1.5 w-full bg-transparent outline-none text-center"
+                  placeholder="0x10e0271ec47d55511a047516fxed3"
+                  defaultValue="0x10e0271ec47d55511a047516fxed3"
+                />
               </div>
             </div>
           </div>
         </div>
-        <div className="flex justify-center items-center bg-[#E99F8C] rounded-[10px] mt-1.5 p-2 gap-2">
-          <span className="bg-[#853834] rounded-full w-4.5 h-4.5 px-2 flex items-center justify-center text-[#EED1B8] text-[12px]">i</span>
+        <div className="flex items-center bg-[#E99F8C] rounded-[10px] mt-1.5 p-2 py-1 gap-2">
+        <span className="bg-[#853834] rounded-full w-4.5 h-4.5 px-2 flex items-center justify-center text-[#EED1B8] text-[12px]">i</span>
           <span className="text-[#853834] font-made-tommy text-[10px] font-bold leading-normal">
             Please make sure the address accepts USDC on Avalanche (AVAX C-Chain). Funds cannot be recovered
           </span>
@@ -98,16 +156,16 @@ export const WithdrawSection = ({ isConnected, onConnect, onDisconnect }: Withdr
           <div className="flex flex-col w-full">
             <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">Withdrawal Amount</span>
             <div className="rounded-[5px] border border-[#D1B69F] bg-gradient-to-b from-[#D0D0D0] to-[#F4F4F0] shadow-[inset_0px_3px_6px_0px_rgba(0,0,0,0.20)] flex justify-start items-center px-2 h-full">
-              <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px] py-0.5 pt-1.5">
-                4.06
-              </span>
+              <input
+                type="number"
+                className="text-[#5F3F57] font-made-tommy font-bold text-[14px] py-0.5 pt-1.5 w-full bg-transparent outline-none"
+                placeholder="0.00"
+                defaultValue="0"
+              />
             </div>
             <div className="flex flex-col gap-0 mt-2">
               <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
-                Max: 4.06 USDC
-              </span>
-              <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
-                Transaction fee: 4.06 USDC
+                Est transaction fee: 4.06 USDC
               </span>
               <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
                 Will recieve: 4.06 USDC
@@ -124,4 +182,4 @@ export const WithdrawSection = ({ isConnected, onConnect, onDisconnect }: Withdr
       </div>
     </div>
   );
-}; 
+};

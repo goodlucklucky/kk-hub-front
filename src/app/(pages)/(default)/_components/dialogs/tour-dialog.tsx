@@ -15,12 +15,12 @@ import { WalletIcon } from "@/app/_assets/svg/wallet";
 import Button from "@/app/_components/shared/button";
 import coinbase from "@assets/svg/coinbase.svg";
 import metamask from "@assets/svg/metamask.svg";
-import usdc from "@assets/svg/usdc-brown.svg";
-import usdt from "@assets/svg/usdt-brown.svg";
 import { CloseSocialIcon } from "@/app/_assets/svg/close-social";
 import { cn } from "@/app/_lib/utils";
-import { RightArrow } from "@/app/_assets/svg/right-arrow";
 import { CheckIcon } from "@/app/_assets/svg/check";
+import { USDTIcon } from "@/app/_assets/svg/coin";
+import { Select } from "@/app/_components/shared/select";
+import { USDCIcon } from "@/app/_assets/svg/coin";
 
 //interface
 interface TourDialogProps {
@@ -129,48 +129,31 @@ const TourDialog = ({ isOpen, onClose }: TourDialogProps) => {
                       <div className="text-[#745061] text-center font-made-tommy text-[24px] font-bold">
                         0.25
                       </div>
-                      <div className="flex flex-col gap-y-3 relative h-full overflow-y-visible z-20">
-                        {isDropDownOpen && (
-                          <>
-                            <div className="absolute rounded-[20px_20px_10px_10px] bg-[#D1B69F] -bottom-13 left-0 right-0 w-full top-0 z-8"></div>
-                            <div className="absolute top-11 left-2 right-2 z-9 flex items-center gap-1 rounded-[20px] border border-[#917377] bg-[#EED1B8] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.20)] px-3 py-2 z-9">
-                              <Image
-                                src={usdt}
-                                alt="usdt"
-                                width={20}
-                                height={20}
-                                className="z-10"
-                              />
-                              <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px]">
-                                USDT
-                              </span>
-                            </div>
-                          </>
-                        )}
-                        <div
-                          className={cn(
-                            "flex flex-col items-center justify-between rounded-[20px] border border-[rgba(145,115,119,0.50)] bg-[#F5DDC4] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.20)] p-1 text-sm text-[#745061] z-10"
-                          )}
-                          onClick={() => setIsDropDownOpen(!isDropDownOpen)}
-                        >
-                          <div className="flex items-center gap-1 w-full justify-between px-2 py-1 h-7 z-10">
-                            <Image
-                              src={usdc}
-                              alt="usdc"
-                              width={20}
-                              height={20}
-                            />
-                            <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px]">
-                              USDC
-                            </span>
-                            <RightArrow
-                              className="w-4 h-4 rotate-90"
-                              color="#917377"
-                              shadow={false}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                      <Select
+                        triggerClassName="rounded-[20px] w-[100px] border border-[rgba(145,115,119,0.50)] bg-[#F5DDC4] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.20)]"
+                        itemClassName="rounded-[20px]"
+                        defaultValue="USDC"
+                        options={[
+                          {
+                            value: "USDC",
+                            label: (
+                              <div className="flex justify-center items-center gap-1">
+                                <USDCIcon width={20} height={20} />
+                                <span>USDC</span>
+                              </div>
+                            ),
+                          },
+                          {
+                            value: "USDT",
+                            label: (
+                              <div className="flex justify-center items-center gap-1">
+                                <USDTIcon width={20} height={20} />
+                                <span>USDT</span>
+                              </div>
+                            ),
+                          },
+                        ]}
+                      />
                     </div>
                   </div>
                   <Button
