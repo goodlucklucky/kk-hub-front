@@ -7,7 +7,6 @@ import _ from "lodash";
 import Gifts from "../../(default)/_components/gifts";
 
 //import utils
-import { games } from "@/constants/games";
 import { cn } from "@/app/_lib/utils";
 
 //import images
