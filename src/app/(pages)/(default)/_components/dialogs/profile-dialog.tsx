@@ -45,6 +45,9 @@ import pet1 from "@assets/images/pet1.png";
 import pet2 from "@assets/images/pet2.png";
 import pet3 from "@assets/images/pet3.png";
 import pet4 from "@assets/images/pet4.png";
+import stars_svg from "@assets/svg/stars_svg.svg";
+import money_sack from "@assets/svg/money-sack.svg";
+import caution_sign from "@assets/svg/caution-sign.svg";
 
 const lootboxes = [
   {
@@ -150,35 +153,44 @@ const ProfileDialog = ({ isOpen, onClose, }: ProfileDialogProps) => {
             <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] p-2 mb-2">
               <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
                 <TournamentItem
-                  title="Koko Raffle"
-                  message="Numbers drawn. Check your ticket!"
-                  bgColor="bg-[#ECB56E]"
-                  messageBgColor="bg-[#E3BEAA]"
+                  alt="stars_svg"
+                  color="#CC8A36"
+                  scoreColor="#FFDCAE"
+                  icon={stars_svg}
+                  title="Special Tournament"
+                  score="No Score"
+                  detail="👎 You have not joined this challenge."
+                  path="/game/snake/tournaments"
                 />
                 <TournamentItem
-                  title="Snake: $0.25 Tournament"
-                  message="Current Estimated Earnings: $100"
-                  bgColor="bg-[#E99F8C]"
-                  messageBgColor="bg-[#D7BDA4]"
+                  alt="money_sack"
+                  color="#608532"
+                  scoreColor="#B5D48E"
+                  icon={money_sack}
+                  title="$10 Entry Tournament"
+                  score="872 PTS"
+                  detail="🤑 Current Estimated Earnings: $100"
+                  path="/game/snake/tournaments"
                 />
                 <TournamentItem
-                  title="Flappy Dunk: $10 1v1"
-                  message="Improve your Score to qualify for a prize!"
-                  bgColor="bg-[#D49FC4]"
-                  messageBgColor="bg-[#E99F8C]"
-                  messageTextColor="#853834"
+                  alt="caution_sign"
+                  color="#853834"
+                  scoreColor="#E99F8C"
+                  icon={caution_sign}
+                  title="$1 Entry Tournament"
+                  score="872 PTS"
+                  detail="‼️ Improve your Score to qualify for a prize!"
+                  path="/game/snake/tournaments"
                 />
                 <TournamentItem
-                  title="50 KOKO Entry Tournament"
-                  message="Improve your Score to qualify for a prize!"
-                  bgColor="bg-[#B5C2C9]"
-                  messageBgColor="bg-[#D7BDA4]"
-                />
-                <TournamentItem
-                  title="$10 Challenge"
-                  message="Improve your Score to qualify for a prize!"
-                  bgColor="bg-[#B5D48E]"
-                  messageBgColor="bg-[#D7BDA4]"
+                  alt="money_sack"
+                  color="#608532"
+                  scoreColor="#B5D48E"
+                  icon={money_sack}
+                  title="Koko Tower"
+                  score="872 PTS"
+                  detail="🤑 Current Estimated Earnings: $100"
+                  path="/game/snake/tournaments"
                 />
               </div>
             </div>

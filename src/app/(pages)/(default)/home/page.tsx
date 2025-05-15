@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import _ from "lodash";
 //import components
 import Gifts from "../_components/gifts";
@@ -26,6 +26,7 @@ import BankDialog from "../_components/dialogs/bank-dialog";
 import ProfileDialog from "../_components/dialogs/profile-dialog";
 import ChatDialog from "../_components/dialogs/chat-dialog";
 import { useApp } from "@/app/_contexts/appContext";
+import PreviewDialog from "../_components/dialogs/preview-dialog";
 
 export default function HomePage() {
   const { isBankingOpen, setIsBankingOpen, isProfileOpen, setIsProfileOpen, isChatOpen, setIsChatOpen } = useApp();
@@ -34,7 +35,31 @@ export default function HomePage() {
 
   const [isMinting, setIsMinting] = useState(false);
   const [isMintDialogOpen, setIsMintDialogOpen] = useState(false);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [previewData, setPreviewData] = useState<{
+    title: string;
+    link: string;
+    image: string | StaticImageData;
+    description: string;
+    msg: string;
+  }>({
+    title: "",
+    link: "",
+    image: "",
+    description: "",
+    msg: "",
+  });
 
+  const handlePreviewDialogToggle = useCallback((data: {
+    title: string;
+    link: string;
+    image: string | StaticImageData;
+    description: string;
+    msg: string;
+  }) => {
+    setIsPreviewOpen(true);
+    setPreviewData(data);
+  }, []);
 
   const handleMintDialogToggle = useCallback(() => {
     setIsMintDialogOpen(prev => !prev);
@@ -95,6 +120,7 @@ export default function HomePage() {
                     number: game?.number,
                     link: `${game?.page}/`,
                   }))}
+                  handlePreviewDialogToggle={handlePreviewDialogToggle}
                 />
               ))}
             </div>
@@ -122,6 +148,15 @@ export default function HomePage() {
       <ChatDialog
         isOpen={isChatOpen}
         onClose={() => setIsChatOpen(!isChatOpen)}
+      />
+      <PreviewDialog
+        isOpen={isPreviewOpen}
+        onClose={() => setIsPreviewOpen(!isPreviewOpen)}
+        title={previewData?.title}
+        link={previewData?.link}
+        image={previewData?.image}
+        description={previewData?.description}
+        msg={previewData?.msg}
       />
     </>
   );
