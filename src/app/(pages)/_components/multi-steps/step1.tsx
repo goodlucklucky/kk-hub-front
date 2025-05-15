@@ -28,7 +28,7 @@ export function Step1Top() {
         <span className=" text-[18px]">with crypto rewards</span>
       </div>
       <div className="text-golden-bright relative font-bold px-5">
-        <div className=" bg-[url(/images/board.png)] bg-cover rounded-4xl px-2.5 py-3.5">
+        <div className="bg-[url(/images/board.png)] bg-cover rounded-4xl px-2.5 py-3.5">
           <div className="bg-light rounded-3xl border-3 border-[#5F3F57]">
             <div className="py-2 flex items-center justify-center gap-2">
               <Image src={cup} alt="cup"/>
@@ -89,6 +89,58 @@ export function Step1Top() {
             </div>
           </div>
         </div>
+        <>
+          {/* Right Side */} 
+          <div
+            className="absolute right-0 bottom-10 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-right 10s linear infinite, colorChange 2s linear infinite"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute right-2 bottom-10 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-right 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-2500ms"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute right-1 bottom-10 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-right 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-5000ms"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute right-3 bottom-10 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-right 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-7500ms"}}
+          >
+            $
+          </div>
+          {/* Left Side */}
+          <div
+            className="absolute left-0 bottom-5 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-left 10s linear infinite, colorChange 2s linear infinite", animationDelay: "-1250ms"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute left-2 bottom-5 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-left 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-3750ms"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute left-1 bottom-5 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-left 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-6250ms"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute left-3 bottom-5 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-left 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-8750ms"}}
+          >
+            $
+          </div>
+        </>
       </div>
     </div>
   );
