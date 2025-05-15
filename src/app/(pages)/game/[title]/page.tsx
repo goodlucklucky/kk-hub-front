@@ -23,7 +23,9 @@ import { Button } from "@/app/_components/ui/button";
 import { QuestionMarkIcon, MsgIcon } from "@/app/_assets/svg/template";
 import { PlusIcon } from "@/app/_assets/svg/plus";
 import snakeHome from "@assets/images/snake-home.png";
-import { useRouter } from "next/navigation";
+import flappyHome from "@assets/images/flappy-home.png";
+import { useRouter, useParams } from "next/navigation";
+
 export default function HomePage() {
   const {
     isBankingOpen,
@@ -46,6 +48,7 @@ export default function HomePage() {
   }, []);
 
   const router = useRouter();
+  const { title } = useParams();
 
   return (
     <div className="h-full flex flex-col min-h-screen">
@@ -95,22 +98,24 @@ export default function HomePage() {
           </div>
           <div className="w-full flex-1 px-2 flex flex-col gap-y-2 justify-end items-center relative">
             <Image
-              src={snakeHome}
-              alt="Snake home"
-              className="absolute bottom-10 right-3 z-1"
-              width={307}
-              height={254}
+              src={title === "snake" ? snakeHome : title === "flappy" ? flappyHome : ""}
+              alt={`${title } home`}
+              className={cn("absolute bottom-10 left-1/2 -translate-x-1/2 z-1 w-[250px] h-[250px]",
+                title === "flappy" && "bottom-20"
+              )}
+              width={250}
+              height={250}
             />
-            <div className="rounded-[10px] border border-[#B1B5CC] bg-[#B1B5CC] backdrop-blur-[12.5px] flex justify-center items-center h-10 w-full gap-x-1 z-10">
+            <div className="rounded-[10px] border border-[#CED0DF] bg-[#B1B5CC] backdrop-blur-[12.5px] flex justify-center items-center h-10 w-full gap-x-1 z-10">
               <PlusIcon className="w-5 h-5" />
               <p className="z-10 uppercase text-white text-center font-bumper-sticker text-[18px] font-normal [text-shadow:0px_2px_0px_rgba(0,0,0,0.20)]">
                 Add to home screen
               </p>
             </div>
-            <Button onClick={() => router.push('/game/snake/play')} className="bg-[url(/images/board.png)] bg-[length:100%_100%] bg-center rounded-[200px] p-3 h-20 w-full shadow-md flex justify-center items-center z-10">
+            <Button onClick={() => router.push(`/game/${title}/play`)} className="bg-[url(/images/board.png)] bg-[length:100%_100%] bg-center rounded-[200px] p-3 pt-4 pb-2 h-20 w-full shadow-md flex justify-center items-center z-10">
               <div className="bg-[url(/images/cyan-btn-bg.png)] h-full w-full bg-[length:100%_100%] bg-stretch bg-center bg-no-repeat flex justify-center relative items-center">
                 <p className="-mt-[10px] text-[#F4FFFF] text-center font-bumper-sticker text-[28px] font-normal [text-shadow:0px_2px_0px_rgba(0,0,0,0.20)] z-10">
-                  Play Snake now
+                  Play {title === "snake" ? "Snake" : "Flappy dunk"} now
                 </p>
               </div>
             </Button>
