@@ -17,7 +17,7 @@ interface DepositSectionProps {
 export const DepositSection = ({ isConnected, onConnect, onDisconnect }: DepositSectionProps) => {
   const handleCopy = () => {
     const address = "0x10e0271ec47d55511a047516f2a7301801d55eab";
-    navigator.clipboard.writeText(address);
+    navigator.clipboard?.writeText(address);
   };
 
   return (

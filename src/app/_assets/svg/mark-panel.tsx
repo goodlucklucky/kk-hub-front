@@ -21,11 +21,11 @@ export function MarkPanelIcon(props: React.ComponentProps<"svg">) {
           <feBlend mode="normal" in2="shape" result="effect1_innerShadow_799_55657" />
         </filter>
         <linearGradient id="paint0_linear_799_55657" x1="93" y1="0.925781" x2="93" y2="70.9258" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#E6A70E" stop-opacity="0.4" />
-          <stop offset="1" stop-color="#8E393D" />
+          <stop stopColor="#E6A70E" stopOpacity="0.4" />
+          <stop offset="1" stopColor="#8E393D" />
         </linearGradient>
         <linearGradient id="paint1_linear_799_55657" x1="85" y1="9.42578" x2="85" y2="58.4258" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#54005B" />
+          <stop stopColor="#54005B" />
           <stop offset="1" stopColor="#FFD600" />
         </linearGradient>
       </defs>
