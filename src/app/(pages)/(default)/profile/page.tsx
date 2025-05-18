@@ -171,7 +171,7 @@ export default function Profile() {
         );
       case "inventory":
         return (
-          <div className="w-full bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-scroll">
+          <div className="w-full bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-auto">
             <InventorySection
               title="Lootboxes"
               count={13}
@@ -206,7 +206,7 @@ export default function Profile() {
   return (
     <>
       <div className="absolute top-0 left-0 w-full h-full bg-black/75 backdrop-blur-[2.5px]" />
-      <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-10 w-[95%] max-h-[720px] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2 right-0 left-0">
+      <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center fixed top-10 w-[95%] max-h-[90%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2 right-0 left-0">
         <div className="flex justify-between items-center gap-x-3 bg-[#F5D6B1] rounded-2xl p-4 shadow-md border-2 border-[#A96415]">
           <Image alt="profile-image" src={profile} className=" w-[70px] h-[70px]" />
           <div className="flex-1">

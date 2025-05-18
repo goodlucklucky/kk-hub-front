@@ -28,6 +28,7 @@ import stars_svg from "@assets/svg/stars_svg.svg";
 import money_sack from "@assets/svg/money-sack.svg";
 import caution_sign from "@assets/svg/caution-sign.svg";
 import ResultsItem from "../../../_components/stats/results-item";
+import { QuestionMarkIcon } from "@/app/_assets/svg/template";
 
 export default function StatsPage() {
   return (
@@ -42,20 +43,23 @@ export default function StatsPage() {
             loading="lazy"
             priority={false}
           />
-          <div className="flex gap-2 mt-4 absolute top-8 left-5">
+          <div className="flex gap-2 mt-4 absolute top-0 left-5">
             <Chat />
           </div>
           <Image
             src={statsIcon}
             alt="Stats icon"
-            className="absolute top-26 right-0"
+            className="absolute top-18 right-0"
             loading="lazy"
             priority={false}
           />
+          <Button className="bg-[url(/images/yellow-btn-bg.png)] bg-cover bg-center bg-no-repeat w-10 h-10 m-1 absolute top-20 right-0 flex items-center justify-center">
+            <QuestionMarkIcon />
+          </Button>
           <div
             className={cn(
               "rounded-2xl relative w-full flex items-center justify-center",
-              "fixed top-42 right-0 left-0 bottom-0 p-3"
+              "fixed top-35 right-0 left-0 bottom-0 p-3"
             )}
           >
             <div className="relative w-full h-full">
@@ -65,13 +69,13 @@ export default function StatsPage() {
                 className="w-full h-full z-20"
                 loading="lazy"
               />
-              <div className="absolute top-0 left-0 w-full h-full flex flex-col gap-y-1">
-                <div className="w-full h-9 flex items-center justify-center">
+              <div className="absolute top-0 left-0 w-full h-full flex flex-col">
+                <div className="w-full h-[6%] flex items-center justify-center">
                   <div className="text-[#491F36] [-webkit-text-stroke:1px_rgba(217,127,79,0.40)] font-bumper-sticker text-[25px]/[25px] font-normal tracking-[0.56px] lowercase z-20 pt-1.5">
                     STATS
                   </div>
                 </div>
-                <div className="w-full flex-1 p-2 px-3 2xs:px-4.5 pb-3 2xs:pb-4.5 flex flex-col gap-y-1 overflow-y-auto">
+                <div className="w-full flex-1 p-3 2xs:p-4 xs:p-5 sm:p-6 flex flex-col gap-y-1 overflow-y-auto">
                   <div className="w-full bg-[#EED1B8] rounded-t-[22px] rounded-b-[10px] flex flex-col gap-y-1 p-1.5 pb-2">
                     <div className="text-[#745061] text-center font-made-tommy text-xs font-bold leading-normal tracking-[0.12px]">
                       Top up your wallet...
@@ -101,7 +105,7 @@ export default function StatsPage() {
                       </span>
                     </div>
                   </div>
-                  <div className="w-full justify-between bg-[#EED1B8] rounded-[22px] flex flex-col items-center gap-1 px-2.5 py-1 2xs:py-2">
+                  <div className="w-full justify-between bg-[#EED1B8] rounded-[22px] flex flex-col items-center gap-1 px-2.5 py-2">
                     <div className="flex gap-2 items-center w-full">
                       <TopArrow />
                       <span className="text-[#5F3F57] font-bold font-made-tommy text-[16px]/[28px]">
@@ -113,7 +117,7 @@ export default function StatsPage() {
                         <div className="text-[#745061] font-made-tommy text-[14px] font-bold leading-normal tracking-[0.14px] p-1 px-2 pl-3">
                           Game Played
                         </div>
-                        <div className="rounded-r-[5px] bg-[#917377] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] p-2 text-[#FFE4D4] font-made-tommy text-[14px] font-bold tracking-[0.36px]">
+                        <div className="rounded-r-[5px] bg-[#917377] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] p-1.5 px-2 text-[#FFE4D4] font-made-tommy text-[14px] font-bold tracking-[0.36px]">
                           111
                         </div>
                       </div>
@@ -121,14 +125,14 @@ export default function StatsPage() {
                         <div className="text-[#745061] font-made-tommy text-[14px] font-bold leading-normal tracking-[0.14px] p-1 px-2 pl-3">
                           Your ATH
                         </div>
-                        <div className="rounded-r-[5px] bg-[#917377] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] p-2 text-[#FFE4D4] font-made-tommy text-[14px] font-bold tracking-[0.36px]">
+                        <div className="rounded-r-[5px] bg-[#917377] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] p-1.5 px-2 text-[#FFE4D4] font-made-tommy text-[14px] font-bold tracking-[0.36px]">
                           99 pts
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="w-full bg-[#EED1B8] rounded-[22px] flex flex-col items-center gap-y-2 px-2.5 py-1 2xs:py-2 flex-1 overflow-y-auto">
-                    <div className="flex gap-2 items-center w-full">
+                  <div className="w-full bg-[#EED1B8] rounded-[22px] flex flex-col items-center gap-y-2 px-2 py-2 flex-1 overflow-y-auto">
+                    <div className="flex gap-2 items-center w-full pl-1">
                       <StarStatsIcon />
                       <span className="text-[#5F3F57] font-bold font-made-tommy text-[16px]/[28px]">
                         Your Current Scores

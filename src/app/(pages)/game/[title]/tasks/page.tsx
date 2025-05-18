@@ -16,10 +16,8 @@ import { cn } from "@/app/_lib/utils";
 //import images
 import forestBack from '@assets/images/forest-back.png';
 import mainBack from '@assets/images/main-back.png';
-import { XIcon } from "@/app/_assets/svg/x";
 import Header from "../../../(default)/_components/layout/header";
 import Footer from "../../../(default)/_components/layout/footer";
-import { TwitterConnectCard } from "@/app/(pages)/(default)/_components/tasks/twitter-connect-card";
 
 // Types
 type TasksCategory = 'Claim OG' | 'Koko Tasks' | 'Partner';
@@ -49,7 +47,6 @@ export default function TasksPage() {
   const [activeTaskCategory, setActiveTaskCategory] = useState<TasksCategory>("Claim OG");
   const [isMintDialogOpen, setIsMintDialogOpen] = useState(false);
   const [isMinting, setIsMinting] = useState(false);
-  const [isConnectTwitter, setIsConnectTwitter] = useState(false);
 
   const handleTaskCategoryChange = useCallback((category: TasksCategory) => {
     setActiveTaskCategory(category);
@@ -93,7 +90,7 @@ export default function TasksPage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-22 bottom-26 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center fixed top-22 bottom-26 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0">
           <div className="bg-[#F5D6B1] rounded-2xl p-[7px] py-2.5 shadow-md border-2 border-[#A96415] flex flex-col overflow-y-auto gap-2 h-full">
             <div className="flex flex-col gap-2 px-2">
               <TasksCategoryButtons
@@ -101,7 +98,6 @@ export default function TasksPage() {
                 onCategoryChange={handleTaskCategoryChange}
                 categories={['Claim OG', 'Koko Tasks', 'Partner']}
               />
-              <TwitterConnectCard isConnected={isConnectTwitter} />
             </div>
             {renderTaskSection()}
           </div>

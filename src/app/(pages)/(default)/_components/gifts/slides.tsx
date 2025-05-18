@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/app/_lib/utils";
 import { RightArrow2 } from "@/app/_assets/svg/right-arrow";
 import { DailyBarge } from "./barge";
@@ -45,6 +45,38 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
     setIsOpen?.();
     setIsMinting?.(true);
   };
+  const [timeLeft, setTimeLeft] = useState("23:59:59");
+
+  // Add timer effect
+  React.useEffect(() => {
+    // Set initial time (24 hours from now)
+    const endTime = new Date();
+    endTime.setHours(endTime.getHours() + 24);
+    
+    const updateTimer = () => {
+      const now = new Date();
+      const diff = endTime.getTime() - now.getTime();
+      
+      if (diff <= 0) {
+        setTimeLeft("00:00:00");
+        return;
+      }
+      
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      setTimeLeft(
+        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+      );
+    };
+    
+    // Update immediately and then every second
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const getSlideContent = () => {
     switch (type) {
@@ -65,7 +97,7 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
                   <span>4/28</span>
                 </DailyBarge>
                 <DailyBarge>
-                  <span>23:39:01</span>
+                  <span>{timeLeft}</span>
                 </DailyBarge>
               </div>
               <div className={cn("px-1 py-2 text-green-dark", "flex gap-2")}>

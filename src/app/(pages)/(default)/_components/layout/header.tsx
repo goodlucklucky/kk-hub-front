@@ -23,10 +23,10 @@ function KokoLogo({isMonkey = false, isOG = false, isStar = false, level = 0}:
   {isMonkey: boolean, isOG: boolean, isStar: boolean, level: number}) {
   return (
     <>
+      {isOG && <Image src={ogIcon} alt="og-icon" width={25} height={15} className="absolute w-[25px] h-[15px] top-[8px] left-[-14.5px]" />}
       <Image src={kokoLogBg} alt="koko-logo-bg" width={45} height={72} className="absolute w-[45px] h-[72px] top-0 left-1/2 -translate-x-1/2 right-0 inset-0 object-cover object-center rounded-b-md" />
       <Image src={profileAvatar} alt="profile-avatar" width={55} height={55} className="absolute w-[55px] h-[55px] top-1 left-1/2 -translate-x-1/2" />
       {isMonkey && <Image src={monkeyIcon} alt="monkey-icon" width={20} height={20} className="absolute w-[20px] h-[20px] top-[32px] left-[6px]" />}
-      {isOG && <Image src={ogIcon} alt="og-icon" width={25} height={15} className="absolute w-[25px] h-[15px] top-[8px] left-[-15px]" />}
       {isStar && <Image src={starIcon} alt="og-icon" width={20} height={20} className="absolute w-[20px] h-[20px] top-[4px] right-0" />}
       <span className="text-[10px] font-bold text-yellow-2 absolute -bottom-6 right-0 w-full text-center">
         LVL {level}

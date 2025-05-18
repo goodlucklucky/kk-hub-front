@@ -17,7 +17,7 @@ interface DepositSectionProps {
 export const DepositSection = ({ isConnected, onConnect, onDisconnect }: DepositSectionProps) => {
   const handleCopy = () => {
     const address = "0x10e0271ec47d55511a047516f2a7301801d55eab";
-    navigator.clipboard.writeText(address);
+    navigator.clipboard?.writeText(address);
   };
 
   return (
@@ -54,7 +54,7 @@ export const DepositSection = ({ isConnected, onConnect, onDisconnect }: Deposit
                   },
                 ]}
               />
-              <div className="flex-2 rounded-[5px] border border-[#D1B69F] bg-gradient-to-b from-[#D0D0D0] to-[#F4F4F0] shadow-[inset_0px_3px_6px_0px_rgba(0,0,0,0.20)] flex justify-center items-center px-2">
+              <div className="flex-2 rounded-[5px] border border-[#D1B69F] bg-gradient-to-b from-[#D0D0D0] to-[#F4F4F0] shadow-[inset_0px_3px_6px_0px_rgba(0,0,0,0.20)] flex justify-center items-center pl-2">
                 <input
                   type="number"
                   className="text-[#5F3F57] font-made-tommy font-bold text-[16px] py-0.5 pt-1.5 w-full bg-transparent outline-none"

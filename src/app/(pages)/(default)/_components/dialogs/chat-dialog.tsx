@@ -25,7 +25,7 @@ const ChatDialog = ({ isOpen, onClose, }: ChatDialogProps) => {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogPortal>
         <div className="absolute top-0 left-0 w-full h-full bg-black/75 backdrop-blur-[2.5px] z-10" />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-h-[90%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-h-[95%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2">
           <div className="flex justify-between items-center gap-x-3 bg-[#F5D6B1] rounded-2xl p-2 shadow-md border-2 border-[#A96415]">
             <div className="w-full rounded-[5px] border border-[#9C7B8F] bg-[#653F56] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] flex justify-center items-center gap-x-1 relative">
               <EarthIcon />
