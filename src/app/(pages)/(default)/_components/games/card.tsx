@@ -1,8 +1,7 @@
 'use client';
 
 //import modules
-import Image from "next/image";
-import Link from "next/link";
+import Image, { StaticImageData } from "next/image";
 import React from "react";
 
 //import components
@@ -28,12 +27,20 @@ export type TGamesCardProps = {
   title: string;
   Icon: (props: React.ComponentProps<"svg">) => React.JSX.Element;
   items?: TItems[];
+  handlePreviewDialogToggle: (data: {
+    title: string;
+    link: string;
+    image: string | StaticImageData;
+    description: string;
+    msg: string;
+  }) => void;
 };
 
 export default function GamesCard({
   title = "Games",
   // Icon = TrophyIcon,
   items = [],
+  handlePreviewDialogToggle,
 }: TGamesCardProps) {
   return (
     <div className="p-2 py-0.5 2xs:py-1">
@@ -63,6 +70,7 @@ export default function GamesCard({
                 isNew={one?.isNew}
                 number={one?.number}
                 key={index}
+                handlePreviewDialogToggle={handlePreviewDialogToggle}
               />
             )
           )}
@@ -75,11 +83,28 @@ export default function GamesCard({
   );
 }
 
-export type TGameItemCardProps = Omit<TItems, "soon">;
+export type TGameItemCardProps = Omit<TItems, "soon"> & {
+  handlePreviewDialogToggle: (data: {
+    title: string;
+    link: string;
+    image: string | StaticImageData;
+    description: string;
+    msg: string;
+  }) => void;
+};
 
-export function GameItemCard({ title, image, link, isNew, number }: TGameItemCardProps) {
+export function GameItemCard({ title, image, link, isNew, number, handlePreviewDialogToggle }: TGameItemCardProps) {
   return (
-    <Link href={link || "#"} className="rounded-lg w-[70px] relative overflow-hidden">
+    <div
+      className="rounded-lg w-[70px] relative overflow-hidden"
+      onClick={() => handlePreviewDialogToggle({
+        title: title || "",
+        link: link || "",
+        image: image || "",
+        description: "Ever made memecoin money playing Snake?!",
+        msg: "Win $ playing classic Snake in Tournaments, PvP, and more!"
+      })}
+    >
       {number && <p className="absolute top-0 right-0.5 bg-red-light px-1 text-white text-[10px] rounded-lg">{number}</p>}
       {isNew && <div className="absolute top-0 right-0.5 bg-red-light px-1 text-white text-[10px] rounded-sm font-made-tommy">New</div>}
       <div className="bg-white/20">
@@ -102,7 +127,7 @@ export function GameItemCard({ title, image, link, isNew, number }: TGameItemCar
       >
         {title}
       </p>
-    </Link>
+    </div>
   );
 }
 

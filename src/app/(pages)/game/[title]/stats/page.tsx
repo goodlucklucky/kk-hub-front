@@ -27,6 +27,7 @@ import PreviousResults from "../../../(default)/_components/profile/previous-res
 import stars_svg from "@assets/svg/stars_svg.svg";
 import money_sack from "@assets/svg/money-sack.svg";
 import caution_sign from "@assets/svg/caution-sign.svg";
+import TournamentItem from "../../../(default)/_components/profile/tournament-item";
 import ResultsItem from "../../../_components/stats/results-item";
 import { QuestionMarkIcon } from "@/app/_assets/svg/template";
 
@@ -157,7 +158,7 @@ export default function StatsPage() {
                       rightColor="#12652980"
                     />
                     <div className="flex-1 flex flex-col overflow-y-auto rounded-[13px] bg-[#653F5654] w-full p-2 gap-y-2 min-h-[50px]">
-                      <ResultsItem
+                      <TournamentItem
                         alt="stars_svg"
                         color="#CC8A36"
                         scoreColor="#FFDCAE"
@@ -167,7 +168,7 @@ export default function StatsPage() {
                         detail="👎 You have not joined this challenge."
                         path="/game/snake/tournaments"
                       />
-                      <ResultsItem
+                      <TournamentItem
                         alt="money_sack"
                         color="#608532"
                         scoreColor="#B5D48E"
@@ -177,7 +178,7 @@ export default function StatsPage() {
                         detail="🤑 Current Estimated Earnings: $100"
                         path="/game/snake/tournaments"
                       />
-                      <ResultsItem
+                      <TournamentItem
                         alt="caution_sign"
                         color="#853834"
                         scoreColor="#E99F8C"
