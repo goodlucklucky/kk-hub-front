@@ -8,6 +8,8 @@ import headerBoard from "@assets/images/header-board.png";
 import panelHome from "@assets/images/panel-home.png";
 import ButtonSlot from "@assets/images/single-button-slot.png";
 import { ArrowLeftIcon, EyeIcon } from "@assets/svg/etc";
+import { useRouter } from "next/navigation";
+
 export function Step3Top() {
   return (
     <div>
@@ -56,6 +58,8 @@ export function Step3Top() {
 }
 
 export function Step3Bottom() {
+  const router = useRouter();
+
   return (
     <>
       <Image
@@ -68,6 +72,9 @@ export function Step3Bottom() {
           "m-4 mt-auto mx-8 text-green-light bg-black/60 rounded-2xl p-2 px-4",
           "flex gap-4 items-center font-bumper-sticker text-left text-[18px] drop-shadow-md"
         )}
+        onClick={() => {
+          router.push("/?open1=1");
+        }}
       >
         <ArrowLeftIcon className="size-14" />
         <span>Return to THE Wheel and Spin for a free gift!</span>

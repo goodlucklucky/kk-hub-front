@@ -16,12 +16,12 @@ export const ProgressBar: React.FC<{
   
     return (
       <div className="flex-1 flex-col items-center gap-4">
-        <span className="text-[25px] font-bold text-[#653f56] font-bumper-sticker">
+        <span className="text-[22px] font-bold text-[#653f56] font-bumper-sticker">
           {currentXp}/{maxXp}
         </span>
         <div
           className={cn(
-            "flex-1 rounded-4xl h-3 shadow-[0_2px_0_0_#00000033]",
+            "flex-1 rounded-4xl h-3",
           )}
           style={{
             background: `linear-gradient(to bottom, ${

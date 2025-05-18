@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import _ from "lodash";
 
@@ -18,6 +18,39 @@ import chestLock from "@assets/images/chest-lock.png";
 import starClaim from "@assets/images/star-claim.png";
 
 export default function ClaimPage() {
+  
+  const [timeLeft, setTimeLeft] = useState("23:59:59");
+
+  // Add timer effect
+  React.useEffect(() => {
+    // Set initial time (24 hours from now)
+    const endTime = new Date();
+    endTime.setHours(endTime.getHours() + 24);
+    
+    const updateTimer = () => {
+      const now = new Date();
+      const diff = endTime.getTime() - now.getTime();
+      
+      if (diff <= 0) {
+        setTimeLeft("00:00:00");
+        return;
+      }
+      
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      setTimeLeft(
+        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+      );
+    };
+    
+    // Update immediately and then every second
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -70,7 +103,7 @@ export default function ClaimPage() {
                 <div className="rounded-[5px] bg-[#E3BEAA] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] flex items-center gap-1 p-1 py-0.5">
                   <ClockIcon className="w-4 h-4" />
                   <span className="text-[#745061] font-bumper-sticker text-base font-normal">
-                    23:39:01
+                    {timeLeft}
                   </span>
                 </div>
               </div>

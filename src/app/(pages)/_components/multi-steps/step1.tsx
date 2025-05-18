@@ -27,8 +27,8 @@ export function Step1Top() {
         <br />
         <span className=" text-[18px]">with crypto rewards</span>
       </div>
-      <div className="text-golden-bright relative font-bold">
-        <div className=" bg-[url(/images/board.png)] bg-cover rounded-4xl px-2.5 py-3.5">
+      <div className="text-golden-bright relative font-bold px-5">
+        <div className="bg-[url(/images/board.png)] bg-cover rounded-4xl px-2.5 py-3.5">
           <div className="bg-light rounded-3xl border-3 border-[#5F3F57]">
             <div className="py-2 flex items-center justify-center gap-2">
               <Image src={cup} alt="cup"/>
@@ -89,6 +89,58 @@ export function Step1Top() {
             </div>
           </div>
         </div>
+        <>
+          {/* Right Side */} 
+          <div
+            className="absolute right-0 bottom-10 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-right 10s linear infinite, colorChange 2s linear infinite"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute right-2 bottom-10 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-right 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-2500ms"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute right-1 bottom-10 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-right 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-5000ms"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute right-3 bottom-10 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-right 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-7500ms"}}
+          >
+            $
+          </div>
+          {/* Left Side */}
+          <div
+            className="absolute left-0 bottom-5 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-left 10s linear infinite, colorChange 2s linear infinite", animationDelay: "-1250ms"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute left-2 bottom-5 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-left 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-3750ms"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute left-1 bottom-5 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-left 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-6250ms"}}
+          >
+            $
+          </div>
+          <div
+            className="absolute left-3 bottom-5 font-bumper-sticker text-[24px] font-normal leading-normal tracking-[-0.48px]"
+            style={{animation: "scale 15s linear infinite, float-left 10s linear infinite, colorChange 3s linear infinite", animationDelay: "-8750ms"}}
+          >
+            $
+          </div>
+        </>
       </div>
     </div>
   );
@@ -97,44 +149,32 @@ export function Step1Top() {
 export function Step1Bottom() {
   return (
     <div className="flex flex-col w-full justify-between">
-      <div
-        className={cn(
-          "bg-gradient-to-b from-golden-bright to-golden-brown",
-          "p-0.5 rounded-2xl contain-content grid",
-          "-mx-1 mb-4 shadow-sm font-bumper-sticker"
-        )}
-      >
+      <div className="px-3">
         <div
           className={cn(
-            "bg-[url(/images/board_2.png)] bg-cover bg-center rounded-2xl p-2",
-            "flex gap-2 justify-center"
+            "bg-gradient-to-b from-golden-bright to-golden-brown",
+            "p-0.5 rounded-2xl contain-content grid",
+            "-mx-1 mb-4 shadow-sm font-bumper-sticker"
           )}
         >
-          {/* {Masking wood texture} */}
-          {/* <div className="absolute inset-0">
-            <Image
-              src="/images/wood-texture.png"
-              alt="Wood texture"
-              fill
-              className="object-cover object-center shadow-[0px_3px_4px_0px_rgba(0,0,0,0.20)]"
-              style={{
-                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))',
-                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))'
-              }}
-            />
-          </div> */}
-
-          <CashIcon className="z-20" />
-          <p
+          <div
             className={cn(
-              "text-center font-bumper-sticker font-[400] text-[18px] leading-[20px]",
-              "text-[#FFD093] drop-shadow-[0_2px_0_#6B340A]"
+              "bg-[url(/images/board_2.png)] bg-cover bg-center rounded-2xl p-2 w-full",
+              "flex gap-2 justify-center"
             )}
           >
-            Ever made Memecoin money
-            <br />
-            playing Snake?!
-          </p>
+            <CashIcon className="z-20" />
+            <p
+              className={cn(
+                "text-center font-bumper-sticker font-[400] text-[18px] leading-[20px]",
+                "text-[#FFD093] drop-shadow-[0_2px_0_#6B340A]"
+              )}
+            >
+              Ever made Memecoin money
+              <br />
+              playing Snake?!
+            </p>
+          </div>
         </div>
       </div>
       <div className="flex flex-col">
@@ -146,11 +186,11 @@ export function Step1Bottom() {
             <div>
               <Button
                 className={cn(
-                  "flex gap-2 items-center justify-center rounded-2xl font-bold w-full"
+                  "flex gap-2 items-center justify-center rounded-full font-bold w-full"
                 )}
               >
                 <KeyIcon />
-                <span className="drop-shadow-md">Enter Now</span>
+                <span className="drop-shadow-md text-[20px]">Enter Now</span>
               </Button>
             </div>
           </div>
