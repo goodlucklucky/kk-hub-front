@@ -7,12 +7,17 @@ interface TabButtonProps {
   className?: string;
 }
 
-export default function TabButton({ label, isActive = false, onClick, className }: TabButtonProps) {
+export default function TabButton({
+  label,
+  isActive = false,
+  onClick,
+  className,
+}: TabButtonProps) {
   return (
     <div
       onClick={onClick}
       className={cn(
-        "rounded-[9px] border font-bold w-full px-1 py-[1px] text-center font-made-tommy text-[16px] leading-normal cursor-pointer",
+        "rounded-[9px] border font-bold w-full p-1 text-center font-made-tommy text-[16px] leading-[24px] cursor-pointer",
         isActive
           ? "border-[#9C7B8F] bg-[#653F56] text-[#E3BEAA]"
           : "border-[#D1AB8D] bg-[#EED1B8] text-[#5F3F57]",
@@ -23,4 +28,4 @@ export default function TabButton({ label, isActive = false, onClick, className 
       {label}
     </div>
   );
-} 
+}

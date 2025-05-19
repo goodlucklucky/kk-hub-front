@@ -117,7 +117,7 @@ export function useRandomSpin({
     mutationFn: async ({ sessionId }: { sessionId: TSessionId }) => {
       const res = await baseInstance.get<TRandomOut>(
         `/bonus-service/spins/random-spin`,
-        { params: { sessionId } }
+        { params: { sessionId, is_spinning: true } }
       );
       return res.data;
     },

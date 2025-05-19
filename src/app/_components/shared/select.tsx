@@ -4,7 +4,7 @@ import { cn } from "@/app/_lib/utils";
 import { RightArrow } from "@/app/_assets/svg/right-arrow";
 
 export interface SelectProps extends React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root> {
-  options: { value: string; label: React.ReactNode }[];
+  options: { value: string; label: React.ReactNode | string }[];
   placeholder?: string;
   className?: string;
   triggerClassName?: string;

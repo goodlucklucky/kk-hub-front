@@ -31,7 +31,7 @@ export default function Footer({footerCategory = 'home'}: {footerCategory: strin
     <footer
       className={cn(
         "bg-[url(/images/footer-panel.png)] bg-[length:100%_100%] bg-no-repeat w-full h-[95px]",
-        "grid grid-cols-5 items-center pt-3.5 px-3 xs:px-4",
+        "grid grid-cols-5 items-center pt-4 px-3 xs:px-4",
         "text-center font-bumper-sticker text-xs text-golden-brown drop-shadow-[0_0.25ch_#fff4]"
       )}
     >

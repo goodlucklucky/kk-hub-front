@@ -1,7 +1,8 @@
 import { ClaimRaffleIcon } from "@/app/_assets/svg/claim";
+import { IRafflePrize } from "../../../../../../../services/raffle";
 
 interface TicketListProps {
-  tickets: number[];
+  tickets: IRafflePrize[];
 }
 
 export const TicketList = ({ tickets }: TicketListProps) => {
@@ -20,11 +21,11 @@ export const TicketList = ({ tickets }: TicketListProps) => {
           >
             <ClaimRaffleIcon color="#7C5C6B" className="w-5 h-5" />
             <span className="text-[#5F3F57] text-center font-made-tommy text-[14px] font-bold leading-normal">
-              {ticket}
+              {ticket.ticket_number}
             </span>
           </div>
         ))}
       </div>
     </div>
   );
-}; 
+};

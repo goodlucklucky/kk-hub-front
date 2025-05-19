@@ -1,185 +1,263 @@
 import { CheckIcon } from "@/app/_assets/svg/check";
 import { SendIcon } from "@/app/_assets/svg/send";
 import Button from "@/app/_components/shared/button";
-import { WalletConnection } from "./WalletConnection";
-import { Select } from "@/app/_components/shared/select";
-import { USDCIcon, USDTIcon, AvalancheIcon, EthereumIcon, BSCIcon } from "@/app/_assets/svg/coin";
+import { Input, Select } from "./forms";
+import { AvalancheIcon, UsdcIcon, UsdtIcon } from "@/app/_assets/svg/etc";
+import {
+  FormEventHandler,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
+import WagmiConnectButton from "@/app/_components/shared/wagmiWallet";
+import { LoaderIcon } from "react-hot-toast";
+import { useAccount } from "wagmi";
+import { GeneralContext } from "@/app/_providers/generalProvider";
+import { coinAddresses } from "@/app/_constants/coinAddresses";
+import { useTransfer } from "@/app/_hooks/useTransfer";
+import { useThirdweb } from "../../_context/thirdwebContext";
 
 interface WithdrawSectionProps {
   isConnected: boolean;
-  onConnect: () => void;
-  onDisconnect: () => void;
 }
 
-export const WithdrawSection = ({ isConnected, onConnect, onDisconnect }: WithdrawSectionProps) => {
+export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
+  const { sessionId } = useContext(GeneralContext);
+  const {
+    balance: {
+      usdc,
+      usdt,
+      isPending: isBalanceLoading,
+      refresh: refreshBalance,
+    },
+    chainId,
+    selectedCurrency,
+    setSelectedCurrency,
+  } = useThirdweb();
+
+  const balance = useMemo(
+    () => ({ usdc: usdc?.data?.displayValue, usdt: usdt?.data?.displayValue }),
+    [usdc?.data?.displayValue, usdt?.data?.displayValue]
+  );
+
+  const { address } = useAccount();
+  const [, setAmount] = useState(0);
+
+  const { transfer, isPending } = useTransfer();
+
+  const handleManualWithdraw = useCallback<FormEventHandler<HTMLFormElement>>(
+    async (e) => {
+      try {
+        e?.preventDefault();
+
+        const formData = new FormData(e.currentTarget);
+        const currentData = Object.fromEntries(formData);
+
+        const contracts =
+          coinAddresses?.[currentData?.currency as "usdt" | "usdc"];
+        const contract_address = contracts?.[43114];
+
+        const { data: res, error } = await transfer({
+          contract_address,
+          to: `${currentData?.address}`,
+          amount: `${currentData?.amount}`,
+        });
+        if (error) throw error;
+        // console.log("handleManualWithdraw res: ", res);
+
+        refreshBalance?.();
+
+        return { data: res };
+      } catch (error) {
+        // console.error("handleManualWithdraw error: ", error);
+        return { error };
+      }
+    },
+    [transfer, refreshBalance]
+  );
+
   return (
     <div className="mt-3 rounded-[7px] flex flex-1 flex-col w-full px-2 overflow-y-auto bg-[#E3BEAA] py-3">
       <div className="flex flex-col h-full p-2 pb-3 bg-[#EED1B8] rounded-t-[15px] gap-1.5 border-b-1 border-[#E3BEAA]">
         <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal pt-1 px-2">
           withdraw From EXTERNAL Wallet
         </span>
-        <WalletConnection isConnected={isConnected} onConnect={onConnect} onDisconnect={onDisconnect} />
+        <WagmiConnectButton />
         {isConnected && (
-          <div className="flex flex-col gap-2 bg-[#F5DDC4] border-1 border-[#D1B69F] rounded-[10px] p-2">
+          <form
+            onSubmit={handleManualWithdraw}
+            className="flex flex-col gap-2 bg-[#F5DDC4] border-1 border-[#D1B69F] rounded-[10px] p-2"
+          >
             <div className="flex gap-2 justify-center items-center">
               <Select
-                triggerClassName="flex-1 rounded-[20px]"
-                defaultValue="USDC"
+                className="w-auto"
+                name="currency"
                 options={[
-                  {
-                    value: "USDC",
-                    label: (
-                      <div className="flex items-center gap-1">
-                        <USDCIcon width={20} height={20} />
-                        <span>USDC</span>
-                      </div>
-                    ),
-                  },
-                  {
-                    value: "USDT",
-                    label: (
-                      <div className="flex items-center gap-1">
-                        <USDTIcon width={20} height={20} />
-                        <span>USDT</span>
-                      </div>
-                    ),
-                  },
+                  { label: "USDC", value: "usdc", icon: <UsdcIcon /> },
+                  { label: "USDT", value: "usdt", icon: <UsdtIcon /> },
                 ]}
+                value={selectedCurrency}
+                onChange={setSelectedCurrency as any}
               />
-              <div className="rounded-[5px] border border-[#D1B69F] bg-gradient-to-b from-[#D0D0D0] to-[#F4F4F0] shadow-[inset_0px_3px_6px_0px_rgba(0,0,0,0.20)] flex justify-start items-center px-2 h-full flex-1">
-                <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px]">999.99</span>
-              </div>
+              <Input
+                defaultValue={balance?.[selectedCurrency] || 0}
+                onChange={(e) => setAmount(e?.target?.valueAsNumber || 0)}
+                max={balance?.[selectedCurrency] || 0}
+                min={0}
+                step="any"
+                type="number"
+                name="amount"
+                className="w-full h-9 py-0"
+              />
+              <input
+                type="hidden"
+                name="network"
+                value={chainId}
+                onChange={() => {}}
+              />
+              <input
+                type="hidden"
+                name="address"
+                value={address}
+                onChange={() => {}}
+              />
+              <input
+                type="hidden"
+                name="sessionId"
+                value={sessionId}
+                onChange={() => {}}
+              />
             </div>
             <div className="flex justify-start items-center">
-              <span className="text-[#7C5C6B] font-made-tommy font-bold text-[12px] px-2">
-                ~4.06 USDC max.
+              <span className="text-[#7C5C6B] font-made-tommy font-bold text-[12px] px-2 flex items-center gap-1 flex-wrap">
+                <span>Available:</span>
+                {isBalanceLoading ? (
+                  <LoaderIcon className="size-5 inline" />
+                ) : (
+                  <span>{balance?.[selectedCurrency]}</span>
+                )}
+                {selectedCurrency?.toUpperCase()}
+              </span>
+              <span className="text-[#653F56] font-made-tommy font-bold text-[12px] px-2 border border-[#917377] rounded-[5px] -mt-1 bg-[#EED1B8]">
+                MAX
               </span>
             </div>
-            <Button className="w-full flex gap-1 items-center justify-center bg-gradient-to-b from-[#24BE62] to-[#1AB257] py-0.5">
-              <CheckIcon color="#ffffff" className="w-3 h-3 -mt-1" />
-              <span className="text-white font-made-tommy font-extrabold text-[14px] tracking-[0.32px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)]">
-                Confirm
+            <Button
+              disabled={isPending}
+              className="w-full flex gap-1 items-center justify-center bg-gradient-to-b from-[#24BE62] to-[#1AB257]"
+            >
+              {isPending ? (
+                <LoaderIcon className="size-5 inline" />
+              ) : (
+                <CheckIcon color="#ffffff" className="w-3 h-3 -mt-1" />
+              )}
+              <span className="text-white font-made-tommy font-extrabold text-[12px] tracking-[0.32px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)]">
+                {isPending ? "Pending" : "Confirm"}
               </span>
             </Button>
-          </div>
+          </form>
         )}
       </div>
-      <div className="flex flex-col p-2 pb-3 bg-[#EED1B8] rounded-b-[15px] gap-0.5">
-        <div className="flex flex-col gap-1">
-          <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal pt-1 px-2">withdraw to address</span>
-          <div className="flex gap-2">
-            <div className="flex flex-col w-full">
-              <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">Select Currency</span>
-              <Select
-                defaultValue="USDC"
-                options={[
-                  {
-                    value: "USDC",
-                    label: (
-                      <div className="flex items-center gap-1">
-                        <USDCIcon width={20} height={20} />
-                        <span>USDC</span>
-                      </div>
-                    ),
-                  },
-                  {
-                    value: "USDT",
-                    label: (
-                      <div className="flex items-center gap-1">
-                        <USDTIcon width={20} height={20} />
-                        <span>USDT</span>
-                      </div>
-                    ),
-                  },
-                ]}
-              />
-            </div>
-            <div className="flex flex-col w-full">
-              <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">Select Network</span>
-              <Select
-                defaultValue="Avalanche"
-                options={[
-                  {
-                    value: "Avalanche",
-                    label: (
-                      <div className="flex items-center gap-1">
-                        <AvalancheIcon width={16} height={14} />
-                        <span>Avalanche</span>
-                      </div>
-                    ),
-                  },
-                  {
-                    value: "Ethereum",
-                    label: (
-                      <div className="flex items-center gap-1">
-                        <EthereumIcon width={16} height={18} />
-                        <span>Ethereum</span>
-                      </div>
-                    ),
-                  },
-                  {
-                    value: "BSC",
-                    label: (
-                      <div className="flex items-center gap-1">
-                        <BSCIcon width={16} height={14} />
-                        <span>BSC</span>
-                      </div>
-                    ),
-                  },
-                ]}
-              />
-            </div>
-          </div>
+      <form
+        onSubmit={handleManualWithdraw}
+        className="flex flex-col p-2 pb-3 bg-[#EED1B8] rounded-b-[15px] gap-0.5"
+      >
+        <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal pt-1 px-2">
+          withdraw to address
+        </span>
+        <div className="flex gap-2">
+          <Select
+            label="Select Currency"
+            name="currency"
+            options={[
+              { label: "USDC", value: "usdc", icon: <UsdcIcon /> },
+              { label: "USDT", value: "usdt", icon: <UsdtIcon /> },
+            ]}
+            value={selectedCurrency}
+            onChange={setSelectedCurrency as any}
+          />
+          <Select
+            label="Select Network"
+            name="network"
+            options={[
+              {
+                label: "Avalanche",
+                value: "avalanche",
+                icon: <AvalancheIcon />,
+              },
+              // {
+              //   label: "Ethereum",
+              //   value: "ethereum",
+              //   icon: <EthereumIcon />,
+              // },
+              // { label: "BSC", value: "bsc", icon: <BscIcon /> },
+            ]}
+          />
         </div>
-        <div className="flex flex-col gap-1">
-          <div className="flex gap-2">
-            <div className="flex flex-col w-full">
-              <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">Withdrawal Address</span>
-              <div className="rounded-[5px] border border-[#D1B69F] bg-gradient-to-b from-[#D0D0D0] to-[#F4F4F0] shadow-[inset_0px_3px_6px_0px_rgba(0,0,0,0.20)] flex justify-center items-center px-2 h-full">
-                <input
-                  type="text"
-                  className="text-[#5F3F57] font-made-tommy font-bold text-[14px] py-0.5 pt-1.5 w-full bg-transparent outline-none text-center"
-                  placeholder="0x10e0271ec47d55511a047516fxed3"
-                  defaultValue="0x10e0271ec47d55511a047516fxed3"
-                />
-              </div>
-            </div>
-          </div>
+        <input
+          type="hidden"
+          name="sessionId"
+          value={sessionId}
+          onChange={() => {}}
+        />
+        <div className="flex flex-col w-full">
+          <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">
+            Withdrawal Address
+          </span>
+          <Input
+            name="address"
+            defaultValue={"0x10e0271ec47d55511a047516fxed3"}
+          />
         </div>
-        <div className="flex items-center bg-[#E99F8C] rounded-[10px] mt-1.5 p-2 py-1 gap-2">
-        <span className="bg-[#853834] rounded-full w-4.5 h-4.5 px-2 flex items-center justify-center text-[#EED1B8] text-[12px]">i</span>
+        <div className="flex justify-center items-center bg-[#E99F8C] rounded-[10px] mt-1.5 p-2 gap-2">
+          <span className="bg-[#853834] rounded-full w-4.5 h-4.5 px-2 flex items-center justify-center text-[#EED1B8] text-[12px]">
+            i
+          </span>
           <span className="text-[#853834] font-made-tommy text-[10px] font-bold leading-normal">
-            Please make sure the address accepts USDC on Avalanche (AVAX C-Chain). Funds cannot be recovered
+            Please make sure the address accepts USDC on Avalanche (AVAX
+            C-Chain). Funds cannot be recovered
           </span>
         </div>
         <div className="flex gap-2">
           <div className="flex flex-col w-full">
-            <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">Withdrawal Amount</span>
-            <div className="rounded-[5px] border border-[#D1B69F] bg-gradient-to-b from-[#D0D0D0] to-[#F4F4F0] shadow-[inset_0px_3px_6px_0px_rgba(0,0,0,0.20)] flex justify-start items-center px-2 h-full">
-              <input
-                type="number"
-                className="text-[#5F3F57] font-made-tommy font-bold text-[14px] py-0.5 pt-1.5 w-full bg-transparent outline-none"
-                placeholder="0.00"
-                defaultValue="0"
-              />
-            </div>
+            <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">
+              Withdrawal Amount
+            </span>
+            <Input
+              type="number"
+              name="amount"
+              defaultValue={balance?.[selectedCurrency] || 0}
+              onChange={(e) => setAmount(e?.target?.valueAsNumber || 0)}
+              max={balance?.[selectedCurrency] || 0}
+              min={0}
+              step="any"
+            />
             <div className="flex flex-col gap-0 mt-2">
               <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
-                Est transaction fee: 4.06 USDC
+                Max: {balance?.[selectedCurrency]}{" "}
+                {selectedCurrency?.toUpperCase()}
               </span>
               <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
-                Will recieve: 4.06 USDC
+                Transaction fee: 4.06 {selectedCurrency?.toUpperCase()}
+              </span>
+              <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
+                Will recieve: 4.06 {selectedCurrency?.toUpperCase()}
               </span>
             </div>
           </div>
         </div>
         <Button className="w-full flex gap-1 items-center justify-center bg-gradient-to-b from-[#24BE62] to-[#1AB257] mt-2">
-          <SendIcon color="#ffffff" className="w-3 h-3" />
+          {isPending ? (
+            <LoaderIcon className="size-5 inline" />
+          ) : (
+            <SendIcon color="#ffffff" className="w-3 h-3" />
+          )}
           <span className="text-white font-made-tommy font-extrabold text-[12px] tracking-[0.32px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)]">
-            Send It
+            {isPending ? "Pending" : "Send It"}
           </span>
         </Button>
-      </div>
+      </form>
     </div>
   );
 };

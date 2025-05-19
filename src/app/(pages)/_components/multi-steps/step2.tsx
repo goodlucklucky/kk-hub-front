@@ -31,27 +31,33 @@ export function Step2Bottom() {
 
   React.useEffect(() => {
     if (timeLeft <= 0) return;
-    
+
     const timer = setInterval(() => {
-      setTimeLeft(prev => prev - 1);
+      setTimeLeft((prev) => prev - 1);
     }, 1000);
-    
+
     return () => clearInterval(timer);
   }, [timeLeft]);
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
-  const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`;
 
   return (
     <>
       <div className="bg-black/60 rounded-t-2xl pt-2 px-4 2xs:p-4 2xs:px-8 text-green-light font-bumper-sticker">
         <p className="flex gap-2 items-center w-fit 2xs:pb-2 2xs:mb-2 border-b-2 border-b-current/40">
           <TimerIcon />
-          <span className="font-bumper-sticker font-light text-[22px]">{formattedTime}</span>
+          <span className="font-bumper-sticker font-light text-[22px]">
+            {formattedTime}
+          </span>
         </p>
         <p className="">
-          <span className="font-bumper-sticker font-light text-[18px]">surprise! grab your free spin now!</span>
+          <span className="font-bumper-sticker font-light text-[18px]">
+            surprise! grab your free spin now!
+          </span>
           <br />
           <small className="text-white font-made-tommy font-light text-[14px]">
             Rewards won apply for new users only.

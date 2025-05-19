@@ -2,7 +2,6 @@
 
 import React, { useState, useCallback } from "react";
 import Image from "next/image";
-import _ from "lodash";
 //import components
 import Gifts from "../../(default)/_components/gifts";
 
@@ -88,7 +87,10 @@ export default function HomePage() {
                     <QuestionMarkIcon />
                   </div>
                 </Button>
-                <Button className="bg-[url(/images/purple-btn-bg.png)] bg-cover bg-center bg-no-repeat w-10 h-11 m-1">
+                <Button
+                  onClick={() => setIsChatOpen(!isChatOpen)}
+                  className="bg-[url(/images/purple-btn-bg.png)] bg-cover bg-center bg-no-repeat w-10 h-11 m-1"
+                >
                   <div className="w-5 h-5">
                     <MsgIcon />
                   </div>
@@ -126,7 +128,7 @@ export default function HomePage() {
         isMinting={isMinting}
         isOpen={isMintDialogOpen}
         onClose={handleMintDialogClose}
-        setIsMinting={setIsMinting}
+        // setIsMinting={setIsMinting}
       />
       <BankDialog
         isOpen={isBankingOpen}

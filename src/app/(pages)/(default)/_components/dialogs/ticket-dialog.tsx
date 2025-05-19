@@ -10,15 +10,17 @@ import {
 //import icons
 import { CloseIcon } from "@/app/_assets/svg/close";
 import { ClaimRaffleIcon } from "@/app/_assets/svg/claim";
+import { IEnterRaffle } from "../../../../../../services/raffle";
 
 //interface
 interface TicketDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  tickets: number[];
+  tickets: IEnterRaffle[];
 }
 
 const TicketDialog = ({ isOpen, onClose, tickets }: TicketDialogProps) => {
+  // console.log("Tickets", tickets);
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogPortal>
@@ -26,7 +28,10 @@ const TicketDialog = ({ isOpen, onClose, tickets }: TicketDialogProps) => {
 
         <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center fixed w-[95%] top-1/2 -translate-y-1/2 z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2 right-0 left-0">
           <div className="bg-[#F5D6B1] rounded-2xl p-3 shadow-md border-2 border-[#A96415] flex-1 flex flex-col overflow-y-auto">
-            <div className="flex justify-center items-center w-full absolute -bottom-4.5 right-0" onClick={onClose}>
+            <div
+              className="flex justify-center items-center w-full absolute -bottom-4.5 right-0"
+              onClick={onClose}
+            >
               <CloseIcon />
             </div>
             <span className="text-[#D1B69F] text-center font-made-tommy text-[18px] font-bold leading-normal absolute top-4 right-5 px-1 bg-[#745061] rounded-[5px] py-0">
@@ -46,7 +51,7 @@ const TicketDialog = ({ isOpen, onClose, tickets }: TicketDialogProps) => {
                   >
                     <ClaimRaffleIcon color="#7C5C6B" className="w-5 h-5" />
                     <span className="text-[#5F3F57] text-center font-made-tommy text-[14px] font-bold leading-normal">
-                      {ticket}
+                      {ticket.ticketNumber}
                     </span>
                   </div>
                 ))}

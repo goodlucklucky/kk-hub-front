@@ -27,8 +27,11 @@ export function formatBigNumber(
   }
 }
 
-export function formatNumber(number: number | string) {
-  return new Intl.NumberFormat().format(Number(number));
+export function formatNumber(
+  number: number | string,
+  options?: Intl.NumberFormatOptions
+) {
+  return new Intl.NumberFormat("en-US", options).format(Number(number));
 }
 
 export function shuffleArray<T>(arr: T[]) {

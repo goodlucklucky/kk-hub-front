@@ -10,14 +10,14 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: {
     // Prevents legacy config warnings
-    all: false
-  }
+    all: false,
+  },
 });
 
 const eslintConfig = [
   ...compat.extends(
-    "next/core-web-vitals",  // Next.js performance-focused rules
-    "next/typescript"       // Next.js TypeScript support
+    "next/core-web-vitals", // Next.js performance-focused rules
+    "next/typescript" // Next.js TypeScript support
   ),
   {
     rules: {

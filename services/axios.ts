@@ -4,8 +4,8 @@ const baseInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_APP_API_BASE_URL,
   headers: {
     "ngrok-skip-browser-warning": "69420",
-    "x-game-key": "snake_v2",
-    "x-game-source": "snake_v2",
+    "x-game-key": "1m1",
+    "x-game-source": "1m1",
     "x-game-env": process.env.NODE_ENV,
     "x-token": process.env.NEXT_PUBLIC_APP_TOKEN,
     "is-valid-user": "true",
@@ -16,11 +16,12 @@ const localInstance = axios.create({
   baseURL: "/api",
   headers: {
     "ngrok-skip-browser-warning": "69420",
-    "x-game-key": "snake_v2",
-    "x-game-source": "snake_v2",
+    "x-game-key": "1m1",
+    "x-game-source": "1m1",
     "x-game-env": process.env.NODE_ENV,
     "is-valid-user": "true",
   },
+  withCredentials: true,
 });
 
 function baseRequestSuccessResponseInterceptor(response: AxiosResponse) {

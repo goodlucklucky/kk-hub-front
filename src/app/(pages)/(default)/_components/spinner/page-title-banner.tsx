@@ -1,9 +1,9 @@
 "use client";
 
-import banner from "@/_assets/header-board.png";
-import { cn } from "@/lib/utils";
-import useGetPageTitle from "@/src/_hooks/use-get-page-title";
+import banner from "@assets/images/header-board.png";
+// import useGetPageTitle from "@/src/_hooks/use-get-page-title";
 import Image from "next/image";
+import { cn } from "@/app/_lib/utils";
 
 const PageTitleBanner = ({
   titleBanner,
@@ -16,7 +16,7 @@ const PageTitleBanner = ({
   className?: string;
   spinner?: boolean;
 }) => {
-  const [title] = useGetPageTitle();
+  // const [title] = useGetPageTitle();
 
   return (
     <div
@@ -39,7 +39,7 @@ const PageTitleBanner = ({
         />
       )}
       <div className="z-20 mb-2 text-center text-[#371D32] text-2xl stroke-[#BD5B26]">
-        {titleBanner || title}
+        {titleBanner}
       </div>
     </div>
   );

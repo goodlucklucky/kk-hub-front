@@ -1,15 +1,27 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { baseInstance } from "../axios";
 
-export function useStoreItems(sessionId: TSessionId) {
+export function useStoreItems(sessionId: TSessionId, type_id?: string) {
   return useQuery({
     queryKey: ["store-items", sessionId],
     queryFn: () =>
       baseInstance
         .get<{ data: IStoreItemsRes }>(`/nft-service/store/items`, {
-          params: { sessionId },
+          params: { sessionId, type_id },
         })
-        .then((res) => res.data),
+        .then((res) => res.data.data),
+  });
+}
+
+export function useStoreTypes() {
+  return useQuery({
+    queryKey: ["store-types"],
+    queryFn: () =>
+      baseInstance
+        .get<{ data: { data: IStoreItemType[] } }>(
+          `/nft-service/store/settings/item-types`
+        )
+        .then((res) => res.data.data),
   });
 }
 

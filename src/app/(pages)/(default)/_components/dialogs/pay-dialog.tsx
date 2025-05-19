@@ -34,7 +34,7 @@ const PayDialog = ({
   onClose,
   setIsPaying,
 }: PayDialogProps) => {
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess] = useState(false);
   useEffect(() => {
     if (isPaying) {
       //To do: call api to pay

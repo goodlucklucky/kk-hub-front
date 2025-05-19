@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 //import modules
 import Image, { StaticImageData } from "next/image";
@@ -9,9 +9,7 @@ import React from "react";
 import { cn } from "@/app/_lib/utils";
 
 //import assets
-import { RightArrow } from '@assets/svg/right-arrow';
-import { WarIcon } from "@/app/_assets/svg/war";
-import { CupIcon } from "@/app/_assets/svg/cup";
+import { RightArrow } from "@assets/svg/right-arrow";
 
 //interface
 export type TItems = {

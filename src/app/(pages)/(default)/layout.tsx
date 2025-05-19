@@ -8,10 +8,8 @@ export default function Layout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className={cn("min-h-dvh flex flex-col")}>
-      <Header />      
-      <main className="grow flex flex-col">
-        {children}
-      </main>
+      <Header />
+      <main className="grow flex flex-col">{children}</main>
       <Footer footerCategory="home" />
     </div>
   );

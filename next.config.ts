@@ -76,20 +76,28 @@ const nextConfig: NextConfig = {
 
   // Required for Next.js image optimization to work
   images: {
-    remotePatterns: (games
-      ?.filter((g) => g.webtype === "nextjs" && g.link !== "#" && g.link)
-      .map((game) => {
-        try {
-          return {
-            protocol: "https",
-            hostname: new URL(game.link).hostname,
-            pathname: "/images/**",
-          };
-        } catch {
-          return null;
-        }
-      })
-      .filter(Boolean) || []) as RemotePattern[],
+    remotePatterns: [
+      ...(games
+        ?.filter((g) => g.webtype === "nextjs" && g.link !== "#" && g.link)
+        .map((game) => {
+          try {
+            return {
+              protocol: "https",
+              hostname: new URL(game.link).hostname,
+              pathname: "/images/**",
+            };
+          } catch {
+            return null;
+          }
+        })
+        .filter(Boolean) || []),
+      // Add Cloudinary domain explicitly
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**", // Allow all paths under this domain
+      },
+    ] as RemotePattern[],
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if

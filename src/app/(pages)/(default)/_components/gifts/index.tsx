@@ -1,23 +1,19 @@
 //import modules
-import React from "react";
+import React, { useContext, useMemo } from "react";
 import Slider from "react-slick";
-
-//import utils
-// import { cn } from "@/app/_lib/utils";
 
 //import components
 import { GiftSlide } from "./slides";
+import { GeneralContext } from "@/app/_providers/generalProvider";
+import { useBonusCompletion } from "../../../../../../services/bonus";
 import { useRouter } from "next/navigation";
 import { useApp } from "@/app/_contexts/appContext";
-
-//import assets
-// import { RightArrow2 } from "@/app/_assets/svg/right-arrow";
 
 //interface
 interface GiftsProps {
   setIsOpen: () => void;
   setIsMinting: (isMinting: boolean) => void;
-} 
+}
 
 //custom react carousel settings
 const settings = {
@@ -30,27 +26,50 @@ const settings = {
   fade: true,
   autoplay: true,
   autoplaySpeed: 4000,
-  appendDots: (dots: any) => (
-    <div>
-      {dots}
-    </div>
-  ),
+  appendDots: (dots: any) => <div>{dots}</div>,
 };
 
 export default function Gifts({ setIsOpen, setIsMinting }: GiftsProps) {
-  const { isProfileOpen, setIsProfileOpen, isTaskOpen, setIsTaskOpen } = useApp();
+  const { sessionId } = useContext(GeneralContext);
+  const { isProfileOpen, setIsProfileOpen } = useApp();
+  const { data: completionStatus } = useBonusCompletion({ sessionId });
   const router = useRouter();
+
+  const ogCount = useMemo(
+    () =>
+      completionStatus?.bonuses?.filter(
+        (one) =>
+          one?.status === "active" &&
+          [
+            "follow_twitter",
+            "telegram_community",
+            "invite_3_friends",
+          ]?.includes(one?.bonusName)
+      )?.length || 0,
+    [completionStatus?.bonuses]
+  );
+
   return (
     <div className="flex items-center justify-center gap-3 pl-0 w-[335px]">
-      {/* <GiftBarge /> */}
-      <div className="w-full">
-        <Slider {...settings}>
-          <GiftSlide type="daily" onClick={() => router.push("/claim")} />
-          <GiftSlide type="invite" onClick={() => setIsProfileOpen(!isProfileOpen)} />
-          <GiftSlide type="og" onClick={() => router.push("/tasks")} />
-          <GiftSlide type="nft" setIsOpen={setIsOpen} setIsMinting={setIsMinting} />
-        </Slider>
-      </div>
+      {/* <div className="w-full"> */}
+      <Slider {...settings} className="w-full">
+        <GiftSlide type="daily" onClick={() => router.push("/claim")} />
+        <GiftSlide
+          type="invite"
+          onClick={() => setIsProfileOpen(!isProfileOpen)}
+        />
+        <GiftSlide
+          type="og"
+          value={ogCount}
+          onClick={() => router.push("/tasks")}
+        />
+        <GiftSlide
+          type="nft"
+          setIsOpen={setIsOpen}
+          setIsMinting={setIsMinting}
+        />
+      </Slider>
+      {/* </div> */}
     </div>
   );
 }

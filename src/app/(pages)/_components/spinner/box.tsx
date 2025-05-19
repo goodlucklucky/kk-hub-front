@@ -26,7 +26,7 @@ export default function SpinnerBox({ clearTimer }: SpinnerBoxProps) {
   const [loading, setLoading] = useState(false);
   const [totalSpins, setTotalSpins] = useState(3);
   const [openReward, setOpenReward] = useState(false);
-  const [reward, setReward] = useState<TSpinner | null>(null);
+  const [, setReward] = useState<TSpinner | null>(null);
 
   const spinsList = useMemo(() => {
     if (isClient) return shuffleArray(spinnerProbability);
@@ -46,7 +46,7 @@ export default function SpinnerBox({ clearTimer }: SpinnerBoxProps) {
     return spinsList[randomIndex]?.kokos;
   }, [isClient, spinsList]);
 
-  const handleEndSpin = useCallback(async (_result: number) => {
+  const handleEndSpin = useCallback(async () => {
     setTotalSpins((prev) => Math.max(0, prev - 1));
     setOpenReward(true);
     setLoading(false);

@@ -1,14 +1,10 @@
-'use client';
+"use client";
 
 //import modules
 import { useState } from "react";
 
 //import components
-import {
-  Dialog,
-  DialogOverlay,
-  DialogPortal,
-} from "@/app/_components/ui/dialog";
+import { Dialog, DialogPortal } from "@/app/_components/ui/dialog";
 import NavigationButton from "@/app/(pages)/(default)/_components/profile/navigateBtn";
 import { BalanceHeader } from "@/app/(pages)/(default)/_components/banking/BalanceHeader";
 import { DepositSection } from "@/app/(pages)/(default)/_components/banking/DepositSection";
@@ -20,6 +16,7 @@ import topArrow from "@assets/svg/top.svg";
 import downArrowClick from "@assets/svg/down-click.svg";
 import downArrow from "@assets/svg/down.svg";
 import { CloseIcon } from "@/app/_assets/svg/close";
+import { useAccount } from "wagmi";
 
 type BankingComponent = "deposit" | "withdraw";
 
@@ -29,17 +26,10 @@ interface BankDialogProps {
   onClose: () => void;
 }
 
-const BankDialog = ({ isOpen, onClose, }: BankDialogProps) => {
-  const [activeComponent, setActiveComponent] = useState<BankingComponent>("deposit");
-  const [isConnected, setIsConnected] = useState(true);
-
-  const handleConnect = () => {
-    setIsConnected(true);
-  };
-
-  const handleDisconnect = () => {
-    setIsConnected(false);
-  };
+const BankDialog = ({ isOpen, onClose }: BankDialogProps) => {
+  const [activeComponent, setActiveComponent] =
+    useState<BankingComponent>("deposit");
+  const { isConnected } = useAccount();
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -54,31 +44,27 @@ const BankDialog = ({ isOpen, onClose, }: BankDialogProps) => {
             <div className="bg-[#F5D6B1] rounded-2xl p-3 shadow-md border-2 border-[#A96415] flex-1 flex flex-col overflow-y-auto">
               <div className="flex justify-center gap-1.5">
                 <NavigationButton
-                  icon={activeComponent === "deposit" ? topArrowClick : topArrow}
+                  icon={
+                    activeComponent === "deposit" ? topArrowClick : topArrow
+                  }
                   label="Deposit"
                   isActive={activeComponent === "deposit"}
                   onClick={() => setActiveComponent("deposit")}
                 />
                 <NavigationButton
-                  icon={activeComponent === "withdraw" ? downArrowClick : downArrow}
+                  icon={
+                    activeComponent === "withdraw" ? downArrowClick : downArrow
+                  }
                   label="Withdraw"
                   isActive={activeComponent === "withdraw"}
                   onClick={() => setActiveComponent("withdraw")}
                 />
               </div>
               {activeComponent === "deposit" && (
-                <DepositSection
-                  isConnected={isConnected}
-                  onConnect={handleConnect}
-                  onDisconnect={handleDisconnect}
-                />
+                <DepositSection isConnected={isConnected} />
               )}
               {activeComponent === "withdraw" && (
-                <WithdrawSection
-                  isConnected={!isConnected}
-                  onConnect={handleConnect}
-                  onDisconnect={handleDisconnect}
-                />
+                <WithdrawSection isConnected={isConnected} />
               )}
             </div>
           </div>
@@ -86,6 +72,6 @@ const BankDialog = ({ isOpen, onClose, }: BankDialogProps) => {
       </DialogPortal>
     </Dialog>
   );
-}
+};
 
 export default BankDialog;

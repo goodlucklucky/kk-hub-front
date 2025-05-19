@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
 import React, { useState, useCallback } from "react";
 import Image, { StaticImageData } from "next/image";
 import _ from "lodash";
 //import components
+import { XpBar } from "../_components/xp-bar";
 import Gifts from "../_components/gifts";
 import GamesCard from "../_components/games/card";
 import AddToHome from "../_components/add-to-home";
@@ -19,8 +20,8 @@ import { GameIcon } from "@assets/svg/game";
 import { StarIcon } from "@/app/_assets/svg/star";
 
 //import images
-import forestBack from '@assets/images/forest-back.png';
-import mainBack from '@assets/images/main-back.png';
+import forestBack from "@assets/images/forest-back.png";
+import mainBack from "@assets/images/main-back.png";
 import MintDialog from "../_components/dialogs/mint-dialog";
 import BankDialog from "../_components/dialogs/bank-dialog";
 import ProfileDialog from "../_components/dialogs/profile-dialog";
@@ -71,6 +72,7 @@ export default function HomePage() {
 
   return (
     <>
+      <XpBar currentXp={745} maxXp={3250} />
       <div className={cn("flex flex-col flex-1 h-full items-center gap-y-3 xs:gap-y-5")}>
         <Image
           src={mainBack}
@@ -135,9 +137,8 @@ export default function HomePage() {
         isMinting={isMinting}
         isOpen={isMintDialogOpen}
         onClose={handleMintDialogClose}
-        setIsMinting={setIsMinting}
       />
-       <BankDialog
+      <BankDialog
         isOpen={isBankingOpen}
         onClose={() => setIsBankingOpen(!isBankingOpen)}
       />

@@ -15,16 +15,20 @@ import lootbox from "@assets/images/lootbox1.png";
 
 // Import new components
 import { DialogHeader } from "./raffle/dialog-header";
-import { WinningNumbers } from "./raffle/winning-numbers";
 import { TicketList } from "./raffle/ticket-list";
 import { NoWinMessage } from "./raffle/no-win-message";
 import Button from "@/app/_components/shared/button";
 import { CheckIcon } from "@/app/_assets/svg/check";
+import {
+  IRafflePrize,
+  useRaffleStore,
+} from "../../../../../../services/raffle";
+import { WinningNumbers } from "./raffle/winning-numbers";
 
 interface RaffleDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  tickets: number[];
+  tickets: IRafflePrize[];
   isWinner: boolean;
   winningNumbers: number[];
   showWinner: boolean;
@@ -41,6 +45,13 @@ const RaffleDialog = ({
   isClaiming,
 }: RaffleDialogProps) => {
   const [openLootbox, setOpenLootbox] = useState(false);
+  const { ticket } = useRaffleStore();
+
+  // console.log("winningNumbers!!!", winningNumbers);
+  // console.log("Tickets!!!", tickets);
+  // console.log("isWinner!!!", isWinner);
+  // console.log("Show winner!!!", showWinner);
+  // console.log("isClaiming!!!", showWinner);
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogPortal>
@@ -79,7 +90,7 @@ const RaffleDialog = ({
                     className="object-cover w-auto h-20 fixed"
                   />
                   <span className="text-[#8A6C48] text-[30px] font-bumper-sticker font-normal rotate-[-2deg] z-20 mr-4 mb-4.5">
-                    369
+                    {ticket[0]?.ticketNumber}
                   </span>
                 </div>
               </>
@@ -117,10 +128,8 @@ const RaffleDialog = ({
                     </div>
                   )}
                   {showWinner && isWinner && (
-                    <div className="rounded-[10px] border-2 border-[#CDAA98] bg-[#F9CB88] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] flex justify-center items-center p-2 transition-all duration-700 w-full">
-                      <WinningNumbers
-                        numbers={[...winningNumbers, ...winningNumbers]}
-                      />
+                    <div className="rounded-[10px] border-2 border-[#CDAA98] bg-[#F9CB88] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] flex justify-center items-center p-2 w-full transition-all duration-700">
+                      <WinningNumbers numbers={winningNumbers} />
                     </div>
                   )}
                 </div>
@@ -129,7 +138,7 @@ const RaffleDialog = ({
                   isWinner ? (
                     <TicketList tickets={tickets} />
                   ) : (
-                    <NoWinMessage />
+                    <NoWinMessage onClose={onClose} />
                   )
                 ) : null}
               </>

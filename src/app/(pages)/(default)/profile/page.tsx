@@ -1,7 +1,7 @@
 "use client";
 
 //import modules
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 
 //import utils
@@ -32,146 +32,101 @@ import pet2 from "@assets/images/pet2.png";
 import pet3 from "@assets/images/pet3.png";
 import pet4 from "@assets/images/pet4.png";
 import InventorySection from "../_components/profile/inventory-section";
-import EarningsSection from "../_components/profile/earnings-section";
-import CurrentScores from "../_components/profile/current-scores";
-import PreviousResults from "../_components/profile/previous-results";
-import TournamentItem from "../_components/profile/tournament-item";
+import { useRouter } from "next/navigation";
+import { GeneralContext } from "@/app/_providers/generalProvider";
+import { Scores } from "../_components/profile/scores";
 
 const lootboxes = [
   {
     id: 1,
     title: "LOOTBOX",
-    name: 'Tier 1',
+    name: "Tier 1",
     image: lootbox1,
     badge: 4,
-    nameColor: '#745162',
-    titleColor: '#745162'
+    nameColor: "#745162",
+    titleColor: "#745162",
   },
   {
     id: 2,
     title: "LOOTBOX",
-    name: 'Tier 2',
+    name: "Tier 2",
     image: lootbox2,
     badge: 4,
-    nameColor: '#126529',
-    titleColor: '#745162'
+    nameColor: "#126529",
+    titleColor: "#745162",
   },
   {
     id: 3,
     title: "LOOTBOX",
-    name: 'Tier 3',
+    name: "Tier 3",
     image: lootbox3,
     badge: 4,
-    nameColor: '#3C2BA0',
-    titleColor: '#745162'
+    nameColor: "#3C2BA0",
+    titleColor: "#745162",
   },
   {
     id: 4,
     title: "LOOTBOX",
-    name: 'Tier 4',
+    name: "Tier 4",
     image: lootbox4,
     badge: 1,
-    nameColor: '#3C2BA0',
-    titleColor: '#745162'
+    nameColor: "#3C2BA0",
+    titleColor: "#745162",
   },
-]
+];
 
 const pets = [
   {
     id: 1,
     title: "OG NFT",
-    name: 'NFT',
+    name: "NFT",
     image: pet1,
-    nameColor: '#853834',
-    titleColor: '#853834'
+    nameColor: "#853834",
+    titleColor: "#853834",
   },
   {
     id: 2,
     title: "COLLECTIBLE",
-    name: 'NFT',
+    name: "NFT",
     image: pet2,
-    nameColor: '#853834',
-    titleColor: '#853834'
+    nameColor: "#853834",
+    titleColor: "#853834",
   },
   {
     id: 3,
     title: "SLUG",
-    name: 'NFT',
+    name: "NFT",
     image: pet3,
-    nameColor: '#71335E',
-    titleColor: '#71335E'
+    nameColor: "#71335E",
+    titleColor: "#71335E",
   },
   {
     id: 4,
     title: "FERRET",
-    name: 'NFT',
+    name: "NFT",
     image: pet4,
-    nameColor: '#608532',
-    titleColor: '#608532'
+    nameColor: "#608532",
+    titleColor: "#608532",
   },
-]
+];
 
 export default function Profile() {
   const [activeComponent, setActiveComponent] = useState("social");
+  const router = useRouter();
+  const { user } = useContext(GeneralContext);
+  // const { data } = useGetATH(sessionId);
+
+  // console.log("Data***********", data);
 
   const renderComponent = () => {
     switch (activeComponent) {
       case "social":
-        return (
-          <Social />
-        );
+        return <Social />;
       case "scores":
-        return (
-          <div className="flex-1 flex flex-col gap-2 overflow-auto">
-            <EarningsSection amount="235.50" />
-            <CurrentScores
-              activeTab="daily" 
-              onTabChange={(tab) => {}} 
-            />
-            <PreviousResults 
-              leftColor="#653F5654" 
-              rightColor="#12652980" 
-            />
-            <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2">
-              <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
-                <TournamentItem
-                  title="Koko Raffle"
-                  message="Numbers drawn. Check your ticket!"
-                  bgColor="bg-[#ECB56E]"
-                  messageBgColor="bg-[#E3BEAA]"
-                />
-                <TournamentItem
-                  title="Snake: $0.25 Tournament"
-                  message="Current Estimated Earnings: $100"
-                  bgColor="bg-[#E99F8C]"
-                  messageBgColor="bg-[#D7BDA4]"
-                />
-                <TournamentItem
-                  title="Flappy Dunk: $10 1v1"
-                  message="Improve your Score to qualify for a prize!"
-                  bgColor="bg-[#D49FC4]"
-                  messageBgColor="bg-[#E99F8C]"
-                  messageTextColor="#853834"
-                />
-                <TournamentItem
-                  title="50 KOKO Entry Tournament"
-                  message="Improve your Score to qualify for a prize!"
-                  bgColor="bg-[#B5C2C9]"
-                  messageBgColor="bg-[#D7BDA4]"
-                />
-                <TournamentItem
-                  title="$10 Challenge"
-                  message="Improve your Score to qualify for a prize!"
-                  bgColor="bg-[#B5D48E]"
-                  messageBgColor="bg-[#D7BDA4]"
-                />
-              </div>
-            </div>
-          </div>
-        );
+        return <Scores />;
       case "inventory":
         return (
-          <div className="w-full bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-auto">
+          <div className="w-full bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-scroll">
             <InventorySection
               title="Lootboxes"
               count={13}
@@ -188,7 +143,7 @@ export default function Profile() {
               itemWidth={58}
               itemHeight={58}
             />
-             <InventorySection
+            <InventorySection
               title="Items & Koko Pets"
               count={10}
               items={pets}
@@ -205,14 +160,20 @@ export default function Profile() {
 
   return (
     <>
-      <div className="absolute top-0 left-0 w-full h-full bg-black/75 backdrop-blur-[2.5px]" />
-      <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center fixed top-10 w-[95%] max-h-[90%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2 right-0 left-0">
+      <div
+        className="absolute top-0 left-0 w-full h-full bg-black/75 backdrop-blur-[2.5px]"
+        onClick={() => router?.back()}
+      />
+      <div
+        className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-10 w-[95%] max-h-[720px] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2 right-0 left-0"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex justify-between items-center gap-x-3 bg-[#F5D6B1] rounded-2xl p-4 shadow-md border-2 border-[#A96415]">
-          <Image alt="profile-image" src={profile} className=" w-[70px] h-[70px]" />
-          <div className="flex-1">
+          <Image alt="profile-image" src={profile} className="size-[70px]" />
+          <div className="flex-1 overflow-auto">
             <div className=" bg-[#CDAA98] flex justify-between items-center rounded-md w-full p-0.5 border-[2px] border-[#CDAA98]">
-              <p className=" text-[#5F3F57] font-bumper-sticker text-lg/[28px] pl-2 py-0.5">
-                McKOKOMON118
+              <p className=" text-[#5F3F57] font-bumper-sticker text-lg/[28px] pl-2 py-0.5 line-clamp-1 break-words">
+                {user?.username || "KOKOMON118"}
               </p>
               <div className=" bg-[#917377] w-[34px] h-full p-[3.7px] rounded">
                 <Image alt="edit-icon" src={edit} />
@@ -249,7 +210,7 @@ export default function Profile() {
             </p>
           </div>
           <Button
-            onClick={() => setActiveComponent("social")}
+            onClick={() => router.push("/banking")}
             className={cn(
               "flex gap-1 items-center justify-center rounded-md font-bold w-full py-[2px]"
             )}
@@ -273,7 +234,9 @@ export default function Profile() {
               onClick={() => setActiveComponent("scores")}
             />
             <NavigationButton
-              icon={activeComponent === "inventory" ? inventoryClick : inventory}
+              icon={
+                activeComponent === "inventory" ? inventoryClick : inventory
+              }
               label="Inventory"
               isActive={activeComponent === "inventory"}
               onClick={() => setActiveComponent("inventory")}

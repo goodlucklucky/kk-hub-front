@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext, useEffect } from "react";
 import Image from "next/image";
-import _ from "lodash";
 import CountUp from "react-countup";
+//import components
+import { NavBar } from "../_components/xp-bar";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -18,55 +19,92 @@ import { ClaimRaffleIcon } from "@/app/_assets/svg/claim";
 import { CheckIcon } from "@/app/_assets/svg/check";
 import TicketDialog from "../_components/dialogs/ticket-dialog";
 import RaffleDialog from "../_components/dialogs/raffle-dialog";
+import {
+  useEnterRaffle,
+  useClaimRaffle,
+  useRaffleStore,
+  useGetRaffleEntry,
+  useGetUnclaimedRaffle,
+  IEnterRaffle,
+} from "../../../../../services/raffle";
+import { GeneralContext } from "@/app/_providers/generalProvider";
+import useTimeLeft from "@/app/_hooks/useTimeLeft";
+
+// Helper function to check if any ticket is a winner and collect winning numbers
+function checkWinningTickets(tickets: IEnterRaffle[]) {
+  if (!tickets || tickets.length === 0) {
+    return {
+      isWinner: false,
+      winningNumbers: [],
+    };
+  }
+
+  // Get winning ticket numbers
+  const winningNumbers = tickets
+    .filter((ticket) => ticket.win)
+    .map((ticket) => ticket.ticketNumber);
+
+  // Check if there's at least one winning ticket
+  const isWinner = winningNumbers.length > 0;
+
+  return {
+    isWinner,
+    winningNumbers,
+  };
+}
 
 export default function RafflePage() {
   const [startAnimation, setStartAnimation] = useState(false);
+  const timeLeft = useTimeLeft();
+  const [, setClaimTicket] = useState(false);
 
-  const [claimTicket, setClaimTicket] = useState(false);
-  const [tickets, setTickets] = useState([124, 312, 242, 434, 734]);
   const [ticketDialogOpen, setTicketDialogOpen] = useState(false);
+  const [raffleDialogOpen, setRaffleDialogOpen] = useState(false);
+  const { sessionId } = useContext(GeneralContext);
 
-  const [timeLeft, setTimeLeft] = useState("23:59:59");
+  const { mutate: fetchUnclaimedRaffleData, data } = useGetUnclaimedRaffle();
+  // console.log("Unclaimed Data@@@", data);
+  const { mutateAsync: enterRaffleMutate } = useEnterRaffle();
+  const { mutateAsync: getRaffleEntryMutate } = useGetRaffleEntry();
 
-  // Add timer effect
-  React.useEffect(() => {
-    // Set initial time (24 hours from now)
-    const endTime = new Date();
-    endTime.setHours(endTime.getHours() + 24);
-    
-    const updateTimer = () => {
-      const now = new Date();
-      const diff = endTime.getTime() - now.getTime();
-      
-      if (diff <= 0) {
-        setTimeLeft("00:00:00");
-        return;
-      }
-      
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      
-      setTimeLeft(
-        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+  useEffect(() => {
+    if (sessionId) {
+      fetchUnclaimedRaffleData(sessionId);
+      enterRaffleMutate(
+        { sessionId },
+        {
+          onSuccess: () => {
+            setStartAnimation(true);
+          },
+          onError: () => {
+            getRaffleEntryMutate(sessionId);
+          },
+        }
       );
-    };
-    
-    // Update immediately and then every second
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    
-    return () => clearInterval(interval);
-  }, []);
-  
+    }
+  }, [sessionId, enterRaffleMutate, getRaffleEntryMutate, fetchUnclaimedRaffleData]);
+
+  // const raffleMutation = useRaffle();
+  const raffleMutation = useClaimRaffle();
 
   const handleClaimTicket = useCallback(() => {
-    setStartAnimation(true);
     setClaimTicket(true);
-  }, []);
+
+    if (sessionId) {
+      raffleMutation.mutate({
+        sessionId: sessionId,
+        openNow: true,
+      });
+    }
+  }, [sessionId, raffleMutation]);
+  const { ticket } = useRaffleStore();
+
+  // Get winner status and winning numbers
+  const { isWinner, winningNumbers } = checkWinningTickets(ticket);
 
   return (
     <>
+      <NavBar title={"KoKo RAFFLE"} />
       <div
         className={cn(
           "flex flex-col flex-1 justify-center items-center gap-y-5 pt-10"
@@ -113,11 +151,14 @@ export default function RafflePage() {
                     alt="card"
                     className="object-cover w-auto h-20 2xs:h-30 fixed"
                   />
-                  {startAnimation ? (
+                  {startAnimation &&
+                  ticket?.length > 0 &&
+                  ticket[0]?.ticketNumber ? (
                     <CountUp
                       start={0}
-                      end={123}
+                      end={ticket[0].ticketNumber}
                       duration={2.5}
+                      onEnd={() => setRaffleDialogOpen(true)}
                       className="text-[#8A6C48] text-[40px] font-bumper-sticker font-normal rotate-[-2deg] z-20 mr-4"
                     />
                   ) : (
@@ -133,7 +174,7 @@ export default function RafflePage() {
               <div className="rounded-[5px] bg-[#E3BEAA] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] flex items-center gap-1 p-1 py-0.5">
                 <ClockIcon className="w-4 h-4" />
                 <span className="text-[#745061] font-bumper-sticker text-base font-normal">
-                  {timeLeft}
+                  {timeLeft?.hours}:{timeLeft?.minutes}:{timeLeft?.seconds}s
                 </span>
               </div>
             </div>
@@ -145,9 +186,10 @@ export default function RafflePage() {
               <div className="flex flex-col gap-2">
                 <Button
                   onClick={handleClaimTicket}
+                  // disabled={data?.data?.length == 0}
                   className="rounded-[6px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center"
                 >
-                  {claimTicket ? (
+                  {data && data?.data?.length === 0 ? (
                     <>
                       <CheckIcon color="#ffffff" className="w-4 h-4 -mt-1" />
                       <span className="text-white text-sm font-bold py-1">
@@ -170,8 +212,8 @@ export default function RafflePage() {
                   <span className="text-[#5F3F57] font-made-in-heaven text-sm font-bold text-center">
                     My Entries
                   </span>
-                  <span className="text-[#FCE7C5] text-center font-made-tommy text-[16px] font-bold leading-[20px] bg-[#8F6E75] px-0.5 h-5 rounded-[5px]">
-                    12
+                  <span className="text-[#FCE7C5] text-center font-made-tommy text-[16px] font-bold leading-[20px] bg-[#8F6E75] px-1 h-5 rounded-[5px]">
+                    {ticket.length}
                   </span>
                 </div>
               </div>
@@ -179,19 +221,23 @@ export default function RafflePage() {
           </div>
         </div>
       </div>
-      <RaffleDialog
-        isOpen={false}
-        onClose={() => {}}
-        tickets={tickets}
-        isWinner={false}
-        winningNumbers={[23, 3, 3223]}
-        showWinner={false}
-        isClaiming={false}
-      />
+      {raffleDialogOpen && (
+        <RaffleDialog
+          isOpen={raffleDialogOpen}
+          onClose={() => {
+            setRaffleDialogOpen(!raffleDialogOpen);
+          }}
+          tickets={data?.data ?? []}
+          isWinner={isWinner}
+          winningNumbers={winningNumbers}
+          showWinner={true}
+          isClaiming={isWinner}
+        />
+      )}
       <TicketDialog
         isOpen={ticketDialogOpen}
         onClose={() => setTicketDialogOpen(false)}
-        tickets={tickets}
+        tickets={ticket ?? []}
       />
     </>
   );

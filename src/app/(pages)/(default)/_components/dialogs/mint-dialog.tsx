@@ -1,8 +1,7 @@
-'use client';
+"use client";
 
 //import modules
 import Image from "next/image";
-import { useEffect } from "react";
 
 //import components
 import {
@@ -25,19 +24,13 @@ interface MintDialogProps {
   isMinting: boolean;
   isOpen: boolean;
   onClose: () => void;
-  setIsMinting: (isMinting: boolean) => void;
 }
 
-const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: MintDialogProps) => {
-  useEffect(() => {
-    if (isMinting) {
-      //To do: call api to mint
-      const interval = setInterval(() => {
-        setIsMinting(false);
-      }, 4000);
-      return () => clearInterval(interval);
-    }
-  }, [isMinting, setIsMinting]);
+const MintDialog = ({
+  isMinting,
+  isOpen,
+  onClose,
+}: MintDialogProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -45,8 +38,7 @@ const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: MintDialogProp
         <DialogOverlay />
         <div className="fixed h-full left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg">
           <div className="flex flex-col justify-center items-center flex-1">
-            {isMinting
-              ?
+            {isMinting ? (
               <div className="flex flex-col justify-center items-center">
                 <Image
                   priority
@@ -61,13 +53,17 @@ const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: MintDialogProp
                   </p>
                 </div>
               </div>
-              :
+            ) : (
               <div className="w-full flex flex-col justify-center items-center relative h-[154px] gap-y-1">
                 <div className="w-full flex justify-center items-center gap-1">
                   <CheckIcon className="h-[28px] w-[20px]" />
-                  <span className="text-[#745061] text-center font-made-tommy text-[18px] font-bold leading-normal">Claim Successful!</span>
+                  <span className="text-[#745061] text-center font-made-tommy text-[18px] font-bold leading-normal">
+                    Claim Successful!
+                  </span>
                 </div>
-                <span className="text-[#745061] text-center font-made-tommy text-[16px] font-medium leading-normal">Check your Kokomo platform wallet</span>
+                <span className="text-[#745061] text-center font-made-tommy text-[16px] font-medium leading-normal">
+                  Check your Kokomo platform wallet
+                </span>
                 <Image
                   priority
                   src={confirmBack}
@@ -75,17 +71,28 @@ const MintDialog = ({ isMinting, isOpen, onClose, setIsMinting }: MintDialogProp
                   alt="spinner-icon"
                   className="h-[154px] w-[354px] absolute top-0 -z-10"
                 />
-                <Button className="bg-[#24BE62] w-[194px] h-[28px] text-white text-center font-made-tommy text-[18px] leading-[20px] font-extrabold" onClick={onClose}>Great!</Button>
+                <Button
+                  className="bg-[#24BE62] w-[194px] h-[28px] text-white text-center font-made-tommy text-[18px] leading-[20px] font-extrabold"
+                  onClick={onClose}
+                >
+                  Great!
+                </Button>
               </div>
-            }
+            )}
           </div>
           <div className="w-full flex justify-center absolute bottom-20">
-            <Image src={AvalancheIcon} alt="powered-avalanche" className="absolute bottom-0" width={145} height={116} />
+            <Image
+              src={AvalancheIcon}
+              alt="powered-avalanche"
+              className="absolute bottom-0"
+              width={145}
+              height={116}
+            />
           </div>
         </div>
       </DialogPortal>
     </Dialog>
   );
-}
+};
 
 export default MintDialog;

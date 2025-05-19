@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { cn } from "@/app/_lib/utils";
 import { RightArrow2 } from "@/app/_assets/svg/right-arrow";
 import { DailyBarge } from "./barge";
 import DayBarge from "./day-barge";
+import { useBonusCompletion } from "../../../../../../services/bonus";
+import { GeneralContext } from "@/app/_providers/generalProvider";
 
 interface SlideProps {
   setIsOpen?: () => void;
   setIsMinting?: (isMinting: boolean) => void;
-  type: 'daily' | 'invite' | 'og' | 'nft';
+  type: "daily" | "invite" | "og" | "nft";
+  value?: number;
   onClick?: () => void;
 }
 
-const SlideContainer: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+const SlideContainer: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => (
   <div
     className={cn(
       "flex-1 flex",
@@ -39,48 +44,25 @@ const SlideContainer: React.FC<{ children: React.ReactNode }> = ({ children }) =
   </div>
 );
 
-export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type, onClick }) => {
+export const GiftSlide: React.FC<SlideProps> = ({
+  setIsOpen,
+  setIsMinting,
+  type,
+  // value,
+  onClick,
+}) => {
   const handleClick = () => {
     onClick?.();
     setIsOpen?.();
     setIsMinting?.(true);
   };
-  const [timeLeft, setTimeLeft] = useState("23:59:59");
-
-  // Add timer effect
-  React.useEffect(() => {
-    // Set initial time (24 hours from now)
-    const endTime = new Date();
-    endTime.setHours(endTime.getHours() + 24);
-    
-    const updateTimer = () => {
-      const now = new Date();
-      const diff = endTime.getTime() - now.getTime();
-      
-      if (diff <= 0) {
-        setTimeLeft("00:00:00");
-        return;
-      }
-      
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      
-      setTimeLeft(
-        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
-      );
-    };
-    
-    // Update immediately and then every second
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    
-    return () => clearInterval(interval);
-  }, []);
+  const { sessionId } = useContext(GeneralContext);
+  const { data: completionStatusData } = useBonusCompletion({ sessionId });
+  // console.log("DAta@@@@@@@@@@@@@@", completionStatusData?.completionPercentage);
 
   const getSlideContent = () => {
     switch (type) {
-      case 'daily':
+      case "daily":
         return (
           <>
             <div className="flex-1 h-[57px] bg-[#CDAA98] rounded-l-[7px]">
@@ -97,7 +79,7 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
                   <span>4/28</span>
                 </DailyBarge>
                 <DailyBarge>
-                  <span>{timeLeft}</span>
+                  <span>23:39:01</span>
                 </DailyBarge>
               </div>
               <div className={cn("px-1 py-2 text-green-dark", "flex gap-2")}>
@@ -106,10 +88,14 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
                 <DayBarge />
               </div>
             </div>
-            <RightArrow2 className="h-[57px] w-fit" color="#917377" onClick={handleClick} />
+            <RightArrow2
+              className="h-[57px] w-fit"
+              color="#917377"
+              onClick={handleClick}
+            />
           </>
         );
-      case 'invite':
+      case "invite":
         return (
           <>
             <div className="flex-1 h-[57px] bg-[#D9B8A3] rounded-l-[7px]">
@@ -124,13 +110,18 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
                 <p className="2xs:pt-0.5 pr-4">Invite Friends, Earn $$$!</p>
               </div>
               <div className="text-[#653F56] font-made-tommy text-[11px] font-bold leading-[14px] bg-[#CDAC9A] rounded-[3px] mx-2 mt-[3px] p-[1px]">
-                Invite friends to earn Spins and a lifetime revenue share of all fees they generate!
+                Invite friends to earn Spins and a lifetime revenue share of all
+                fees they generate!
               </div>
             </div>
-            <RightArrow2 className="h-[57px] w-fit" color="#27A459" onClick={handleClick} />
+            <RightArrow2
+              className="h-[57px] w-fit"
+              color="#27A459"
+              onClick={handleClick}
+            />
           </>
         );
-      case 'og':
+      case "og":
         return (
           <>
             <div className="flex-1 h-[57px] bg-[#CDAA98] rounded-l-[7px]">
@@ -156,17 +147,31 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
                   <div
                     className={cn(
                       "h-full rounded-l-4xl",
-                      "bg-gradient-to-b from-[#4E3BB600] to-[#4E3BB6D0]"
+                      // "bg-gradient-to-b from-[#4E3BB600] to-[#4E3BB6D0]"
+                      "bg-[#A291FF]"
                     )}
-                    style={{ width: `${(1 / 3) * 100}%` }}
+                    style={{
+                      width: `${
+                        (Number(
+                          completionStatusData?.completionPercentage || 0
+                        ) /
+                          3) *
+                        100
+                      }%`,
+                    }}
                   />
                 </div>
               </div>
             </div>
-            <RightArrow2 className="h-[57px] w-fit" color="var(--color-blue)" arrowColor="#ffffff" onClick={handleClick} />
+            <RightArrow2
+              className="h-[57px] w-fit"
+              color="var(--color-blue)"
+              arrowColor="#ffffff"
+              onClick={handleClick}
+            />
           </>
         );
-      case 'nft':
+      case "nft":
         return (
           <>
             <div className="flex-1 h-[57px] bg-[var(--color-blown-dark)] rounded-l-[7px]">
@@ -185,11 +190,16 @@ export const GiftSlide: React.FC<SlideProps> = ({ setIsOpen, setIsMinting, type,
                 Claim your free welcome gift - a Kokomo Collectible NFT!
               </div>
             </div>
-            <RightArrow2 className="h-[57px] w-fit" color="var(--color-yellow)" arrowColor="var(--color-golden-brown)" onClick={handleClick} />
+            <RightArrow2
+              className="h-[57px] w-fit"
+              color="var(--color-yellow)"
+              arrowColor="var(--color-golden-brown)"
+              onClick={handleClick}
+            />
           </>
         );
     }
   };
 
   return <SlideContainer>{getSlideContent()}</SlideContainer>;
-}; 
+};

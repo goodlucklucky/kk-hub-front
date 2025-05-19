@@ -1,26 +1,39 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import Image from "next/image";
-import _ from "lodash";
-//import components
-import PageTitleBanner from "@/app/_components/shared/page-title-banner";
-import Spinner from "@/app/_components/spinner";
-
-import WithdrawDialog from "../_components/dialogs/withdraw-dialog";
-import MoreSpinsDialog from "../_components/dialogs/more-dialog";
-
-//import utils
+import { GeneralContext } from "@/app/_providers/generalProvider";
 import { formatBigNumber, shuffleArray } from "@/app/_utils/number";
-import { cn } from "@/app/_lib/utils";
-import { spinnerProbability, SpinnerItem } from "./spinner-config";
+import { spinnerProbability } from "./spinner-config";
+import {
+  TRandom,
+  useRandomSpin,
+  useSpins,
+} from "../../../../../services/spins";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/app/_components/ui/dialog";
+import { ConnectButton } from "@/app/_components/shared/connect-button";
+import PageTitleBanner from "../_components/spinner/page-title-banner";
+import Spinner from "@/app/_components/spinner";
+import MoreSpins from "../_components/daily-login-spinner/more-spins";
+import { Button } from "@/app/_components/ui/button";
+import { XpBar } from "../_components/xp-bar";
 
 //import images
 import flashingEffect from "@assets/images/flashing-effect.png";
 import spinnerBack from "@assets/images/spinner-back.png";
 import usdt from "@assets/images/usdt.png";
-import spinBtn from "@assets/images/spin-btn.png";
-import moreBtn from "@assets/images/more-btn.png";
+
+type TReward = "kokos" | "USDT" | "spin";
 
 interface SpinnerSegment {
   value: number;
@@ -28,47 +41,84 @@ interface SpinnerSegment {
   color?: string;
 }
 
-export default function SpinPage() {
+export default function KokoSpinner() {
+  const { sessionId, addMyScore, addMyUsdt } = useContext(GeneralContext);
+  const [updatedScore, setUpdateScore] = useState("");
   const [loading, setLoading] = useState(false);
-  const [spinsList, setSpinsList] = useState<SpinnerItem[]>(spinnerProbability);
-  const [withdrawDialog, setWithdrawDialog] = useState(false);
-  const [moreSpinsDialog, setMoreSpinsDialog] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-  const [totalSpins, setTotalSpins] = useState(3);
+  const [isGrayingOut, setIsGrayingout] = useState(false);
+  const spinsList = useMemo(() => shuffleArray(spinnerProbability), []);
+  const [, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const handleEndSpin = useCallback(async (_result: number) => {
-    setTotalSpins((prev) => Math.max(0, prev - 1));
-    // setOpenReward(true);
-    setLoading(false);
-  }, []);
+  const [openReward, setOpenReward] = useState(false);
 
-  useEffect(() => {
-    // Only shuffle on client-side
-    setSpinsList(shuffleArray(spinnerProbability));
-  }, []);
+  const [randomTarget, setRandomTarget] = useState<TRandom>();
 
-  const getSpinNumber = useCallback(async (): Promise<number | undefined> => {
-    const random = Math.random() * 100;
-    let cumulativeProb = 0;
+  const { data: spins, refetch } = useSpins({ sessionId });
+  const { mutateAsync: getRandomTarget } = useRandomSpin({});
 
-    for (const item of spinsList) {
-      cumulativeProb += item.prob;
-      if (random <= cumulativeProb) {
-        return item.kokos;
+  const addScore = useCallback(
+    async (amount: number = 0) => {
+      try {
+        addMyScore?.(amount);
+      } catch {
+        // console.error(error);
       }
+    },
+    [addMyScore]
+  );
+
+  const addUsdt = useCallback(
+    async (amount: number = 0) => {
+      try {
+        addMyUsdt?.(amount);
+      } catch {
+        // console.error(error);
+      }
+    },
+    [addMyUsdt]
+  );
+
+  const handleBonus = useCallback(async () => {
+    setLoading(true);
+    setTimeout(() => setIsGrayingout(true), 1000);
+    const reward = randomTarget?.type as TReward;
+
+    try {
+      if (reward == "USDT") {
+        setOpenReward(true);
+        setUpdateScore(randomTarget?.value + " USDT");
+        await addUsdt?.(randomTarget?.value);
+      }
+      if (reward == "kokos") {
+        setUpdateScore((randomTarget?.value ?? 0) / 1000 + "K");
+        await addScore?.(randomTarget?.value);
+      }
+      if (reward == "spin") {
+        setUpdateScore("1 SPIN");
+      }
+
+      await refetch?.();
+    } catch {
+      // error
+    } finally {
+      setLoading(false);
+      setIsGrayingout(false);
     }
+  }, [addScore, addUsdt, randomTarget?.type, randomTarget?.value, refetch]);
 
-    return undefined; // Return undefined instead of 1 to match Spinner component's interface
-  }, [spinsList]);
-
-  const handleSpinEnd = useCallback((result: number) => {
-    // Handle spin end logic here
-    console.log("Spin ended with result:", result);
-  }, []);
+  const getSpinNumber = useCallback(async () => {
+    try {
+      const spin = await getRandomTarget({ sessionId });
+      setRandomTarget(spin?.data?.selected);
+      return spin?.data?.selected?.kokos;
+    } catch {
+      return -1;
+    }
+  }, [getRandomTarget, sessionId]);
 
   const segments: SpinnerSegment[] = spinsList.map((one) => ({
     value: one.kokos,
@@ -102,104 +152,101 @@ export default function SpinPage() {
     ),
   }));
 
-  const handleClick = useCallback(
-    (handelClick: () => void) => {
-      if (totalSpins > 0 && !loading && isClient) {
-        setLoading(true);
-        handelClick();
-      }
-    },
-    [totalSpins, loading, isClient]
-  );
-
   return (
-    <>
-      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
-        <Image
-          src={spinnerBack}
-          alt="Main background"
-          className="absolute inset-0 w-full h-full -z-10 object-cover object-center"
-          loading="lazy"
-          priority={false}
-        />
-        <Image
-          src={flashingEffect}
-          alt="flashing-effect"
-          className="absolute top-[17%] opacity-0"
-          style={{
-            animation: loading ? "flashing 1s ease" : "",
-          }}
-        />
+    <div className="bg-contain bg-center flex flex-col flex-1">
+      <div
+        className="absolute top-10 left-8 z-[101] text-[32px] text-white font-bold opacity-0"
+        style={{
+          animation: isGrayingOut ? "showingRewardsEffect 2s ease" : "",
+        }}
+      >
+        +{updatedScore}
       </div>
-      <div className="my-auto fixed top-26 xs:top-28 sm:top-30 bottom-28 flex flex-col justify-center items-center w-full">
-        <PageTitleBanner
-          className={`relative m-0 top-6 mx-auto ${
-            loading ? "push-effect" : ""
-          }`}
-          titleBanner={
-            <p className="text-center text-2xl leading-5">
-              KOKO
-              <br />
-              spinner
-            </p>
-          }
-          spinner
-        />
+      <div
+        className="absolute w-[100vw] h-[100vh] top-0"
+        style={{ animation: isGrayingOut ? "grayoutEffect 2s ease" : "" }}
+      />
+      <XpBar currentXp={745} maxXp={3250} />
+      <Image
+        src={spinnerBack}
+        alt="Main background"
+        className="absolute inset-0 w-full h-full -z-10 object-cover object-center"
+        loading="lazy"
+        priority={false}
+      />
+      <Image
+        src={flashingEffect}
+        alt="flashing-effect"
+        className="absolute top-[17%] opacity-0"
+        style={{
+          animation: loading ? "flashing 1s ease" : "",
+        }}
+      />
+      <div className="my-auto flex-1 flex flex-col justify-center">
+        <div className=" flex justify-center">
+          <PageTitleBanner
+            className={`relative m-0 top-6 mx-auto ${
+              loading ? "push-effect" : ""
+            }`}
+            titleBanner={
+              <p className="text-center text-2xl leading-5">
+                KOKO
+                <br />
+                spinner
+              </p>
+            }
+            spinner
+          />
+        </div>
         <Spinner
           className="p-2 pb-0 max-w-[45ch] mx-auto w-[95%]"
           segments={segments}
           getTargetNumber={getSpinNumber}
-          onSpinEnd={handleSpinEnd}
+          onSpinEnd={handleBonus}
         >
           {({ handelClick, isSpinning }) => (
-            <div className="flex flex-col gap-y-4 bg-[url(/images/board_2.png)] bg-[length:100%_100%] bg-center rounded-4xl p-3 -mt-8 2xs:-mt-4 shadow-md">
-              <div
-                className="flex justify-center relative items-center h-9"
-                onClick={() => {
-                  if (loading || isSpinning || totalSpins <= 0) return;
-                  handleClick(handelClick);
-                }}
+            <div className="relative bg-cover bg-center grid gap-4 p-4 pb-6">
+              <ConnectButton
+                className="w-full justify-center"
+                onClick={handelClick}
+                disabled={
+                  loading || isSpinning || (spins?.data?.total || 0) <= 0
+                }
               >
-                <Image
-                  src={spinBtn}
-                  alt="spin-btn"
-                  className="absolute top-0 left-0 z-0"
-                  width={750}
-                  height={750}
-                />
-                <span className="text-[#715F16] font-made-tommy font-extrabold text-lg z-10">
-                  Spin
-                </span>
-              </div>
-              <div className="flex justify-center relative -top-[3px] items-center h-9"
-                onClick={() => {
-                  if (loading || isSpinning) return;
-                  setMoreSpinsDialog(true);
-                }}
-              >
-                <Image
-                  src={moreBtn}
-                  alt="spin-btn"
-                  className="absolute top-0 left-0 z-0"
-                  width={800}
-                  height={800}
-                />
-                <span className="text-[#715F16] font-made-tommy font-extrabold text-lg z-10">
-                  Get More Spins
-                </span>
-              </div>
+                Spin ({spins?.data?.total || 0})
+              </ConnectButton>
+              <MoreSpins spins={spins?.data} refresh={refetch} />
+              <Image
+                width={300}
+                height={200}
+                src={"/images/board-2.png"}
+                alt="spinning-effect"
+                className="absolute size-full -z-[1]"
+              />
             </div>
           )}
         </Spinner>
       </div>
-      <WithdrawDialog
-        isOpen={withdrawDialog}
-        onClose={() => setWithdrawDialog(false)}
-      />
-      <MoreSpinsDialog
-        isOpen={moreSpinsDialog}
-        onClose={() => setMoreSpinsDialog(false)}
-      />
-    </>
+      <Dialog open={openReward} onOpenChange={setOpenReward}>
+        <DialogContent
+          className="text-golden-brown text-center"
+          containerClassName="h-full flex flex-col gap-2 p-2 pt-0"
+        >
+          <DialogTitle className="font-bold text-xl">
+            Prize Withdrawals
+          </DialogTitle>
+          <div className="bg-[#E3BEAA] rounded-lg p-4 text-center font-semibold flex-1 flex flex-col gap-2 items-center mb-2">
+            <p>Min Withdrawal = 10 USDT</p>
+            <p className="text-golden-brown/70">Check back at 10 USDT</p>
+          </div>
+          <Button
+            onClick={() => setOpenReward(false)}
+            className={`py-2 h-auto w-full rounded-md hover:bg-green/80 text-white font-bold btn-animate !shadow-[0_0.15rem] bg-green !shadow-[#2C7C4C]`}
+          >
+            Back to Spinner
+          </Button>
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 }

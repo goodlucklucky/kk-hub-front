@@ -2,7 +2,6 @@
 
 import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
 import { baseInstance } from "../axios";
-import { objectToQueryParams } from "@/utils/query-params";
 
 export function useCheckCoconutInTwitterUsername({
   userId,
@@ -69,14 +68,13 @@ export function useCheckUserInTelegramChannel({
   tgUserId: TSessionId;
   enabled: boolean;
 }) {
-  const queryParams = objectToQueryParams({ tgUserId: tgUserId });
-
   return useQuery({
     queryKey: ["check-user-in-telegram-channel", tgUserId],
     queryFn: () =>
       baseInstance
         .get<ICheckCommunity>(
-          `/bonus-service/bonus/telegram/check-is-user-in-community?${queryParams}`
+          `/bonus-service/bonus/telegram/check-is-user-in-community`,
+          { params: { tgUserId: tgUserId } }
         )
         .then((res) => res.data),
     enabled: enabled,
@@ -130,16 +128,13 @@ export function useCheckUserBonus({
   userId: TSessionId;
   bonusName: string;
 }) {
-  const queryParams = objectToQueryParams({
-    userId: userId,
-    bonusName: bonusName,
-  });
-
   return useQuery({
     queryKey: ["check-user-bonus", userId, bonusName],
     queryFn: () =>
       baseInstance
-        .get<ICheckUserBonus>(`/bonus-service/bonus/check?${queryParams}`)
+        .get<ICheckUserBonus>(`/bonus-service/bonus/check`, {
+          params: { userId, bonusName },
+        })
         .then((res) => res.data),
   });
 }
@@ -236,7 +231,7 @@ export function useBonusCompletion({ sessionId }: { sessionId: TSessionId }) {
         .get<{
           data: IBonusCompletion;
         }>(`/bonus-service/bonus/completion-stats?sessionId=${sessionId}`)
-        .then((res) => res.data),
+        .then((res) => res?.data?.data),
   });
 }
 
@@ -422,5 +417,46 @@ export function useAddBonus({ onError, onSuccess }: TAddBonus) {
           bonusName,
         })
         .then((res) => res.data),
+  });
+}
+
+export function useAddBonusPoints({
+  onSuccess,
+  onError,
+}: {
+  onSuccess?: (data: any) => void;
+  onError?: (error: any) => void;
+}) {
+  return useMutation({
+    mutationKey: ["add-bonus-points"],
+    mutationFn: ({
+      sessionId,
+      bonusName,
+    }: {
+      sessionId: TSessionId;
+      bonusName: string;
+    }) =>
+      baseInstance
+        .post("/bonus-service/bonus/add-bonus-points", {
+          sessionId,
+          bonusName,
+        })
+        .then((res) => res.data),
+    onSuccess,
+    onError,
+  });
+}
+
+export function useCheckIfUserInCommunity() {
+  return useMutation({
+    mutationKey: ["check-if-user-in-community"],
+    mutationFn: async ({ sessionId }: { sessionId: TSessionId }) => {
+      const data = await baseInstance
+        .get<ICheckCommunity>(
+          `/bonus-service/bonus/telegram/check-is-user-in-community?tgUserId=${sessionId}`
+        )
+        .then((res) => res.data);
+      return data;
+    },
   });
 }

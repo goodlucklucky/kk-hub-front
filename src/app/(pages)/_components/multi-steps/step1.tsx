@@ -1,11 +1,11 @@
-import { CashIcon, KeyIcon, StarIcon, UsdIcon } from "@assets/svg/etc";
+import { CashIcon, KeyIcon, StarIcon } from "@assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
 import { useEffect, useState } from "react";
-import { SnakeIcon } from "@/app/_assets/svg/snake";
 import Button from "@/app/_components/shared/button";
 import Link from "next/link";
 import cup from "@assets/images/cup.png";
 import Image from "next/image";
+import RandomTable from "../etc/random-table";
 
 export function Step1Top() {
   const [isClient, setIsClient] = useState(false);
@@ -35,57 +35,7 @@ export function Step1Top() {
               <h3 className=" font-made-tommy  text-[#5F3F57]">Recent Wins</h3>
             </div>
             <div className="bg-light w-full rounded-3xl rounded-t p-0.5 contain-content">
-              <table className="w-full rounded-b-2xl rounded-t-sm contain-content">
-                <tbody>
-                  {[
-                    {
-                      Icon: SnakeIcon,
-                      key: "snake",
-                      name: "Koko Snake",
-                      prize: { amount: 27.82, currency: "USD" },
-                    },
-                    {
-                      Icon: SnakeIcon,
-                      key: "snake",
-                      name: "Koko Snake",
-                      prize: { amount: 1011.4, currency: "USD" },
-                    },
-                    {
-                      Icon: SnakeIcon,
-                      key: "snake",
-                      name: "Koko Snake",
-                      prize: { amount: 50.49, currency: "USD" },
-                    },
-                    {
-                      Icon: SnakeIcon,
-                      key: "snake",
-                      name: "Koko Snake",
-                      prize: { amount: 122.5, currency: "USD" },
-                    },
-                    {
-                      Icon: SnakeIcon,
-                      key: "snake",
-                      name: "Koko Snake",
-                      prize: { amount: 498.05, currency: "USD" },
-                    },
-                  ]?.map(({ Icon, name, prize }, index) => (
-                    <tr
-                      key={index}
-                      className={cn(
-                        "text-golden-brown",
-                        index % 2 != 0 ? "bg-[#EED1B8]" : "bg-[#E3BEAA]",
-                        "[&_td]:p-0.5 [&_td]:px-2"
-                      )}
-                    >
-                      <td>{Icon && <Icon />}</td>
-                      <td className="w-full">{name}</td>
-                      <td className="whitespace-nowrap bg-amber-500/15 text-golden-dark flex gap-2 items-center">
-                        <UsdIcon className="text-green-800" /> {prize?.amount}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <RandomTable />
             </div>
           </div>
         </div>
