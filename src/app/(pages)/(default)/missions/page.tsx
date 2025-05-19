@@ -3,7 +3,7 @@
 import React, { useState, useCallback, memo } from "react";
 import Image from "next/image";
 //import components
-import { NavBar } from "../_components/xp-bar";
+import { NavBar } from "../_components/xp/bar";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -23,7 +23,13 @@ import NavigationButton from "../_components/profile/navigateBtn";
 import { ClockIcon } from "@/app/_assets/svg/clock";
 import Button from "@/app/_components/shared/button";
 import { StartIcon } from "@/app/_assets/svg/start";
-import { MissionCheckIcon, MissionClickIcon, MissionLeftIcon, MissionRightIcon, MissionIcon } from "@/app/_assets/svg/mission-direct";
+import {
+  MissionCheckIcon,
+  MissionClickIcon,
+  MissionLeftIcon,
+  MissionRightIcon,
+  MissionIcon,
+} from "@/app/_assets/svg/mission-direct";
 
 // Types
 type MissionCategory = "daily" | "weekly";
@@ -42,7 +48,9 @@ export default function MissionPage() {
   return (
     <>
       <NavBar title={"Missions"} />
-      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5 py-3")}>
+      <div
+        className={cn("flex flex-col flex-1 h-full items-center gap-y-5 py-3")}
+      >
         <Image
           src={mainBack}
           alt="Main background"

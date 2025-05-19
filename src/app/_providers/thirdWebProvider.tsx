@@ -33,7 +33,10 @@ export function ThirdWeb({ children }: ThirdWebProps) {
 
   // console.log("profile", profile?.data);
 
-  const { encrypted } = useUserEncrypt({ sessionId: account?.address, username });
+  const { encrypted } = useUserEncrypt({
+    sessionId: account?.address,
+    username,
+  });
 
   if (!account) return <Connect />;
 

@@ -22,4 +22,4 @@ export const DialogHeader = ({ showWinner, isClaiming }: DialogHeaderProps) => {
       </span>
     </div>
   );
-}; 
+};

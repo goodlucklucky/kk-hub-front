@@ -34,9 +34,9 @@ export function useGetExemptedUserDetails(sessionId: TSessionId) {
     queryKey: ["get-exempted-user-details", sessionId],
     queryFn: () =>
       baseInstance
-        .get<{ data: IExemptedUser }>(
-          `/game-service/exempted-user/${sessionId}`
-        )
+        .get<{
+          data: IExemptedUser;
+        }>(`/game-service/exempted-user/${sessionId}`)
         .then((res) => res.data?.data),
   });
 }

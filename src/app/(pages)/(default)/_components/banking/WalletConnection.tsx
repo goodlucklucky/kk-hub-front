@@ -9,7 +9,11 @@ interface WalletConnectionProps {
   onDisconnect: () => void;
 }
 
-export const WalletConnection = ({ isConnected, onConnect, onDisconnect }: WalletConnectionProps) => {
+export const WalletConnection = ({
+  isConnected,
+  onConnect,
+  onDisconnect,
+}: WalletConnectionProps) => {
   if (!isConnected) {
     return (
       <Button
@@ -31,10 +35,12 @@ export const WalletConnection = ({ isConnected, onConnect, onDisconnect }: Walle
         <div className="w-1 h-1 p-1 bg-[#126529] rounded-full" />
         <div className="flex justify-between items-center w-full text-[#5F3F57] font-bumper-sticker text-[16px] font-bold leading-normal">
           <span>CONNECTED</span>
-          <span className="font-made-tommy text-[12px] font-bold leading-normal">0x10dx...5eab</span>
+          <span className="font-made-tommy text-[12px] font-bold leading-normal">
+            0x10dx...5eab
+          </span>
         </div>
       </div>
       <CloseSocialIcon className="w-10 h-10" onClick={onDisconnect} />
     </div>
   );
-}; 
+};

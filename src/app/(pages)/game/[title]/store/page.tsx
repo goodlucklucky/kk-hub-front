@@ -35,7 +35,7 @@ import {
   useStoreItems,
   useStoreTypes,
 } from "../../../../../../services/store";
-import { NavBar } from "@/app/(pages)/(default)/_components/xp-bar";
+import { NavBar } from "@/app/(pages)/(default)/_components/xp/bar";
 import DiscountBadge from "@/app/(pages)/(default)/_components/store/discount-badge";
 import SkinDialog from "@/app/(pages)/(default)/_components/dialogs/skin-dialog";
 

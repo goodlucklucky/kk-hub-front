@@ -168,7 +168,7 @@ function Spinner({
           padding: "11px 13px 14px 14px",
           zIndex: "2",
           animation: isPushing ? "scaleEffect 1s ease" : "",
-          width: 'min(90%, 50vh)',
+          width: "min(90%, 50vh)",
         }}
         className="max-w-[40ch]"
       >

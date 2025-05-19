@@ -36,10 +36,10 @@ export default function RewardItem({
             isMegaReward
               ? RewardBoardMega.src
               : isActive
-              ? RewardBoard.src
-              : collected
-              ? RewardBoardCollected.src
-              : RewardBoard.src
+                ? RewardBoard.src
+                : collected
+                  ? RewardBoardCollected.src
+                  : RewardBoard.src
           })`,
           backgroundSize: "100% 100%",
         }}

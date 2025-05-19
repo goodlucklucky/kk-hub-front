@@ -22,9 +22,7 @@ export default function DialogContainer({
           {title}
         </DialogTitle>
       )}
-      <div className={cn("rounded-2xl p-2", className)}>
-        {children}
-      </div>
+      <div className={cn("rounded-2xl p-2", className)}>{children}</div>
       <DialogCloseButton />
     </>
   );

@@ -3,7 +3,7 @@
 import React, { useContext } from "react";
 import Image from "next/image";
 //import components
-import { NavBar } from "../../../(default)/_components/xp-bar";
+import { NavBar } from "../../../(default)/_components/xp/bar";
 import Chat from "../../../(default)/_components/chat";
 
 //import utils

@@ -23,7 +23,7 @@ export function useChat(sessionId: TSessionId, username: string | null) {
     console.log("sessionId", sessionId);
     console.log("username", username);
     console.log("encrypted", encrypted);
-    
+
     if (!sessionId || !encrypted) return;
 
     const SOCKET_SERVER_URL = process.env.NEXT_PUBLIC_SOCKET_SERVER_URL;

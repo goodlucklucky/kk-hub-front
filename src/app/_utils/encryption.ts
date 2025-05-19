@@ -17,9 +17,7 @@ export const encryptRequest = (data: any, key: string = SECRET_KEY) => {
     // Create a unique key based on time
     const timestamp = Date.now();
     const minuteTimestamp = Math.floor(timestamp / (60 * 1000));
-    const dynamicKey = CryptoJS.SHA256(
-      `${key}:${minuteTimestamp}`
-    ).toString();
+    const dynamicKey = CryptoJS.SHA256(`${key}:${minuteTimestamp}`).toString();
 
     // Stringify the payload
     const jsonString = JSON.stringify(payload);

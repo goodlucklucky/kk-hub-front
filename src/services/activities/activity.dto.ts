@@ -1,14 +1,23 @@
-import { IsNotEmpty, IsString, IsNumber, IsOptional, IsEnum, IsDate, IsUUID, ValidateNested } from 'class-validator';
-import { Type } from 'class-transformer';
+import {
+  IsNotEmpty,
+  IsString,
+  IsNumber,
+  IsOptional,
+  IsEnum,
+  IsDate,
+  IsUUID,
+  ValidateNested,
+} from "class-validator";
+import { Type } from "class-transformer";
 
 export enum ActivityType {
-  LOGIN = 'login',
-  GAME_PLAY = 'game_play',
-  TASK_COMPLETE = 'task_complete',
-  MISSION_COMPLETE = 'mission_complete',
-  REWARD_CLAIM = 'reward_claim',
-  SPIN = 'spin',
-  RAFFLE = 'raffle',
+  LOGIN = "login",
+  GAME_PLAY = "game_play",
+  TASK_COMPLETE = "task_complete",
+  MISSION_COMPLETE = "mission_complete",
+  REWARD_CLAIM = "reward_claim",
+  SPIN = "spin",
+  RAFFLE = "raffle",
 }
 
 export class ActivityMetadataDto {
@@ -50,4 +59,4 @@ export class UserActivityDto {
   @Type(() => ActivityMetadataDto)
   @IsOptional()
   metadata?: ActivityMetadataDto;
-} 
+}

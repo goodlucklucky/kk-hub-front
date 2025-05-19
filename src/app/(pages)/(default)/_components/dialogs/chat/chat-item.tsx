@@ -24,7 +24,9 @@ export const ChatItem = ({
       <div className="w-11 h-11 flex justify-center items-center rounded-full bg-[#D1B69F] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.10)]">
         <DotIcon />
       </div>
-      <div className={`rounded-[10px_0px_10px_10px] border border-[#C5B3E6] bg-[#F0E6FF] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.10)] flex-1 p-2 pb-1 relative mt-2 ${replyTo != "" ? "pt-3.5" : ""}`}>
+      <div
+        className={`rounded-[10px_0px_10px_10px] border border-[#C5B3E6] bg-[#F0E6FF] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.10)] flex-1 p-2 pb-1 relative mt-2 ${replyTo != "" ? "pt-3.5" : ""}`}
+      >
         <div className="text-[#653F56] text-[14px]/[14px] font-medium font-made-tommy">
           {message}
         </div>
@@ -53,7 +55,9 @@ export const ChatItem = ({
     </div>
   ) : (
     <div className="w-full flex justify-between items-center bg-[#EED1B8] rounded-[7px] py-2 px-2.5 gap-x-2">
-      <div className={`rounded-[10px_0px_10px_10px] border border-[#804306] bg-[#F9CB88] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.10)] flex-1 p-2 pb-1 relative mt-2 ${replyTo != "" ? "pt-3.5" : ""}`}>
+      <div
+        className={`rounded-[10px_0px_10px_10px] border border-[#804306] bg-[#F9CB88] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.10)] flex-1 p-2 pb-1 relative mt-2 ${replyTo != "" ? "pt-3.5" : ""}`}
+      >
         <div className="text-[#804306] text-[14px]/[15px] font-medium font-made-tommy">
           {message}
         </div>

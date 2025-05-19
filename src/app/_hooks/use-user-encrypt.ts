@@ -5,7 +5,7 @@ import { configureUserInterceptor } from "../_utils/addInitData";
 import { encryptRequest } from "../_utils/encryption";
 
 export const SECRET_KEY =
-process.env.NEXT_PUBLIC_COMMON_KEY || "this-should-be-a-strong-secret-key";
+  process.env.NEXT_PUBLIC_COMMON_KEY || "this-should-be-a-strong-secret-key";
 
 export default function useUserEncrypt({
   sessionId,

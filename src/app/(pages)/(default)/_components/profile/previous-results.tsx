@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 
@@ -7,7 +7,10 @@ interface PreviousResultsProps {
   rightColor: string;
 }
 
-export default function PreviousResults({ leftColor, rightColor }: PreviousResultsProps) {
+export default function PreviousResults({
+  leftColor,
+  rightColor,
+}: PreviousResultsProps) {
   return (
     <div className="flex justify-around gap-1 w-full">
       <div className="p-1 2xs:p-2 px-4 flex-1 whitespace-nowrap rounded-full bg-[#91737754] flex text-[14px] text-[#653F56] font-made-tommy font-semibold items-center justify-between">
@@ -20,4 +23,4 @@ export default function PreviousResults({ leftColor, rightColor }: PreviousResul
       </div>
     </div>
   );
-} 
+}

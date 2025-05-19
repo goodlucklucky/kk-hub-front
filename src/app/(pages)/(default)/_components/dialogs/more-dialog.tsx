@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 //import modules
 import Image from "next/image";
@@ -40,14 +40,17 @@ const MoreSpinsDialog = ({ isOpen, onClose }: MoreSpinsDialogProps) => {
                   src={banner}
                   alt="banner"
                   className={cn(
-                    "w-36 h-16 scale-x-[1.5] absolute z-10 pointer-events-none mx-auto",
+                    "w-36 h-16 scale-x-[1.5] absolute z-10 pointer-events-none mx-auto"
                   )}
                 />
                 <span className="text-[#491F36] text-center [-webkit-text-stroke:1px_rgba(217,127,79,0.40)] font-bumper-sticker text-[25px] font-normal leading-normal tracking-[0.56px] lowercase z-20">
                   MORE SPINS
                 </span>
               </div>
-              <div className="flex justify-center items-center w-full absolute -bottom-5 right-0" onClick={onClose}>
+              <div
+                className="flex justify-center items-center w-full absolute -bottom-5 right-0"
+                onClick={onClose}
+              >
                 <CloseIcon />
               </div>
               <div className="bg-[#F5D6B1] rounded-2xl p-3 py-6 shadow-md border-2 border-[#A96415] flex-1 flex flex-col overflow-y-auto gap-2">
@@ -71,8 +74,10 @@ const MoreSpinsDialog = ({ isOpen, onClose }: MoreSpinsDialogProps) => {
                     </span>
                   </div>
                   <div className="w-full rounded-b-[14px] p-[10px] bg-[#7450611A]">
-                    <Button className='rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center'>
-                      <span className='text-white text-sm font-bold py-[1px]'>Claim for Free</span>
+                    <Button className="rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center">
+                      <span className="text-white text-sm font-bold py-[1px]">
+                        Claim for Free
+                      </span>
                     </Button>
                   </div>
                 </div>
@@ -83,13 +88,17 @@ const MoreSpinsDialog = ({ isOpen, onClose }: MoreSpinsDialogProps) => {
                     </span>
                   </div>
                   <div className="w-full rounded-b-[14px] p-[10px] bg-[#7450611A] flex gap-x-1">
-                    <Button className='rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center'>
+                    <Button className="rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center">
                       <TelegramInviteIcon className="w-4 h-4" />
-                      <span className='text-white text-sm font-bold py-[1px]'>Telegram</span>
+                      <span className="text-white text-sm font-bold py-[1px]">
+                        Telegram
+                      </span>
                     </Button>
-                    <Button className='rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center'>
+                    <Button className="rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center">
                       <InviteCopyIcon className="w-4 h-4" />
-                      <span className='text-white text-sm font-bold py-[1px]'>Copy Invite</span>
+                      <span className="text-white text-sm font-bold py-[1px]">
+                        Copy Invite
+                      </span>
                     </Button>
                   </div>
                 </div>
@@ -101,8 +110,10 @@ const MoreSpinsDialog = ({ isOpen, onClose }: MoreSpinsDialogProps) => {
                       </span>
                     </div>
                     <div className="w-full rounded-b-[14px] p-[10px] bg-[#7450611A]">
-                      <Button className='rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center'>
-                        <span className='text-white text-sm font-bold py-[1px]'>Buy Spin</span>
+                      <Button className="rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center">
+                        <span className="text-white text-sm font-bold py-[1px]">
+                          Buy Spin
+                        </span>
                       </Button>
                     </div>
                   </div>
@@ -114,6 +125,6 @@ const MoreSpinsDialog = ({ isOpen, onClose }: MoreSpinsDialogProps) => {
       </DialogPortal>
     </Dialog>
   );
-}
+};
 
 export default MoreSpinsDialog;

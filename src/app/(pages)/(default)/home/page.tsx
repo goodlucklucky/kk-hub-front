@@ -4,7 +4,7 @@ import React, { useState, useCallback } from "react";
 import Image, { StaticImageData } from "next/image";
 import _ from "lodash";
 //import components
-import { XpBar } from "../_components/xp-bar";
+import { XpBar } from "../_components/xp/bar";
 import Gifts from "../_components/gifts";
 import GamesCard from "../_components/games/card";
 import AddToHome from "../_components/add-to-home";
@@ -28,9 +28,17 @@ import ProfileDialog from "../_components/dialogs/profile-dialog";
 import ChatDialog from "../_components/dialogs/chat-dialog";
 import { useApp } from "@/app/_contexts/appContext";
 import PreviewDialog from "../_components/dialogs/preview-dialog";
+import UserXp from "../_components/xp";
 
 export default function HomePage() {
-  const { isBankingOpen, setIsBankingOpen, isProfileOpen, setIsProfileOpen, isChatOpen, setIsChatOpen } = useApp();
+  const {
+    isBankingOpen,
+    setIsBankingOpen,
+    isProfileOpen,
+    setIsProfileOpen,
+    isChatOpen,
+    setIsChatOpen,
+  } = useApp();
 
   const groupedGames = Object.entries(_.groupBy(games, (game) => game?.type));
 
@@ -51,19 +59,22 @@ export default function HomePage() {
     msg: "",
   });
 
-  const handlePreviewDialogToggle = useCallback((data: {
-    title: string;
-    link: string;
-    image: string | StaticImageData;
-    description: string;
-    msg: string;
-  }) => {
-    setIsPreviewOpen(true);
-    setPreviewData(data);
-  }, []);
+  const handlePreviewDialogToggle = useCallback(
+    (data: {
+      title: string;
+      link: string;
+      image: string | StaticImageData;
+      description: string;
+      msg: string;
+    }) => {
+      setIsPreviewOpen(true);
+      setPreviewData(data);
+    },
+    []
+  );
 
   const handleMintDialogToggle = useCallback(() => {
-    setIsMintDialogOpen(prev => !prev);
+    setIsMintDialogOpen((prev) => !prev);
   }, []);
 
   const handleMintDialogClose = useCallback(() => {
@@ -72,28 +83,34 @@ export default function HomePage() {
 
   return (
     <>
-      <XpBar currentXp={745} maxXp={3250} />
-      <div className={cn("flex flex-col flex-1 h-full items-center gap-y-3 xs:gap-y-5")}>
+      <UserXp />
+      <div
+        className={cn(
+          "flex flex-col flex-1 h-full items-center gap-y-3 xs:gap-y-5"
+        )}
+      >
         <Image
           src={mainBack}
           alt="Main background"
           className="absolute inset-0 w-full h-full -z-10 object-cover object-center"
-          loading='lazy'
+          loading="lazy"
           priority={false}
         />
         <Image
           src={forestBack}
           alt="Forest background"
           className="absolute inset-0 w-full h-[555px] top-[70px] -z-10 rotate-180"
-          loading='lazy'
+          loading="lazy"
           priority={false}
         />
-        <Gifts
-          setIsOpen={handleMintDialogToggle}
-          setIsMinting={setIsMinting}
-        />
+        <Gifts setIsOpen={handleMintDialogToggle} setIsMinting={setIsMinting} />
 
-        <div className={cn("rounded-2xl flex-1 relative h-full flex flex-col justify-evenly ", "mx-2")}>
+        <div
+          className={cn(
+            "rounded-2xl flex-1 relative h-full flex flex-col justify-evenly ",
+            "mx-2"
+          )}
+        >
           <div>
             <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-sm 2xs:text-xl rounded-tr-2xl rounded-tl-2xl">
               <div className="py-1.5 bg-white text-golden-brown flex justify-center rounded-tl-2xl">

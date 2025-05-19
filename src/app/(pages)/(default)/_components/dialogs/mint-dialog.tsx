@@ -26,12 +26,7 @@ interface MintDialogProps {
   onClose: () => void;
 }
 
-const MintDialog = ({
-  isMinting,
-  isOpen,
-  onClose,
-}: MintDialogProps) => {
-
+const MintDialog = ({ isMinting, isOpen, onClose }: MintDialogProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogPortal>

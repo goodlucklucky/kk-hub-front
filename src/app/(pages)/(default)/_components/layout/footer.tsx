@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 //import modules
 import React from "react";
@@ -18,11 +18,15 @@ import {
   StatsIcon,
   HomeIcon,
 } from "@/app/_assets/svg/etc";
-import footerItem from '@assets/images/footer-item.svg'
+import footerItem from "@assets/images/footer-item.svg";
 
-export default function Footer({footerCategory = 'home'}: {footerCategory: string}) {
+export default function Footer({
+  footerCategory = "home",
+}: {
+  footerCategory: string;
+}) {
   const pathname = usePathname();
-  
+
   const isPlayRoute = (path: string) => {
     return pathname?.includes(path);
   };
@@ -37,14 +41,18 @@ export default function Footer({footerCategory = 'home'}: {footerCategory: strin
     >
       <Item
         Icon={SpeakerIcon}
-        isPlay={isPlayRoute(footerCategory === "home" ? "tasks" : "game/snake/tasks")}
+        isPlay={isPlayRoute(
+          footerCategory === "home" ? "tasks" : "game/snake/tasks"
+        )}
         label="TASKS"
         path={footerCategory === "home" ? "tasks" : "game/snake/tasks"}
       />
-      <Item 
-        Icon={StoreIcon} 
-        isPlay={isPlayRoute(footerCategory === "home" ? "store" : "game/snake/store")} 
-        label="Store" 
+      <Item
+        Icon={StoreIcon}
+        isPlay={isPlayRoute(
+          footerCategory === "home" ? "store" : "game/snake/store"
+        )}
+        label="Store"
         path={footerCategory === "home" ? "store" : "game/snake/store"}
       />
       {footerCategory === "home" && (
@@ -64,34 +72,34 @@ export default function Footer({footerCategory = 'home'}: {footerCategory: strin
         />
       )}
       {footerCategory === "home" && (
-        <Item 
-          Icon={MissionIcon} 
-          isPlay={isPlayRoute('missions')} 
-          label="MISSIONS" 
+        <Item
+          Icon={MissionIcon}
+          isPlay={isPlayRoute("missions")}
+          label="MISSIONS"
           path="missions"
         />
       )}
       {footerCategory === "game" && (
-        <Item 
-          Icon={StatsIcon} 
-          isPlay={isPlayRoute('/game/snake/stats')} 
-          label="STATS" 
+        <Item
+          Icon={StatsIcon}
+          isPlay={isPlayRoute("/game/snake/stats")}
+          label="STATS"
           path="game/snake/stats"
         />
       )}
       {footerCategory === "home" && (
-        <Item 
-          Icon={PetIcon} 
-          isPlay={isPlayRoute('pets')} 
-          label="Pets" 
+        <Item
+          Icon={PetIcon}
+          isPlay={isPlayRoute("pets")}
+          label="Pets"
           isComing={true}
           path="pets"
         />
       )}
       {footerCategory === "game" && (
-        <Item 
+        <Item
           Icon={HomeIcon}
-          isPlay={isPlayRoute('home')} 
+          isPlay={isPlayRoute("home")}
           label="Back To Hub"
           path="home"
         />
@@ -105,7 +113,7 @@ function Item({
   Icon = PlayIcon,
   isPlay,
   isComing,
-  path
+  path,
 }: {
   label?: React.ReactNode | string;
   Icon: (props: React.ComponentProps<"svg">) => React.JSX.Element;
@@ -114,7 +122,7 @@ function Item({
   path?: string;
 }) {
   const router = useRouter();
-  
+
   const handleClick = () => {
     if (isComing) return;
 
@@ -132,9 +140,21 @@ function Item({
     >
       {Icon && <Icon className={cn(isPlay ? "size-7 mt-0.5" : "size-7")} />}
       <p>{label}</p>
-      {isPlay && <FooterSvg className="absolute -z-[1] top-0 left-0 w-full h-[76px]" />}
-      {!isPlay && <Image className="absolute -top-0 -z-10 h-[76px]" src={footerItem} alt="footer-item" />}
-      {isComing && <div className="absolute -top-0 -z-10 w-full text-[10px] text-[#FFC920] text-center font-made-tommy font-bold leading-normal [text-shadow:0px_1px_0px_rgba(0,0,0,0.20)] rounded-[5px] border border-[#FFEBB3] bg-[#7D4000] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)]">Coming Soon</div>}
+      {isPlay && (
+        <FooterSvg className="absolute -z-[1] top-0 left-0 w-full h-[76px]" />
+      )}
+      {!isPlay && (
+        <Image
+          className="absolute -top-0 -z-10 h-[76px]"
+          src={footerItem}
+          alt="footer-item"
+        />
+      )}
+      {isComing && (
+        <div className="absolute -top-0 -z-10 w-full text-[10px] text-[#FFC920] text-center font-made-tommy font-bold leading-normal [text-shadow:0px_1px_0px_rgba(0,0,0,0.20)] rounded-[5px] border border-[#FFEBB3] bg-[#7D4000] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)]">
+          Coming Soon
+        </div>
+      )}
     </div>
   );
 }

@@ -64,9 +64,9 @@ export function useClaimDaily({
     mutationKey: ["daily-claim", sessionId],
     mutationFn: () =>
       baseInstance
-        .post<{ data: ISpin }>(
-          `/bonus-service/spins/user/${sessionId}/daily-claim`
-        )
+        .post<{
+          data: ISpin;
+        }>(`/bonus-service/spins/user/${sessionId}/daily-claim`)
         .then((res) => res.data),
     onSuccess,
   });
@@ -87,9 +87,9 @@ export function useDailySpins({ sessionId }: { sessionId: TSessionId }) {
     queryKey: ["daily-spins", sessionId],
     queryFn: () =>
       baseInstance
-        .get<{ data: ISpinnerLog[] }>(
-          `/bonus-service/spins/user/${sessionId}/daily/today`
-        )
+        .get<{
+          data: ISpinnerLog[];
+        }>(`/bonus-service/spins/user/${sessionId}/daily/today`)
         .then((res) => res.data),
   });
 }

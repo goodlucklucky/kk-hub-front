@@ -7,9 +7,9 @@ import Button from "@/app/_components/shared/button";
 import { cn } from "@/app/_lib/utils";
 
 //import assets
-import woodTexture from '@assets/images/wood-texture.png';
-import chatIcon from '@assets/images/chat-icon.png';
-import chatBottom from '@assets/images/chat-bottom.png';
+import woodTexture from "@assets/images/wood-texture.png";
+import chatIcon from "@assets/images/chat-icon.png";
+import chatBottom from "@assets/images/chat-bottom.png";
 import { useApp } from "@/app/_contexts/appContext";
 
 //interface
@@ -37,22 +37,24 @@ const ChatCard: React.FC<ChatCardProps> = ({ message }) => {
           "relative"
         )}
       >
-        <Image 
-          src={chatIcon} 
-          alt="chat icon" 
-          className="absolute -top-1 -left-2" 
-          width={18} 
-          height={18} 
+        <Image
+          src={chatIcon}
+          alt="chat icon"
+          className="absolute -top-1 -left-2"
+          width={18}
+          height={18}
         />
         {message.username}
       </p>
-      <p className={cn(
-        "p-2 pt-1",
-        "text-[#804306]",
-        "text-[14px] leading-[15px]",
-        "font-made-tommy font-normal",
-        "shadow-[0px_1px_0px_0px_rgba(0,42,84,0.10)]"
-      )}>
+      <p
+        className={cn(
+          "p-2 pt-1",
+          "text-[#804306]",
+          "text-[14px] leading-[15px]",
+          "font-made-tommy font-normal",
+          "shadow-[0px_1px_0px_0px_rgba(0,42,84,0.10)]"
+        )}
+      >
         {message.message}
       </p>
     </div>
@@ -61,8 +63,14 @@ const ChatCard: React.FC<ChatCardProps> = ({ message }) => {
 
 const ChatContainer: React.FC = () => {
   const messages: ChatMessage[] = [
-    { username: "lecoconut", message: "writes something smart that takes two lines" },
-    { username: "lecoconut", message: "writes something smart that takes two lines" }
+    {
+      username: "lecoconut",
+      message: "writes something smart that takes two lines",
+    },
+    {
+      username: "lecoconut",
+      message: "writes something smart that takes two lines",
+    },
   ];
 
   return (
@@ -98,13 +106,13 @@ export default function Chat() {
       )}
       style={{ backgroundImage: `url(${woodTexture.src})` }}
     >
-      <Image 
-        src={chatBottom} 
-        alt="chat bottom"  
-        className="absolute -bottom-4.5 left-1" 
+      <Image
+        src={chatBottom}
+        alt="chat bottom"
+        className="absolute -bottom-4.5 left-1"
       />
       <ChatContainer />
-      <Button 
+      <Button
         onClick={() => setIsChatOpen(!isChatOpen)}
         className="px-2 w-[94px] absolute left-19.5 -bottom-2"
       >

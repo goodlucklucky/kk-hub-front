@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 //import components
-import { NavBar } from "../../../(default)/_components/xp-bar";
+import { NavBar } from "../../../(default)/_components/xp/bar";
 import Chat from "../../../(default)/_components/chat";
 
 //import utils
@@ -96,7 +96,10 @@ export default function StatsPage() {
                       Free Entry Tournament
                     </span>
                   </div>
-                  <div className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4" onClick={navigateToEntry}>
+                  <div
+                    className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
+                    onClick={navigateToEntry}
+                  >
                     <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
                       Play
                     </span>
@@ -135,7 +138,10 @@ export default function StatsPage() {
                       $0.25 Entry Tournament
                     </span>
                   </div>
-                  <div className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4" onClick={navigateToEntry}>
+                  <div
+                    className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
+                    onClick={navigateToEntry}
+                  >
                     <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
                       Play
                     </span>
@@ -174,7 +180,10 @@ export default function StatsPage() {
                       $0.50 Entry Tournament
                     </span>
                   </div>
-                  <div className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4" onClick={navigateToEntry}>
+                  <div
+                    className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
+                    onClick={navigateToEntry}
+                  >
                     <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
                       Play
                     </span>
@@ -214,7 +223,10 @@ export default function StatsPage() {
                       $1 Entry Tournament
                     </span>
                   </div>
-                  <div className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4" onClick={navigateToEntry}>
+                  <div
+                    className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
+                    onClick={navigateToEntry}
+                  >
                     <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
                       Play
                     </span>
@@ -254,7 +266,10 @@ export default function StatsPage() {
                       Free Entry Tournament
                     </span>
                   </div>
-                  <div className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4" onClick={navigateToEntry}>
+                  <div
+                    className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
+                    onClick={navigateToEntry}
+                  >
                     <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
                       Play
                     </span>

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import mainBack from '@assets/images/main-back.png';
-import forestBack from '@assets/images/forest-back.png';
+import mainBack from "@assets/images/main-back.png";
+import forestBack from "@assets/images/forest-back.png";
 
 export const BackgroundImages = () => {
   return (
@@ -25,4 +25,4 @@ export const BackgroundImages = () => {
       />
     </>
   );
-}; 
+};

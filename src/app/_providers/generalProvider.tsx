@@ -4,12 +4,12 @@ import {
   createContext,
   Suspense,
   useCallback,
+  useContext,
   useEffect,
   useLayoutEffect,
   useMemo,
   useState,
 } from "react";
-import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import { useAuth } from "../_hooks/use-auth";
 import { initMixpanel, trackEvent } from "../_lib/mixpanel";
 import useDisableInspect from "../_hooks/use-disable-inspect";
@@ -22,33 +22,32 @@ import { IInitialPoints, useInitialPoints } from "../../../services/user";
 import { IUsdt, useUsdt } from "../../../services/usdt";
 import { useSocialData } from "../_hooks/use-social-data";
 import { IBonusCompletion } from "../../../services/bonus";
+import { IUserXP, useUserXp } from "../../../services/xp/user";
 
 export interface IGeneralContext {
   user?: IUser | null;
   sessionId?: TSessionId;
   addMyUsdt?: (_score: number) => void;
   isLoadingMyUsdt?: boolean;
-  refreshMyUsdt?: (
-    _options?: RefetchOptions
-  ) => Promise<QueryObserverResult<{ data: IUsdt }, Error>>;
+  refreshMyUsdt?: Refresher<{ data: IUsdt }>;
 
   userWallet?: IUserWallet;
   isUserWalletPending?: boolean;
   refreshUserWallet?: Refresher<IUserWalletRes>;
   myScore?: number;
   addMyScore?: (_score: number) => void;
-  refreshMyScore?: (
-    _options?: RefetchOptions
-  ) => Promise<QueryObserverResult<IInitialPoints, Error>>;
+  refreshMyScore?: Refresher<IInitialPoints>;
   isLoadingMyScore?: boolean;
   myUsdt?: number;
   isLoadingCurrentWallet?: boolean;
   encrypted?: string;
 
   completionStatus?: IBonusCompletion;
-  getCompletionStatus?: (
-    _options?: RefetchOptions
-  ) => Promise<QueryObserverResult<{ data: IBonusCompletion }, Error>>;
+  getCompletionStatus?: Refresher<{ data: IBonusCompletion }>;
+
+  userXp?: IUserXP;
+  isLoadingUserXp?: boolean;
+  refreshUserXp?: Refresher<IUserXP>;
 }
 
 export const GeneralContext = createContext<IGeneralContext>({});
@@ -85,6 +84,12 @@ export function GeneralProvider({
   const { isPending: isLoadingMyUsdt, refetch: refreshMyUsdt } = useUsdt({
     sessionId,
   });
+
+  const {
+    data: userXp,
+    isPending: isLoadingUserXp,
+    refetch: refreshUserXp,
+  } = useUserXp({ sessionId });
 
   // const { data: completionStatusData } = useBonusCompletion({ sessionId });
   // const { data: challengesPlayedData, refetch: getChallengesPlayed } =
@@ -137,6 +142,8 @@ export function GeneralProvider({
         user,
         sessionId,
 
+        encrypted,
+
         userWallet,
         isUserWalletPending: walletPending,
         refreshUserWallet: refreshWaller,
@@ -149,7 +156,9 @@ export function GeneralProvider({
         isLoadingMyUsdt,
         refreshMyUsdt,
 
-        encrypted,
+        userXp,
+        isLoadingUserXp,
+        refreshUserXp,
       }}
     >
       <Suspense fallback={<></>}>
@@ -158,4 +167,13 @@ export function GeneralProvider({
       </Suspense>
     </GeneralContext.Provider>
   );
+}
+
+export function useGeneral() {
+  const context = useContext(GeneralContext);
+
+  if (context === undefined)
+    throw new Error("useGeneral must be used within a GeneralProvider");
+
+  return context;
 }

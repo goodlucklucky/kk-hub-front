@@ -66,4 +66,4 @@ export const spinnerProbability: SpinnerItem[] = [
     type: "spin",
     value: 1,
   },
-]; 
+];

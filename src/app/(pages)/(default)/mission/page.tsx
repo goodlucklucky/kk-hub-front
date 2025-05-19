@@ -3,7 +3,7 @@
 import React, { useState, useCallback, memo } from "react";
 import Image from "next/image";
 //import components
-import { NavBar } from "../_components/xp-bar";
+import { NavBar } from "../_components/xp/bar";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -23,7 +23,13 @@ import NavigationButton from "../_components/profile/navigateBtn";
 import { ClockIcon } from "@/app/_assets/svg/clock";
 import Button from "@/app/_components/shared/button";
 import { StartIcon } from "@/app/_assets/svg/start";
-import { MissionCheckIcon, MissionClickIcon, MissionLeftIcon, MissionRightIcon, MissionIcon } from "@/app/_assets/svg/mission-direct";
+import {
+  MissionCheckIcon,
+  MissionClickIcon,
+  MissionLeftIcon,
+  MissionRightIcon,
+  MissionIcon,
+} from "@/app/_assets/svg/mission-direct";
 
 // Types
 type MissionCategory = "daily" | "weekly";
@@ -150,11 +156,11 @@ export default function MissionPage() {
             </Button>
           </div>
           <div className="flex gap-3 justify-center items-center">
-           <MissionLeftIcon className="w-[20px]"/>
-           <MissionClickIcon className="w-[25px] h-[25px]"/>
-           <MissionIcon className="w-[25px] h-[25px]"/>
-           <MissionCheckIcon className="w-[25px] h-[25px]"/>
-           <MissionRightIcon className="w-[20px]"/>
+            <MissionLeftIcon className="w-[20px]" />
+            <MissionClickIcon className="w-[25px] h-[25px]" />
+            <MissionIcon className="w-[25px] h-[25px]" />
+            <MissionCheckIcon className="w-[25px] h-[25px]" />
+            <MissionRightIcon className="w-[20px]" />
           </div>
         </div>
       </div>

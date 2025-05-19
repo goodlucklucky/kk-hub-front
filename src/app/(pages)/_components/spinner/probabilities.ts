@@ -61,7 +61,7 @@ export const spinnerProbability = [
   },
 ];
 
-export type TSpinner = typeof spinnerProbability[0];
+export type TSpinner = (typeof spinnerProbability)[0];
 
 export const SpinnerColors = [
   "#A1457C",

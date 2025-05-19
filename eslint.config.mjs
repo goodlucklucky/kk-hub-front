@@ -30,29 +30,29 @@ const eslintConfig = [
           caughtErrorsIgnorePattern: "^_",
           ignoreRestSiblings: true,
           destructuredArrayIgnorePattern: "^_",
-        }
+        },
       ],
       "@typescript-eslint/no-explicit-any": "off", // Allow 'any' type
       "@typescript-eslint/no-non-null-assertion": "warn", // Warn on ! operator
-      
+
       // React/Next.js Rules
       "react-hooks/exhaustive-deps": "warn",
       "@next/next/no-img-element": "warn", // Warn about native <img>
-      
+
       // JavaScript Rules
       "no-console": process.env.NODE_ENV === "production" ? "error" : "warn",
       "@typescript-eslint/no-unused-vars": "warn", // Downgrade to warning
-      "@next/next/no-img-element": "off",          // Disable completely
-      "react-hooks/exhaustive-deps": "warn",        // Warn instead of error
-      'react/no-unescaped-entities': 'off',
-      '@next/next/no-page-custom-font': 'off',
+      "@next/next/no-img-element": "off", // Disable completely
+      "react-hooks/exhaustive-deps": "warn", // Warn instead of error
+      "react/no-unescaped-entities": "off",
+      "@next/next/no-page-custom-font": "off",
     },
     settings: {
       next: {
-        rootDir: __dirname // Ensure Next.js plugin knows project root
-      }
-    }
-  }
+        rootDir: __dirname, // Ensure Next.js plugin knows project root
+      },
+    },
+  },
 ];
 
 export default eslintConfig;

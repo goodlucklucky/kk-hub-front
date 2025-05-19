@@ -26,12 +26,13 @@ import PageTitleBanner from "../_components/spinner/page-title-banner";
 import Spinner from "@/app/_components/spinner";
 import MoreSpins from "../_components/daily-login-spinner/more-spins";
 import { Button } from "@/app/_components/ui/button";
-import { XpBar } from "../_components/xp-bar";
+import { XpBar } from "../_components/xp/bar";
 
 //import images
 import flashingEffect from "@assets/images/flashing-effect.png";
 import spinnerBack from "@assets/images/spinner-back.png";
 import usdt from "@assets/images/usdt.png";
+import UserXp from "../_components/xp";
 
 type TReward = "kokos" | "USDT" | "spin";
 
@@ -166,7 +167,7 @@ export default function KokoSpinner() {
         className="absolute w-[100vw] h-[100vh] top-0"
         style={{ animation: isGrayingOut ? "grayoutEffect 2s ease" : "" }}
       />
-      <XpBar currentXp={745} maxXp={3250} />
+      <UserXp />
       <Image
         src={spinnerBack}
         alt="Main background"

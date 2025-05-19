@@ -6,9 +6,9 @@ export function useOgNft(sessionId: TSessionId) {
     queryKey: ["og-nft", sessionId],
     queryFn: () =>
       baseInstance
-        .get<{ data: { userNFTs: any[]; count: number } }>(
-          `/nft-service/nft/user/${sessionId}`
-        )
+        .get<{
+          data: { userNFTs: any[]; count: number };
+        }>(`/nft-service/nft/user/${sessionId}`)
         .then((res) => res.data),
   });
 }
@@ -46,10 +46,9 @@ export function useAirdropCheck() {
       type: string;
     }) =>
       baseInstance
-        .get<{ data: { isClaimed: boolean } }>(
-          `/nft-service/nft/airdrop/check`,
-          { params: { sessionId, type } }
-        )
+        .get<{
+          data: { isClaimed: boolean };
+        }>(`/nft-service/nft/airdrop/check`, { params: { sessionId, type } })
         .then((res) => res.data),
   });
 }

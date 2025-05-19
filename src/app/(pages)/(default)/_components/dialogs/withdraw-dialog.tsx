@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 //import modules
 import Image from "next/image";
@@ -34,11 +34,17 @@ const WithdrawDialog = ({ isOpen, onClose }: WithdrawDialogProps) => {
                 <CloseIcon />
               </div>
               <div className="w-full flex justify-center items-center gap-1">
-                <span className="text-[#653F56] text-center font-bumper-text text-[20px] font-bold leading-normal">PRIZE WITHDRAWALS</span>
+                <span className="text-[#653F56] text-center font-bumper-text text-[20px] font-bold leading-normal">
+                  PRIZE WITHDRAWALS
+                </span>
               </div>
               <div className="flex flex-col justify-center items-start w-[297px] bg-[#E3BEAA] rounded-[10px] p-4 py-2">
-                <span className="text-[#745061] text-center font-made-tommy text-[15px] font-bold leading-normal">Min Withdrawal = 10 USDT</span>
-                <span className="text-[#745061cb] text-center font-made-tommy text-[15px] font-bold leading-normal">Check back at 10 USDT</span>
+                <span className="text-[#745061] text-center font-made-tommy text-[15px] font-bold leading-normal">
+                  Min Withdrawal = 10 USDT
+                </span>
+                <span className="text-[#745061cb] text-center font-made-tommy text-[15px] font-bold leading-normal">
+                  Check back at 10 USDT
+                </span>
               </div>
               <Image
                 priority
@@ -53,6 +59,6 @@ const WithdrawDialog = ({ isOpen, onClose }: WithdrawDialogProps) => {
       </DialogPortal>
     </Dialog>
   );
-}
+};
 
 export default WithdrawDialog;

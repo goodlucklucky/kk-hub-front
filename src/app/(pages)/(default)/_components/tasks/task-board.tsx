@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface TaskBoardProps {
   children: React.ReactNode;
@@ -12,4 +12,4 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({ children }) => {
       </div>
     </div>
   );
-}; 
+};

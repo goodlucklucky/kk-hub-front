@@ -89,10 +89,9 @@ export function useClaimFreeSkin() {
     mutationKey: ["claim-free-skin"],
     mutationFn: ({ id, sessionId }: { id: string; sessionId: TSessionId }) =>
       baseInstance
-        .post<{ message: string }>(
-          `/game-service/cosmetics/user-snake-skins/claim-free-skin`,
-          { id, sessionId }
-        )
+        .post<{
+          message: string;
+        }>(`/game-service/cosmetics/user-snake-skins/claim-free-skin`, { id, sessionId })
         .then((res) => res.data),
   });
 }

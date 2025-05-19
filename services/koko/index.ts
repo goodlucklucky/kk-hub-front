@@ -91,9 +91,9 @@ export function useGetProtections({ sessionId }: { sessionId: TSessionId }) {
     queryKey: ["get-protections"],
     queryFn: () =>
       baseInstance
-        .get<{ data: IProtections }>(
-          `/points-service/koko/protection/days/${sessionId}`
-        )
+        .get<{
+          data: IProtections;
+        }>(`/points-service/koko/protection/days/${sessionId}`)
         .then((res) => res.data),
   });
 }

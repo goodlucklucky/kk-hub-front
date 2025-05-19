@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import Image, { StaticImageData } from "next/image";
 //import components
-import { XpBar } from "../_components/xp-bar";
+import { XpBar } from "../_components/xp/bar";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -32,6 +32,7 @@ import { getRewardContent, getRewardData } from "./utils";
 import { IReward } from "./claim-reward-dialog";
 import toast from "react-hot-toast";
 import useTimeLeft from "@/app/_hooks/useTimeLeft";
+import UserXp from "../_components/xp";
 
 type TReward = {
   collected: boolean;
@@ -56,7 +57,6 @@ export default function ClaimPage() {
 
   const { data } = useDailyRewards();
   const { data: currentClaimData } = useCurrentDayClaimStatus({ sessionId });
-  // console.log("currentClaimData", currentClaimData?.data.day);
 
   const [, setReward] = useState<IReward | null>();
   const [rewards, setRewards] = useState<TReward[]>([]);
@@ -122,19 +122,6 @@ export default function ClaimPage() {
     [collectReward, isCollectingRewards, sessionId]
   );
 
-  // const onClaim = useCallback(
-  //   async (open: boolean) => {
-  //     try {
-  //       setOpenClaimDialog(open);
-
-  //       if (open == false) await refreshMyUsdt?.();
-  //     } catch (error) {
-  //       // error
-  //     }
-  //   },
-  //   [refreshMyUsdt]
-  // );
-
   const rewardsPages = useMemo(() => {
     const chunkSize = 7;
     const pages: TReward[][] = [];
@@ -146,11 +133,9 @@ export default function ClaimPage() {
     return pages;
   }, [rewards]);
 
-  // console.log("rewards Pages", rewardsPages);
-
   return (
     <>
-      <XpBar currentXp={745} maxXp={3250} />
+      <UserXp />
       <div
         className={cn(
           "flex flex-col flex-1 justify-center items-center fixed top-28 bottom-20 pt-4 pb-14 z-0"

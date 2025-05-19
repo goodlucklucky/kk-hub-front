@@ -3,7 +3,7 @@
 import React, { useState, useCallback, memo } from "react";
 import Image from "next/image";
 //import components
-import { NavBar } from "../../../(default)/_components/xp-bar";
+import { NavBar } from "../../../(default)/_components/xp/bar";
 import MintDialog from "../../../(default)/_components/dialogs/mint-dialog";
 import NavigationButton from "../../../(default)/_components/profile/navigateBtn";
 

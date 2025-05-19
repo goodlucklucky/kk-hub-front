@@ -29,7 +29,7 @@ import cosmetic from "@assets/images/cosmetics.png";
 import { GeneralContext } from "@/app/_providers/generalProvider";
 import CosmeticCard from "@/app/(pages)/(default)/_components/store/cosmetic-card";
 import NavigationButton from "@/app/(pages)/(default)/_components/profile/navigateBtn";
-import { NavBar } from "@/app/(pages)/(default)/_components/xp-bar";
+import { NavBar } from "@/app/(pages)/(default)/_components/xp/bar";
 import DiscountBadge from "@/app/(pages)/(default)/_components/store/discount-badge";
 import SkinDialog from "@/app/(pages)/(default)/_components/dialogs/skin-dialog";
 import {

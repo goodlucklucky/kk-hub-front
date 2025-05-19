@@ -19,7 +19,9 @@ export default function LivePreview() {
     let timeout: ReturnType<typeof setTimeout>;
 
     const update = () => {
-      setTotalPrizes((prev) => Number((prev + Math.random() * 100 + 10).toFixed(2)));
+      setTotalPrizes((prev) =>
+        Number((prev + Math.random() * 100 + 10).toFixed(2))
+      );
       setGamesPlayed((prev) => prev + Math.floor(Math.random() * 4) + 1);
 
       const delay = Math.random() * 3000 + 1000;

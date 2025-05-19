@@ -22,7 +22,9 @@ export default function DayBarge({ checked }: { checked?: boolean }) {
           >
             {checked && <TickIcon className="size-full p-0.5" />}
           </div>
-          <span className="text-[#E3BEAA] text-[17px] font-normal absolute bottom-1 right-2.5">Day 4</span>
+          <span className="text-[#E3BEAA] text-[17px] font-normal absolute bottom-1 right-2.5">
+            Day 4
+          </span>
         </div>
       </div>
     </div>

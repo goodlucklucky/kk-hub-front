@@ -8,7 +8,8 @@
 }
 
 /* Prevent scrolling and zooming on all devices */
-html, body {
+html,
+body {
   touch-action: none;
   -ms-touch-action: none;
   overflow-x: hidden;
@@ -187,8 +188,8 @@ body {
     color-mix(in srgb, var(--color), white 30%) 0%,
     color-mix(in srgb, var(--color), black 10%) 100%
   );
-  box-shadow: 0 var(--shadow-size) 0 0
-      color-mix(in srgb, var(--color), black 50%),
+  box-shadow:
+    0 var(--shadow-size) 0 0 color-mix(in srgb, var(--color), black 50%),
     0 var(--shadow-size) 0 2px #000a;
   border-radius: var(--radius);
   padding: calc(var(--padding) + var(--padding-2));
@@ -424,8 +425,9 @@ body {
   }
 }
 
-@keyframes scale {  
-  0%, 100% {
+@keyframes scale {
+  0%,
+  100% {
     scale: 1;
   }
   50% {
@@ -438,13 +440,14 @@ body {
     color: #036739;
   }
   20% {
-    color: #FFD093;
+    color: #ffd093;
   }
-  40%, 60% {
+  40%,
+  60% {
     color: white;
   }
   80% {
-    color: #FFD093;
+    color: #ffd093;
   }
   100% {
     color: #036739;

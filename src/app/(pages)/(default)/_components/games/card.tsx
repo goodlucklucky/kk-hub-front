@@ -44,12 +44,18 @@ export default function GamesCard({
     <div className="p-2 py-0.5 2xs:py-1">
       <div className="">
         <p className="flex items-center gap-2 text-white font-extrabold text-[18px]">
-          <span className="bg-black/20 backdrop-blur-[25px] px-1.5 rounded-t-[5px] shadow-[0_2px_0_0_#00000033]">{title}</span>
+          <span className="bg-black/20 backdrop-blur-[25px] px-1.5 rounded-t-[5px] shadow-[0_2px_0_0_#00000033]">
+            {title}
+          </span>
         </p>
       </div>
 
-
-      <div className={cn("flex gap-2 p-1 bg-black/40 backdrop-blur-[25px]", "rounded-b-lg rounded-tr-lg")}>
+      <div
+        className={cn(
+          "flex gap-2 p-1 bg-black/40 backdrop-blur-[25px]",
+          "rounded-b-lg rounded-tr-lg"
+        )}
+      >
         {(
           [
             ...items,
@@ -76,7 +82,6 @@ export default function GamesCard({
           <RightArrow />
         </div>
       </div>
-
     </div>
   );
 }
@@ -91,20 +96,37 @@ export type TGameItemCardProps = Omit<TItems, "soon"> & {
   }) => void;
 };
 
-export function GameItemCard({ title, image, link, isNew, number, handlePreviewDialogToggle }: TGameItemCardProps) {
+export function GameItemCard({
+  title,
+  image,
+  link,
+  isNew,
+  number,
+  handlePreviewDialogToggle,
+}: TGameItemCardProps) {
   return (
     <div
       className="rounded-lg w-[70px] relative overflow-hidden"
-      onClick={() => handlePreviewDialogToggle({
-        title: title || "",
-        link: link || "",
-        image: image || "",
-        description: "Ever made memecoin money playing Snake?!",
-        msg: "Win $ playing classic Snake in Tournaments, PvP, and more!"
-      })}
+      onClick={() =>
+        handlePreviewDialogToggle({
+          title: title || "",
+          link: link || "",
+          image: image || "",
+          description: "Ever made memecoin money playing Snake?!",
+          msg: "Win $ playing classic Snake in Tournaments, PvP, and more!",
+        })
+      }
     >
-      {number && <p className="absolute top-0 right-0.5 bg-red-light px-1 text-white text-[10px] rounded-lg">{number}</p>}
-      {isNew && <div className="absolute top-0 right-0.5 bg-red-light px-1 text-white text-[10px] rounded-sm font-made-tommy">New</div>}
+      {number && (
+        <p className="absolute top-0 right-0.5 bg-red-light px-1 text-white text-[10px] rounded-lg">
+          {number}
+        </p>
+      )}
+      {isNew && (
+        <div className="absolute top-0 right-0.5 bg-red-light px-1 text-white text-[10px] rounded-sm font-made-tommy">
+          New
+        </div>
+      )}
       <div className="bg-white/20">
         {image && (
           <Image

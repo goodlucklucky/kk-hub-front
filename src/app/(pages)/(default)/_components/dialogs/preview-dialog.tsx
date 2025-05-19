@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 //import modules
 import Image from "next/image";
@@ -31,7 +31,15 @@ interface PreviewDialogProps {
   msg: string;
 }
 
-const PreviewDialog = ({ isOpen, onClose, title, link, image, description, msg}: PreviewDialogProps) => {
+const PreviewDialog = ({
+  isOpen,
+  onClose,
+  title,
+  link,
+  image,
+  description,
+  msg,
+}: PreviewDialogProps) => {
   const router = useRouter();
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -46,18 +54,27 @@ const PreviewDialog = ({ isOpen, onClose, title, link, image, description, msg}:
                   src={banner}
                   alt="banner"
                   className={cn(
-                    "w-36 h-16 scale-x-[1.5] absolute z-10 pointer-events-none mx-auto",
+                    "w-36 h-16 scale-x-[1.5] absolute z-10 pointer-events-none mx-auto"
                   )}
                 />
                 <h1 className="text-golden-bright text-center font-bumper-sticker text-[25px] font-normal leading-normal z-20 drop-shadow-[0_0.2ch_var(--color-golden-darker)]">
                   {title}
                 </h1>
               </div>
-              <div className="flex justify-center items-center w-full absolute -bottom-5 right-0" onClick={onClose}>
+              <div
+                className="flex justify-center items-center w-full absolute -bottom-5 right-0"
+                onClick={onClose}
+              >
                 <CloseIcon />
               </div>
               <div className="bg-[#F5D6B1] rounded-2xl p-3 py-6 shadow-md border-2 border-[#A96415] flex-1 flex flex-col items-center overflow-y-auto gap-2">
-                <Image src={image} alt="preview" width={90} height={90} className="w-[90px] h-[90px] rounded-[5px]" />
+                <Image
+                  src={image}
+                  alt="preview"
+                  width={90}
+                  height={90}
+                  className="w-[90px] h-[90px] rounded-[5px]"
+                />
                 <div className="flex flex-col items-center rounded-[15px] bg-[#E3BEAA] w-full p-2">
                   <p className="text-[#653F56] text-center font-made-tommy text-[16px] font-[900] leading-normal tracking-[0.16px] px-3">
                     {description}
@@ -88,6 +105,6 @@ const PreviewDialog = ({ isOpen, onClose, title, link, image, description, msg}:
       </DialogPortal>
     </Dialog>
   );
-}
+};
 
 export default PreviewDialog;

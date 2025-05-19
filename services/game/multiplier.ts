@@ -17,9 +17,9 @@ export function useMultiplier(sessionId: TSessionId) {
     queryKey: ["multiplier", sessionId],
     queryFn: () =>
       baseInstance
-        .get<{ data?: IMultiplier }>(
-          `/game-service/challenges/score/multipliers/${sessionId}`
-        )
+        .get<{
+          data?: IMultiplier;
+        }>(`/game-service/challenges/score/multipliers/${sessionId}`)
         .then((res) => res.data?.data),
   });
 }

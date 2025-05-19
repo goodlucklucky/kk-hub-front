@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 import InventoryItem from "./inventory-item";
@@ -19,7 +19,7 @@ export default function InventorySection({
   items,
   itemPadding,
   itemWidth,
-  itemHeight
+  itemHeight,
 }: InventorySectionProps) {
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -37,17 +37,14 @@ export default function InventorySection({
 
   return (
     <div className="w-full flex flex-col bg-[#EED1B8] rounded-[20px]">
-      <div 
-        className={headerClasses}
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
+      <div className={headerClasses} onClick={() => setIsExpanded(!isExpanded)}>
         <div className="flex gap-2 items-center">
           <span className="text-[#745061] text-base font-bold font-made-tommy">
             {title}
           </span>
-          <CustomRightArrow 
-            color="#745061" 
-            className={`transition-transform duration-300 ${isExpanded ? '-rotate-90' : 'rotate-90'}`} 
+          <CustomRightArrow
+            color="#745061"
+            className={`transition-transform duration-300 ${isExpanded ? "-rotate-90" : "rotate-90"}`}
           />
         </div>
         <div className="bg-[#917377] rounded-[3px] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] h-[28px] flex items-center justify-end px-1 gap-1">
@@ -69,4 +66,4 @@ export default function InventorySection({
       </div>
     </div>
   );
-} 
+}

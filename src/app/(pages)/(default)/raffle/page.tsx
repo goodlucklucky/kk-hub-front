@@ -4,7 +4,7 @@ import React, { useState, useCallback, useContext, useEffect } from "react";
 import Image from "next/image";
 import CountUp from "react-countup";
 //import components
-import { NavBar } from "../_components/xp-bar";
+import { NavBar } from "../_components/xp/bar";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -82,7 +82,12 @@ export default function RafflePage() {
         }
       );
     }
-  }, [sessionId, enterRaffleMutate, getRaffleEntryMutate, fetchUnclaimedRaffleData]);
+  }, [
+    sessionId,
+    enterRaffleMutate,
+    getRaffleEntryMutate,
+    fetchUnclaimedRaffleData,
+  ]);
 
   // const raffleMutation = useRaffle();
   const raffleMutation = useClaimRaffle();

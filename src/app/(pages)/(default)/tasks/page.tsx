@@ -3,7 +3,7 @@
 import React, { useState, useCallback, memo, useContext } from "react";
 import Image from "next/image";
 //import components
-import { NavBar } from "../_components/xp-bar";
+import { NavBar } from "../_components/xp/bar";
 import MintDialog from "../_components/dialogs/mint-dialog";
 import NavigationButton from "../_components/profile/navigateBtn";
 
@@ -138,10 +138,7 @@ export default function TasksPage() {
                 </div>
               )}
             </div>
-            <TaskSection
-              tab={activeTaskCategory}
-              onMintClick={handleMint}
-            />
+            <TaskSection tab={activeTaskCategory} onMintClick={handleMint} />
           </div>
         </div>
       </div>

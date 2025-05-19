@@ -10,4 +10,4 @@ export default function ScoreCard({ children }: ScoreCardProps) {
       {children}
     </div>
   );
-} 
+}

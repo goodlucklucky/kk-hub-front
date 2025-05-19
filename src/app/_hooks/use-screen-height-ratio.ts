@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const useScreenHeightRatio = (height: number): number => {
   const [heightRatio, setHeightRatio] = useState<number>(1);
@@ -12,10 +12,10 @@ const useScreenHeightRatio = (height: number): number => {
 
     updateHeightRatio();
 
-    window.addEventListener('resize', updateHeightRatio);
+    window.addEventListener("resize", updateHeightRatio);
 
     return (): void => {
-      window.removeEventListener('resize', updateHeightRatio);
+      window.removeEventListener("resize", updateHeightRatio);
     };
   }, [height]);
 

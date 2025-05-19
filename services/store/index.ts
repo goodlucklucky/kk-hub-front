@@ -18,9 +18,9 @@ export function useStoreTypes() {
     queryKey: ["store-types"],
     queryFn: () =>
       baseInstance
-        .get<{ data: { data: IStoreItemType[] } }>(
-          `/nft-service/store/settings/item-types`
-        )
+        .get<{
+          data: { data: IStoreItemType[] };
+        }>(`/nft-service/store/settings/item-types`)
         .then((res) => res.data.data),
   });
 }
@@ -130,10 +130,9 @@ export function useActivateUserItem() {
     mutationKey: ["activate-user-item"],
     mutationFn: ({ id }: { id: string }) =>
       baseInstance
-        .post<{ message: string }>(
-          `/nft-service/store/user-items/${id}/activate`,
-          {}
-        )
+        .post<{
+          message: string;
+        }>(`/nft-service/store/user-items/${id}/activate`, {})
         .then((res) => res.data),
   });
 }

@@ -4,7 +4,7 @@ import mixpanel from "mixpanel-browser";
 export const initMixpanel = () => {
   const token = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
 
-  if (!token) return // console.warn("Mixpanel token not found");
+  if (!token) return; // console.warn("Mixpanel token not found");
 
   mixpanel.init(token, {
     debug: process.env.NODE_ENV === "development",

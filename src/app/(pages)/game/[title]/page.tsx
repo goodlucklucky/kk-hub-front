@@ -100,9 +100,16 @@ export default function HomePage() {
           </div>
           <div className="w-full flex-1 px-2 flex flex-col gap-y-2 justify-end items-center relative">
             <Image
-              src={title === "snake" ? snakeHome : title === "flappy" ? flappyHome : ""}
-              alt={`${title } home`}
-              className={cn("absolute bottom-10 left-1/2 -translate-x-1/2 z-1 w-[250px] h-[250px]",
+              src={
+                title === "snake"
+                  ? snakeHome
+                  : title === "flappy"
+                    ? flappyHome
+                    : ""
+              }
+              alt={`${title} home`}
+              className={cn(
+                "absolute bottom-10 left-1/2 -translate-x-1/2 z-1 w-[250px] h-[250px]",
                 title === "flappy" && "bottom-20"
               )}
               width={250}
@@ -114,7 +121,10 @@ export default function HomePage() {
                 Add to home screen
               </p>
             </div>
-            <Button onClick={() => router.push(`/game/${title}/play`)} className="bg-[url(/images/board.png)] bg-[length:100%_100%] bg-center rounded-[200px] p-3 pt-4 pb-2 h-20 w-full shadow-md flex justify-center items-center z-10">
+            <Button
+              onClick={() => router.push(`/game/${title}/play`)}
+              className="bg-[url(/images/board.png)] bg-[length:100%_100%] bg-center rounded-[200px] p-3 pt-4 pb-2 h-20 w-full shadow-md flex justify-center items-center z-10"
+            >
               <div className="bg-[url(/images/cyan-btn-bg.png)] h-full w-full bg-[length:100%_100%] bg-stretch bg-center bg-no-repeat flex justify-center relative items-center">
                 <p className="-mt-[10px] text-[#F4FFFF] text-center font-bumper-sticker text-[28px] font-normal [text-shadow:0px_2px_0px_rgba(0,0,0,0.20)] z-10">
                   Play {title === "snake" ? "Snake" : "Flappy dunk"} now

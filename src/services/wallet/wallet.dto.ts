@@ -1,4 +1,11 @@
-import { IsNotEmpty, IsString, IsNumber, IsOptional, Min, IsUUID } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsNumber,
+  IsOptional,
+  Min,
+  IsUUID,
+} from "class-validator";
 
 export class WalletTransactionDto {
   @IsUUID()
@@ -12,7 +19,7 @@ export class WalletTransactionDto {
 
   @IsString()
   @IsNotEmpty()
-  transactionType: 'deposit' | 'withdrawal' | 'reward' | 'purchase';
+  transactionType: "deposit" | "withdrawal" | "reward" | "purchase";
 
   @IsString()
   @IsOptional()
@@ -37,4 +44,4 @@ export class WalletBalanceDto {
   @Min(0)
   @IsOptional()
   pendingBalance?: number;
-} 
+}

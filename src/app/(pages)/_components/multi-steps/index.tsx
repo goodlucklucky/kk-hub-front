@@ -29,7 +29,7 @@ export default function MultiSteps() {
   // Handle going to a specific step
   const goToStep = (newStep: number) => {
     if (newStep === step) return;
-    
+
     setSlideDirection(newStep > step ? "right" : "left");
     // Special case for going from last to first
     if (step === Steps.length - 1 && newStep === 0) {
@@ -39,7 +39,7 @@ export default function MultiSteps() {
     if (step === 0 && newStep === Steps.length - 1) {
       setSlideDirection("left");
     }
-    
+
     setStep(newStep);
   };
 
@@ -49,7 +49,7 @@ export default function MultiSteps() {
       goToNextStep();
     }, Steps[step].duration);
     setTimerId(timer);
-    
+
     return () => clearTimeout(timer);
   }, [step, slideDirection]);
 
@@ -59,17 +59,23 @@ export default function MultiSteps() {
 
   return (
     <div className="relative w-full flex flex-col flex-1 h-full overflow-x-hidden">
-      <div key={`top-${step}`} className={cn(
-        "w-full",
-        slideDirection === "right" ? "animate-slideInRight" : "animate-slideInLeft",
-        "flex-1 flex flex-col justify-between overflow-x-hidden"
-      )}>
+      <div
+        key={`top-${step}`}
+        className={cn(
+          "w-full",
+          slideDirection === "right"
+            ? "animate-slideInRight"
+            : "animate-slideInLeft",
+          "flex-1 flex flex-col justify-between overflow-x-hidden"
+        )}
+      >
         <div className="flex flex-1 flex-col justify-evenly relative">
-          {step === 1 ? 
-            <Step2Top clearTimer={() => timerId && clearTimeout(timerId)} /> : 
+          {step === 1 ? (
+            <Step2Top clearTimer={() => timerId && clearTimeout(timerId)} />
+          ) : (
             <Top />
-          }
-          
+          )}
+
           {/* Indicator pills */}
           <div
             className={cn(
@@ -93,8 +99,10 @@ export default function MultiSteps() {
                   fill
                   className="object-cover object-center"
                   style={{
-                    maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))',
-                    WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))'
+                    maskImage:
+                      "linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))",
+                    WebkitMaskImage:
+                      "linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))",
                   }}
                 />
               </div>
@@ -132,7 +140,7 @@ export default function MultiSteps() {
             </div>
           </div>
         </div>
-        
+
         <div className="relative overflow-visible">
           <Bottom />
         </div>

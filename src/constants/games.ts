@@ -7,7 +7,7 @@ export const games = [
     page: "/game/snake",
     type: "Games",
     webtype: "nextjs",
-    category: "games"
+    category: "games",
   },
   {
     key: "flappykokomo",
@@ -18,7 +18,7 @@ export const games = [
     type: "Games",
     webtype: "nextjs",
     category: "games",
-    isNew: true
+    isNew: true,
   },
   {
     key: "onemillion",
@@ -28,7 +28,7 @@ export const games = [
     page: "/game/onemillion",
     type: "Games",
     webtype: "unity",
-    category: "games"
+    category: "games",
   },
   {
     key: "1m1",
@@ -49,7 +49,7 @@ export const games = [
     type: "Rewards",
     category: "rewards",
     webtype: "nextjs",
-    number: 3
+    number: 3,
   },
   {
     key: "spin",

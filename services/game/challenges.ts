@@ -241,10 +241,9 @@ export function useGetATH(sessionId?: TSessionId) {
     queryKey: ["ath", sessionId],
     queryFn: () =>
       baseInstance
-        .get<{ data: { ath: number; gamesPlayed: number; days: number } }>(
-          `/game-service/challenges/score/ath`,
-          { params: { sessionId } }
-        )
+        .get<{
+          data: { ath: number; gamesPlayed: number; days: number };
+        }>(`/game-service/challenges/score/ath`, { params: { sessionId } })
         .then((res) => res.data),
   });
 }
@@ -254,9 +253,9 @@ export function useChallengesCount(sessionId?: TSessionId) {
     queryKey: ["challenges-count", sessionId],
     queryFn: () =>
       baseInstance
-        .get<{ data: { count: number } }>(
-          `/game-service/score/challenge-count/${sessionId}`
-        )
+        .get<{
+          data: { count: number };
+        }>(`/game-service/score/challenge-count/${sessionId}`)
         .then((res) => res.data),
   });
 }

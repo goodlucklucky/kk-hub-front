@@ -10,7 +10,9 @@ declare global {
   }
 
   type Setter<T> = React.Dispatch<React.SetStateAction<T>>;
-  type Refresher<T> = (options?: RefetchOptions) => Promise<QueryObserverResult<T, Error>>
+  type Refresher<T> = (
+    options?: RefetchOptions
+  ) => Promise<QueryObserverResult<T, Error>>;
 
   type TSessionId = string | undefined;
 
