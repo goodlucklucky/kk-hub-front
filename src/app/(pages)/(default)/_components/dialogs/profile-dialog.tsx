@@ -42,8 +42,9 @@ import pet1 from "@assets/images/pet1.png";
 import pet2 from "@assets/images/pet2.png";
 import pet3 from "@assets/images/pet3.png";
 import pet4 from "@assets/images/pet4.png";
-import { GeneralContext } from "@/app/_providers/generalProvider";
+import { GeneralContext, useGeneral } from "@/app/_providers/generalProvider";
 import { useApp } from "@/app/_contexts/appContext";
+import { LoaderIcon } from "react-hot-toast";
 
 const lootboxes = [
   {
@@ -128,7 +129,7 @@ interface ProfileDialogProps {
 const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
   const [activeComponent, setActiveComponent] = useState("social");
   const { setIsBankingOpen, setIsProfileOpen } = useApp();
-  const { user } = useContext(GeneralContext);
+  const { user, userXp, isLoadingUserXp } = useGeneral();
 
   const renderComponent = () => {
     switch (activeComponent) {
@@ -247,7 +248,11 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                       Level
                     </p>
                     <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-0.5">
-                      26
+                      {isLoadingUserXp ? (
+                        <LoaderIcon className="size-5" />
+                      ) : (
+                        <>{userXp?.level?.order || 1}</>
+                      )}
                     </p>
                   </div>
                   <div className="flex justify-between flex-1">
@@ -256,7 +261,11 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                         Rank
                       </p>
                       <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-0.5">
-                        SILVER
+                        {isLoadingUserXp ? (
+                          <LoaderIcon className="size-5" />
+                        ) : (
+                          <>{userXp?.level?.name || "-"}</>
+                        )}
                       </p>
                     </div>
                     <div className=" bg-[#917377] w-[34px] p-[3.7px] m-[0.7px] rounded flex items-center justify-center">

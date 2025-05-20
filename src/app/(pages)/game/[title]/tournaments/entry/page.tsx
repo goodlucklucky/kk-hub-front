@@ -111,7 +111,7 @@ export default function TournamentEntryPage() {
                     <div className="absolute top-1/2 left-1 right-1 -translate-y-1/2">
                       <div className="w-full h-[16px] rounded-[8px] border border-[#FFEA7C] bg-[#FF5252] bg-gradient-to-r from-[#FF5252] to-[#FF5252] flex-shrink-0 overflow-hidden flex justify-end items-center">
                         <div className="w-[86%] h-[15px] flex-shrink-0 rounded-r-[8px] bg-gradient-to-r from-[#4CAF50] from-[84%] to-[#91FF6A] to-[100%]">
-                          <div className="w-full flex-shrink-0 w-full h-full text-white text-center font-made-tommy text-[10px] font-extrabold tracking-[10px] uppercase">
+                          <div className="w-full flex-shrink-0 h-full text-white text-center font-made-tommy text-[10px] font-extrabold tracking-[10px] uppercase">
                             prize zone
                           </div>
                         </div>

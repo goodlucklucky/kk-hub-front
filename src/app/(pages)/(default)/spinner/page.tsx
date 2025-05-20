@@ -26,7 +26,6 @@ import PageTitleBanner from "../_components/spinner/page-title-banner";
 import Spinner from "@/app/_components/spinner";
 import MoreSpins from "../_components/daily-login-spinner/more-spins";
 import { Button } from "@/app/_components/ui/button";
-import { XpBar } from "../_components/xp/bar";
 
 //import images
 import flashingEffect from "@assets/images/flashing-effect.png";

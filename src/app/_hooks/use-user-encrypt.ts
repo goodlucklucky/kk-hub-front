@@ -34,6 +34,7 @@ export default function useUserEncrypt({
       }
     };
 
+    loadWebApp();
     const interval = setInterval(loadWebApp, 30000);
 
     return () => clearInterval(interval);

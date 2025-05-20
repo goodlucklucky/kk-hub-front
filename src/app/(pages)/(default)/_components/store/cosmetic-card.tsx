@@ -33,7 +33,7 @@ const CosmeticCard: React.FC<CosmeticCardProps> = ({
         width={100}
         height={100}
         alt={title}
-        className="aspect-[2/1.5]"
+        className="aspect-[2/1.5] object-contain"
       />
       {isHot && (
         <div className="absolute top-2 -right-0.5 rounded-[3px] bg-[#ED4721] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.20)] flex gap-1 font-made-tommy text-[12px]/[10px] font-medium text-white px-1 py-0.5 pt-1">

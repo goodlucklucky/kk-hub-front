@@ -3,7 +3,7 @@ import { baseInstance } from "../axios";
 
 export interface IUserXP {
   xp: number;
-  level: ILevel;
+  level: ILevel & { order: number };
 }
 
 export interface ILevel {

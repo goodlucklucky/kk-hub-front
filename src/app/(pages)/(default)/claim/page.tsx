@@ -9,7 +9,7 @@ import React, {
 } from "react";
 import Image, { StaticImageData } from "next/image";
 //import components
-import { XpBar } from "../_components/xp/bar";
+// import { XpBar } from "../_components/xp/bar";
 
 //import utils
 import { cn } from "@/app/_lib/utils";

@@ -4,7 +4,6 @@ import React, { useState, useCallback } from "react";
 import Image, { StaticImageData } from "next/image";
 import _ from "lodash";
 //import components
-import { XpBar } from "../_components/xp/bar";
 import Gifts from "../_components/gifts";
 import GamesCard from "../_components/games/card";
 import AddToHome from "../_components/add-to-home";

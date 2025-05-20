@@ -108,7 +108,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
         );
 
         window.open(
-          process.env.NEXT_PUBLIC_COMMUNITY_URL,
+          process.env.NEXT_PUBLIC_COMMUNITY_URL || task?.details?.link,
           "_blank",
           "noopener,noreferrer"
         );
@@ -212,6 +212,8 @@ const TaskItem: React.FC<TaskItemProps> = ({
               <span className="text-white text-xs font-bold px-2 py-0">
                 {taskStatus == "FETCHING" ? (
                   <LoaderIcon className="size-4" />
+                ) : isFriend ? (
+                  "verify"
                 ) : (
                   actionTitle || "follow"
                 )}
