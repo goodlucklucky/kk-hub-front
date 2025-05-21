@@ -9,11 +9,13 @@ export default function DialogContainer({
   className,
   title,
   titleClassName,
+  onClose,
 }: {
   children: React.ReactNode;
   className?: string;
   title?: React.ReactNode | string;
   titleClassName?: string;
+  onClose?: React.MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
     <>
@@ -23,18 +25,32 @@ export default function DialogContainer({
         </DialogTitle>
       )}
       <div className={cn("rounded-2xl p-2", className)}>{children}</div>
-      <DialogCloseButton />
+      <DialogCloseButton onClose={onClose} />
     </>
   );
 }
 
-export function DialogCloseButton({ className }: { className?: string }) {
+export function DialogCloseButton({
+  className,
+  onClose,
+}: {
+  className?: string;
+  onClose?: React.MouseEventHandler<HTMLButtonElement>;
+}) {
   return (
     <DialogClose
       className={cn(
         "mx-auto w-fit flex items-center justify-center -translate-y-[calc(50%+3px)] left-1/2",
         className
       )}
+      onClick={(e) => {
+        if (onClose) {
+          e?.preventDefault();
+          e?.stopPropagation();
+
+          onClose(e);
+        }
+      }}
     >
       <CloseHandelIcon className="absolute -z-[1]" />
       <CloseIcon />

@@ -35,6 +35,7 @@ interface DialogContentProps
   containerClassName?: string;
   overlayProps?: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>;
   noContainer?: boolean;
+  onClose?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const DialogContent = React.forwardRef<
@@ -50,6 +51,7 @@ const DialogContent = React.forwardRef<
       title,
       titleClassName,
       containerClassName,
+      onClose,
       ...props
     },
     ref
@@ -73,6 +75,7 @@ const DialogContent = React.forwardRef<
             title={title}
             titleClassName={titleClassName}
             className={cn(containerClassName)}
+            onClose={onClose}
           >
             {children}
           </DialogContainer>

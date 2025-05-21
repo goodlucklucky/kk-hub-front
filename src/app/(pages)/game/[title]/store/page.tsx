@@ -38,6 +38,7 @@ import {
 import { NavBar } from "@/app/(pages)/(default)/_components/xp/bar";
 import DiscountBadge from "@/app/(pages)/(default)/_components/store/discount-badge";
 import SkinDialog from "@/app/(pages)/(default)/_components/dialogs/skin-dialog";
+import Header from "@/app/(pages)/(default)/_components/layout/header";
 
 // Types
 type StoreCategory = "featured" | "items" | "kokitos" | "social";
@@ -148,6 +149,7 @@ export default function StorePage() {
 
   return (
     <>
+      <Header />
       <NavBar title={"Store"} />
       <div
         className={cn(

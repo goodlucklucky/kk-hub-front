@@ -247,7 +247,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                     <p className=" text-[#917377] text-md font-made-tommy font-semibold">
                       Level
                     </p>
-                    <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-0.5">
+                    <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-1">
                       {isLoadingUserXp ? (
                         <LoaderIcon className="size-5" />
                       ) : (
@@ -260,7 +260,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                       <p className=" text-[#917377] text-md font-made-tommy font-semibold">
                         Rank
                       </p>
-                      <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-0.5">
+                      <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-1">
                         {isLoadingUserXp ? (
                           <LoaderIcon className="size-5" />
                         ) : (
