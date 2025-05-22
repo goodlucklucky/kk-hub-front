@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import NextIcon from "@/app/_assets/images/Icon_NextPageArrow.png";
 import ChallengeTab from "./challenge-tab";
@@ -48,6 +48,7 @@ const Challenge = ({ initialTab }: ChallengeProps) => {
     calculateTimeLeft()
   );
   const router = useRouter();
+  const { title } = useParams();
   // const heightRatio = useScreenHeightRatio(761);
 
   const tabs = useMemo(() => ["prev_coming_soon", "daily", "coming_soon"], []);
@@ -66,18 +67,16 @@ const Challenge = ({ initialTab }: ChallengeProps) => {
   return (
     <Dialog open={true} modal={false}>
       <DialogContent
-        className="!overflow-visible !px-[10px] !top-[60%] space-y-2 z-[40]"
+        className="!overflow-visible !top-[60%] space-y-2 z-[40]"
         onInteractOutside={(e) => e.preventDefault()}
         // challengeModal
         // heightRatio={heightRatio}
         onClose={(e) => {
-          console.log("close");
-          
           e?.preventDefault();
-          router.back();
+          router.push(".");
         }}
       >
-        <BoxMain className="space-y-2 px-[10px]">
+        <BoxMain className="space-y-2 p-1" boxClassName="p-2 -mb-6">
           <DialogHeader>
             <p className="text-center gap-2 font-bold text-2xl text-[#5F3F57]">
               Challenge
@@ -87,7 +86,7 @@ const Challenge = ({ initialTab }: ChallengeProps) => {
 
           <button
             onClick={() => {
-              router.push(`/challenge/result-details`);
+              router.push(`/game/${title}/challenge/result-details`);
               trackEvent(`Challenge Results Details`);
             }}
             className="flex justify-between items-center rounded-3xl w-full p-[6px] pl-4 bg-[#E3BEAA] text-sm text-[#745061] font-semibold"
@@ -95,12 +94,9 @@ const Challenge = ({ initialTab }: ChallengeProps) => {
             Previous Results{" "}
             <Image alt="next-page-icon" width={10} src={NextIcon} />
           </button>
-          <BoxMain
-            // hideClose={true}
-            className="bg-[#5F3F5733] rounded-2xl rounded-b-xl p-2 max-h-[440px]"
-          >
+          <div className="bg-[#5F3F5733] rounded-2xl rounded-b-xl p-2 max-h-[440px]">
             <ChallengeBox />
-          </BoxMain>
+          </div>
           {timeLeft && (
             <div className="text-white text-xs font-semibold text-center h-8 rounded-t-xl p-2 rounded-b-3xl bg-[#A970B5]">
               🎁 Prizes distributed in {timeLeft.hours}h {timeLeft.minutes}m{" "}

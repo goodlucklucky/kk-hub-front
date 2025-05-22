@@ -18,8 +18,8 @@ import {
   DialogContent,
   DialogHeader,
 } from "@/app/_components/ui/dialog";
-import { BoxMain } from "./board-structure";
 import moment from "moment";
+import BoxMain from "@/app/(pages)/(default)/_components/BoxMain";
 // import mixpanel from "mixpanel-browser";
 
 export type ResultType = {
@@ -91,30 +91,24 @@ const ResultDetails = () => {
         // challengeModal
         className="mt-8 !overflow-none !top-[48%]"
         // heightRatio={heightRatio}
+        onClose={() => router.push(".")}
       >
-        <BoxMain className="space-y-2 pt-1" hideClose>
+        <BoxMain className="space-y-2 pt-1">
           <DialogHeader className="font-bold text-md text-[#5F3F57]">
             Previous Tournament Results
             <div className="font-bold text-sm text-[#5F3F57] opacity-75">
               {moment().subtract(1, "days").format("MMMM D, YYYY")}
             </div>
           </DialogHeader>
-          <BoxMain
-            className="bg-[#DDC2A7] overflow-none py-0 mt-0 min-h-[255px] border-1 border-[#FFF4DE] p-2 rounded-2xl space-y-2 overflow-auto flex-col"
-            hideClose
+          <div
+            className="bg-[#DDC2A7] overflow-none mt-0 min-h-[255px] border-1 border-[#FFF4DE] p-2 rounded-2xl space-y-2 overflow-auto flex-col"
+            // hideClose
           >
             {results?.map((result, index) => (
               <ResultCard {...result} key={index} />
             ))}
-          </BoxMain>
+          </div>
         </BoxMain>
-        <Image
-          onClick={() => router.back()}
-          src={CloseButton}
-          alt="Close button"
-          width={86}
-          className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-[58%] z-[1000]"
-        />
       </DialogContent>
     </Dialog>
   );

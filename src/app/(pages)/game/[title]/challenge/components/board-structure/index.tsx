@@ -5,6 +5,7 @@ import close from "@/app/_assets/images/close-button.png";
 import { CSSProperties } from "react";
 import { cn } from "@/app/_lib/utils";
 import { DialogClose } from "@/app/_components/ui/dialog";
+import BoxMainBack from "@/app/(pages)/(default)/_components/BoxMain";
 
 export function BoxLink({
   children,
@@ -80,7 +81,7 @@ export function BoxMain({
   style?: CSSProperties
 }) {
   return (
-    <div className={cn("flex-1 overflow-auto flex flex-col", className)} style={style}>
+    <BoxMainBack className={cn("flex-1 overflow-auto flex flex-col", className)} style={style}>
       {children}
       {!hideClose && (
         <DialogClose asChild>
@@ -89,7 +90,7 @@ export function BoxMain({
           </button>
         </DialogClose>
       )}
-    </div>
+    </BoxMainBack>
   );
 }
 
