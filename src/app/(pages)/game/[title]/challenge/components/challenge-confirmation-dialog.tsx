@@ -28,11 +28,11 @@ const ChallengeConfirmationDialog = ({
     >
       <DialogContent
         // size={"md"}
-        containerClassName="w-full flex gap-2 overflow-hidden h-full items-center justify-center"
+        containerClassName="w-full flex gap-2 h-full items-center justify-center"
         onInteractOutside={(e) => e.preventDefault()}
         onPointerDownOutside={(event) => event.preventDefault()}
       >
-        <BoxMain className="!overflow-visible">
+        <BoxMain>
           <div className="text-center">
             <div className="text-center font-extrabold text-[20px] text-[#5F3F57]">
               Ready to Win Kokos?🥥

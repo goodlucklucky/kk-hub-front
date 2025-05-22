@@ -12,14 +12,16 @@ import { useGeneral } from "@/app/_providers/generalProvider";
 import { usePayFee } from "@/../services/game/challenges";
 import { useGetExemptedUserDetails } from "@/../services/beta-testers";
 import { ICheckUserBonus2, useAddBonus } from "@/../services/bonus";
-import { bonusNames, ChallengeBonusDialog } from "../../play/_screens/snake/components/challenge-bonus-dialog";
+import {
+  bonusNames,
+  ChallengeBonusDialog,
+} from "../../play/_screens/snake/components/challenge-bonus-dialog";
 import toast from "react-hot-toast";
 import { formatBigNumber } from "@/app/_utils/number";
 import { trackEvent } from "@/app/_lib/mixpanel";
 import { DialogContent, DialogHeader } from "@/app/_components/ui/dialog";
 import { BoxMain } from "../components/board-structure";
 import { useCheckUserBonuses } from "../../play/_screens/snake/services/bonus";
-
 
 import LeafImage from "@/app/_assets/images/leaf-image.png";
 import WaveEffect from "@/app/_assets/images/wave-effect.png";
@@ -41,7 +43,7 @@ const imagesToPreload = [
   LevelIndicator.src,
 ];
 export interface Iprops {
-  params: { id: string };
+  params: { id: string; title: string };
   searchParams: Record<string, string>;
 }
 
@@ -63,14 +65,15 @@ const CompeteChallenge = (props: Iprops) => {
   } = useContext(ChallengesContext);
   const abortController = useMemo(() => new AbortController(), []);
   const id = useMemo(() => props?.params?.id, [props?.params?.id]);
+  const title = useMemo(() => props?.params?.title, [props?.params?.title]);
   const router = useRouter();
-  const heightRatio = useScreenHeightRatio(762);
+  // const heightRatio = useScreenHeightRatio(762);
   const [isImagesLoaded, setIsImagesLoaded] = useState(false);
   const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
   const [openBonusDialog, setOpenBonusDialog] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { myScore, sessionId, refreshMyScore } = useGeneral()
+  const { myScore, sessionId, refreshMyScore } = useGeneral();
   const { mutateAsync: payFee } = usePayFee({});
   const { data: exemptedUserData } = useGetExemptedUserDetails(sessionId);
 
@@ -230,7 +233,8 @@ const CompeteChallenge = (props: Iprops) => {
   };
 
   const playTornament = useCallback(() => {
-    router.push(`/snake-play?challenge_id=${id}`);
+    router.push(`/game/${title}/play?challenge_id=${id}`);
+    // router.push(`/snake-play?challenge_id=${id}`);
     trackEvent(`Play ${challenge?.name}`, {
       score_summary: challenge?.score_summary,
     });
@@ -250,6 +254,7 @@ const CompeteChallenge = (props: Iprops) => {
           className={`!overflow-visible !px-[10px] !top-[60%] transition-opacity duration-500 ease-in-out ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
+          onClose={() => router.push(".")}
           // challengeModal
           // heightRatio={heightRatio}
         >
@@ -476,14 +481,14 @@ const CompeteChallenge = (props: Iprops) => {
                     !challenge?.name.toLowerCase().includes("free"))
                     ? "Play Now!"
                     : canOpenBonusDialog
-                    ? "Want a Bonus Entry?"
-                    : !status?.is_active
-                    ? "Not Active"
-                    : !status?.balanceAvailable
-                    ? "Balance Too Low"
-                    : !status?.participationLimit
-                    ? "Max Attempts Reached"
-                    : "Not Available"}
+                      ? "Want a Bonus Entry?"
+                      : !status?.is_active
+                        ? "Not Active"
+                        : !status?.balanceAvailable
+                          ? "Balance Too Low"
+                          : !status?.participationLimit
+                            ? "Max Attempts Reached"
+                            : "Not Available"}
                 </button>
                 <p className="text-[#745061] text-sm font-semibold mt-3 ">
                   <span>

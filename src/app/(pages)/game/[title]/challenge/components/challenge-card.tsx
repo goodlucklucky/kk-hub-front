@@ -57,7 +57,8 @@ const ChallengeCard = ({ challenge }: ChallengeCardProps) => {
   }, [challenge?.score_summary, qualifyStatus.balanceAvailable]);
 
   const viewTornament = useCallback(() => {
-    router.push(`game/${title}/challenge/${challenge.id}`);
+    // router.push(`/game/${title}/challenge/${challenge.id}`);
+    router.push(`challenge/${challenge.id}`);
     trackEvent(`${title} challenge ${challenge.name} Page`, {
       id: challenge?.id,
       score_summary: challenge?.score_summary,

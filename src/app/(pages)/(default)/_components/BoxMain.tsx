@@ -5,10 +5,12 @@ export default function BoxMain({
   children,
   className,
   boxClassName,
+  style,
 }: {
   children?: React.ReactNode;
   className?: string;
   boxClassName?: string;
+  style?: React.CSSProperties;
 }) {
   return (
     <div
@@ -17,7 +19,10 @@ export default function BoxMain({
         boxClassName
       )}
     >
-      <div className={cn("p-4 rounded-xl bg-[#F5D6B1]", className)}>
+      <div
+        className={cn("p-4 rounded-xl bg-[#F5D6B1]", className)}
+        style={style}
+      >
         {children}
       </div>
     </div>
