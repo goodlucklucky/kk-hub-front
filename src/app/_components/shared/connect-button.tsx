@@ -12,12 +12,12 @@ type TProps = {
   TImageProps;
 
 export const ConnectButton = React.forwardRef<HTMLButtonElement, TProps>(
-  ({ label, children, className, color = "#DADB0E", ...props }, ref) => {
+  ({ label, children, className, color = "#ECEC10", ...props }, ref) => {
     return (
       <Button
         ref={ref}
         className={cn(
-          "border-fades-sm font-semibold text-black/65 text-base font-made-tommy flex gap-4 justify-start tracking-wider h-auto",
+          "border-fades-sm -top-[1px] font-semibold text-black/65 text-base font-made-tommy flex gap-4 justify-start tracking-wider !py-0",
           props?.size == "sm" && "sm_size",
           className
         )}
@@ -35,7 +35,8 @@ export const ConnectButton = React.forwardRef<HTMLButtonElement, TProps>(
         )}
         <div
           className={cn(
-            props.icon ? "pr-2" : props?.size == "sm" ? "px-1" : "px-2"
+            props.icon ? "pr-2" : props?.size == "sm" ? "px-1" : "px-2",
+            "text-[20px]"
           )}
         >
           {label ?? children}

@@ -45,7 +45,7 @@ export default function WagmiConnectButton() {
         >
           <WalletIcon />
           <div className="w-1 h-1 p-1 bg-[#126529] rounded-full" />
-          <div className="flex justify-between items-center w-full text-[#5F3F57] text-bumper-sticker text-[16px] font-bold leading-normal">
+          <div className="flex justify-between items-center w-full text-[#5F3F57] font-bumper-sticker text-[16px] font-bold leading-normal">
             <span>CONNECTED</span>
             <span className="text-made-tommy text-[12px] leading-3 font-bold text-end">
               <span>{formatAddress(address)}</span>
@@ -62,7 +62,7 @@ export default function WagmiConnectButton() {
   return (
     <Button
       className={cn(
-        "flex gap-2 items-center justify-center rounded-[10px] font-bold w-full py-[2px]"
+        "flex gap-2 items-center justify-center font-bumper-sticker rounded-[6px] font-normal w-full py-[2px] tracking-[0.32px]"
       )}
       onClick={() => {
         // console.log("open");

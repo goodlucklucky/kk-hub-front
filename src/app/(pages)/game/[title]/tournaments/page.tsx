@@ -4,7 +4,6 @@ import React, { useCallback } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 //import components
-import { NavBar } from "../../../(default)/_components/xp/bar";
 import Chat from "../../../(default)/_components/chat";
 
 //import utils
@@ -36,7 +35,6 @@ export default function StatsPage() {
     <div className={cn("min-h-dvh flex flex-col")}>
       <Header />
       <main className="grow flex flex-col">
-        <NavBar title="Snake Tournaments" className="bg-[#9981ae]" />
         <div
           className={cn(
             "flex flex-col flex-1 h-full items-center gap-y-5 px-2"

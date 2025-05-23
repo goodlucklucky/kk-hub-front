@@ -68,7 +68,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
             <div className="flex-1 h-[57px] bg-[#CDAA98] rounded-l-[7px]">
               <div
                 className={cn(
-                  "flex gap-2 rounded-md w-fit pl-2",
+                  "flex gap-2 rounded-md w-fit px-2",
                   "-mt-1 -ml-1 ",
                   "bg-[#653F56] shadow-[0_0.25ch_rgba(0,0,0,0.2)]",
                   "text-[#E3BEAA]"
@@ -101,13 +101,13 @@ export const GiftSlide: React.FC<SlideProps> = ({
             <div className="flex-1 h-[57px] bg-[#D9B8A3] rounded-l-[7px]">
               <div
                 className={cn(
-                  "flex gap-2 rounded-md w-fit pl-2",
+                  "flex gap-2 rounded-md w-fit px-2",
                   "-mt-1 -ml-1 ",
                   "bg-[#27A459] shadow-[0_0.25ch_rgba(0,0,0,0.2)]",
                   "text-[#E3BEAA]"
                 )}
               >
-                <p className="2xs:pt-0.5 pr-4">Invite Friends, Earn $$$!</p>
+                <p className="2xs:pt-0.5">Invite Friends, Earn $$$!</p>
               </div>
               <div className="text-[#653F56] font-made-tommy text-[11px] font-bold leading-[14px] bg-[#CDAC9A] rounded-[3px] mx-2 mt-[3px] p-[1px]">
                 Invite friends to earn Spins and a lifetime revenue share of all
@@ -127,14 +127,13 @@ export const GiftSlide: React.FC<SlideProps> = ({
             <div className="flex-1 h-[57px] bg-[#CDAA98] rounded-l-[7px]">
               <div
                 className={cn(
-                  "flex gap-2 rounded-md w-fit pl-2",
+                  "flex gap-2 rounded-md w-fit px-2",
                   "-mt-1 -ml-1 ",
                   "bg-[var(--color-blue)] shadow-[0_0.25ch_rgba(0,0,0,0.2)]",
                   "text-white",
-                  "w-[218px]"
                 )}
               >
-                <p className="2xs:pt-0.5 pr-5">CLAIM OG</p>
+                <p className="2xs:pt-0.5">CLAIM OG</p>
               </div>
               <div className="text-[var(--color-golden-brown)] font-made-tommy text-[11px] font-bold leading-[14px] bg-[var(--color-blown-dark)] rounded-[3px] mx-1 mt-[3px] p-[1px]">
                 <span>Complete 3 tasks to secure Kokomo OG status</span>
@@ -177,14 +176,13 @@ export const GiftSlide: React.FC<SlideProps> = ({
             <div className="flex-1 h-[57px] bg-[var(--color-blown-dark)] rounded-l-[7px]">
               <div
                 className={cn(
-                  "flex gap-2 rounded-md w-fit pl-2",
+                  "flex gap-2 rounded-md w-fit px-2",
                   "-mt-1 -ml-1 ",
                   "bg-[var(--color-yellow)] shadow-[0_0.25ch_rgba(0,0,0,0.2)]",
                   "text-[var(--color-golden-brown)]",
-                  "w-[218px]"
                 )}
               >
-                <p className="2xs:pt-0.5 pr-5">FREE KOKOMO NFT!</p>
+                <p className="2xs:pt-0.5">FREE KOKOMO NFT!</p>
               </div>
               <div className="text-[var(--color-golden-brown)] font-made-tommy text-[12px] font-bold leading-[14px] bg-[var(--color-blown-dark)] rounded-[3px] mx-2 mt-[3px] p-[1px]">
                 Claim your free welcome gift - a Kokomo Collectible NFT!

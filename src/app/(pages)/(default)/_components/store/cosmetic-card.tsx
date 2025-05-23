@@ -56,7 +56,7 @@ const CosmeticCard: React.FC<CosmeticCardProps> = ({
       </div>
       <div className="bg-[#917377] rounded-[5px] flex items-center justify-center gap-x-1 py-1">
         <DollarIcon />
-        <span className="text-[#F7DAB5] font-made-tommy font-medium text-[15px]/[15px]">
+        <span className="text-[#F7DAB5] font-made-tommy font-bold text-[15px]/[15px]">
           {price?.toFixed(2)}
         </span>
       </div>

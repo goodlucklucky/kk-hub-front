@@ -17,7 +17,7 @@ export const ClaimOGSection: React.FC<ClaimOGSectionProps> = ({
   return (
     <>
       <div className="flex flex-col gap-2 px-2">
-        <div className="bg-[#D49FC4] rounded-[10px] p-3 px-4 flex items-center gap-x-2">
+        <div className="bg-[#D49FC4] rounded-[10px] p-2 px-4 flex items-center gap-x-2">
           <TaskIcon />
           <div className="flex flex-col">
             <span className="text-[#5F3F57] text-shadow-[0px_1px_0px_rgba(0,0,0,0.20)] font-made-tommy font-bold leading-normal tracking-[0.16px] text-xs mt-1">

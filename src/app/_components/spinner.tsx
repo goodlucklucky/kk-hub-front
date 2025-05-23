@@ -153,7 +153,7 @@ function Spinner({
         height={800}
         objectFit="contain"
         priority
-        className="size-10 absolute top-2 z-[3]"
+        className="size-10 absolute top-0 z-[3]"
         style={{
           animation: isPushing ? "pushingTopEffect 1s ease" : "",
         }}
@@ -220,23 +220,13 @@ function Spinner({
           </div>
         </div>
       </div>
-      <div className="h-4 -mt-4 flex items-start justify-center">
-        {/* <Image
-          src={headerBoard}
-          alt="footer"
-          width={800}
-          height={800}
-          priority
-          className="h-auto w-[65%] -translate-y-4"
-        /> */}
-      </div>
       <section
         className="relative -mt-3 rounded-3xl p-1 w-full -translate-y-2 z-[1] pointer-events-auto -mb-8"
         style={{
           animation: isPushing ? "pushingDownEffect 1s ease" : "",
         }}
       >
-        <div className="h-4 flex items-start justify-center">
+        <div className="h-4 flex items-start justify-center -mb-4">
           <Image
             src={headerBoard}
             alt="footer"

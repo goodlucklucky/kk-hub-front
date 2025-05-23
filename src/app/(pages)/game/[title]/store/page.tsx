@@ -35,7 +35,6 @@ import {
   useStoreItems,
   useStoreTypes,
 } from "../../../../../../services/store";
-import { NavBar } from "@/app/(pages)/(default)/_components/xp/bar";
 import DiscountBadge from "@/app/(pages)/(default)/_components/store/discount-badge";
 import SkinDialog from "@/app/(pages)/(default)/_components/dialogs/skin-dialog";
 import Header from "@/app/(pages)/(default)/_components/layout/header";
@@ -76,7 +75,7 @@ const ProductCategoryButtons = memo(
             isActive={activeCategory === category.name}
             onClick={() => onCategoryChange(category)}
             className="rounded-full !text-sm !font-normal font-bumper-sticker"
-            lableClassName="!text-[14px] font-made-tommy font-bold"
+            lableClassName="!text-[14px] font-made-tommy font-bold whitespace-nowrap truncate"
           />
         ))
       )}
@@ -149,11 +148,9 @@ export default function StorePage() {
 
   return (
     <>
-      <Header />
-      <NavBar title={"Store"} />
       <div
         className={cn(
-          "flex flex-col flex-1 h-full items-center p-3 justify-center"
+          "flex flex-col flex-1 h-full items-center p-2 justify-center"
         )}
       >
         <Image
@@ -174,8 +171,8 @@ export default function StorePage() {
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-32 bottom-30 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 flex-1 overflow-y-auto">
-          <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-2 bg-cover bg-center fixed top-22 bottom-26 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 flex-1 overflow-y-auto">
+          <div className="bg-[#F5D6B1] rounded-2xl p-2 shadow-md border-2 border-[#A96415] flex flex-col">
             <div className="flex justify-center gap-1.5">
               <MemoizedNavigationButton
                 icon={
@@ -207,7 +204,7 @@ export default function StorePage() {
               />
             </div>
           </div>
-          <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col flex-1 overflow-y-auto gap-2">
+          <div className="bg-[#F5D6B1] rounded-2xl p-2 shadow-md border-2 border-[#A96415] flex flex-col flex-1 overflow-y-auto gap-2">
             <ProductCategoryButtons
               categories={productCategories}
               activeCategory={activeProductCategory?.name || ""}
@@ -231,7 +228,7 @@ export default function StorePage() {
                   </div>
                 </div>
               ) : (
-                <div className="w-full flex flex-col gap-1 bg-[#EED1B8] rounded-[22px] p-3 px-1 overflow-y-auto">
+                <div className="w-full flex flex-col gap-1 bg-[#EED1B8] rounded-[22px] p-2 px-1 overflow-y-auto">
                   <div className="flex justify-start items-center">
                     <span className="text-[#5F3F57] text-[22px] font-bumper-sticker font-normal px-1">
                       {activeProductCategory?.name.toUpperCase()}
@@ -261,7 +258,7 @@ export default function StorePage() {
                       })}
                     </div>
                   ) : (
-                    <div className="flex justify-center items-center h-40">
+                    <div className="flex justify-center items-center flex-1">
                       <p className="text-[#5F3F57] font-made-tommy">
                         No items available in this category
                       </p>

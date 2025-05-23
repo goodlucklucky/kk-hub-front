@@ -27,7 +27,6 @@ import ProfileDialog from "../_components/dialogs/profile-dialog";
 import ChatDialog from "../_components/dialogs/chat-dialog";
 import { useApp } from "@/app/_contexts/appContext";
 import PreviewDialog from "../_components/dialogs/preview-dialog";
-import UserXp from "../_components/xp";
 
 export default function HomePage() {
   const {
@@ -41,6 +40,7 @@ export default function HomePage() {
 
   const groupedGames = Object.entries(_.groupBy(games, (game) => game?.type));
 
+  const [tabOpen, setTabOpen] = useState<"play" | "favourites">("play");
   const [isMinting, setIsMinting] = useState(false);
   const [isMintDialogOpen, setIsMintDialogOpen] = useState(false);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -82,7 +82,6 @@ export default function HomePage() {
 
   return (
     <>
-      <UserXp />
       <div
         className={cn(
           "flex flex-col flex-1 h-full items-center gap-y-3 xs:gap-y-5"
@@ -112,15 +111,27 @@ export default function HomePage() {
         >
           <div>
             <div className="grid grid-cols-2 text-center bg-golden-brown font-bumper-sticker text-sm 2xs:text-xl rounded-tr-2xl rounded-tl-2xl">
-              <div className="py-1.5 bg-white text-golden-brown flex justify-center rounded-tl-2xl">
+              <div
+                className={cn(
+                  "py-1.5 flex justify-center rounded-tl-2xl",
+                  tabOpen === "play" ? "bg-white text-golden-brown" : "bg-golden-brown text-white"
+                )}
+                onClick={() => setTabOpen("play")}
+              >
                 <div className="flex gap-x-2 items-center">
-                  <GameIcon />
+                  <GameIcon fill={tabOpen === "play" ? "#5F3F57" : "#FFF"} />
                   <span>PLAY</span>
                 </div>
               </div>
-              <div className="py-1.5 text-white flex justify-center">
+              <div
+                className={cn(
+                  "py-1.5 flex justify-center",
+                  tabOpen === "favourites" ? "bg-white text-golden-brown" : "bg-golden-brown text-white"
+                )}
+                onClick={() => setTabOpen("favourites")}
+              >
                 <div className="flex gap-x-2 items-center">
-                  <StarIcon />
+                  <StarIcon fill={tabOpen === "favourites" ? "#5F3F57" : "#FFF"} />
                   <span>FAVOURITES</span>
                 </div>
               </div>

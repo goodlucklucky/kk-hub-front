@@ -3,7 +3,6 @@
 import React, { useContext } from "react";
 import Image from "next/image";
 //import components
-import { NavBar } from "../../../(default)/_components/xp/bar";
 import Chat from "../../../(default)/_components/chat";
 
 //import utils
@@ -39,7 +38,6 @@ export default function StatsPage() {
     <div className={cn("min-h-dvh flex flex-col")}>
       <Header />
       <main className="grow flex flex-col">
-        <NavBar title="Snake Home" className="bg-[#9981ae]" />
         <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
           <Image
             src={statsBack}
@@ -94,25 +92,12 @@ export default function StatsPage() {
                       "w-full justify-between bg-[#EED1B8] rounded-full flex items-center gap-2 px-2.5 py-1 2xs:py-2"
                     }
                   >
-                    {/* <div className="flex gap-2 items-center">
-                      <DollarScoreIcon />
-                      <span className="text-[#5F3F57] font-bold font-made-tommy text-[16px]/[28px]">
-                        All Time Earnings
-                      </span>
-                    </div> */}
-
                     <EarningsSection
                       amount={(myUsdt || 0)?.toLocaleString(undefined, {
                         maximumFractionDigits: 2,
                         minimumFractionDigits: 2,
                       })}
                     />
-                    {/* <div className="bg-[#917377] rounded-[3px] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] h-[25px] flex items-center justify-end px-1 gap-1">
-                      <DollarIcon />
-                      <span className="text-[#FFE4D4] font-made-tommy text-[18px] leading-[28px] font-bold drop-shadow-[0px_1px_0px_rgba(0,0,0,0.20)]">
-                        235.50
-                      </span>
-                    </div> */}
                   </div>
                   <div className="w-full justify-between bg-[#EED1B8] rounded-[22px] flex flex-col items-center gap-1 px-2.5 py-1 2xs:py-2">
                     <div className="flex gap-2 items-center w-full">

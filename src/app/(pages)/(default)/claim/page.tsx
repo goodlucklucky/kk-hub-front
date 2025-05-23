@@ -32,7 +32,6 @@ import { getRewardContent, getRewardData } from "./utils";
 import { IReward } from "./claim-reward-dialog";
 import toast from "react-hot-toast";
 import useTimeLeft from "@/app/_hooks/useTimeLeft";
-import UserXp from "../_components/xp";
 
 type TReward = {
   collected: boolean;
@@ -135,21 +134,11 @@ export default function ClaimPage() {
 
   return (
     <>
-      <UserXp />
       <div
         className={cn(
-          "flex flex-col flex-1 justify-center items-center fixed top-28 bottom-20 pt-4 pb-14 z-0"
+          "flex flex-col flex-1 justify-center items-center p-2"
         )}
       >
-        <Image
-          src={mainBack}
-          alt="Main background"
-          className="absolute inset-0 w-full h-[100vh] -top-28 -z-10 object-cover object-center"
-          loading="eager"
-          priority
-          quality={75}
-          sizes="100vw"
-        />
         <Image
           src={claimBack}
           alt="Main background"

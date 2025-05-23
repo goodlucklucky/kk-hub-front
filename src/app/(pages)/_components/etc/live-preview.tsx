@@ -33,21 +33,21 @@ export default function LivePreview() {
   }, []);
 
   return (
-    <div className="text-golden-bright px-8 relative font-bold">
+    <div className="text-golden-bright relative font-bold px-[6%] pb-[calc(5%_+_20px)]">
       <div className="flex items-center justify-center gap-2 -mt-2">
         <EyeIcon className="text-grape" />
         <h3 className="text-center text-grape text-xl">Live Overview</h3>
       </div>
-      <div className="bg-light w-[320px] rounded-b-2xl rounded-t p-0.5 contain-content mx-auto mt-1.5">
-        <div className="w-full rounded-b-2xl rounded-t-sm contain-content text-center bg-golden-bright text-golden-dark">
-          <div className="bg-golden-dark/15 py-4">
+      <div className="bg-light rounded-b-2xl rounded-t contain-content mt-1.5">
+        <div className="w-full rounded-b-2xl rounded-t-sm contain-content text-center bg-golden-bright text-golden-dark border-2 border-[#FFF0D6]">
+          <div className="bg-golden-dark/15 py-2">
             <p className="flex gap-2 items-center justify-center text-lg font-bold">
               <UsdIcon className="size-6" />
               <span>{formatNumber(totalPrizes, 2)}</span>
             </p>
             <p className="font-semibold">Total Prizes</p>
           </div>
-          <div className="py-4">
+          <div className="py-2">
             <p className="flex gap-2 items-center justify-center text-lg font-bold">
               <PlayIcon className="size-5" />
               <span>{formatNumber(gamesPlayed)}</span>

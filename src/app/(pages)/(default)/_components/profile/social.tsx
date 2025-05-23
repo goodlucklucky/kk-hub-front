@@ -21,7 +21,10 @@ export default function Social() {
   const { user } = useContext(GeneralContext);
 
   return (
-    <div className="bg-[#E3BEAA] rounded-[7px] px-2 py-3 flex flex-col gap-2">
+    <div className="bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 h-full">
+      <p className="text-[#653F56] font-bumper-sticker text-xl font-normal pl-2 -mb-2">
+        Connect
+      </p>
       <div className="flex flex-col p-2 bg-[#EED1B8] rounded-[15px] gap-1.5">
         <div className="flex gap-2 items-center justify-between pb-1 border-b-1 border-[#7450612e]">
           <TelegramIcon />
@@ -89,9 +92,9 @@ export default function Social() {
           </Button>
         </div>
       </div>
-      <span className="text-[#653F56] font-bumper-sticker text-xl font-normal pl-2">
+      <p className="text-[#653F56] font-bumper-sticker text-xl font-normal pl-2 -mb-2">
         REFERRALS
-      </span>
+      </p>
       <ShareButtons />
       <span className="text-[#745061] font-made-tommy text-[14px] font-semibold pl-1 mt-1">
         Recieve 5% of all the volume fees your friends generate - forever!
