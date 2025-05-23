@@ -68,13 +68,15 @@ const PreviewDialog = ({
                 <CloseIcon />
               </div>
               <div className="bg-[#F5D6B1] rounded-2xl p-3 py-6 shadow-md border-2 border-[#A96415] flex-1 flex flex-col items-center overflow-y-auto gap-2">
-                <Image
-                  src={image}
-                  alt="preview"
-                  width={90}
-                  height={90}
-                  className="w-[90px] h-[90px] rounded-[5px]"
-                />
+                <div className="w-full p-2 flex justify-center bg-[#FCEAD0] rounded-[15px]">
+                  <Image
+                    src={image}
+                    alt="preview"
+                    width={90}
+                    height={90}
+                    className="w-[90px] h-[90px] rounded-[5px]"
+                  />
+                </div>
                 <div className="flex flex-col items-center rounded-[15px] bg-[#E3BEAA] w-full p-2">
                   <p className="text-[#653F56] text-center font-made-tommy text-[16px] font-[900] leading-normal tracking-[0.16px] px-3">
                     {description}

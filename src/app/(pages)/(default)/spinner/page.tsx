@@ -31,7 +31,7 @@ import { Button } from "@/app/_components/ui/button";
 import flashingEffect from "@assets/images/flashing-effect.png";
 import spinnerBack from "@assets/images/spinner-back.png";
 import usdt from "@assets/images/usdt.png";
-import UserXp from "../_components/xp";
+import { QuestionMarkIcon } from "@/app/_assets/svg/template";
 
 type TReward = "kokos" | "USDT" | "spin";
 
@@ -153,24 +153,32 @@ export default function KokoSpinner() {
   }));
 
   return (
-    <div className="bg-contain bg-center flex flex-col flex-1">
+    <div className="bg-contain bg-center flex flex-col flex-1 relative">
       <div
-        className="absolute top-10 left-8 z-[101] text-[32px] text-white font-bold opacity-0"
+        className="absolute top-9 left-8 z-[101] text-[32px] text-white font-bold opacity-0"
         style={{
           animation: isGrayingOut ? "showingRewardsEffect 2s ease" : "",
         }}
       >
         +{updatedScore}
       </div>
+      <div className="absolute -right-1 top-2 p-[2px] bg-gradient-to-b from-[#FAC485] to-[#8B4B4F] rounded-[19px_0px_0px_19px]">
+        <div className="bg-[url(/images/wood-texture.png)] bg-cover bg-center bg-no-repeat rounded-[17px_0px_0px_17px] h-[50px] w-[50px] flex flex-col justify-center items-center pt-1">
+          <Button className="bg-[url(/images/yellow-btn-bg.png)] bg-cover bg-center bg-no-repeat w-10 h-11">
+            <div className="w-5 h-5">
+              <QuestionMarkIcon />
+            </div>
+          </Button>
+        </div>
+      </div>
       <div
         className="absolute w-[100vw] h-[100vh] top-0"
         style={{ animation: isGrayingOut ? "grayoutEffect 2s ease" : "" }}
       />
-      <UserXp />
       <Image
         src={spinnerBack}
         alt="Main background"
-        className="absolute inset-0 w-full h-full -z-10 object-cover object-center"
+        className="absolute inset-0 w-full h-[calc(100%+30px)] -z-10 object-cover object-center"
         loading="lazy"
         priority={false}
       />
@@ -213,7 +221,10 @@ export default function KokoSpinner() {
                   loading || isSpinning || (spins?.data?.total || 0) <= 0
                 }
               >
-                Spin ({spins?.data?.total || 0})
+                <span className="text-[20px] text-[#DDDB0A] px-1 rounded-[5px] !bg-[#57530A] text-center tracking-normal [text-shadow:0_0_1px_#000000]">
+                  {spins?.data?.total || 0}
+                </span>
+                &nbsp;Spin
               </ConnectButton>
               <MoreSpins spins={spins?.data} refresh={refetch} />
               <Image

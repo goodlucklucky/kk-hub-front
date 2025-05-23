@@ -1,10 +1,7 @@
 import React from "react";
-import { useRouter } from "next/navigation";
 
-import { BoxIcon } from "@/app/_assets/svg/etc";
 import { cn } from "@/app/_lib/utils";
 
-import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 import Image from "next/image";
 import headerBack from "@assets/images/header-back.png";
 
@@ -27,25 +24,6 @@ const XpLabel: React.FC<{ className?: string }> = ({ className }) => (
   </div>
 );
 
-const LeftBack: React.FC<{ className?: string }> = ({ className }) => {
-  const router = useRouter();
-
-  return (
-    <div
-      onClick={() => router.back()}
-      className={cn(
-        "border border-[#B1B5CC] bg-[#B1B5CC] backdrop-blur-[12.5px]",
-        "aspect-square p-2 h-[32px] z-1",
-        "flex items-center justify-center",
-        "cursor-pointer",
-        className
-      )}
-    >
-      <CustomRightArrow className="w-[14px] h-[21px] rotate-180" />
-    </div>
-  );
-};
-
 const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({
   currentXp,
   maxXp,
@@ -53,13 +31,13 @@ const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({
   const percentage = (currentXp / maxXp) * 100;
 
   return (
-    <div className="flex-1 flex items-center gap-4">
-      <span className="text-[15px] font-bold text-golden-darker">
-        {currentXp} / {maxXp}
+    <div className="flex-1 flex items-center gap-4 pr-16">
+      <span className="text-[15px] font-bold text-[#5F3F57] [text-shadow:0px_1px_0px_rgba(0,0,0,0.20)]">
+        {currentXp} <span className="text-[#5F3F5740]"> / </span> {maxXp}
       </span>
       <div
         className={cn(
-          "flex-1 rounded-4xl h-3",
+          "flex-1 rounded-4xl h-3 overflow-hidden",
           "bg-gradient-to-b from-[#655364] to-[#978396] shadow-[0_2px_0_0_#00000033]"
         )}
       >
@@ -75,18 +53,6 @@ const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({
   );
 };
 
-const BoxButton: React.FC<{ className?: string }> = ({ className }) => (
-  <div
-    className={cn(
-      "aspect-square h-[32px] flex items-center justify-center",
-      "bg-red text-yellow-2",
-      className
-    )}
-  >
-    <BoxIcon className="size-full p-1" />
-  </div>
-);
-
 export const XpBar = ({ currentXp, maxXp, className }: XpBarProps) => {
   return (
     <div
@@ -99,7 +65,7 @@ export const XpBar = ({ currentXp, maxXp, className }: XpBarProps) => {
         src={headerBack}
         alt="header-back"
         width={75}
-        height={75}
+        height={50}
         className="absolute size-full inset-0 !-z-[1]"
       />
       <div
@@ -110,34 +76,8 @@ export const XpBar = ({ currentXp, maxXp, className }: XpBarProps) => {
       >
         <XpLabel />
         <XpProgress currentXp={currentXp} maxXp={maxXp} />
-        <BoxButton />
       </div>
     </div>
   );
 };
 
-export const NavBar = ({
-  className,
-  title,
-}: {
-  className?: string;
-  title: string;
-}) => {
-  // const router = useRouter();
-
-  return (
-    <div
-      className={cn(
-        "flex items-center gap-3",
-        "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
-        "bg-[rgba(255,255,255,0.20)] backdrop-blur-[12.5px] z-10 h-[32px]",
-        className
-      )}
-    >
-      <LeftBack />
-      <span className="text-[#ECEFFF] text-2xl font-normal leading-normal font-bumper-sticker [text-shadow:0px_1px_0px_rgba(0,0,0,0.20)]">
-        {title}
-      </span>
-    </div>
-  );
-};

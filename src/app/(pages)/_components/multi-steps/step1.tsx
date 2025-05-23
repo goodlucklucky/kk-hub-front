@@ -19,16 +19,16 @@ export function Step1Top() {
     <div className="flex flex-col">
       <div
         className={cn(
-          "text-golden-bright mx-8 bg-[url(/images/board_3.png)] bg-cover bg-center h-24 pt-2 drop-shadow-[0_0.2ch_var(--color-golden-darker)]",
-          " -mb-5 z-40 text-2xl text-center font-bumper-sticker"
+          "text-golden-bright mx-8 bg-[url(/images/board_3.png)] bg-cover bg-center h-24 pt-2 [text-shadow:0_0.2ch_var(--color-golden-darker)]",
+          "-mb-5 z-40 text-2xl text-center font-bumper-sticker"
         )}
       >
-        <small className="text-[16px]">legendary games</small>
+        <span className="text-[18px]">legendary games</span>
         <br />
-        <span className=" text-[18px]">with crypto rewards</span>
+        <span className=" text-[22px]">with crypto rewards</span>
       </div>
       <div className="text-golden-bright relative font-bold px-5">
-        <div className="bg-[url(/images/board.png)] bg-cover rounded-4xl px-2.5 py-3.5">
+        <div className="bg-[url(/images/board.png)] bg-no-repeat bg-[length:100%_100%] bg-center p-3 w-full h-full">
           <div className="bg-light rounded-3xl border-3 border-[#5F3F57]">
             <div className="py-2 flex items-center justify-center gap-2">
               <Image src={cup} alt="cup" />

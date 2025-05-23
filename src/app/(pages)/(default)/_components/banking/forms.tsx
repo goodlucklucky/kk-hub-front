@@ -64,7 +64,7 @@ export function Select({
   return (
     <div className={cn("flex flex-col w-full relative", className)}>
       {label && (
-        <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">
+        <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal px-2 mb-0.5">
           {label}
         </span>
       )}
@@ -73,17 +73,17 @@ export function Select({
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
           "w-full rounded-[10px] bg-[#D1B69F] text-sm text-[#745061]",
-          "flex items-center justify-between gap-3 px-3 py-2 font-made-tommy font-bold text-[14px]"
+          "flex items-center justify-between gap-1 px-2 py-1.5 font-made-tommy font-bold text-[14px]"
         )}
       >
-        <span className="flex items-center gap-2 text-[#5F3F57]">
+        <div className="flex items-center gap-1 text-[#5F3F57]">
           {selected.icon}
-          {selected.label}
-        </span>
+          <p className="leading-[20px]">{selected.label}</p>
+        </div>
         <RightArrow
           className={cn(
             "w-4 h-4 transition-transform",
-            isOpen && "rotate-[90deg]"
+            isOpen ? "rotate-[270deg]" : "rotate-[90deg]"
           )}
           color="#917377"
           shadow={false}
@@ -107,12 +107,12 @@ export function Select({
                 setIsOpen(false);
               }}
               className={cn(
-                "flex items-center gap-2 px-2 py-2 cursor-pointer font-made-tommy text-[#5F3F57] text-[14px] rounded-md",
-                selected?.value != option?.value ? "bg-[#eed1b8] border-2" : ""
+                "flex items-center gap-1 p-1 cursor-pointer font-made-tommy text-[#5F3F57] font-bold text-[14px] rounded-[7px]",
+                selected?.value != option?.value ? "bg-[#eed1b8] border-[2px] border-[#917377]" : "pl-1.5"
               )}
             >
               {option.icon}
-              {option.label}
+              <p className="leading-[20px]">{option.label}</p>
             </div>
           ))}
         </div>

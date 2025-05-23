@@ -18,7 +18,7 @@ export const WalletConnection = ({
     return (
       <Button
         className={cn(
-          "flex gap-2 items-center justify-center rounded-[10px] font-bold w-full py-[2px]"
+          "flex gap-2 items-center justify-center font-bumper-sticker rounded-[6px] font-bold w-full py-[2px]"
         )}
         onClick={onConnect}
       >

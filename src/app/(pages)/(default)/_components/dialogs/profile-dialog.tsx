@@ -1,7 +1,7 @@
 "use client";
 
 //import modules
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 //import components
@@ -14,6 +14,9 @@ import TournamentItem from "../profile/tournament-item";
 import InventorySection from "../profile/inventory-section";
 import Button from "@/app/_components/shared/button";
 import Social from "../profile/social";
+import { useGeneral } from "@/app/_providers/generalProvider";
+import { useApp } from "@/app/_contexts/appContext";
+import { LoaderIcon } from "react-hot-toast";
 
 //import assets
 import { CloseIcon } from "@/app/_assets/svg/close";
@@ -42,9 +45,9 @@ import pet1 from "@assets/images/pet1.png";
 import pet2 from "@assets/images/pet2.png";
 import pet3 from "@assets/images/pet3.png";
 import pet4 from "@assets/images/pet4.png";
-import { GeneralContext, useGeneral } from "@/app/_providers/generalProvider";
-import { useApp } from "@/app/_contexts/appContext";
-import { LoaderIcon } from "react-hot-toast";
+import stars_svg from "@assets/svg/stars_svg.svg";
+import money_sack from "@assets/svg/money-sack.svg";
+import caution_sign from "@assets/svg/caution-sign.svg";
 
 const lootboxes = [
   {
@@ -137,50 +140,56 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
         return <Social />;
       case "scores":
         return (
-          <div className="flex-1 flex flex-col gap-2 overflow-auto">
+          <div className="flex-1 flex flex-col gap-2">
             <EarningsSection amount="235.50" />
             <CurrentScores activeTab="daily" onTabChange={() => {}} />
-            <PreviousResults leftColor="#653F5654" rightColor="#12652980" />
-            <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2">
-              <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
-                <TournamentItem
-                  title="Koko Raffle"
-                  message="Numbers drawn. Check your ticket!"
-                  bgColor="bg-[#ECB56E]"
-                  messageBgColor="bg-[#E3BEAA]"
-                  score={0}
-                />
-                <TournamentItem
-                  title="Snake: $0.25 Tournament"
-                  message="Current Estimated Earnings: $100"
-                  bgColor="bg-[#E99F8C]"
-                  messageBgColor="bg-[#D7BDA4]"
-                  score={0}
-                />
-                <TournamentItem
-                  title="Flappy Dunk: $10 1v1"
-                  message="Improve your Score to qualify for a prize!"
-                  bgColor="bg-[#D49FC4]"
-                  messageBgColor="bg-[#E99F8C]"
-                  messageTextColor="#853834"
-                  score={0}
-                />
-                <TournamentItem
-                  title="50 KOKO Entry Tournament"
-                  message="Improve your Score to qualify for a prize!"
-                  bgColor="bg-[#B5C2C9]"
-                  messageBgColor="bg-[#D7BDA4]"
-                  score={0}
-                />
-                <TournamentItem
-                  title="$10 Challenge"
-                  message="Improve your Score to qualify for a prize!"
-                  bgColor="bg-[#B5D48E]"
-                  messageBgColor="bg-[#D7BDA4]"
-                  score={0}
-                />
+            <div className="w-full overflow-y-hidden flex-1 rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] pt-1">
+              <div className="w-full h-full overflow-y-auto p-2 pt-1">
+                <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
+                  <TournamentItem
+                    alt="stars_svg"
+                    color="#CC8A36"
+                    scoreColor="#FFDCAE"
+                    icon={stars_svg}
+                    title="Special Tournament"
+                    score="No Score"
+                    message="👎 You have not joined this challenge."
+                    path="/game/snake/tournaments"
+                  />
+                  <TournamentItem
+                    alt="money_sack"
+                    color="#608532"
+                    scoreColor="#B5D48E"
+                    icon={money_sack}
+                    title="$10 Entry Tournament"
+                    score="872 PTS"
+                    message="🤑 Current Estimated Earnings: $100"
+                    path="/game/snake/tournaments"
+                  />
+                  <TournamentItem
+                    alt="caution_sign"
+                    color="#853834"
+                    scoreColor="#E99F8C"
+                    icon={caution_sign}
+                    title="$1 Entry Tournament"
+                    score="872 PTS"
+                    message="‼️ Improve your Score to qualify for a prize!"
+                    path="/game/snake/tournaments"
+                  />
+                  <TournamentItem
+                    alt="money_sack"
+                    color="#608532"
+                    scoreColor="#B5D48E"
+                    icon={money_sack}
+                    title="Koko Tower"
+                    score="872 PTS"
+                    message="🤑 Current Estimated Earnings: $100"
+                    path="/game/snake/tournaments"
+                  />
+                </div>
               </div>
             </div>
+            <PreviousResults leftColor="#653F5654" rightColor="#12652980" />
           </div>
         );
       case "inventory":
@@ -193,14 +202,6 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
               itemPadding="px-2 py-2"
               itemWidth={50}
               itemHeight={50}
-            />
-            <InventorySection
-              title="Items & Koko Pets"
-              count={10}
-              items={pets}
-              itemPadding="px-1 pt-1 pb-1"
-              itemWidth={58}
-              itemHeight={58}
             />
             <InventorySection
               title="Items & Koko Pets"
@@ -223,31 +224,31 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
         <div className="absolute top-0 left-0 w-full h-full bg-black/75 backdrop-blur-[2.5px] z-10" />
 
         <div className="fixed h-full left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg">
-          <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-h-[90%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2">
+          <div className="bg-[url(/images/board_2.png)] flex flex-col gap-1 bg-cover bg-center fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-h-[95%] z-50 border-2 border-[#FAC485] rounded-3xl mx-auto p-2">
             <div className="flex justify-center items-center w-full absolute -bottom-5 right-0">
               <CloseIcon onClick={onClose} />
             </div>
-            <div className="flex justify-between items-center gap-x-1 bg-[#F5D6B1] rounded-2xl p-3 shadow-md border-2 border-[#A96415]">
+            <div className="flex justify-between items-center gap-x-2 bg-[#F5D6B1] rounded-2xl p-2 shadow-md border-2 border-[#A96415]">
               <Image
                 alt="profile-image"
                 src={profile}
                 className=" w-[70px] h-[70px]"
               />
               <div className="flex-1">
-                <div className=" bg-[#CDAA98] flex justify-between items-center rounded-md w-full p-0.5 border-[2px] border-[#CDAA98] gap-1">
-                  <p className=" text-[#5F3F57] font-bumper-sticker text-lg/[28px] pl-1 line-clamp-2 break-all">
+                <div className="border-2 border-[#CDAA98] bg-[#D9B8A3] flex justify-between items-center rounded-md w-full p-0.5 border-[2px] border-[#CDAA98] gap-1">
+                  <p className=" text-[#5F3F57] font-made-tommy font-[800] text-[15px] pl-1 line-clamp-2 break-all">
                     {user?.username || "KOKOMON118"}
                   </p>
-                  <div className=" bg-[#917377] w-[34px] h-full p-[3.7px] rounded">
+                  <div className=" bg-[#917377] w-[24px] h-[24px] p-[3.7px] rounded-[0px_3px_3px_0px]">
                     <Image alt="edit-icon" src={edit} />
                   </div>
                 </div>
-                <div className=" bg-[#CDAA98] flex rounded-md w-full p-0.5 mt-1.5">
-                  <div className="flex gap-1.5 items-center py-1 px-1 border-r-2 border-[#DDB7A2]">
-                    <p className=" text-[#917377] text-md font-made-tommy font-semibold">
+                <div className="border-2 border-[#CDAA98] bg-[#D9B8A3] flex rounded-md w-full p-0.5 mt-1.5">
+                  <div className="flex gap-1.5 items-center px-1 border-r-2 border-[#CDAA98]">
+                    <p className=" text-[#917377] text-[15px] font-made-tommy font-semibold">
                       Level
                     </p>
-                    <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-1">
+                    <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-1.5">
                       {isLoadingUserXp ? (
                         <LoaderIcon className="size-5" />
                       ) : (
@@ -255,12 +256,12 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                       )}
                     </p>
                   </div>
-                  <div className="flex justify-between flex-1">
-                    <div className="flex gap-1.5 items-center py-1 px-2">
-                      <p className=" text-[#917377] text-md font-made-tommy font-semibold">
+                  <div className="flex justify-between flex-1 items-center">
+                    <div className="flex gap-1.5 items-center px-2">
+                      <p className=" text-[#917377] text-[15px] font-made-tommy font-semibold">
                         Rank
                       </p>
-                      <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-1">
+                      <p className="text-[#D9B8A3] bg-[#5F3F57] rounded-md h-fit text-sm font-semibold font-made-tommy px-1.5">
                         {isLoadingUserXp ? (
                           <LoaderIcon className="size-5" />
                         ) : (
@@ -268,17 +269,17 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                         )}
                       </p>
                     </div>
-                    <div className=" bg-[#917377] w-[34px] p-[3.7px] m-[0.7px] rounded flex items-center justify-center">
+                    <div className="bg-[#917377] w-[24px] h-[24px] rounded-[0px_3px_3px_0px] flex items-center justify-center">
                       <Image alt="edit-icon" src={rightArrow} />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-1 px-[9px] py-3 bg-[#F5D6B1] rounded-2xl shadow-md border-2 border-[#A96415]">
+            <div className="flex flex-col gap-1 px-[9px] pt-1 pb-2 bg-[#F5D6B1] rounded-2xl shadow-md border-2 border-[#A96415]">
               <div className="flex justify-center gap-1 items-center ">
                 <Image src={topup} alt="top-up" className=" h-4 w-5" />
-                <p className=" text-[#917377] text-md font-made-tommy font-semibold">
+                <p className=" text-[#917377] text-[13px] font-made-tommy font-bold tracking-[0.16px]">
                   Top up your wallet for more fun!
                 </p>
               </div>
@@ -296,7 +297,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                 <span className="drop-shadow-md text-[16px]">VIEW WALLET</span>
               </Button>
             </div>
-            <div className="bg-[#F5D6B1] rounded-2xl p-3 shadow-md border-2 border-[#A96415] flex-1 flex flex-col overflow-y-auto">
+            <div className="bg-[#F5D6B1] rounded-2xl p-2 shadow-md border-2 border-[#A96415] flex-1 flex flex-col overflow-y-auto">
               <div className="flex justify-center gap-1.5">
                 <NavigationButton
                   icon={activeComponent === "social" ? socialClick : social}
@@ -321,7 +322,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                   onClick={() => setActiveComponent("inventory")}
                 />
               </div>
-              <div className="mt-3 rounded-2xl flex flex-1 overflow-y-auto">
+              <div className="mt-2 flex flex-1 overflow-y-auto">
                 {renderComponent()}
               </div>
             </div>

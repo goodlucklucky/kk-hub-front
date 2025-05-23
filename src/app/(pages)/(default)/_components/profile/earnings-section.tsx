@@ -15,7 +15,7 @@ export default function EarningsSection({
   return (
     <div
       className={cn(
-        "w-full justify-between bg-[#EED1B8] rounded-[10px] flex items-center gap-2 px-3 py-2.5",
+        "w-full justify-between bg-[#EED1B8] rounded-[10px] flex items-center gap-2 px-3 py-2",
         className
       )}
     >
