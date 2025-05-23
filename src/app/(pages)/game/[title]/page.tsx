@@ -50,8 +50,7 @@ export default function HomePage() {
   const { title } = useParams();
 
   return (
-    <div className="h-full flex flex-col min-h-screen">
-      <Header />
+    <>
       <div
         className={cn(
           "flex flex-col flex-1 h-full items-center gap-y-3 xs:gap-y-5"
@@ -153,6 +152,6 @@ export default function HomePage() {
         onClose={() => setIsChatOpen(!isChatOpen)}
       />
       <Footer footerCategory="game" />
-    </div>
+    </>
   );
 }
