@@ -104,7 +104,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
                   "flex gap-2 rounded-md w-fit px-2",
                   "-mt-1 -ml-1 ",
                   "bg-[#27A459] shadow-[0_0.25ch_rgba(0,0,0,0.2)]",
-                  "text-[#E3BEAA]"
+                  "text-[#FFD093]"
                 )}
               >
                 <p className="2xs:pt-0.5">Invite Friends, Earn $$$!</p>

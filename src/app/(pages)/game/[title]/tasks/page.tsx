@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, memo } from "react";
+import React, { useState, useCallback, memo, useContext } from "react";
 import Image from "next/image";
 //import components
 import MintDialog from "../../../(default)/_components/dialogs/mint-dialog";
@@ -12,9 +12,11 @@ import { cn } from "@/app/_lib/utils";
 //import images
 import forestBack from "@assets/images/forest-back.png";
 import mainBack from "@assets/images/main-back.png";
-import { XIcon } from "@/app/_assets/svg/x";
-import Header from "../../../(default)/_components/layout/header";
 import Footer from "../../../(default)/_components/layout/footer";
+import { trackEvent } from "@/app/_lib/mixpanel";
+import { GeneralContext } from "@/app/_providers/generalProvider";
+import { useActiveAccount } from "thirdweb/react";
+import { useAirdropNft } from "../../../../../../services/nft";
 import TaskSection from "../../../(default)/_components/tasks/task-section";
 
 // Types
@@ -51,19 +53,42 @@ const TasksCategoryButtons = memo(
 TasksCategoryButtons.displayName = "TasksCategoryButtons";
 
 export default function TasksPage() {
+  const { sessionId } = useContext(GeneralContext);
+  const account = useActiveAccount();
+  const { mutateAsync: claimAirDrop } = useAirdropNft();
+
   const [activeTaskCategory, setActiveTaskCategory] =
     useState<TasksCategory>("Claim OG");
   const [isMintDialogOpen, setIsMintDialogOpen] = useState(false);
   const [isMinting, setIsMinting] = useState(false);
-  const [isConnectTwitter] = useState(false);
 
   const handleTaskCategoryChange = useCallback((category: TasksCategory) => {
     setActiveTaskCategory(category);
   }, []);
 
+  const handleMint = useCallback(async () => {
+    setIsMintDialogOpen(true);
+    setIsMinting(true);
+    try {
+      await claimAirDrop({
+        wallet: `${account?.address}`,
+        sessionId,
+        type: "welcome",
+      });
+      trackEvent("MintWelcome NFT", {
+        wallet: account?.address,
+        sessionId,
+        type: "welcome",
+      });
+    } catch {
+      // console.log("Error in claimAirDrop", error);
+    } finally {
+      setIsMinting(false);
+    }
+  }, [account?.address, claimAirDrop, sessionId]);
+
   return (
-    <div className="h-full flex flex-col min-h-screen">
-      <Header />
+    <>
       <div className={cn("flex flex-col flex-1 h-full items-center gap-y-5")}>
         <Image
           src={mainBack}
@@ -77,13 +102,13 @@ export default function TasksPage() {
         <Image
           src={forestBack}
           alt="Forest background"
-          className="absolute inset-0 w-full h-[505px] top-[115px] -z-10 rotate-180"
+          className="absolute inset-0 w-full h-[555px] top-[70px] -z-10 rotate-180"
           loading="eager"
           priority
           quality={75}
           sizes="100vw"
         />
-        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-32 bottom-30 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0">
+        <div className="bg-[url(/images/board_2.png)] flex flex-col gap-3 bg-cover bg-center fixed top-22 bottom-26 w-[95%] mx-auto z-50 border-2 border-[#FAC485] rounded-3xl p-2 right-0 left-0">
           <div className="bg-[#F5D6B1] rounded-2xl p-[7px] py-2.5 shadow-md border-2 border-[#A96415] flex flex-col overflow-y-auto gap-2 h-full">
             <div className="flex flex-col gap-2 px-2">
               <TasksCategoryButtons
@@ -92,13 +117,7 @@ export default function TasksPage() {
                 categories={["Claim OG", "Koko Tasks", "Partner"]}
               />
             </div>
-            <TaskSection
-              tab={activeTaskCategory}
-              onMintClick={() => {
-                setIsMintDialogOpen(true);
-                setIsMinting(true);
-              }}
-            />
+            <TaskSection tab={activeTaskCategory} onMintClick={handleMint} />
           </div>
         </div>
       </div>
@@ -107,8 +126,7 @@ export default function TasksPage() {
         isOpen={isMintDialogOpen}
         onClose={() => setIsMintDialogOpen(!isMintDialogOpen)}
         isMinting={isMinting}
-        // setIsMinting={setIsMinting}
       />
-    </div>
+    </>
   );
 }
