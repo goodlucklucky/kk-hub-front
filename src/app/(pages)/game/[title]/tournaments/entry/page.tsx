@@ -25,7 +25,7 @@ import tour_pointing_arrow from "@assets/svg/tour-pointing-arrow.svg";
 import tour_refresh_back from "@assets/svg/tour-refresh-back.svg";
 import TourDialog from "../../../../(default)/_components/dialogs/tour-dialog";
 import PayDialog from "../../../../(default)/_components/dialogs/pay-dialog";
-
+import { QuestionMarkIcon } from "@/app/_assets/svg/template";
 export default function TournamentEntryPage() {
   const [openDialog, setOpenDialog] = useState(false);
   const [openPayDialog, setOpenPayDialog] = useState(false);
@@ -43,32 +43,34 @@ export default function TournamentEntryPage() {
   );
 
   return (
-    <div className={cn("min-h-dvh flex flex-col")}>
-      <Header />
-      <main className="grow flex flex-col">
-        <div
-          className={cn(
-            "flex flex-col flex-1 h-full items-center gap-y-5 px-2"
-          )}
-        >
-          <Image
-            src={statsBack}
-            alt="Main background"
-            className="absolute inset-0 w-full h-full -z-10 object-cover object-center"
-            loading="lazy"
-            priority={false}
-          />
-          <div className="flex gap-2 mt-4 absolute top-8 left-5">
-            <Chat />
-          </div>
-          <Image
-            src={statsIcon}
-            alt="Stats icon"
-            className="absolute top-26 right-0"
-            loading="lazy"
-            priority={false}
-          />
-          <div className="bg-[url(/images/tournament-panel.png)] bg-[size:100%_100%] fixed top-48 left-3 right-3 bottom-3 bg-no-repeat z-10 rounded-3xl mx-auto p-3 2xs:p-4 pt-2 2xs:pt-3 xs:pt-5">
+    <>
+      <div
+        className={cn(
+          "flex flex-col flex-1 h-full items-center gap-y-5 px-2"
+        )}
+      >
+        <Image
+          src={statsBack}
+          alt="Main background"
+          className="absolute inset-0 w-full h-full -z-10 object-cover object-center"
+          loading="lazy"
+          priority={false}
+        />
+        <div className="flex gap-2 mt-4 absolute top-8 left-5 -z-1">
+          <Chat />
+        </div>
+        <Image
+          src={statsIcon}
+          alt="Stats icon"
+          className="absolute top-[70px] right-0 -z-1"
+          loading="lazy"
+          priority={false}
+        />
+        <Button className="bg-[url(/images/yellow-btn-bg.png)] bg-cover bg-center bg-no-repeat w-10 h-10 p-1 m-1 absolute top-20 right-0 flex items-center justify-center">
+          <QuestionMarkIcon width={20} height={20} className="w-[20px] h-[20px]" />
+        </Button>
+        <div className="bg-[url(/images/tournament-panel.png)] bg-[size:100%_100%] fixed top-36 left-3 right-3 bottom-3 bg-no-repeat z-10 rounded-3xl mx-auto p-3 2xs:p-4 pt-2 2xs:pt-3 xs:pt-5">
+          <div className="rouded-[15px] overflow-hidden h-full">
             <div className="flex flex-col gap-1.5 w-full h-full overflow-y-auto">
               <div className="text-[#5F3F57] text-center font-made-tommy text-[22px] font-extrabold tracking-[0.22px]">
                 $0.25 Entry Tournament
@@ -206,7 +208,7 @@ export default function TournamentEntryPage() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
       <TourDialog isOpen={openDialog} onClose={handlePay} />
       <PayDialog
         isPaying={isPaying}
@@ -217,6 +219,6 @@ export default function TournamentEntryPage() {
         }}
         setIsPaying={setIsPaying}
       />
-    </div>
+    </>
   );
 }

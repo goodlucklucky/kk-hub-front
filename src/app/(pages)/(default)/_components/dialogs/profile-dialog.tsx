@@ -149,40 +149,36 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                   <TournamentItem
                     alt="stars_svg"
                     color="#CC8A36"
-                    scoreColor="#FFDCAE"
                     icon={stars_svg}
                     title="Special Tournament"
-                    score="No Score"
+                    score={0}
                     message="👎 You have not joined this challenge."
                     path="/game/snake/tournaments"
                   />
                   <TournamentItem
                     alt="money_sack"
                     color="#608532"
-                    scoreColor="#B5D48E"
                     icon={money_sack}
                     title="$10 Entry Tournament"
-                    score="872 PTS"
+                    score={872}
                     message="🤑 Current Estimated Earnings: $100"
                     path="/game/snake/tournaments"
                   />
                   <TournamentItem
                     alt="caution_sign"
                     color="#853834"
-                    scoreColor="#E99F8C"
                     icon={caution_sign}
                     title="$1 Entry Tournament"
-                    score="872 PTS"
+                    score={872}
                     message="‼️ Improve your Score to qualify for a prize!"
                     path="/game/snake/tournaments"
                   />
                   <TournamentItem
                     alt="money_sack"
                     color="#608532"
-                    scoreColor="#B5D48E"
                     icon={money_sack}
                     title="Koko Tower"
-                    score="872 PTS"
+                    score={872}
                     message="🤑 Current Estimated Earnings: $100"
                     path="/game/snake/tournaments"
                   />

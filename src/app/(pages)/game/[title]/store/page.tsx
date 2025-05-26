@@ -29,17 +29,15 @@ import cosmetic from "@assets/images/cosmetics.png";
 import { GeneralContext } from "@/app/_providers/generalProvider";
 import CosmeticCard from "@/app/(pages)/(default)/_components/store/cosmetic-card";
 import NavigationButton from "@/app/(pages)/(default)/_components/profile/navigateBtn";
+import DiscountBadge from "@/app/(pages)/(default)/_components/store/discount-badge";
+import SkinDialog from "@/app/(pages)/(default)/_components/dialogs/skin-dialog";
 import {
   IStoreItem,
   IStoreItemType,
   useStoreItems,
   useStoreTypes,
-} from "@/../services/store";
-import { NavBar } from "@/app/(pages)/(default)/_components/xp/bar";
-
-import DiscountBadge from "@/app/(pages)/(default)/_components/store/discount-badge";
-import Header from "@/app/(pages)/(default)/_components/layout/header";
-import PaymentDialog from "@/app/(pages)/(default)/_components/dialogs/payment";
+} from "../../../../../../services/store";
+import Footer from "@/app/(pages)/(default)/_components/layout/footer";
 
 // Types
 type StoreCategory = "featured" | "items" | "kokitos" | "social";
@@ -230,7 +228,7 @@ export default function StorePage() {
                   </div>
                 </div>
               ) : (
-                <div className="w-full flex flex-col gap-1 bg-[#EED1B8] rounded-[22px] p-2 px-1 overflow-y-auto">
+                <div className="w-full flex flex-col gap-1 bg-[#EED1B8] rounded-[22px] p-2 px-1 h-full overflow-y-auto">
                   <div className="flex justify-start items-center">
                     <span className="text-[#5F3F57] text-[22px] font-bumper-sticker font-normal px-1">
                       {activeProductCategory?.name.toUpperCase()}
@@ -273,6 +271,7 @@ export default function StorePage() {
         </div>
       </div>
       {/* Only render the dialog when we have both a selected item and the dialog should be open */}
+      <Footer footerCategory="game" />
       {selectedItem && (
         <PaymentDialog
           isOpen={isSkinDialogOpen}
