@@ -1,5 +1,4 @@
 import { cn } from "@/app/_lib/utils";
-import { RightArrow } from "@/app/_assets/svg/right-arrow";
 import { CheckIcon } from "@/app/_assets/svg/check";
 import { BonusIcon, BonusDescIcon } from "@/app/_assets/svg/bonus";
 import { TapCopyIcon } from "@/app/_assets/svg/copy";
@@ -8,7 +7,7 @@ import { useCallback, useState } from "react";
 import toast, { LoaderIcon } from "react-hot-toast";
 import WagmiConnectButton from "@/app/_components/shared/wagmiWallet";
 import { Input, Select } from "./forms";
-import { UsdcIcon, UsdtIcon } from "@/app/_assets/svg/etc";
+import { UsdcIcon, UsdtIcon, AvalancheIcon } from "@/app/_assets/svg/etc";
 import { useToken } from "../../_context/tokenContext";
 import { useActiveAccount } from "thirdweb/react";
 import { useThirdweb } from "../../_context/thirdwebContext";
@@ -58,9 +57,9 @@ export const DepositSection = ({ isConnected }: DepositSectionProps) => {
   }, [amount, transfer, account?.address, refreshBalance]);
 
   return (
-    <div className="mt-3 rounded-[7px] flex flex-1 flex-col w-full px-2 overflow-y-auto bg-[#E3BEAA] py-3 h-full max-h-[calc(100vh-200px)]">
-      <div className="flex flex-col h-full p-2 pb-3 bg-[#EED1B8] rounded-t-[15px] gap-1.5 border-b-1 border-[#E3BEAA]">
-        <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal pt-1 px-2">
+    <div className="rounded-[7px] flex flex-1 flex-col w-full p-2 overflow-y-auto bg-[#E3BEAA] h-full max-h-[calc(100vh-200px)]">
+      <div className="flex flex-col h-full p-2 bg-[#EED1B8] rounded-t-[15px] gap-1 border-b-1 border-[#E3BEAA]">
+        <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal px-2">
           Deposit From EXTERNAL Wallet
         </span>
         <WagmiConnectButton />
@@ -115,69 +114,53 @@ export const DepositSection = ({ isConnected }: DepositSectionProps) => {
           </div>
         )}
       </div>
-      <div className="flex flex-col p-2 pb-3 bg-[#EED1B8] rounded-b-[15px] gap-0.5">
+      <div className="flex flex-col p-2 pb-3 bg-[#EED1B8] rounded-b-[15px] gap-2">
         <div className="flex flex-col gap-1">
-          <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal pt-1 px-2">
+          <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal px-2">
             Transfer crypto
           </span>
           <div className="flex gap-2">
-            <div className="flex flex-col w-full">
-              <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">
-                Select Currency
-              </span>
-              <div
-                className={cn(
-                  "flex flex-col w-full items-center justify-between rounded-[10px] bg-[#D1B69F] p-1 text-sm text-[#745061]"
-                )}
-              >
-                <div className="flex items-center gap-1 w-full justify-between px-2 py-1 h-7">
-                  <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px]">
-                    USDC
-                  </span>
-                  <RightArrow
-                    className="w-4 h-4 rotate-90"
-                    color="#917377"
-                    shadow={false}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col w-full">
-              <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">
-                Select Network
-              </span>
-              <div
-                className={cn(
-                  "flex flex-col w-full items-center justify-between rounded-[10px] bg-[#D1B69F] p-1 text-sm text-[#745061]"
-                )}
-              >
-                <div className="flex items-center gap-1 w-full justify-between px-2 py-1 h-7">
-                  <span className="text-[#5F3F57] font-made-tommy font-bold text-[14px]">
-                    Avalanche
-                  </span>
-                  <RightArrow
-                    className="w-4 h-4 rotate-90"
-                    color="#917377"
-                    shadow={false}
-                  />
-                </div>
-              </div>
-            </div>
+            <Select
+              label="Select Currency"
+              name="currency"
+              options={[
+                { label: "USDC", value: "usdc", icon: <UsdcIcon /> },
+                { label: "USDT", value: "usdt", icon: <UsdtIcon /> },
+              ]}
+              value={selectedCurrency}
+              onChange={setSelectedCurrency as any}
+            />
+            <Select
+              label="Select Network"
+              name="network"
+              options={[
+                {
+                  label: "Avalanche",
+                  value: "avalanche",
+                  icon: <AvalancheIcon />,
+                },
+                // {
+                //   label: "Ethereum",
+                //   value: "ethereum",
+                //   icon: <EthereumIcon />,
+                // },
+                // { label: "BSC", value: "bsc", icon: <BscIcon /> },
+              ]}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-1">
           <div className="flex gap-2">
             <div className="flex flex-col w-full">
-              <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">
+              <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal px-2 mb-0.5">
                 Deposit Address
               </span>
               <div
                 className={cn(
-                  "flex flex-col w-full items-center justify-between rounded-t-[10px] bg-[#D1B69F] px-3 py-2 text-sm text-[#745061] border-1 border-[#917377] border-b-0"
+                  "flex flex-col w-full items-center justify-between rounded-t-[10px] bg-[#D1B69F] px-3 py-1.5 text-sm text-[#745061] border-1 border-[#917377] border-b-0"
                 )}
               >
-                <span className="text-[#5F3F57] font-made-tommy font-semibold text-[12px] break-words max-w-full">
-                  {/* {account?.address} */}
+                <span className="text-[#5F3F57] font-made-tommy font-semibold text-[12px] max-w-full whitespace-nowrap truncate">
                   {account?.address}
                 </span>
               </div>
@@ -195,7 +178,7 @@ export const DepositSection = ({ isConnected }: DepositSectionProps) => {
             </div>
           </div>
         </div>
-        <div className="flex justify-center items-center bg-[#E99F8C] rounded-[10px] mt-1.5 p-2 gap-2">
+        <div className="flex justify-center items-center bg-[#E99F8C] rounded-[10px] p-2 py-1 gap-2">
           <span className="bg-[#853834] rounded-full w-4.5 h-4.5 px-2 flex items-center justify-center text-[#EED1B8] text-[12px]">
             i
           </span>
@@ -203,7 +186,7 @@ export const DepositSection = ({ isConnected }: DepositSectionProps) => {
             Please only deposit USDC on Avalanche (AVAX C-Chain) to this address
           </span>
         </div>
-        <div className="flex flex-col mt-1.5">
+        <div className="flex flex-col">
           <div
             className={cn(
               "flex w-full items-center justify-center gap-1 rounded-t-[10px] bg-[#126529] px-3 py-1 text-sm text-[#745061] border-1 border-[#917377] border-b-0"

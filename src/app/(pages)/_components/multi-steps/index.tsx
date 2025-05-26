@@ -122,22 +122,6 @@ export default function MultiSteps() {
                   disabled={index === step}
                   onClick={() => goToStep(index)}
                 >
-                  {index == step && (
-                    <svg
-                      width="39"
-                      height="16"
-                      viewBox="0 0 39 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-full w-auto"
-                    >
-                      <path
-                        d="M0 5C0 2.23858 2.23858 0 5 0L16.5 0L38.5 16H5C2.23858 16 0 13.7614 0 11V5Z"
-                        fill="#FFD649"
-                        fillOpacity="0.5"
-                      />
-                    </svg>
-                  )}
                 </button>
               ))}
             </div>

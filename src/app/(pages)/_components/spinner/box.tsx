@@ -88,7 +88,7 @@ export default function SpinnerBox({ clearTimer }: SpinnerBoxProps) {
                 <Image
                   src={usdtIcon}
                   alt="usdt"
-                  className="size-10 mx-auto rounded-full"
+                  className="size-10 mx-auto rounded-full drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
                 />
               ) : one.type === "NFT" ? (
                 <Image
@@ -97,7 +97,7 @@ export default function SpinnerBox({ clearTimer }: SpinnerBoxProps) {
                   className="size-10 mx-auto rounded-full"
                 />
               ) : one.type === "kokos" ? (
-                <p className="flex flex-col font-semibold">
+                <p className="flex flex-col font-semibold leading-[15px]">
                   <span>KOKO</span>
                   <small>POINTS</small>
                 </p>

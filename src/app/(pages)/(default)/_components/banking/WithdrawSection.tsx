@@ -78,9 +78,9 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
   );
 
   return (
-    <div className="mt-3 rounded-[7px] flex flex-1 flex-col w-full px-2 overflow-y-auto bg-[#E3BEAA] py-3">
-      <div className="flex flex-col h-full p-2 pb-3 bg-[#EED1B8] rounded-t-[15px] gap-1.5 border-b-1 border-[#E3BEAA]">
-        <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal pt-1 px-2">
+    <div className="rounded-[7px] flex flex-1 flex-col w-full p-2 overflow-y-auto bg-[#E3BEAA]">
+      <div className="flex flex-col h-full p-2 bg-[#EED1B8] rounded-t-[15px] gap-1.5 border-b-1 border-[#E3BEAA]">
+        <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal px-2">
           withdraw From EXTERNAL Wallet
         </span>
         <WagmiConnectButton />
@@ -163,7 +163,7 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
         onSubmit={handleManualWithdraw}
         className="flex flex-col p-2 pb-3 bg-[#EED1B8] rounded-b-[15px] gap-0.5"
       >
-        <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal pt-1 px-2">
+        <span className="text-[#745061] font-bumper-sticker text-[16px] font-normal leading-normal px-2">
           withdraw to address
         </span>
         <div className="flex gap-2">

@@ -1,47 +1,60 @@
-"use client";
-
+import React from 'react';
+import Image from 'next/image';
 import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
-import { formatNumber } from "@/app/_utils/number";
+import { StaticImageData } from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface TournamentItemProps {
+  alt: string;
+  color: string;
+  scoreColor: string;
+  icon: StaticImageData;
   title: string;
+  score: string;
   message: string;
-  bgColor: string;
-  messageBgColor: string;
-  messageTextColor?: string;
-  score: number;
+  path: string;
 }
 
-export default function TournamentItem({
+const TournamentItem: React.FC<TournamentItemProps> = ({
+  alt,
+  color,
+  scoreColor,
+  icon,
   title,
-  message,
-  bgColor,
-  messageBgColor,
-  messageTextColor = "#745061",
   score,
-}: TournamentItemProps) {
+  message,
+  path
+}) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(path);
+  }
+
   return (
-    <div className="w-full flex flex-col justify-between items-center">
-      <div
-        className={`rounded-t-[6px] w-full flex items-center justify-between text-white text-[14px] font-made-tommy font-semibold px-3 py-2`}
-        style={{ backgroundColor: bgColor }}
-      >
-        {title}
-        <div className="flex items-center gap-5">
-          <span
-            className={` bg-white/50 text-[14px] px-1.5 font-made-tommy text-lg rounded-lg`}
-            style={{ color: bgColor }}
-          >
-            {score === 0 ? "No Score" : `${formatNumber(score)}  PTS`}
-          </span>
-          <CustomRightArrow color="white" width={20} height={14} />
+    <div onClick={handleClick} className="rounded-[6px] border border-[#D7BDA4] w-full h-[60px] flex-shrink-0 overflow-hidden shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)]">
+      <div className="w-full h-[36px] flex justify-between items-center px-2" style={{ backgroundColor: color }}>
+        <div className="flex items-center gap-x-1">
+          <Image alt={alt} src={icon} />
+          <p className="text-[#FFF4E6] text-[14px] font-made-tommy font-bold leading-normal tracking-[0.14px] whitespace-nowrap">
+            {title}
+          </p>
+        </div>
+        <div className="flex items-center gap-x-2">
+          <div className="w-[69px] h-[18px] flex-shrink-0 rounded-[5px] flex items-center justify-center" style={{ backgroundColor: scoreColor }}>
+            <p className="font-made-tommy text-center text-[14px] font-bold leading-normal tracking-[0.14px]" style={{ color }}>
+              {score}
+            </p>
+          </div>
+          <CustomRightArrow color="#FFF4E6" />
         </div>
       </div>
-      <div
-        className={`w-full rounded-b-[6px] bg-[${messageBgColor}] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] text-[${messageTextColor}] text-[12px] font-made-tommy font-semibold px-3 py-1`}
-      >
-        {message}
+      <div className="w-full h-[24px] bg-[#F5DDC4] flex items-center px-2">
+        <p className="text-[rgba(116,80,97,0.80)] font-made-tommy text-[12px] font-bold leading-normal tracking-[0.12px] whitespace-nowrap truncate">
+          {message}
+        </p>
       </div>
     </div>
   );
 }
+
+export default TournamentItem;

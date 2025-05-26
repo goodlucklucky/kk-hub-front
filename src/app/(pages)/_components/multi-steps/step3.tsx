@@ -33,13 +33,13 @@ export function Step3Top() {
           <span>MILLIONS IN PRIZES</span>
         </h2>
       </section>
-      <section className="relative">
+      <section className="relative -mb-[40px]">
         <Image
           src={panelHome}
           alt="panel-home"
           width={354}
-          height={248}
-          className="absolute -top-[30px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center"
+          height={308}
+          className="absolute -top-[20px] left-1/2 -translate-x-1/2 bg-contain bg-no-repeat bg-center w-full h-full"
           priority
         />
         <LivePreview />

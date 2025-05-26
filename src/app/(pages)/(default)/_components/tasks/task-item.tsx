@@ -211,13 +211,13 @@ const TaskItem: React.FC<TaskItemProps> = ({
                 "h-5 flex items-center"
               )}
             >
-              <span className="text-white text-xs font-bold px-2 py-0">
+              <span className="text-white text-xs font-bold px-2 py-0 first-letter:uppercase">
                 {taskStatus == "FETCHING" ? (
                   <LoaderIcon className="size-4" />
                 ) : isFriend ? (
-                  "verify"
+                  "Verify"
                 ) : (
-                  actionTitle || "follow"
+                  actionTitle || "Follow"
                 )}
               </span>
             </Button>

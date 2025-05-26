@@ -3,8 +3,24 @@
 import React from "react";
 
 import Button from "@/app/_components/shared/button";
-import { CopyIcon } from "@/app/_assets/svg/copy";
 import { ShareIcon } from "@/app/_assets/svg/share";
+import { InviteCopyIcon } from "@/app/_assets/svg/copy";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/app/_components/ui/dialog";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  TelegramShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  TelegramIcon as ShareTelegramIcon,
+  WhatsappIcon,
+} from "react-share";
+import BoxMain from "../BoxMain";
 import { cn } from "@/app/_lib/utils";
 import ShareDialog from "./share-dialog";
 import useShare from "@/app/_hooks/use-share";

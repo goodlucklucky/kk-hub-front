@@ -160,7 +160,7 @@ export function CommingSoonCard() {
       )}
     >
       <p>
-        COMMING
+        COMING
         <br />
         SOON
       </p>

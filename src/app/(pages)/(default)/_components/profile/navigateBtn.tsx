@@ -29,7 +29,7 @@ export default function NavigationButton({
       )}
     >
       {icon && (
-        <Image src={icon} alt={label.toLowerCase()} className="h-4 w-5" />
+        <Image src={icon} alt={label.toLowerCase()} className="w-5" />
       )}
       <span
         className={cn(
