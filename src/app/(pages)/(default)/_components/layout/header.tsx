@@ -19,7 +19,6 @@ import starIcon from "@/app/_assets/images/star-icon.png";
 import { RightArrow } from "@/app/_assets/svg/right-arrow";
 import { useThirdweb } from "../../_context/thirdwebContext";
 import { formatNumber } from "@/app/_utils/number";
-import UserXp from "../xp";
 
 function KokoLogo({isMonkey = false, isOG = false, isStar = false, level = 0}: 
   {isMonkey: boolean, isOG: boolean, isStar: boolean, level: number}) {
@@ -76,8 +75,23 @@ export default function Header() {
             />
           </div>
         </div>
-      </header>
-      <UserXp />
-    </>
+        <div
+          // href={"/profile"}
+          className={cn("flex flex-col", "relative w-14 h-[75px]")}
+          onClick={() => setIsProfileOpen(!isProfileOpen)}
+        >
+          <Image
+            src={KokoLogo}
+            alt="koko-logo"
+            width={54}
+            height={72}
+            className="absolute w-[54px] h-[72px] top-0 right-0 inset-0 object-cover object-center rounded-b-md"
+          />
+          <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-1 right-0 ">
+            LVL 100
+          </span>
+        </div>
+      </div>
+    </header>
   );
 }
