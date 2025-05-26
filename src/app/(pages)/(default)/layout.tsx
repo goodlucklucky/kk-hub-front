@@ -9,7 +9,7 @@ export default function Layout({
   return (
     <div className={cn("min-h-dvh flex flex-col")}>
       <Header />
-      <main className="grow flex flex-col">{children}</main>
+      <main className="flex flex-col h-[calc(100vh-172px)] z-0">{children}</main>
       <Footer footerCategory="home" />
     </div>
   );

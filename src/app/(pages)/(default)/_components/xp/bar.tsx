@@ -9,6 +9,7 @@ interface XpBarProps {
   currentXp: number;
   maxXp: number;
   className?: string;
+  onClick?: () => void;
 }
 
 const XpLabel: React.FC<{ className?: string }> = ({ className }) => (
@@ -53,13 +54,14 @@ const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({
   );
 };
 
-export const XpBar = ({ currentXp, maxXp, className }: XpBarProps) => {
+export const XpBar = ({ currentXp, maxXp, className, onClick }: XpBarProps) => {
   return (
     <div
       className={cn(
-        "relative shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]",
+        "relative shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)] z-1",
         className
       )}
+      onClick={onClick}
     >
       <Image
         src={headerBack}

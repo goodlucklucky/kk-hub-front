@@ -161,10 +161,10 @@ export default function RafflePage() {
                       end={ticket[0].ticketNumber}
                       duration={2.5}
                       onEnd={() => setRaffleDialogOpen(true)}
-                      className="text-[#8A6C48] text-[40px] font-bumper-sticker font-normal rotate-[-2deg] z-20 mr-4"
+                      className="text-[#8A6C48] text-[35px] font-bumper-sticker font-normal rotate-[-2deg] z-20 mr-4"
                     />
                   ) : (
-                    <span className="text-[#8A6C48] text-[40px] font-bumper-sticker font-normal rotate-[-2deg] z-20 mr-4">
+                    <span className="text-[#8A6C48] text-[35px] font-bumper-sticker font-normal rotate-[-2deg] z-20 mr-4">
                       ???
                     </span>
                   )}

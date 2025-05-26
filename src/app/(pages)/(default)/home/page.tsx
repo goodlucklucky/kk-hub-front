@@ -22,18 +22,12 @@ import { StarIcon } from "@/app/_assets/svg/star";
 import forestBack from "@assets/images/forest-back.png";
 import mainBack from "@assets/images/main-back.png";
 import MintDialog from "../_components/dialogs/mint-dialog";
-import BankDialog from "../_components/dialogs/bank-dialog";
-import ProfileDialog from "../_components/dialogs/profile-dialog";
 import ChatDialog from "../_components/dialogs/chat-dialog";
 import { useApp } from "@/app/_contexts/appContext";
 import PreviewDialog from "../_components/dialogs/preview-dialog";
 
 export default function HomePage() {
   const {
-    isBankingOpen,
-    setIsBankingOpen,
-    isProfileOpen,
-    setIsProfileOpen,
     isChatOpen,
     setIsChatOpen,
   } = useApp();
@@ -125,7 +119,7 @@ export default function HomePage() {
               </div>
               <div
                 className={cn(
-                  "py-1.5 flex justify-center",
+                  "py-1.5 flex justify-center rounded-tr-2xl",
                   tabOpen === "favourites" ? "bg-white text-golden-brown" : "bg-golden-brown text-white"
                 )}
                 onClick={() => setTabOpen("favourites")}
@@ -136,7 +130,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="bg-[#000000]/20 pt-1 rounded-b-2xl">
+            <div className="bg-[#000000]/20 py-1 rounded-b-2xl">
               {groupedGames?.slice(0, 2)?.map(([type, games]) => (
                 <GamesCard
                   key={type}
@@ -164,14 +158,6 @@ export default function HomePage() {
         isMinting={isMinting}
         isOpen={isMintDialogOpen}
         onClose={handleMintDialogClose}
-      />
-      <BankDialog
-        isOpen={isBankingOpen}
-        onClose={() => setIsBankingOpen(!isBankingOpen)}
-      />
-      <ProfileDialog
-        isOpen={isProfileOpen}
-        onClose={() => setIsProfileOpen(!isProfileOpen)}
       />
       <ChatDialog
         isOpen={isChatOpen}

@@ -1,10 +1,11 @@
 "use client";
 
-//import modules
-import { useState } from "react";
+// import modules
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { LoaderIcon } from "react-hot-toast";
 
-//import components
+// import components
 import { Dialog, DialogPortal } from "@/app/_components/ui/dialog";
 import NavigationButton from "@/app/(pages)/(default)/_components/profile/navigateBtn";
 import EarningsSection from "../profile/earnings-section";
@@ -14,17 +15,18 @@ import TournamentItem from "../profile/tournament-item";
 import InventorySection from "../profile/inventory-section";
 import Button from "@/app/_components/shared/button";
 import Social from "../profile/social";
+
+// import providers
 import { useGeneral } from "@/app/_providers/generalProvider";
 import { useApp } from "@/app/_contexts/appContext";
-import { LoaderIcon } from "react-hot-toast";
 
-//import assets
+// import assets
 import { CloseIcon } from "@/app/_assets/svg/close";
 
-//import utils
+// import utils
 import { cn } from "@/app/_lib/utils";
 
-//import assets
+// import assets
 import profile from "@assets/images/profile.svg";
 import edit from "@assets/svg/edit.svg";
 import rightArrow from "@assets/svg/right-arrow.svg";
@@ -131,8 +133,37 @@ interface ProfileDialogProps {
 
 const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
   const [activeComponent, setActiveComponent] = useState("social");
-  const { setIsBankingOpen, setIsProfileOpen } = useApp();
+  const [username, setUsername] = useState("KOKOMON118");
+  const { setIsBankingOpen, setIsProfileOpen, setIsXpOpen } = useApp();
   const { user, userXp, isLoadingUserXp } = useGeneral();
+
+  useEffect(() => {
+    if (user?.username) {
+      setUsername(user.username);
+    }
+  }, [user?.username]);
+
+  const handleUsernameEdit = () => {
+    const input = document.querySelector('.username-input') as HTMLInputElement;
+    if (input) {
+      input.readOnly = false;
+      input.focus();
+    }
+  };
+
+  const handleUsernameSave = () => {
+    const input = document.querySelector('.username-input') as HTMLInputElement;
+    if (input) {
+      input.readOnly = true;
+      // TODO: make an API call to update the username
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleUsernameSave();
+    }
+  };
 
   const renderComponent = () => {
     switch (activeComponent) {
@@ -236,10 +267,19 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
               />
               <div className="flex-1">
                 <div className="border-2 border-[#CDAA98] bg-[#D9B8A3] flex justify-between items-center rounded-md w-full p-0.5 border-[2px] border-[#CDAA98] gap-1">
-                  <p className=" text-[#5F3F57] font-made-tommy font-[800] text-[15px] pl-1 line-clamp-2 break-all">
-                    {user?.username || "KOKOMON118"}
-                  </p>
-                  <div className=" bg-[#917377] w-[24px] h-[24px] p-[3.7px] rounded-[0px_3px_3px_0px]">
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    onBlur={handleUsernameSave}
+                    onKeyDown={handleKeyPress}
+                    className="username-input text-[#5F3F57] font-made-tommy font-[800] text-[15px] pl-1 flex-1 bg-transparent outline-none"
+                    readOnly
+                  />
+                  <div 
+                    className="bg-[#917377] w-[24px] h-[24px] p-[3.7px] rounded-[0px_3px_3px_0px] cursor-pointer"
+                    onClick={handleUsernameEdit}
+                  >
                     <Image alt="edit-icon" src={edit} />
                   </div>
                 </div>
@@ -269,8 +309,14 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                         )}
                       </p>
                     </div>
-                    <div className="bg-[#917377] w-[24px] h-[24px] rounded-[0px_3px_3px_0px] flex items-center justify-center">
-                      <Image alt="edit-icon" src={rightArrow} />
+                    <div
+                      className="bg-[#917377] w-[24px] h-[24px] rounded-[0px_3px_3px_0px] flex items-center justify-center"
+                      onClick={() => {
+                        setIsXpOpen(true);
+                        setIsProfileOpen(false);
+                      }}
+                    >
+                      <Image alt="right-icon" src={rightArrow} />
                     </div>
                   </div>
                 </div>
