@@ -104,10 +104,63 @@ const nextConfig: NextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  webpack(config) {
+  webpack(config, { isServer }) {
+    // Handle audio files
     config.module.rules.push({
       test: /\.(mp3|wav|ogg)$/,
       type: "asset/resource",
+    });
+
+    // Client-side fallbacks for Node.js modules (fixes Stockfish WASM issues)
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        crypto: false,
+        stream: false,
+        assert: false,
+        http: false,
+        https: false,
+        os: false,
+        url: false,
+        zlib: false,
+        util: false,
+        buffer: false,
+        events: false,
+        worker_threads: false,
+        perf_hooks: false,
+        child_process: false,
+        net: false,
+        tls: false,
+        dns: false,
+        readline: false,
+        inspector: false,
+      };
+    }
+
+    // Handle Web Workers
+    config.module.rules.push({
+      test: /\.worker\.(js|ts)$/,
+      use: {
+        loader: "worker-loader",
+        options: {
+          name: "static/[hash].worker.js",
+          publicPath: "/_next/",
+        },
+      },
+    });
+
+    // WASM support (if needed later)
+    config.experiments = {
+      ...config.experiments,
+      asyncWebAssembly: true,
+      syncWebAssembly: true,
+    };
+
+    config.module.rules.push({
+      test: /\.wasm$/,
+      type: "webassembly/async",
     });
 
     return config;

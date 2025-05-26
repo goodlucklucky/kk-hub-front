@@ -1,3 +1,8 @@
+import {
+  CurrencyIcons,
+  EChallengeCurrency,
+} from "@/../services/game/challenges";
+
 export function floorNumber(num: number, precision: number = 2) {
   return Math.floor(num * Math.pow(10, precision)) / Math.pow(10, precision);
 }
@@ -43,21 +48,21 @@ export function shuffleArray<T>(arr: T[]) {
   return array;
 }
 
-// export function getPrizeString(
-//   prize: number | string,
-//   currency: EChallengeCurrency = EChallengeCurrency.kokos
-// ) {
-//   const amount = typeof prize == "number" ? floorNumber(prize, 2) : prize;
+export function getPrizeString(
+  prize: number | string,
+  currency: EChallengeCurrency = EChallengeCurrency.kokos
+) {
+  const amount = typeof prize == "number" ? floorNumber(prize, 2) : prize;
 
-//   if (currency == EChallengeCurrency.usd)
-//     return `${CurrencyIcons[currency]}${amount}`;
+  if (currency == EChallengeCurrency.usd)
+    return `${CurrencyIcons[currency]}${amount}`;
 
-//   return `${amount} ${CurrencyIcons[currency]}`;
-// }
+  return `${amount} ${CurrencyIcons[currency]}`;
+}
 
-// export function availableBalance(
-//   amount: { [_key in EChallengeCurrency]?: number },
-//   currency: EChallengeCurrency = EChallengeCurrency.kokos
-// ) {
-//   return amount[currency] || 0;
-// }
+export function availableBalance(
+  amount: { [_key in EChallengeCurrency]?: number },
+  currency: EChallengeCurrency = EChallengeCurrency.kokos
+) {
+  return amount[currency] || 0;
+}

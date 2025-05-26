@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import {
   CELL_SIZE,
   COLS,
@@ -73,10 +72,7 @@ class Snake {
   private snakeSpriteSize: number;
   private snakeHeadSpriteSize: number;
   private activeHeadSprite: number;
-  private snakeSprite: {
-    // eslint-disable-next-line no-unused-vars
-    [key in TBodyParts]: TSprite;
-  };
+  private snakeSprite: { [_key in TBodyParts]: TSprite };
   private isSkinsActive: boolean;
   private speedData?: { min: number; max: number; maxLevel: number };
 
@@ -102,7 +98,7 @@ class Snake {
     this.state = "onboarding";
     this.hasMoved = false;
 
-    const skinType = skin as keyof typeof SNAKES;   
+    const skinType = skin as keyof typeof SNAKES;
     // image
     this.snakeUrl = skin || DEFAULT_SKIN;
     this.snakeHeadUrl = SNAKES[skinType]["head-frame"];
@@ -182,7 +178,7 @@ class Snake {
         const angle = Math.atan2(this.velocity.x, -this.velocity.y) + Math.PI;
 
         if (this.isSkinsActive)
-          drawRotatedImage( 
+          drawRotatedImage(
             ctx,
             this.snakeImage,
             segment.x,

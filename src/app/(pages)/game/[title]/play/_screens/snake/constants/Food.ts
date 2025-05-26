@@ -19,16 +19,7 @@ export default class Food {
   public draw(ctx: CanvasRenderingContext2D) {
     ctx.fillStyle = "#FF0000";
 
-    drawRotatedImage(
-      ctx,
-      this.foodImage,
-      this.x,
-      this.y,
-      CELL_SIZE,
-      0,
-      0,
-      0,
-    );
+    drawRotatedImage(ctx, this.foodImage, this.x, this.y, CELL_SIZE, 0, 0, 0);
   }
 
   public reset(occupiedPositions: { x: number; y: number }[]) {

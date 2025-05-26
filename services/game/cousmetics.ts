@@ -91,7 +91,10 @@ export function useClaimFreeSkin() {
       baseInstance
         .post<{
           message: string;
-        }>(`/game-service/cosmetics/user-snake-skins/claim-free-skin`, { id, sessionId })
+        }>(`/game-service/cosmetics/user-snake-skins/claim-free-skin`, {
+          id,
+          sessionId,
+        })
         .then((res) => res.data),
   });
 }

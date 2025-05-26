@@ -19,7 +19,6 @@ import starIcon from "@/app/_assets/images/star-icon.png";
 import { RightArrow } from "@/app/_assets/svg/right-arrow";
 import { useThirdweb } from "../../_context/thirdwebContext";
 import { formatNumber } from "@/app/_utils/number";
-import UserXp from "../xp";
 
 function KokoLogo({isMonkey = false, isOG = false, isStar = false, level = 0}: 
   {isMonkey: boolean, isOG: boolean, isStar: boolean, level: number}) {
@@ -44,48 +43,55 @@ export default function Header() {
   const { isBankingOpen, setIsBankingOpen, isProfileOpen, setIsProfileOpen } =
     useApp();
   return (
-    <>
-      <header className={cn("[&>*]:z-1 relative z-1")}>
-        <Image
-          src={headerBack}
-          alt="header-back"
-          width={75}
-          height={50}
-          className="absolute size-full inset-0 !-z-[1]"
-        />
-        <div className="flex justify-between items-center gap-4 h-[45px] z-10">
-          <div
-            className={cn(
-              "flex rounded-[0px_5px_5px_0px] text-lg",
-              "bg-yellow-2 text-golden-darker font-bold",
-              "[&>div:not(:has(svg))]:shadow-[0_0.2ch] [&>div:not(:has(svg))]:shadow-black/20"
-            )}
-            onClick={() => setIsBankingOpen(!isBankingOpen)}
-          >
-            <div className="flex items-center gap-2 px-2 py-1">
-              <SnakeItalicIcon className="size-[22px] drop-shadow-[0_0.2ch_rgba(0,0,0,0.2)]" />
-              <p className="drop-shadow-[0_0.2ch_rgba(0,0,0,0.2)]">
-                {formatNumber(total || 0, {
-                  maximumFractionDigits: 2,
-                  minimumFractionDigits: 2,
-                })}
-              </p>
-              <RightArrow
-                className="size-[13px]"
-                color="#CCA11A"
-                shadow={false}
-              />
-            </div>
-          </div>
-          <div
-            className={cn("flex flex-col", "relative w-[64px] h-[45px] overflow-visible")}
-            onClick={() => setIsProfileOpen(!isProfileOpen)}
-          >
-            <KokoLogo isMonkey={true} isOG={true} isStar={true} level={100} />
+    <header className={cn("[&>*]:z-0 relative")}>
+      <Image
+        src={headerBack}
+        alt="header-back"
+        width={75}
+        height={75}
+        className="absolute size-full inset-0 !-z-[1]"
+      />
+      <div className=" flex justify-between items-center gap-4 z-10">
+        <div
+          className={cn(
+            "flex rounded-lg text-lg ml-2",
+            "bg-yellow-2 text-golden-darker font-bold text",
+            "[&>div:not(:has(svg))]:drop-shadow-[0_0.2ch_rgba(0,0,0,0.2)] [&>div:not(:has(svg))]:shadow-[0_0.2ch] [&>div:not(:has(svg))]:shadow-black/20"
+          )}
+          onClick={() => setIsBankingOpen(!isBankingOpen)}
+        >
+          <div className="flex items-center gap-2 px-2 py-2">
+            <SnakeItalicIcon className="size-7" />
+            <p>
+              {formatNumber(total || 0, {
+                maximumFractionDigits: 2,
+                minimumFractionDigits: 2,
+              })}
+            </p>
+            <RightArrow
+              className="size-[13px]"
+              color="#CCA11A"
+              shadow={false}
+            />
           </div>
         </div>
-      </header>
-      <UserXp />
-    </>
+        <div
+          // href={"/profile"}
+          className={cn("flex flex-col", "relative w-14 h-[75px]")}
+          onClick={() => setIsProfileOpen(!isProfileOpen)}
+        >
+          <Image
+            src={KokoLogo}
+            alt="koko-logo"
+            width={54}
+            height={72}
+            className="absolute w-[54px] h-[72px] top-0 right-0 inset-0 object-cover object-center rounded-b-md"
+          />
+          <span className="px-1.5 text-[10px] font-bold text-yellow-2 absolute bottom-1 right-0 ">
+            LVL 100
+          </span>
+        </div>
+      </div>
+    </header>
   );
 }

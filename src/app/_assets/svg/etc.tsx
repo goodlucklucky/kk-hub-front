@@ -56,6 +56,122 @@ export function CashIcon(props: React.ComponentProps<"svg">) {
   );
 }
 
+export function ChessIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      fill="none"
+      width="20"
+      height="21"
+      viewBox="0 0 20 21"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g filter="url(#filter0_d_1_3553)">
+        <path
+          d="M3 2H6V4H8V2H12V4H14V2H17V6H16V8H15V10H16V12H4V10H5V8H4V6H3V2Z M5 12H15L16 14V16H15V18H5V16H4V14L5 12Z M6 14V16H14V14H6Z M7 15H13V16H7V15Z"
+          fill="currentColor"
+          fillRule="evenodd"
+          clipRule="evenodd"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_d_1_3553"
+          x="0"
+          y="0"
+          width="20"
+          height="21"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="1" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.243137 0 0 0 0 0.141176 0 0 0 0 0.411765 0 0 0 0.2 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_1_3553"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_1_3553"
+            result="shape"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
+export function ChessStopWatchIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      fill="none"
+      width="20"
+      height="21"
+      viewBox="0 0 20 21"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g filter="url(#filter0_d_1_3553)">
+        <path
+          d="M3 3H5V5H7V3H9V5H11V3H13V5H15V3H17V7H16V9H15V11H16V13H4V11H5V9H4V7H3V3ZM5 13H15V15H14V17H6V15H5V13ZM6 15H14V16H6V15Z"
+          fill="currentColor"
+          fillRule="evenodd"
+          clipRule="evenodd"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_d_1_3553"
+          x="0"
+          y="0"
+          width="20"
+          height="21"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="1" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0.243137 0 0 0 0 0.141176 0 0 0 0 0.411765 0 0 0 0.2 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_1_3553"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_1_3553"
+            result="shape"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
 export function KeyIcon(props: React.ComponentProps<"svg">) {
   return (
     <svg

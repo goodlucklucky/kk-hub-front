@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { baseInstance, localInstance } from "../../../../../../../../../services/axios";
+import { baseInstance, localInstance } from "@/../services/axios";
 
 export function useChallenges(
   sessionId?: TSessionId,
@@ -91,6 +91,14 @@ export interface IChallenge {
     highestScore?: number;
     freeEntryBonus?: number;
     total_attempts?: number;
+  };
+  wallet: {
+    id: string;
+    challenge_id: string;
+    backend_wallet: string;
+    day: string;
+    created_at: Date;
+    updated_at: Date;
   };
 }
 

@@ -18,13 +18,14 @@ export function useERC20Transfer({
     async (to: `0x${string}`, amount: string) => {
       if (!address || !amount) return;
       const value = parseUnits(amount, tokenDecimals);
-      return await writeContractAsync({
+      const res = await writeContractAsync({
         address: tokenAddress,
         abi: erc20Abi,
         functionName: "transfer",
         args: [to, value],
         chainId,
       });
+      return res;
     },
     [tokenAddress, tokenDecimals, writeContractAsync, address, chainId]
   );

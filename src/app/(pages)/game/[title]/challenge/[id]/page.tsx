@@ -7,9 +7,8 @@ import Image from "next/image";
 import { Dialog } from "@radix-ui/react-dialog";
 import { ChallengesContext } from "../challengesContext";
 import ChallengeConfirmationDialog from "../components/challenge-confirmation-dialog";
-import useScreenHeightRatio from "@/app/_hooks/use-screen-height-ratio";
 import { useGeneral } from "@/app/_providers/generalProvider";
-import { usePayFee } from "@/../services/game/challenges";
+import { usePayFeeV2 } from "@/../services/game/challenges";
 import { useGetExemptedUserDetails } from "@/../services/beta-testers";
 import { ICheckUserBonus2, useAddBonus } from "@/../services/bonus";
 import {
@@ -17,7 +16,11 @@ import {
   ChallengeBonusDialog,
 } from "../../play/_screens/snake/components/challenge-bonus-dialog";
 import toast from "react-hot-toast";
-import { formatBigNumber } from "@/app/_utils/number";
+import {
+  availableBalance,
+  formatBigNumber,
+  getPrizeString,
+} from "@/app/_utils/number";
 import { trackEvent } from "@/app/_lib/mixpanel";
 import { DialogContent, DialogHeader } from "@/app/_components/ui/dialog";
 import { BoxMain } from "../components/board-structure";
@@ -31,6 +34,9 @@ import ShortPointer from "@/app/_assets/images/short-pointer.png";
 import LongPointer from "@/app/_assets/images/long-pointer.png";
 import ButtonImg from "@/app/_assets/images/button-bg.png";
 import LevelIndicator from "@/app/_assets/images/level-indicator.png";
+import { useThirdweb } from "@/app/(pages)/(default)/_context/thirdwebContext";
+import { useTransfer } from "@/app/_hooks/useTransfer";
+import { coinAddresses } from "@/app/_constants/coinAddresses";
 
 const imagesToPreload = [
   LeafImage.src,
@@ -55,7 +61,6 @@ export interface Iprops {
 //   { img: "/images/free-bonus/free-bonus-5.png", description: "Follow Boss👇", buttonText: "Follow", link: "", },
 // ];
 
-// eslint-disable-next-line complexity
 const CompeteChallenge = (props: Iprops) => {
   const {
     setActiveChallenge,
@@ -74,8 +79,22 @@ const CompeteChallenge = (props: Iprops) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { myScore, sessionId, refreshMyScore } = useGeneral();
-  const { mutateAsync: payFee } = usePayFee({});
+  const {
+    balance: { total: myUsd, usdc, usdt, refresh: refreshBalance },
+  } = useThirdweb();
+
+  const { usdc: myUsdc, usdt: myUsdt } = useMemo(
+    () => ({
+      usdc: Number(usdc?.data?.displayValue) || 0,
+      usdt: Number(usdt?.data?.displayValue) || 0,
+    }),
+    [usdc?.data?.displayValue, usdt?.data?.displayValue]
+  );
+
+  const { mutateAsync: payFee } = usePayFeeV2({});
   const { data: exemptedUserData } = useGetExemptedUserDetails(sessionId);
+
+  const { transfer } = useTransfer();
 
   const freeEntryBonuses = useCheckUserBonuses(
     sessionId,
@@ -96,7 +115,7 @@ const CompeteChallenge = (props: Iprops) => {
           refetchChallenges?.(),
           refreshActiveChallenge?.(),
         ]);
-      } catch (error) {
+      } catch {
         // error
       }
     },
@@ -124,10 +143,15 @@ const CompeteChallenge = (props: Iprops) => {
     // Check if active
     const is_active = challenge?.is_active;
 
+    const currentBalance = availableBalance(
+      { kokos: myScore, USD: Number(myUsd) || 0 },
+      challenge?.currency
+    );
+
     // Check balance
     const balanceAvailable =
       !challenge?.entry_fee ||
-      (myScore || 0) >= challenge?.entry_fee ||
+      (currentBalance || 0) >= challenge?.entry_fee ||
       challenge?.score_summary?.paid;
 
     // Check attempt limit
@@ -142,11 +166,13 @@ const CompeteChallenge = (props: Iprops) => {
   }, [
     challenge?.entry_fee,
     challenge?.is_active,
+    challenge?.currency,
     challenge?.score_summary?.paid,
     challenge?.max_participations,
     challenge?.score_summary?.participationCount,
     challenge?.score_summary?.freeEntryBonus,
     myScore,
+    myUsd,
   ]);
 
   const canOpenBonusDialog = useMemo(
@@ -220,6 +246,93 @@ const CompeteChallenge = (props: Iprops) => {
     });
   };
 
+  const playTornament = useCallback(() => {
+    router.push(`/game/${title}/play?challenge_id=${id}`);
+    // router.push(`/snake-play?challenge_id=${id}`);
+    trackEvent(`Play ${challenge?.name}`, {
+      score_summary: challenge?.score_summary,
+    });
+  }, [challenge?.name, challenge?.score_summary, id, router, title]);
+
+  const payFeeHandler = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      if (challenge?.entry_fee) {
+        const usdcContract = coinAddresses?.usdc?.[43114];
+        const usdtContract = coinAddresses?.usdt?.[43114];
+
+        const txHashes: string[] = [];
+
+        const payAmount = challenge?.entry_fee || 0;
+        let transferUsdc = 0;
+        let transferUsdt = 0;
+
+        if (myUsdc > myUsdt) {
+          transferUsdc = payAmount > myUsdc ? myUsdc : payAmount;
+          transferUsdt = payAmount - transferUsdc;
+        } else {
+          transferUsdt = payAmount > myUsdt ? myUsdt : payAmount;
+          transferUsdc = payAmount - transferUsdt;
+        }
+
+        if (transferUsdc <= 0 && transferUsdt <= 0) {
+          toast.error("Insufficient balance");
+          return;
+        }
+
+        if (transferUsdc > 0) {
+          const { data: res, error } = await transfer({
+            contract_address: usdcContract,
+            to: challenge?.wallet?.backend_wallet,
+            amount: `${transferUsdc}`,
+          });
+          if (error) throw error;
+          // console.log("handleManualWithdraw res: ", res);
+          txHashes.push(`${res?.transactionHash}`);
+        }
+
+        if (transferUsdt > 0) {
+          const { data: res, error } = await transfer({
+            contract_address: usdtContract,
+            to: challenge?.wallet?.backend_wallet,
+            amount: `${transferUsdt}`,
+          });
+          if (error) throw error;
+          // console.log("handleManualWithdraw res: ", res);
+          txHashes.push(`${res?.transactionHash}`);
+        }
+
+        await payFee({
+          id: challenge?.id,
+          sessionId,
+          txHash: txHashes?.join(","),
+        });
+      }
+
+      setTimeout(async () => {
+        await refreshMyScore?.();
+        await refreshBalance?.();
+      }, 5000);
+      playTornament();
+    } catch {
+      // console.error("Error processing points or navigation:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [
+    transfer,
+    payFee,
+    refreshBalance,
+    refreshMyScore,
+    playTornament,
+    challenge?.entry_fee,
+    challenge?.id,
+    challenge?.wallet?.backend_wallet,
+    sessionId,
+    myUsdc,
+    myUsdt,
+  ]);
+
   useEffect(() => {
     preloadImages(imagesToPreload);
   }, []);
@@ -231,14 +344,6 @@ const CompeteChallenge = (props: Iprops) => {
   const getFormattedPrize = (prize?: number | null) => {
     return prize ? formatBigNumber(prize) : undefined;
   };
-
-  const playTornament = useCallback(() => {
-    router.push(`/game/${title}/play?challenge_id=${id}`);
-    // router.push(`/snake-play?challenge_id=${id}`);
-    trackEvent(`Play ${challenge?.name}`, {
-      score_summary: challenge?.score_summary,
-    });
-  }, [challenge?.name, challenge?.score_summary, id, router]);
 
   useEffect(() => {
     if (isImagesLoaded) {
@@ -324,15 +429,12 @@ const CompeteChallenge = (props: Iprops) => {
                   {(() => {
                     const prize = getFormattedPrize(scorePosition.highPrize);
                     return prize ? (
-                      <>
-                        <span
-                          className="text-white"
-                          style={{ textShadow: "1px 3px 6px rgba(0,0,0,0.4)" }}
-                        >
-                          {prize}
-                        </span>
-                        🥥
-                      </>
+                      <span
+                        className="text-white"
+                        style={{ textShadow: "1px 3px 6px rgba(0,0,0,0.4)" }}
+                      >
+                        {getPrizeString(prize, challenge?.currency)}
+                      </span>
                     ) : (
                       <div className="-ml-[16px]">⏳</div>
                     );
@@ -364,9 +466,12 @@ const CompeteChallenge = (props: Iprops) => {
                         textShadow: "1px 3px 6px rgba(0,0,0,0.4)",
                       }}
                     >
-                      Win {getFormattedPrize(scorePosition.highPrize)}
+                      Win{" "}
+                      {getPrizeString(
+                        formatBigNumber(scorePosition.highPrize),
+                        challenge?.currency
+                      )}
                     </span>
-                    🥥
                   </div>
                 </div>
                 <div className="absolute flex flex-col items-center top-[86px] right-4 z-30 gap-[2px]">
@@ -451,9 +556,12 @@ const CompeteChallenge = (props: Iprops) => {
                   </p>
                   <p className="text-center text-base font-bold text-[#745061] bg-[#D2AE9F] p-1">
                     {challenge?.score_summary?.estimatedPrize
-                      ? `${formatBigNumber(
-                          challenge?.score_summary?.estimatedPrize
-                        )} 🥥`
+                      ? getPrizeString(
+                          formatBigNumber(
+                            challenge?.score_summary?.estimatedPrize
+                          ),
+                          challenge?.currency
+                        )
                       : "Not Prize Eligible"}
                   </p>
                 </div>
@@ -468,7 +576,7 @@ const CompeteChallenge = (props: Iprops) => {
                   onClick={() => {
                     if (canOpenBonusDialog) {
                       setOpenBonusDialog(true);
-                      console.log("canOpenBonusDialog");
+                      // console.log("canOpenBonusDialog");
                     } else if (isExempted || challenge?.score_summary?.paid)
                       playTornament();
                     else setOpenConfirmationDialog(true);
@@ -493,7 +601,10 @@ const CompeteChallenge = (props: Iprops) => {
                 <p className="text-[#745061] text-sm font-semibold mt-3 ">
                   <span>
                     {challenge?.entry_fee
-                      ? `${formatBigNumber(challenge?.entry_fee)}🥥`
+                      ? getPrizeString(
+                          formatBigNumber(challenge?.entry_fee),
+                          challenge?.currency
+                        )
                       : "No"}{" "}
                     Entry Fee
                   </span>{" "}
@@ -526,22 +637,7 @@ const CompeteChallenge = (props: Iprops) => {
         setOpenChanllengeDialog={setOpenConfirmationDialog}
         challenge={challenge}
         isLoading={isLoading}
-        onEnterPlay={async () => {
-          setIsLoading(true);
-          try {
-            if (challenge?.entry_fee)
-              await payFee({ id: challenge?.id, sessionId });
-
-            setTimeout(async () => {
-              await refreshMyScore?.();
-            }, 5000);
-            playTornament();
-          } catch (error) {
-            console.error("Error processing points or navigation:", error);
-
-            setIsLoading(false);
-          }
-        }}
+        onEnterPlay={payFeeHandler}
       />
       <ChallengeBonusDialog
         isLoading={isLoading}
@@ -555,8 +651,8 @@ const CompeteChallenge = (props: Iprops) => {
                 userId: sessionId,
                 bonusName: userBonus?.bonus?.bonusName,
               });
-            } catch (error) {
-              console.error("Error adding bonus:", error);
+            } catch {
+              // console.error("Error adding bonus:", error);
             }
           }, 5000);
         }}

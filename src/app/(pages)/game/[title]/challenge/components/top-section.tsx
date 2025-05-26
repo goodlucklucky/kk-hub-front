@@ -4,10 +4,10 @@ import Image from "next/image";
 import React from "react";
 import SoundPlaying from "@/app/_assets/images/sound-playing.svg";
 import SoundMuted from "@/app/_assets/images/sound-muted.svg";
-import { useGeneral } from "@/app/_providers/generalProvider";
 import { cn } from "@/app/_lib/utils";
 import { ConnectButton } from "@/app/_components/shared/connect-button";
 import { trackEvent } from "@/app/_lib/mixpanel";
+import { useThirdweb } from "@/app/(pages)/(default)/_context/thirdwebContext";
 // import HelpModal from "../../(home)/_components/help-modal";
 
 export default function TopSection({
@@ -18,10 +18,8 @@ export default function TopSection({
   className?: string;
 }) {
   const {
-    myScore,
-    isLoadingMyScore,
-    // isMuted, handleToggleMute
-  } = useGeneral();
+    balance: { total: myUsd, isPending: isBalanceLoading },
+  } = useThirdweb();
 
   return (
     <section
@@ -35,12 +33,12 @@ export default function TopSection({
         <p className="p-1 px-2 rounded-full bg-golden-brown text-white min-w-32 w-fit">
           <span className={"flex items-center gap-2 justify-between w-full"}>
             <span>
-              {isNaN(Number(myScore))
-                ? myScore
-                : Intl.NumberFormat().format(Number(myScore))}
+              {isNaN(Number(myUsd))
+                ? myUsd
+                : Intl.NumberFormat().format(Number(myUsd))}
             </span>
 
-            {isLoadingMyScore && (
+            {isBalanceLoading && (
               <svg
                 aria-hidden="true"
                 role="status"

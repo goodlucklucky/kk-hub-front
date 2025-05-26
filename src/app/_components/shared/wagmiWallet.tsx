@@ -13,7 +13,7 @@ export default function WagmiConnectButton() {
 
   const chainId = useChainId();
 
-  const getChainName = (id: number) => {
+  const getChainName = useCallback((id: number) => {
     const chains: { [key: number]: string } = {
       1: "Ethereum",
       56: "BSC",
@@ -21,12 +21,12 @@ export default function WagmiConnectButton() {
       11155111: "Sepolia",
     };
     return chains[id] || `Chain ${id}`;
-  };
+  }, []);
 
-  const formatAddress = (addr: string) => {
+  const formatAddress = useCallback((addr: string) => {
     if (!addr) return "";
     return `${addr.slice(0, 4)}...${addr.slice(-4)}`;
-  };
+  }, []);
 
   const handleDisconnect = useCallback(async () => {
     try {
@@ -64,9 +64,15 @@ export default function WagmiConnectButton() {
       className={cn(
         "flex gap-2 items-center justify-center font-bumper-sticker rounded-[6px] font-normal w-full py-[2px] tracking-[0.32px]"
       )}
-      onClick={() => {
-        // console.log("open");
-        open({ view: "Connect" });
+      onClick={async () => {
+        try {
+          // console.log("open");
+          // const a = await open({ view: "Connect" });
+          await open({ view: "Connect" });
+          // console.log("a", a);
+        } catch {
+          // console.log("error", error);
+        }
       }}
     >
       <WalletIcon color="#ffffff" className="w-3 h-3" />

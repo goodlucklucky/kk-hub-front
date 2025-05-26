@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useQuery } from "@tanstack/react-query";
-import { baseInstance } from "../../../../../../../../../services/axios";
+import { baseInstance } from "@/../services/axios";
 
 export interface IExemptedUser {
   id: string;

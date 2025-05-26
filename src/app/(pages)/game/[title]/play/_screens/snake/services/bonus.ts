@@ -1,7 +1,7 @@
 /** @format */
 
 import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
-import { baseInstance } from "../../../../../../../../../services/axios";
+import { baseInstance } from "@/../services/axios";
 
 export function useCheckCoconutInTwitterUsername({
   userId,
@@ -380,9 +380,7 @@ export interface Toast {
 }
 
 export enum Status {
-  // eslint-disable-next-line no-unused-vars
   Dormant = "dormant",
-  // eslint-disable-next-line no-unused-vars
   Expired = "expired",
 }
 

@@ -23,18 +23,18 @@ import {
 import toast from "react-hot-toast";
 import { trackEvent } from "@/app/_lib/mixpanel";
 import { useGameStore } from "../store/game-store";
-import { availableBalance } from "../utils/number";
 import { ScoreBoard } from "../components/score-board";
 import dynamic from "next/dynamic";
 import GameOver from "../components/game-over";
 import Onboarding from "../components/onboarding";
 import Cosmetics from "../components/cosmetics";
+import { availableBalance } from "@/app/_utils/number";
 
 const GameBoardV2 = dynamic(() => import("../components/game-board-2"), {
   ssr: false,
 });
 
-export default function PlayScreen() {
+export default function SnakePlayScreen() {
   const [isNewUser, setIsNewUser] = useState<boolean>(true);
   const [isMuted, setIsMuted] = useState(false);
   const [hasMoved, setHasMoved] = useState<boolean>(false);
@@ -62,12 +62,13 @@ export default function PlayScreen() {
     error: challengeError,
     refetch: refetchChallenge,
   } = useGetChallenge(challenge_id!, sessionId, ChallengeStatusEnum.ACTIVE);
+
   const { mutateAsync: postScore, isPending } = usePostScore();
   const { mutateAsync: payFee } = usePayFee({
     onSuccess: async () => {
       try {
         await Promise.all([await refreshMyScore?.()]);
-      } catch (error) {
+      } catch {
         // error
       }
     },
@@ -218,8 +219,8 @@ export default function PlayScreen() {
       // mixpanel?.track();
       setGameOverDetails?.(data?.details || {});
       // refreshChallengesPlayed?.();
-    } catch (error) {
-      console.log(error);
+    } catch {
+      // console.log(error);
     } finally {
       isSubmittingRef.current = false;
     }
@@ -331,8 +332,8 @@ export default function PlayScreen() {
                     await Promise.all([await refreshMyScore?.()]);
                   }, 5000);
                 }
-              } catch (error) {
-                console.error("Error while restarting game:", error);
+              } catch {
+                // console.error("Error while restarting game:", error);
               } finally {
                 setIsLoading(false);
               }

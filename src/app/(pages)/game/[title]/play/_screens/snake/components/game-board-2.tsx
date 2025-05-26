@@ -224,10 +224,10 @@ export const GameBoardV2 = ({
     if (snake?.state) snake?.setState(gameState);
   }, [gameState, snake]);
 
-  useEffect(() => {
-    console.log(snake);
-    console.log(food);
-  }, [food, snake]);
+  // useEffect(() => {
+  //   console.log(snake);
+  //   console.log(food);
+  // }, [food, snake]);
 
   return (
     <div className="relative size-full flex flex-col justify-center items-center">

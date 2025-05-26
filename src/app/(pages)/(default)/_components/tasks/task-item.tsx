@@ -21,6 +21,8 @@ import { GeneralContext } from "@/app/_providers/generalProvider";
 import toast, { LoaderIcon } from "react-hot-toast";
 import { trackEvent } from "@/app/_lib/mixpanel";
 import { cn } from "@/app/_lib/utils";
+import useShare from "@/app/_hooks/use-share";
+import ShareDialog from "../profile/share-dialog";
 
 interface TaskItemProps {
   title: string;
@@ -44,6 +46,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
     "CLAIMED" | "PENDING" | "FETCHING"
   >("FETCHING");
   const isCompleted = useMemo(() => taskStatus == "CLAIMED", [taskStatus]);
+  const { handleCopy } = useShare();
 
   // queries
   const {
@@ -118,6 +121,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
     }
   }, [
     // manageToast,
+    task.details?.link,
     checkIfUserInCommunity,
     refreshCheckUserBonus,
     task.details?.toast?.error,
@@ -153,8 +157,6 @@ const TaskItem: React.FC<TaskItemProps> = ({
     if (data?.data?.status?.toLowerCase?.() === "pending")
       setTaskStatus("PENDING");
     if (isCheckUserBonusError) setTaskStatus("FETCHING");
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCheckUserBonusError, data?.data?.status]);
 
   useEffect(() => {
@@ -223,13 +225,18 @@ const TaskItem: React.FC<TaskItemProps> = ({
         </div>
         {isFriend && !isCompleted && (
           <div className="flex items-center gap-x-1 my-1">
-            <Button className="rounded-[2px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center">
-              <ShareIcon className="w-3.5 h-3.5" />
-              <span className="text-white text-xs font-bold py-[1px]">
-                Share
-              </span>
-            </Button>
-            <Button className="rounded-[2px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center">
+            <ShareDialog>
+              <Button className="rounded-[2px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center">
+                <ShareIcon className="w-3.5 h-3.5" />
+                <span className="text-white text-xs font-bold py-[1px]">
+                  Share
+                </span>
+              </Button>
+            </ShareDialog>
+            <Button
+              onClick={handleCopy}
+              className="rounded-[2px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center"
+            >
               <CopyIcon className="w-3.5 h-3.5" />
               <span className="text-white text-xs font-bold py-[1px]">
                 Copy Link

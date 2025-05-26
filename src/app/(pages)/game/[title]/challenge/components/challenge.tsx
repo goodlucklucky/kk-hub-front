@@ -76,7 +76,7 @@ const Challenge = ({ initialTab }: ChallengeProps) => {
           router.push(".");
         }}
       >
-        <BoxMain className="space-y-2 p-1" boxClassName="p-2 -mb-6">
+        <BoxMain className="space-y-2 p-1 pb-4" boxClassName="p-1 -mb-6">
           <DialogHeader>
             <p className="text-center gap-2 font-bold text-2xl text-[#5F3F57]">
               Challenge

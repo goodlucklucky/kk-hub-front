@@ -61,7 +61,7 @@ const Onboarding = ({ setGameState }: OnboardingProps) => {
 
   // get default step
   useEffect(() => {
-    const stepString = searchParams.get("step");
+    const stepString = searchParams?.get("step");
     const step = Number(stepString) || 0;
     if (step == 7) {
       setOnboardingStep(6);

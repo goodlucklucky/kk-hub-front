@@ -59,7 +59,10 @@ export function BoxHeader({
   return (
     <button className="flex justify-between w-full focus:outline-none focus-visible:outline-none [&>header]:w-full">
       <header
-        className={cn("grid gap-1 grid-cols-2 text-center px-[2px] focus:outline-none focus-visible:outline-none", className)}
+        className={cn(
+          "grid gap-1 grid-cols-2 text-center px-[2px] focus:outline-none focus-visible:outline-none",
+          className
+        )}
       >
         {children}
       </header>
@@ -78,14 +81,19 @@ export function BoxMain({
   className?: string;
   hideClose?: boolean;
   closePosition?: string;
-  style?: CSSProperties
+  style?: CSSProperties;
 }) {
   return (
-    <BoxMainBack className={cn("flex-1 overflow-auto flex flex-col", className)} style={style}>
+    <BoxMainBack
+      className={cn("flex-1 overflow-auto flex flex-col", className)}
+      style={style}
+    >
       {children}
       {!hideClose && (
         <DialogClose asChild>
-          <button className={`absolute ${closePosition === 'center' ? "bottom-0 left-[50%] -translate-x-1/2 translate-y-1/2" : "top-0 right-0 translate-x-1/4 -translate-y-1/4"} bg-transparent border-none mx-auto mt-auto p-1 mb-1 z-100`}>
+          <button
+            className={`absolute ${closePosition === "center" ? "bottom-0 left-[50%] -translate-x-1/2 translate-y-1/2" : "top-0 right-0 translate-x-1/4 -translate-y-1/4"} bg-transparent border-none mx-auto mt-auto p-1 mb-1 z-100`}
+          >
             <Image src={close} alt="Close" className="w-10 h-10" />
           </button>
         </DialogClose>

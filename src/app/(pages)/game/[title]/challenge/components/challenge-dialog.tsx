@@ -12,7 +12,7 @@ const ChallengeDialog = () => {
   const router = useRouter();
   useEffect(() => {
     const firstTimeViewed = localStorage.getItem("user.viewed.challenge");
-    console.log(firstTimeViewed);
+    // console.log(firstTimeViewed);
     if (firstTimeViewed !== "true") {
       setOpenChanllengeDialog(true);
       localStorage.setItem("user.viewed.challenge", "true");

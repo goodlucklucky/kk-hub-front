@@ -5,7 +5,8 @@ export function useChallenges(
   sessionId?: TSessionId,
   type: string = "daily",
   status: ChallengeStatusEnum = ChallengeStatusEnum.ACTIVE,
-  dates: { min?: string; max?: string } = {}
+  dates: { min?: string; max?: string } = {},
+  gameKey: string = "1m1"
 ) {
   return useQuery({
     queryKey: ["challenges", sessionId, type, status, dates],
@@ -22,6 +23,7 @@ export function useChallenges(
             minDate: dates?.min,
             maxDate: dates?.max,
           },
+          headers: { "x-game-key": gameKey },
         })
         .then((res) => res.data),
   });
@@ -92,6 +94,14 @@ export interface IChallenge {
     freeEntryBonus?: number;
     total_attempts?: number;
   };
+  wallet: {
+    id: string;
+    challenge_id: string;
+    backend_wallet: string;
+    day: string;
+    created_at: Date;
+    updated_at: Date;
+  };
 }
 
 export interface IUserScore {
@@ -107,7 +117,8 @@ export interface IUserScore {
 
 export function useOneChallenge(
   sessionId?: TSessionId,
-  status?: ChallengeStatusEnum
+  status?: ChallengeStatusEnum,
+  gameKey: string = "1m1"
 ) {
   return useMutation({
     mutationKey: ["challenges", sessionId],
@@ -115,6 +126,7 @@ export function useOneChallenge(
       baseInstance
         .get<IOneChallengeResults>(`/game-service/challenges/${id}/get`, {
           params: { sessionId, status },
+          headers: { "x-game-key": gameKey },
         })
         .then((res) => res.data),
   });
@@ -175,6 +187,35 @@ export function usePayFee({
     mutationFn: ({ id, sessionId }: { id: string; sessionId: TSessionId }) =>
       baseInstance
         .post(`/game-service/challenges/${id}/${sessionId}/pay-fee`, {})
+        .then((res) => res.data),
+  });
+}
+
+export function usePayFeeV2({
+  onSuccess,
+}: {
+  onSuccess?: (
+    data: any,
+    variables: { id: string; sessionId: TSessionId },
+    context: unknown
+  ) => Promise<unknown> | unknown;
+}) {
+  return useMutation({
+    mutationKey: ["pay-fee-v2"],
+    onSuccess,
+    mutationFn: ({
+      id,
+      sessionId,
+      txHash,
+    }: {
+      id: string;
+      sessionId: TSessionId;
+      txHash: string;
+    }) =>
+      baseInstance
+        .post(`/game-service/challenges/${id}/${sessionId}/pay-fee-v2`, {
+          txHash,
+        })
         .then((res) => res.data),
   });
 }

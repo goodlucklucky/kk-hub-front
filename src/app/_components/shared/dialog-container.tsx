@@ -10,12 +10,14 @@ export default function DialogContainer({
   title,
   titleClassName,
   onClose,
+  hideCloseButton = false,
 }: {
   children: React.ReactNode;
   className?: string;
   title?: React.ReactNode | string;
   titleClassName?: string;
   onClose?: React.MouseEventHandler<HTMLButtonElement>;
+  hideCloseButton?: boolean;
 }) {
   return (
     <>
@@ -25,7 +27,7 @@ export default function DialogContainer({
         </DialogTitle>
       )}
       <div className={cn("rounded-2xl p-2", className)}>{children}</div>
-      <DialogCloseButton onClose={onClose} />
+      {!hideCloseButton && <DialogCloseButton onClose={onClose} />}
     </>
   );
 }

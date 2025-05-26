@@ -34,10 +34,12 @@ import {
   IStoreItemType,
   useStoreItems,
   useStoreTypes,
-} from "../../../../../../services/store";
+} from "@/../services/store";
+import { NavBar } from "@/app/(pages)/(default)/_components/xp/bar";
+
 import DiscountBadge from "@/app/(pages)/(default)/_components/store/discount-badge";
-import SkinDialog from "@/app/(pages)/(default)/_components/dialogs/skin-dialog";
 import Header from "@/app/(pages)/(default)/_components/layout/header";
+import PaymentDialog from "@/app/(pages)/(default)/_components/dialogs/payment";
 
 // Types
 type StoreCategory = "featured" | "items" | "kokitos" | "social";
@@ -272,10 +274,17 @@ export default function StorePage() {
       </div>
       {/* Only render the dialog when we have both a selected item and the dialog should be open */}
       {selectedItem && (
-        <SkinDialog
+        <PaymentDialog
           isOpen={isSkinDialogOpen}
           onClose={closeSkinDialog}
-          item={selectedItem}
+          item={{
+            id: selectedItem?.id,
+            icon: selectedItem?.details?.icon,
+            name: selectedItem?.name,
+            title: selectedItem?.type?.name,
+            description: selectedItem?.description,
+            price: Number(selectedItem.price) || 0,
+          }}
         />
       )}
     </>

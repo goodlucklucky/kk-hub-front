@@ -4,20 +4,18 @@ import { WagmiProvider, createConfig, http } from "wagmi";
 import { walletConnect } from "wagmi/connectors";
 import { avalanche } from "wagmi/chains";
 
-const projectId =
-  process.env.NEXT_PUBLIC_WAGMI_WALLET_CONNECT_PROJECT_ID || "YOUR_PROJECT_ID";
+const projectId = process.env.NEXT_PUBLIC_WAGMI_WALLET_CONNECT_PROJECT_ID || "";
 
 const config = createConfig({
   chains: [
     avalanche,
     // mainnet,
     // bsc,
-    // sepolia
+    // sepolia,
   ],
   connectors: [
     walletConnect({
       projectId,
-      // chains,
       showQrModal: true,
     }),
   ],
