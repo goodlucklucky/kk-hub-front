@@ -229,10 +229,10 @@ export default function KokoSpinner() {
               <MoreSpins spins={spins?.data} refresh={refetch} />
               <Image
                 width={300}
-                height={200}
+                height={170}
                 src={"/images/board-2.png"}
                 alt="spinning-effect"
-                className="absolute size-full -z-[1]"
+                className="absolute -z-[1] h-[120px]"
               />
             </div>
           )}

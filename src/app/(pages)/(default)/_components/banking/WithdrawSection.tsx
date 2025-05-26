@@ -17,6 +17,7 @@ import { GeneralContext } from "@/app/_providers/generalProvider";
 import { coinAddresses } from "@/app/_constants/coinAddresses";
 import { useTransfer } from "@/app/_hooks/useTransfer";
 import { useThirdweb } from "../../_context/thirdwebContext";
+import { formatNumber } from "@/app/_utils/number";
 
 interface WithdrawSectionProps {
   isConnected: boolean;
@@ -42,7 +43,7 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
   );
 
   const { address } = useAccount();
-  const [, setAmount] = useState(0);
+  const [amount, setAmount] = useState(balance?.[selectedCurrency] ?? 0);
 
   const { transfer, isPending } = useTransfer();
 
@@ -109,6 +110,7 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
                 type="number"
                 name="amount"
                 className="w-full h-9 py-0"
+                value={amount}
               />
               <input
                 type="hidden"
@@ -207,16 +209,14 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
           </span>
           <Input
             name="address"
-            defaultValue={"0x10e0271ec47d55511a047516fxed3"}
           />
         </div>
-        <div className="flex justify-center items-center bg-[#E99F8C] rounded-[10px] mt-1.5 p-2 gap-2">
+        <div className="flex justify-center items-center bg-[#E99F8C] rounded-[10px] mt-1.5 p-2 pr-1 gap-2">
           <span className="bg-[#853834] rounded-full w-4.5 h-4.5 px-2 flex items-center justify-center text-[#EED1B8] text-[12px]">
             i
           </span>
           <span className="text-[#853834] font-made-tommy text-[10px] font-bold leading-normal">
-            Please make sure the address accepts USDC on Avalanche (AVAX
-            C-Chain). Funds cannot be recovered
+            Make sure the address accepts USDC on Avalanche (AVAX C-Chain). Funds cannot be recovered
           </span>
         </div>
         <div className="flex gap-2">
@@ -235,14 +235,23 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
             />
             <div className="flex flex-col gap-0 mt-2">
               <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
-                Max: {balance?.[selectedCurrency]}{" "}
+                Max: {formatNumber(balance?.[selectedCurrency] || 0, {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                })}{" "}
                 {selectedCurrency?.toUpperCase()}
               </span>
               <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
-                Transaction fee: 4.06 {selectedCurrency?.toUpperCase()}
+                Transaction fee: {formatNumber(Number(amount) * 0.02 || 0, {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                })}{" "} {selectedCurrency?.toUpperCase()}
               </span>
               <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
-                Will recieve: 4.06 {selectedCurrency?.toUpperCase()}
+                Will receive: {formatNumber(Number(amount) - Number(amount) * 0.02 || 0, {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                })}{" "} {selectedCurrency?.toUpperCase()}
               </span>
             </div>
           </div>

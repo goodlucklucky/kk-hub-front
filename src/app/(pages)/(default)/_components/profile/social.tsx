@@ -96,8 +96,8 @@ export default function Social() {
         REFERRALS
       </p>
       <ShareButtons />
-      <span className="text-[#745061] font-made-tommy text-[14px] font-semibold pl-1 mt-1">
-        Recieve 5% of all the volume fees your friends generate - forever!
+      <span className="text-[#745061] font-made-tommy text-[14px] leading-[16px] font-semibold pl-1 mt-1">
+        Receive 5% of all the volume fees your friends generate - forever!
       </span>
       <div className="flex flex-col p-2 bg-[#EED1B8] rounded-[15px] gap-1.5 mt-1">
         <div className="flex gap-2 items-center justify-between pb-1 border-b-1 border-[#7450612e]">

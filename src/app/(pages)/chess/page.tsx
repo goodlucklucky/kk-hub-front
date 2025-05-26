@@ -19,11 +19,8 @@ export default function ChessPage() {
   const router = useRouter();
   const { isChatOpen, setIsChatOpen } = useApp();
   return (
-    <div className="w-screen h-screen bg-[url(/images/chess_homepage_background.png)] bg-center bg-no-repeat bg-[length:122%_100%] pt-4 px-">
+    <div className="w-screen h-screen bg-[url(/images/chess_homepage_background.png)] bg-center bg-no-repeat bg-[length:122%_100%]">
       <Header />
-      <div className="mt-3 bg-white/20 pl-2">
-        <UserXp />
-      </div>
       <div className="px-8 mb-20">
         <GiftSlide type="daily" onClick={() => router.push("/claim")} />
       </div>

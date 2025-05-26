@@ -173,7 +173,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
         }`}
       >
         <div
-          className={`flex flex-col h-6 rounded-[13px_0px_0px_0px] justify-center items-center text-[#EFF6FF] font-made-tommy font-bold text-xs leading-normal tracking-[0.16px] ${
+          className={`flex flex-col h-8 rounded-[13px_0px_0px_0px] justify-center items-center text-[#EFF6FF] font-made-tommy font-bold text-xs leading-normal tracking-[0.16px] ${
             !isCompleted ? "bg-[#82616B]" : "bg-[#609F70]"
           }`}
         >
@@ -181,14 +181,14 @@ const TaskItem: React.FC<TaskItemProps> = ({
         </div>
         <div className="flex flex-1"></div>
       </div>
-      <div className="flex flex-col flex-1 justify-around text-[#5F3F57] font-made-tommy font-bold text-base leading-normal tracking-[0.16px] pt-2 pb-1 px-3 gap-y-1">
+      <div className="flex flex-col flex-1 justify-around text-[#5F3F57] font-made-tommy font-bold text-base leading-normal tracking-[0.16px] py-1 px-3">
         <div className="flex flex-col">{title}</div>
         <div className="flex justify-between items-center h-8 rounded-[6px] border-1 border-[#F1DCB8] bg-[#E3BEAA] px-2 pr-1.5">
           <span className="text-sm font-made-tommy font-bold text-[#745061]">
             {reward}
           </span>
           {isCompleted ? (
-            <CheckIcon color="#745061" className="w-4 h-4" />
+            <CheckIcon color="#25BF63" className="w-4 h-4" />
           ) : (
             <Button
               disabled={taskStatus === "FETCHING"}
