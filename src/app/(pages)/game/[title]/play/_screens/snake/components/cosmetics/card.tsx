@@ -113,8 +113,8 @@ export default function CosmeticCard({ skin }: { skin?: ISkin }) {
         is_active
           ? "from-[rgba(70,211,76,1)] to-[rgba(32,157,82,1)]"
           : status?.title == "un_purchased"
-          ? "from-[rgba(241,220,184,1)] to-[rgba(95,63,87,0.6)]"
-          : "from-[rgba(241,220,184,1)] to-[rgba(232,196,166,1)]",
+            ? "from-[rgba(241,220,184,1)] to-[rgba(95,63,87,0.6)]"
+            : "from-[rgba(241,220,184,1)] to-[rgba(232,196,166,1)]",
         "shadow-[0_0.2rem_0] shadow-[rgba(0,0,0,0.16)]"
       )}
     >

@@ -1,18 +1,15 @@
 "use client";
 
-import { useContext, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 
-import Image from "next/image";
 import ResultCard from "../components/result-card";
-import CloseButton from "@/app/_assets/images/close-button.png";
 import {
   ChallengeStatusEnum,
   EChallengeCurrency,
   useChallenges,
 } from "@/../services/game/challenges";
 import { useGeneral } from "@/app/_providers/generalProvider";
-import useScreenHeightRatio from "@/app/_hooks/use-screen-height-ratio";
 import {
   Dialog,
   DialogContent,
@@ -34,7 +31,6 @@ export type ResultType = {
 const ResultDetails = () => {
   const { sessionId } = useGeneral();
   const router = useRouter();
-  const heightRatio = useScreenHeightRatio(761);
 
   // useTelegramBackButton();
 

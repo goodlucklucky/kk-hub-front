@@ -1,11 +1,11 @@
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
-import { formatBigNumber } from "@/app/_utils/number";
+import { formatBigNumber, getPrizeString } from "@/app/_utils/number";
 import { Dialog, DialogContent } from "@/app/_components/ui/dialog";
 import BoxMain from "@/app/(pages)/(default)/_components/BoxMain";
 import { Button } from "@/app/_components/ui/button";
-import { IChallenge } from "@/../services/game/challenges";
+import { EChallengeCurrency, IChallenge } from "@/../services/game/challenges";
 
 const ChallengeConfirmationDialog = ({
   challenge,
@@ -35,14 +35,21 @@ const ChallengeConfirmationDialog = ({
         <BoxMain>
           <div className="text-center">
             <div className="text-center font-extrabold text-[20px] text-[#5F3F57]">
-              Ready to Win Kokos?🥥
+              {challenge?.currency == EChallengeCurrency.kokos ? (
+                <>Ready to Win Kokos?🥥</>
+              ) : (
+                <>Ready to Win Some Cash?🤑</>
+              )}
             </div>
             <div className="bg-[#E3BEAA] overflow-none py-4 rounded-3xl px-8 my-2">
               <div className="text-[16px] text-[#745061] font-bold text-center">
                 Confirm Tournament Entry Fee
               </div>
               <div className="text-[20px] text-[#745061] font-bold text-center">
-                {`${formatBigNumber(challenge?.entry_fee || 0)}🥥`}
+                {getPrizeString(
+                  formatBigNumber(challenge?.entry_fee || 0),
+                  challenge?.currency
+                )}
               </div>
               <div className="text-[10px] text-[#5F3F57] text-opacity-75 font-bold text-center">
                 (Pay once to get Unlimited Attempts)

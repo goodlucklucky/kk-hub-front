@@ -40,7 +40,7 @@ export const useGameSound = ({ isMuted, isPlaying }: GameSoundProps) => {
       bgMusicRef.current?.pause();
     } else {
       bgMusicRef.current?.play().catch(() => {
-        console.log("Autoplay prevented");
+        // console.log("Autoplay prevented");
       });
     }
   }, [isMuted, isPlaying]);
@@ -49,7 +49,7 @@ export const useGameSound = ({ isMuted, isPlaying }: GameSoundProps) => {
     if (!isMuted && eatSoundRef.current) {
       eatSoundRef.current.currentTime = 0;
       eatSoundRef.current.play().catch(() => {
-        console.log("Sound play prevented");
+        // console.log("Sound play prevented");
       });
     }
   };
@@ -62,7 +62,7 @@ export const useGameSound = ({ isMuted, isPlaying }: GameSoundProps) => {
       const sound = gameOverSoundsRef.current[randomIndex];
       sound.currentTime = 0;
       sound.play().catch(() => {
-        console.log("Game over sound play prevented");
+        // console.log("Game over sound play prevented");
       });
     }
   };
@@ -70,7 +70,7 @@ export const useGameSound = ({ isMuted, isPlaying }: GameSoundProps) => {
   const startBackgroundMusic = () => {
     if (!isMuted && bgMusicRef.current?.paused) {
       bgMusicRef.current?.play().catch(() => {
-        console.log("Autoplay prevented");
+        // console.log("Autoplay prevented");
       });
     }
   };

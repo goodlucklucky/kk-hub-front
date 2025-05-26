@@ -24,6 +24,7 @@ import { PlusIcon } from "@/app/_assets/svg/plus";
 import snakeHome from "@assets/images/snake-home.png";
 import flappyHome from "@assets/images/flappy-home.png";
 import { useRouter, useParams } from "next/navigation";
+import UserXp from "../../(default)/_components/xp";
 
 export default function HomePage() {
   const {
@@ -52,6 +53,7 @@ export default function HomePage() {
   return (
     <div className="h-full flex flex-col min-h-screen">
       <Header />
+      <UserXp />
       <div
         className={cn(
           "flex flex-col flex-1 h-full items-center gap-y-3 xs:gap-y-5"

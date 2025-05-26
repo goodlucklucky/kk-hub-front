@@ -66,8 +66,8 @@ export const SnakeProvider: React.FC<{ children: ReactNode }> = ({
         if (skin?.user_items?.id)
           await skinActivate({ id: skin?.user_items?.id });
         else if (skin?.is_default) await skinDisactivate({ sessionId });
-      } catch (error) {
-        console.log(error);
+      } catch {
+        // console.log(error);
       }
     },
     [sessionId, skinActivate, skinDisactivate]
@@ -77,8 +77,8 @@ export const SnakeProvider: React.FC<{ children: ReactNode }> = ({
     try {
       const out = await refetch();
       return out?.data?.data?.data;
-    } catch (error) {
-      console.log(error);
+    } catch {
+      // console.log(error);
     }
   }, [refetch]);
 

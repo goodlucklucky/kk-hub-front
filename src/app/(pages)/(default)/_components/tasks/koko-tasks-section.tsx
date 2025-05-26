@@ -1,15 +1,21 @@
+"use client";
+
 import React from "react";
 import { ShareIcon } from "@/app/_assets/svg/share";
 import { CopyIcon } from "@/app/_assets/svg/copy";
 import TaskItem from "./task-item";
 import Button from "@/app/_components/shared/button";
 import { ITask } from "../../../../../../services/tasks";
+import ShareDialog from "../profile/share-dialog";
+import useShare from "@/app/_hooks/use-share";
 
 export const KokoTasksSection = ({
   data: kokoTasks = [],
 }: {
   data: ITask[];
 }) => {
+  const { handleCopy } = useShare();
+
   return (
     <>
       <div className="rounded-[22px] overflow-auto border border-[#FFE0BF] bg-[#DDC2A7] shadow-[inset_0px_2px_1px_0px_rgba(95,63,87,0.20)] [background:linear-gradient(180deg,rgba(95,63,87,0.20)_11.66%,rgba(95,63,87,0.00)_248.61%),#DDC2A7] px-2 py-[9px] flex flex-col gap-y-2 flex-1 overflow-y-auto">
@@ -36,13 +42,18 @@ export const KokoTasksSection = ({
             +5% of volume fees your frens generate - forever!
           </div>
           <div className="flex gap-x-1.5 w-full px-6">
-            <Button className="rounded-[2px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center">
-              <ShareIcon className="w-3.5 h-3.5" />
-              <span className="text-white text-xs font-bold py-[1px]">
-                Share
-              </span>
-            </Button>
-            <Button className="rounded-[2px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center">
+            <ShareDialog>
+              <Button className="rounded-[2px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center">
+                <ShareIcon className="w-3.5 h-3.5" />
+                <span className="text-white text-xs font-bold py-[1px]">
+                  Share
+                </span>
+              </Button>
+            </ShareDialog>
+            <Button
+              onClick={handleCopy}
+              className="rounded-[2px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center"
+            >
               <CopyIcon className="w-3.5 h-3.5" />
               <span className="text-white text-xs font-bold py-[1px]">
                 Copy Link

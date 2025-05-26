@@ -93,7 +93,7 @@ export default function GameOver({
         )?.refetch;
 
         await Promise.all([refresh?.(), setFreeEntry((p) => p + 1)]);
-      } catch (error) {
+      } catch {
         // error
       }
     },
@@ -160,10 +160,7 @@ export default function GameOver({
                 <div className="absolute translate-y-32 size-[150dvw] bg-radient-ellipse-c from-[#ffe598] from-16% to-[#FFC100]/0 to-70%" />
               </div>
             )}
-            <DialogContainer
-              title="Final Score"
-              // size="2xl"
-            >
+            <DialogContainer title="Final Score" hideCloseButton>
               <BoxMain
                 boxClassName="mb-0"
                 className="text-center text-[#5F3F57] text-lg font-[700] px-2 pb-6 flex flex-col gap-2 h-full pt-10"
@@ -332,8 +329,8 @@ export default function GameOver({
                 userId: sessionId,
                 bonusName: userBonus?.bonus?.bonusName,
               });
-            } catch (error) {
-              console.error("Error adding bonus:", error);
+            } catch {
+              // console.error("Error adding bonus:", error);
             }
           }, 5000);
           setOpenModal(true);

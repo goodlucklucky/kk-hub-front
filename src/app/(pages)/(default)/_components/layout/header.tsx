@@ -32,7 +32,7 @@ export default function Header() {
         height={75}
         className="absolute size-full inset-0 !-z-[1]"
       />
-      <div className="flex justify-between items-center gap-4 z-10">
+      <div className=" flex justify-between items-center gap-4 z-10">
         <div
           className={cn(
             "flex rounded-lg text-lg ml-2",

@@ -21,6 +21,8 @@ import {
 import DailyIcon from "@/app/_assets/images/Icon_ChallengeTab_Daily_Unselected.png";
 import WeeklyIcon from "@/app/_assets/images/Icon_ChallengeTab_Weekly_Unselected.png";
 import LightIcon from "@/app/_assets/images/light-icon.png";
+import { useParams } from "next/navigation";
+import { gameKeys } from "./constants/gameKeys";
 
 type props = { children: React.ReactNode };
 
@@ -40,6 +42,8 @@ export const ChallengesContext = createContext<{
   setTab?: Setter<string>;
   status?: ChallengeStatusEnum;
   setStatus?: Setter<ChallengeStatusEnum>;
+
+  gameKey?: string;
 }>({
   challenges: [],
   isLoading: false,
@@ -58,16 +62,26 @@ export function ChallengesProvider({ children }: props) {
   const [status, setStatus] = useState<ChallengeStatusEnum>(
     ChallengeStatusEnum.ACTIVE
   );
+  const params = useParams();
+  const title = useMemo(() => params?.title, [params?.title]);
+  const gameKey = useMemo(
+    () => gameKeys[title as keyof typeof gameKeys],
+    [title]
+  );
 
   const { sessionId } = useGeneral();
-  const { mutateAsync: getChallenge } = useOneChallenge(sessionId, status);
+  const { mutateAsync: getChallenge } = useOneChallenge(
+    sessionId,
+    status,
+    gameKey
+  );
   const {
     data: challenges,
     isLoading,
     isFetching,
     isPending,
     refetch: refetchChallenges,
-  } = useChallenges(sessionId, tab, status);
+  } = useChallenges(sessionId, tab, status, undefined, gameKey);
   const [activeChallenge, changeActiveChallenge] = useState<
     IChallenge | undefined
   >();
@@ -90,8 +104,8 @@ export function ChallengesProvider({ children }: props) {
         changeActiveChallenge(challenge);
         refetchChallenges();
         return challenge;
-      } catch (error) {
-        console.error("error", error);
+      } catch {
+        // console.error("error", error);
       }
     },
     [challenges?.data, getChallenge, refetchChallenges]
@@ -133,6 +147,8 @@ export function ChallengesProvider({ children }: props) {
         setTab,
         status,
         setStatus,
+
+        gameKey,
       }}
     >
       {children}

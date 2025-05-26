@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import { UseQueryResult } from "@tanstack/react-query";
 // import CloseButton from "@/_assets/icons/Button_Close.png";
-import { IChallenge } from "../../../../../../../../../services/game/challenges";
+import { IChallenge } from "@/../services/game/challenges";
 import { ICheckUserBonus2 } from "../services/bonus";
 import {
   Dialog,
@@ -51,7 +51,7 @@ export function ChallengeBonusDialog({
 
         if (onTweet) onTweet(userBonus!);
         setOpen(false);
-      } catch (error) {
+      } catch {
         // console.log(error);
       }
     },

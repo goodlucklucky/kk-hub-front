@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { baseInstance } from "../axios";
+import { baseInstance, localInstance } from "../axios";
 
 export function useStoreItems(sessionId: TSessionId, type_id?: string) {
   return useQuery({
@@ -86,31 +86,31 @@ export interface IUserItem {
 
 export function useBuyStore() {
   return useMutation({
-    mutationKey: ["store-items"],
-    mutationFn: ({
-      title,
-      description,
+    mutationKey: ["buy-store-items"],
+    mutationFn: async ({
       price,
       item_id,
+      txHash,
       payment_item_type,
+      payment_method,
+      sessionId,
     }: {
-      title: string;
-      description: string;
       price: number;
       item_id: string;
+      txHash: string;
       payment_item_type?: "store" | "snake-skin";
+      payment_method?: "in-app" | "external";
+      sessionId?: TSessionId;
     }) =>
-      baseInstance
-        .post<{ data: string }>(
-          `/bot-snake-service/transactions/generate-invoice`,
-          {
-            title,
-            description,
-            price,
-            item_id,
-            payment_item_type,
-          }
-        )
+      localInstance
+        .post(`/store`, {
+          txHash,
+          price,
+          item_id,
+          sessionId,
+          payment_method,
+          payment_item_type,
+        })
         .then((res) => res.data),
   });
 }

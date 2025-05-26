@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { baseInstance } from "../../../../../../../../../services/axios";
+import { baseInstance } from "@/../services/axios";
 
 export interface ISkinRes {
   data: {
@@ -91,7 +91,10 @@ export function useClaimFreeSkin() {
       baseInstance
         .post<{
           message: string;
-        }>(`/game-service/cosmetics/user-snake-skins/claim-free-skin`, { id, sessionId })
+        }>(`/game-service/cosmetics/user-snake-skins/claim-free-skin`, {
+          id,
+          sessionId,
+        })
         .then((res) => res.data),
   });
 }

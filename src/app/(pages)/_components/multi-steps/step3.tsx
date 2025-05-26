@@ -8,7 +8,6 @@ import headerBoard from "@assets/images/header-board.png";
 import panelHome from "@assets/images/panel-home.png";
 import ButtonSlot from "@assets/images/single-button-slot.png";
 import { ArrowLeftIcon } from "@assets/svg/etc";
-import { useRouter } from "next/navigation";
 import LivePreview from "../etc/live-preview";
 
 export function Step3Top() {

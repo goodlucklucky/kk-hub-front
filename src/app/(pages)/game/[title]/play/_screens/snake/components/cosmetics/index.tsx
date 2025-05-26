@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useRouter } from "next/navigation";
 import CosmeticCard from "./card";
 import { TGameState } from "../../constants/Snake";
@@ -10,9 +10,9 @@ import {
   DialogContent,
   DialogTitle,
 } from "@/app/_components/ui/dialog";
-import DialogContainer from "@/app/_components/shared/dialog-container";
 import { cn } from "@/app/_lib/utils";
 import { Button } from "@/app/_components/ui/button";
+import BoxMain from "@/app/(pages)/(default)/_components/BoxMain";
 
 interface CosmeticsProps {
   isLoading?: boolean;
@@ -20,8 +20,8 @@ interface CosmeticsProps {
 }
 
 export default function Cosmetics({ isLoading, setGameState }: CosmeticsProps) {
-  const router = useRouter();
   const { skins } = useContext(SnakeContext);
+  const router = useRouter();
 
   // useEffect(() => {
   //   const backButton = WebApp.BackButton;
@@ -45,12 +45,19 @@ export default function Cosmetics({ isLoading, setGameState }: CosmeticsProps) {
 
   return (
     <Dialog open>
-      <DialogContent className="z-50 !mt-0" asChild>
-        <DialogContainer
-          title="Cosmetics"
-          // size="2xl"
-          className="h-[70dvh] text-center text-[#5F3F57] text-lg font-[700] px-2 pb-2 flex flex-col gap-2"
-        >
+      <DialogContent
+        className="z-50 !mt-0"
+        title={"Cosmetics"}
+        onClose={() => {
+          const searchParams = new URLSearchParams(window?.location?.search);
+          searchParams?.set("step", "6");
+          router?.push(`?${searchParams.toString()}`);
+
+          setGameState("onboarding");
+        }}
+      >
+        {/* <DialogContainer title="Cosmetics"> */}
+        <BoxMain className="h-[70dvh] text-center text-[#5F3F57] text-lg font-[700] px-2 pb-6 flex flex-col gap-2">
           <DialogTitle>Select a skin for your Snake</DialogTitle>
           <div
             className={cn(
@@ -76,7 +83,8 @@ export default function Cosmetics({ isLoading, setGameState }: CosmeticsProps) {
               Play Now
             </Button>
           </div>
-        </DialogContainer>
+        </BoxMain>
+        {/* </DialogContainer> */}
       </DialogContent>
     </Dialog>
   );

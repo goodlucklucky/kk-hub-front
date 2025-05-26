@@ -1,7 +1,7 @@
 "use client";
 
 //import modules
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 //import components
@@ -42,7 +42,7 @@ import pet1 from "@assets/images/pet1.png";
 import pet2 from "@assets/images/pet2.png";
 import pet3 from "@assets/images/pet3.png";
 import pet4 from "@assets/images/pet4.png";
-import { GeneralContext, useGeneral } from "@/app/_providers/generalProvider";
+import { useGeneral } from "@/app/_providers/generalProvider";
 import { useApp } from "@/app/_contexts/appContext";
 import { LoaderIcon } from "react-hot-toast";
 

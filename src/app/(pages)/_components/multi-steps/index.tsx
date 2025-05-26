@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 import { cn } from "@/app/_lib/utils";
@@ -20,28 +20,31 @@ export default function MultiSteps() {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null);
 
   // Function to go to the next step
-  const goToNextStep = () => {
+  const goToNextStep = useCallback(() => {
     const nextStep = (step + 1) % Steps.length;
     setSlideDirection("right");
     setStep(nextStep);
-  };
+  }, [step]);
 
   // Handle going to a specific step
-  const goToStep = (newStep: number) => {
-    if (newStep === step) return;
+  const goToStep = useCallback(
+    (newStep: number) => {
+      if (newStep === step) return;
 
-    setSlideDirection(newStep > step ? "right" : "left");
-    // Special case for going from last to first
-    if (step === Steps.length - 1 && newStep === 0) {
-      setSlideDirection("right");
-    }
-    // Special case for going from first to last
-    if (step === 0 && newStep === Steps.length - 1) {
-      setSlideDirection("left");
-    }
+      setSlideDirection(newStep > step ? "right" : "left");
+      // Special case for going from last to first
+      if (step === Steps.length - 1 && newStep === 0) {
+        setSlideDirection("right");
+      }
+      // Special case for going from first to last
+      if (step === 0 && newStep === Steps.length - 1) {
+        setSlideDirection("left");
+      }
 
-    setStep(newStep);
-  };
+      setStep(newStep);
+    },
+    [step]
+  );
 
   // Set up auto-advancing timer
   useEffect(() => {
@@ -51,7 +54,7 @@ export default function MultiSteps() {
     setTimerId(timer);
 
     return () => clearTimeout(timer);
-  }, [step, slideDirection]);
+  }, [step, slideDirection, goToNextStep]);
 
   // Get current components
   const Top = Steps[step].Top;
