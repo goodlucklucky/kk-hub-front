@@ -65,7 +65,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
       case "daily":
         return (
           <>
-            <div className="flex-1 h-[57px] bg-[#CDAA98] rounded-l-[7px]">
+            <div className="flex-1 h-[57px] bg-[#CDAA98] rounded-l-[7px] min-w-[270px]">
               <div
                 className={cn(
                   "flex gap-2 rounded-md w-fit px-2",
@@ -89,7 +89,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
               </div>
             </div>
             <RightArrow2
-              className="h-[57px] w-fit"
+              className="h-[57px] w-fit block"
               color="#917377"
               onClick={handleClick}
             />
@@ -98,7 +98,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
       case "invite":
         return (
           <>
-            <div className="flex-1 h-[57px] bg-[#D9B8A3] rounded-l-[7px]">
+            <div className="flex-1 h-[57px] bg-[#D9B8A3] rounded-l-[7px] min-w-[270px]">
               <div
                 className={cn(
                   "flex gap-2 rounded-md w-fit px-2",
@@ -115,7 +115,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
               </div>
             </div>
             <RightArrow2
-              className="h-[57px] w-fit"
+              className="h-[57px] w-fit block"
               color="#27A459"
               onClick={handleClick}
             />
@@ -124,7 +124,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
       case "og":
         return (
           <>
-            <div className="flex-1 h-[57px] bg-[#CDAA98] rounded-l-[7px]">
+            <div className="flex-1 h-[57px] bg-[#CDAA98] rounded-l-[7px] min-w-[270px]">
               <div
                 className={cn(
                   "flex gap-2 rounded-md w-fit px-2",
@@ -163,7 +163,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
               </div>
             </div>
             <RightArrow2
-              className="h-[57px] w-fit"
+              className="h-[57px] w-fit block"
               color="var(--color-blue)"
               arrowColor="#ffffff"
               onClick={handleClick}
@@ -173,7 +173,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
       case "nft":
         return (
           <>
-            <div className="flex-1 h-[57px] bg-[var(--color-blown-dark)] rounded-l-[7px]">
+            <div className="flex-1 h-[57px] bg-[var(--color-blown-dark)] rounded-l-[7px] min-w-[270px]">
               <div
                 className={cn(
                   "flex gap-2 rounded-md w-fit px-2",
@@ -189,7 +189,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
               </div>
             </div>
             <RightArrow2
-              className="h-[57px] w-fit"
+              className="h-[57px] w-fit block"
               color="var(--color-yellow)"
               arrowColor="var(--color-golden-brown)"
               onClick={handleClick}
