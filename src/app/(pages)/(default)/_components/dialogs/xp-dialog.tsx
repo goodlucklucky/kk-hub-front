@@ -15,7 +15,7 @@ import rankSapphire from "@/app/_assets/svg/rank_sapphire.svg";
 import rankPearl from "@/app/_assets/svg/rank_pearl.svg";
 import rankSilver from "@/app/_assets/svg/rank_silver.svg";
 import rankGold from "@/app/_assets/svg/rank_gold.svg";
-import rankPlatinum from "@/app/_assets/svg/rank_sapphire.svg";
+import rankPlatinum from "@/app/_assets/images/rank_platinum.png";
 import rankDiamond from "@/app/_assets/svg/rank_diamond.svg";
 import rankBlack from "@/app/_assets/svg/rank_black.svg";
 

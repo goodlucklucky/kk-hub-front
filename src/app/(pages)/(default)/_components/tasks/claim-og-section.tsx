@@ -35,6 +35,7 @@ export const ClaimOGSection: React.FC<ClaimOGSectionProps> = ({
             key={task?.id}
             title={task?.description}
             reward={task?.bonusName}
+            rewardDescription="T2 Lootbox"
             taskNumber={index + 1}
             task={task}
             actionTitle={task.type}

@@ -11,6 +11,7 @@ export const PartnerSection = ({ data: partnerTasks }: { data: ITask[] }) => {
           taskNumber={index + 1}
           title={task?.description}
           reward={task?.bonusName}
+          rewardDescription="T1 Lootbox"
           actionTitle={task?.type}
           task={task}
         />

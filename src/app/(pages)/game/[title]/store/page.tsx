@@ -30,13 +30,14 @@ import { GeneralContext } from "@/app/_providers/generalProvider";
 import CosmeticCard from "@/app/(pages)/(default)/_components/store/cosmetic-card";
 import NavigationButton from "@/app/(pages)/(default)/_components/profile/navigateBtn";
 import DiscountBadge from "@/app/(pages)/(default)/_components/store/discount-badge";
-import SkinDialog from "@/app/(pages)/(default)/_components/dialogs/skin-dialog";
 import {
   IStoreItem,
   IStoreItemType,
   useStoreItems,
   useStoreTypes,
-} from "../../../../../../services/store";
+} from "@/../services/store";
+
+import PaymentDialog from "@/app/(pages)/(default)/_components/dialogs/payment";
 import Footer from "@/app/(pages)/(default)/_components/layout/footer";
 
 // Types
