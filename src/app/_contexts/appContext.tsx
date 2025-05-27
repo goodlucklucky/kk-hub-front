@@ -12,6 +12,8 @@ interface AppContextType {
   setIsTaskOpen: (isOpen: boolean) => void;
   isChatOpen: boolean;
   setIsChatOpen: (isOpen: boolean) => void;
+  isXpOpen: boolean;
+  setIsXpOpen: (isOpen: boolean) => void;
 }
 
 // Create the context with a default value
@@ -23,6 +25,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [isBankingOpen, setIsBankingOpen] = useState(false);
   const [isTaskOpen, setIsTaskOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isXpOpen, setIsXpOpen] = useState(false);
 
   const value = {
     isProfileOpen,
@@ -33,6 +36,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setIsTaskOpen,
     isChatOpen,
     setIsChatOpen,
+    isXpOpen,
+    setIsXpOpen,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
