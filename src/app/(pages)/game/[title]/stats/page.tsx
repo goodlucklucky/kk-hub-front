@@ -30,11 +30,13 @@ import {
   useGetATH,
 } from "../../../../../../services/game/challenges";
 import { QuestionMarkIcon } from "@/app/_assets/svg/template";
+import { useApp } from "@/app/_contexts/appContext";
 
 export default function StatsPage() {
   const { sessionId, myUsdt } = useContext(GeneralContext);
   const { data } = useChallenges(sessionId, "daily");
   const { data: ath } = useGetATH(sessionId);
+  const { setIsBankingOpen } = useApp();
   return (
     <div className={cn("flex flex-col flex-1 h-full items-center gap-y-1")}>
       <Image
@@ -44,7 +46,7 @@ export default function StatsPage() {
         loading="lazy"
         priority={false}
       />
-      <div className="flex gap-2 mt-4 absolute top-8 left-5 -z-10">
+      <div className="flex gap-2 mt-4 absolute top-8 left-5">
         <Chat />
       </div>
       <Image
@@ -81,7 +83,10 @@ export default function StatsPage() {
                 <div className="text-[#745061] text-center font-made-tommy text-xs font-bold leading-normal tracking-[0.12px]">
                   Top up your wallet...
                 </div>
-                <Button className="w-full rounded-[6px] bg-gradient-to-b from-[#A291FF] to-[#856FFF] text-white text-center font-made-tommy text-xs font-bold leading-normal tracking-[0.12px] p-0 flex items-center justify-center gap-x-2">
+                <Button
+                  className="w-full rounded-[6px] bg-gradient-to-b from-[#A291FF] to-[#856FFF] text-white text-center font-made-tommy text-xs font-bold leading-normal tracking-[0.12px] p-0 flex items-center justify-center gap-x-2"
+                  onClick={() => setIsBankingOpen(true)}
+                >
                   <StatsWalletIcon />
                   <div className="text-[#EFF6FF] text-center [text-shadow:0px_1px_0px_rgba(62,36,105,0.20)] font-made-tommy text-[18px] font-extrabold leading-normal tracking-[0.36px]">
                     Wallet
@@ -140,7 +145,7 @@ export default function StatsPage() {
                   <div className="w-full flex justify-center items-center gap-1">
                     <CalendarIcon />
                     <span className="rounded-[12px] bg-[rgba(73,31,54,0.70)] text-[#D7BCA3] font-made-tommy text-[10px] font-bold tracking-[0.07px] leading-normal px-1 py-[1px]">
-                      coming soon
+                      Coming soon
                     </span>
                   </div>
                 </div>

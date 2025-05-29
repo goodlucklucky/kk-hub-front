@@ -13,6 +13,7 @@ import { useGeneral } from "@/app/_providers/generalProvider";
 import { IChallenge } from "@/../services/game/challenges";
 import { formatBigNumber } from "@/app/_utils/number";
 import { trackEvent } from "@/app/_lib/mixpanel";
+import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 
 export interface ChallengeCardProps {
   challenge: IChallenge;
@@ -57,9 +58,8 @@ const ChallengeCard = ({ challenge }: ChallengeCardProps) => {
   }, [challenge?.score_summary, qualifyStatus.balanceAvailable]);
 
   const viewTornament = useCallback(() => {
-    // router.push(`/game/${title}/challenge/${challenge.id}`);
-    router.push(`challenge/${challenge.id}`);
-    trackEvent(`${title} challenge ${challenge.name} Page`, {
+    router.push(`/game/${title}/tournaments/${challenge.id}`);
+    trackEvent(`${title} tournament ${challenge.name} Page`, {
       id: challenge?.id,
       score_summary: challenge?.score_summary,
       game: title,
@@ -68,52 +68,57 @@ const ChallengeCard = ({ challenge }: ChallengeCardProps) => {
 
   return (
     <div
-      className="w-full border border-[#F1DCB8] rounded-md bg-[#F1DCB8] overflow-hidden p-2 space-y-2"
-      style={{ boxShadow: "0px 2px 0px 0px rgba(0, 0, 0, 0.16)" }}
+      className="rounded-[14px] bg-[#EED1B8] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] flex flex-col gap-1.5 p-2"
     >
-      <div className="grid grid-cols-12 justify-between w-full gap-2">
+      <div className="flex justify-between gap-1.5">
         <button
-          className={`col-span-9 flex justify-between items-center rounded-md p-1 px-2 font-semibold text-sm text-[#5F3F57]`}
+          className={`rounded-[6px] bg-[#EED1B8] bg-[linear-gradient(0deg,rgba(233,140,0,0.40)_0%,rgba(233,140,0,0.40)_100%)] flex-1 flex justify-start items-center px-4`}
           style={{
             backgroundColor: `${challenge.details?.color}`,
           }}
           onClick={viewTornament}
         >
-          {challenge.name}
+          <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
+            {challenge.name}
+          </span>
         </button>
         <button
           onClick={viewTornament}
-          className="col-span-3 flex gap-2 items-center justify-center text-md text-[#5F3F57] font-semibold p-[3px] bg-[#7FCA72] rounded-md"
+          className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
         >
-          <span>Play</span>
-          <Image alt="Right arrow" src={RightArrow} width={10} />
+          <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
+            Play
+          </span>
+          <CustomRightArrow color={"#745061"} />
         </button>
       </div>
-      <div className="flex items-center rounded-sm p-2 bg-[#E3BEAA] gap-4 leading-4">
-        <div className="flex flex-shrink-0 items-start gap-3">
-          <Image alt="Prize Image" src={PrizeImage} width={28} height={38} />
-          <div className="text-[#745061] text-[10px] font-semibold">
-            1st Place Prize
-            <br />
+      <div className="flex justify-between gap-1.5 p-2 rounded-[6px] bg-[#E3BEAA]">
+        <div className="flex items-center gap-1 border-r-2 border-r-[#74506140] pl-1 pr-4">
+          <Image alt="Prize Image" src={PrizeImage} width={30} height={30} />
+          <div className="flex flex-col justify-between">
+            <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
+              1st Place Prize
+            </span>
             {challenge?.score_summary?.maxPrize ? (
-              <>
-                <strong className="text-xs font-bold">
-                  {formatBigNumber(challenge?.score_summary?.maxPrize)}
-                </strong>
-                🥥
-              </>
+              <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
+                {formatBigNumber(challenge?.score_summary?.maxPrize)} 🥥
+              </span>
             ) : (
-              <>⏳</>
+              <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
+                ⏳
+              </span>
             )}
           </div>
         </div>
-        <div className="border border-[#74506140] w-0 h-8"></div>
-        <div className="flex items-start gap-3 text-[#745061]">
-          <Image alt="Status image" src={status.img || SmileImg} width={31} />
-          <div className="text-[10px] font-semibold">
-            Your Current Prize
-            <br />
-            <strong className="text-xs font-bold">{status.text}</strong>
+        <div className="flex items-center gap-1 flex-1 pl-1">
+          <Image alt="Status image" src={status.img || SmileImg} width={30} />
+          <div className="flex flex-col justify-between">
+            <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
+              Your Current Prize
+            </span>
+            <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
+              {status.text}
+            </span>
           </div>
         </div>
       </div>

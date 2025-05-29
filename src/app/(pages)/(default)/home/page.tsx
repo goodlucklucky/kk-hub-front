@@ -22,16 +22,9 @@ import { StarIcon } from "@/app/_assets/svg/star";
 import forestBack from "@assets/images/forest-back.png";
 import mainBack from "@assets/images/main-back.png";
 import MintDialog from "../_components/dialogs/mint-dialog";
-import ChatDialog from "../_components/dialogs/chat-dialog";
-import { useApp } from "@/app/_contexts/appContext";
 import PreviewDialog from "../_components/dialogs/preview-dialog";
 
 export default function HomePage() {
-  const {
-    isChatOpen,
-    setIsChatOpen,
-  } = useApp();
-
   const groupedGames = Object.entries(_.groupBy(games, (game) => game?.type));
 
   const [tabOpen, setTabOpen] = useState<"play" | "favourites">("play");
@@ -158,10 +151,6 @@ export default function HomePage() {
         isMinting={isMinting}
         isOpen={isMintDialogOpen}
         onClose={handleMintDialogClose}
-      />
-      <ChatDialog
-        isOpen={isChatOpen}
-        onClose={() => setIsChatOpen(!isChatOpen)}
       />
       <PreviewDialog
         isOpen={isPreviewOpen}
