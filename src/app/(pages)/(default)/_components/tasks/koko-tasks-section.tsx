@@ -24,6 +24,7 @@ export const KokoTasksSection = ({
             key={task?.id}
             title={task.description}
             reward={task.bonusName}
+            rewardDescription="T2 Lootbox"
             taskNumber={index + 1}
             actionTitle={task.type}
             task={task}

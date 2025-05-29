@@ -32,79 +32,82 @@ export default function Footer({
   };
 
   return (
-    <footer
-      className={cn(
-        "bg-[url(/images/footer-panel.png)] bg-[length:100%_100%] bg-no-repeat w-full h-[95px]",
-        "grid grid-cols-5 items-center pt-4 px-3 xs:px-4",
-        "text-center font-bumper-sticker text-xs text-golden-brown drop-shadow-[0_0.25ch_#fff4] z-5"
-      )}
-    >
-      <Item
-        Icon={SpeakerIcon}
-        isPlay={isPlayRoute(
-          footerCategory === "home" ? "tasks" : "game/snake/tasks"
+    <>
+      <footer
+        className={cn(
+          "bg-[url(/images/footer-panel.png)] bg-[length:100%_100%] bg-no-repeat w-full h-[95px]",
+          "grid grid-cols-5 items-center pt-4 px-3 xs:px-4",
+          "text-center font-bumper-sticker text-xs text-golden-brown drop-shadow-[0_0.25ch_#fff4] z-10 fixed bottom-0"
         )}
-        label="TASKS"
-        path={footerCategory === "home" ? "tasks" : "game/snake/tasks"}
-      />
-      <Item
-        Icon={StoreIcon}
-        isPlay={isPlayRoute(
-          footerCategory === "home" ? "store" : "game/snake/store"
+      >
+        <Item
+          Icon={SpeakerIcon}
+          isPlay={isPlayRoute(
+            footerCategory === "home" ? "tasks" : "game/snake/tasks"
+          )}
+          label="TASKS"
+          path={footerCategory === "home" ? "tasks" : "game/snake/tasks"}
+        />
+        <Item
+          Icon={StoreIcon}
+          isPlay={isPlayRoute(
+            footerCategory === "home" ? "store" : "game/snake/store"
+          )}
+          label="Store"
+          path={footerCategory === "home" ? "store" : "game/snake/store"}
+        />
+        {footerCategory === "home" && (
+          <Item
+            Icon={HomeIcon}
+            isPlay={isPlayRoute("home")}
+            label="Home"
+            path="home"
+          />
         )}
-        label="Store"
-        path={footerCategory === "home" ? "store" : "game/snake/store"}
-      />
-      {footerCategory === "home" && (
-        <Item
-          Icon={HomeIcon}
-          isPlay={isPlayRoute("home")}
-          label="Home"
-          path="home"
-        />
-      )}
-      {footerCategory === "game" && (
-        <Item
-          Icon={PlayIcon}
-          isPlay={isPlayRoute("/game/snake/play")}
-          label="PLAY"
-          path="game/snake/play"
-        />
-      )}
-      {footerCategory === "home" && (
-        <Item
-          Icon={MissionIcon}
-          isPlay={isPlayRoute("missions")}
-          label="MISSIONS"
-          path="missions"
-        />
-      )}
-      {footerCategory === "game" && (
-        <Item
-          Icon={StatsIcon}
-          isPlay={isPlayRoute("/game/snake/stats")}
-          label="STATS"
-          path="game/snake/stats"
-        />
-      )}
-      {footerCategory === "home" && (
-        <Item
-          Icon={PetIcon}
-          isPlay={isPlayRoute("pets")}
-          label="Pets"
-          isComing={true}
-          path="pets"
-        />
-      )}
-      {footerCategory === "game" && (
-        <Item
-          Icon={HomeIcon}
-          isPlay={isPlayRoute("home")}
-          label="Back To Hub"
-          path="home"
-        />
-      )}
-    </footer>
+        {footerCategory === "game" && (
+          <Item
+            Icon={PlayIcon}
+            isPlay={isPlayRoute("/game/snake/play")}
+            label="PLAY"
+            path="game/snake/play"
+          />
+        )}
+        {footerCategory === "home" && (
+          <Item
+            Icon={MissionIcon}
+            isPlay={isPlayRoute("missions")}
+            label="MISSIONS"
+            path="missions"
+          />
+        )}
+        {footerCategory === "game" && (
+          <Item
+            Icon={StatsIcon}
+            isPlay={isPlayRoute("/game/snake/stats")}
+            label="STATS"
+            path="game/snake/stats"
+          />
+        )}
+        {footerCategory === "home" && (
+          <Item
+            Icon={PetIcon}
+            isPlay={isPlayRoute("pets")}
+            label="Pets"
+            isComing={true}
+            path="pets"
+          />
+        )}
+        {footerCategory === "game" && (
+          <Item
+            Icon={HomeIcon}
+            isPlay={isPlayRoute("home")}
+            label="Back To Hub"
+            path="home"
+          />
+        )}
+      </footer>
+      <div className="h-[95px] w-full"></div>
+    </>
   );
 }
 

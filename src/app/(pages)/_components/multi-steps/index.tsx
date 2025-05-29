@@ -9,9 +9,9 @@ import { Step2Bottom, Step2Top } from "./step2";
 import { Step3Bottom, Step3Top } from "./step3";
 
 const Steps = [
-  { Top: Step1Top, Bottom: Step1Bottom, duration: 4000 },
-  { Top: Step2Top, Bottom: Step2Bottom, duration: 6000 },
-  { Top: Step3Top, Bottom: Step3Bottom, duration: 4000 },
+  { Top: Step1Top, Bottom: Step1Bottom, duration: 8000 },
+  { Top: Step2Top, Bottom: Step2Bottom, duration: 12000 },
+  { Top: Step3Top, Bottom: Step3Bottom, duration: 8000 },
 ];
 
 export default function MultiSteps() {

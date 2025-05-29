@@ -17,7 +17,7 @@ export const ConnectButton = React.forwardRef<HTMLButtonElement, TProps>(
       <Button
         ref={ref}
         className={cn(
-          "border-fades-sm -top-[1px] font-semibold text-black/65 text-base font-made-tommy flex gap-4 justify-start tracking-wider !py-0",
+          "border-fades-sm -top-[1px] font-semibold text-black/65 text-base font-made-tommy flex gap-4 justify-start tracking-wider !py-0 h-[32px]",
           props?.size == "sm" && "sm_size",
           className
         )}

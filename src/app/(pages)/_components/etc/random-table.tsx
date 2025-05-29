@@ -16,8 +16,6 @@ type PrizeRow = {
 };
 
 export default function RandomTable() {
-  const [rows, setRows] = useState<PrizeRow[]>([]);
-
   // Function to generate a random prize row
   const generateRandomRow = (): PrizeRow => {
     const amount = parseFloat((Math.random() * 100 + 10).toFixed(2));
@@ -29,11 +27,13 @@ export default function RandomTable() {
     };
   };
 
+  const [rows, setRows] = useState<PrizeRow[]>([generateRandomRow(), generateRandomRow(), generateRandomRow(), generateRandomRow()]);
+
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
 
     const addRowAtRandomInterval = () => {
-      setRows((prev) => [generateRandomRow(), ...prev.slice(0, 4)]);
+      setRows((prev) => [generateRandomRow(), ...prev.slice(0, 3)]);
       const delay = (Math.random() * 2 + 1) * 1000;
       timeout = setTimeout(addRowAtRandomInterval, delay);
     };
@@ -56,7 +56,7 @@ export default function RandomTable() {
           >
             <td>{Icon && <Icon />}</td>
             <td className="w-full">{name}</td>
-            <td className="whitespace-nowrap bg-amber-500/15 text-golden-dark flex gap-2 items-center">
+            <td className="whitespace-nowrap bg-amber-500/15 text-golden-dark flex gap-2 items-center min-w-[100px]">
               <UsdIcon className="text-green-800" /> {prize.amount}
             </td>
           </tr>

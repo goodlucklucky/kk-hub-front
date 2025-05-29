@@ -14,26 +14,6 @@ export default function TaskSection({
   onMintClick: () => void;
 }) {
   const { data } = useTasks();
-
-  // const [tasks, setTasks] = React.useState<{
-  //   kokoTasks?: ITask[];
-  //   partnerTasks?: ITask[];
-  //   claimogTasks?: ITask[];
-  // }>({
-  //   kokoTasks: [],
-  //   partnerTasks: [],
-  //   claimogTasks: [],
-  // });
-
-  // useEffect(() => {
-  //   if (data?.kokoTasks?.length)
-  //     setTasks((p) => ({ ...p, kokoTasks: data?.kokoTasks }));
-  //   if (data?.partnerTasks?.length)
-  //     setTasks((p) => ({ ...p, partnerTasks: data?.partnerTasks }));
-  //   if (data?.claimogTasks?.length)
-  //     setTasks((p) => ({ ...p, claimogTasks: data.claimogTasks }));
-  // }, [data]);
-
   if (tab == "Claim OG")
     return (
       <ClaimOGSection
