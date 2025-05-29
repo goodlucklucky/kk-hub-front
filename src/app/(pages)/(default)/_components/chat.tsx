@@ -12,6 +12,7 @@ import chatIcon from "@assets/images/star-icon.png";
 import chatBottom from "@assets/images/chat-bottom.png";
 import { useApp } from "@/app/_contexts/appContext";
 import { MsgIcon } from "@/app/_assets/svg/template";
+import ChatDialog from "./dialogs/chat-dialog";
 
 //interface
 interface ChatMessage {
@@ -95,31 +96,37 @@ const ChatContainer: React.FC = () => {
 export default function Chat() {
   const { isChatOpen, setIsChatOpen } = useApp();
   return (
-    <div
-      className={cn(
-        "relative p-1",
-        "flex justify-center w-[265px]",
-        "rounded-[20px]",
-        "border-2 border-[#FAC485]",
-        "bg-gradient-to-b from-[#FAC485] to-[#8B4B4F]",
-        "bg-cover bg-center bg-no-repeat h-[80px]",
-        "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]"
-      )}
-      style={{ backgroundImage: `url(${woodTexture.src})` }}
-    >
-      <Image
-        src={chatBottom}
-        alt="chat bottom"
-        className="absolute -bottom-4.5 left-1"
-      />
-      <ChatContainer />
-      <Button
-        onClick={() => setIsChatOpen(!isChatOpen)}
-        className="px-2 w-[94px] absolute left-19.5 -bottom-2 flex items-center gap-x-1"
+    <>
+      <div
+        className={cn(
+          "relative p-1",
+          "flex justify-center w-[265px]",
+          "rounded-[20px]",
+          "border-2 border-[#FAC485]",
+          "bg-gradient-to-b from-[#FAC485] to-[#8B4B4F]",
+          "bg-cover bg-center bg-no-repeat h-[80px]",
+          "shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)]"
+        )}
+        style={{ backgroundImage: `url(${woodTexture.src})` }}
       >
-        <MsgIcon className="w-[13px] h-[10px]" width={13} height={10} />
-        <p className="whitespace-nowrap">Open Chat</p>
-      </Button>
-    </div>
+        <Image
+          src={chatBottom}
+          alt="chat bottom"
+          className="absolute -bottom-4.5 left-1"
+        />
+        <ChatContainer />
+        <Button
+          onClick={() => setIsChatOpen(!isChatOpen)}
+          className="px-2 w-[94px] absolute left-19.5 -bottom-2 flex items-center gap-x-1"
+        >
+          <MsgIcon className="w-[13px] h-[10px]" width={13} height={10} />
+          <p className="whitespace-nowrap">Open Chat</p>
+        </Button>
+      </div>
+      <ChatDialog
+        isOpen={isChatOpen}
+        onClose={() => setIsChatOpen(!isChatOpen)}
+      />
+    </>
   );
 }

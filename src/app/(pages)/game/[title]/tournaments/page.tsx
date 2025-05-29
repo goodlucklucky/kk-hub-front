@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 //import components
 import Chat from "../../../(default)/_components/chat";
 
@@ -14,24 +14,32 @@ import { cn } from "@/app/_lib/utils";
 //import images
 import statsBack from "@assets/images/stats-back.png";
 import statsIcon from "@assets/images/stats-icon.png";
-import Cup from "@assets/images/cup1.png";
-import Tour1 from "@assets/images/tour-1.png";
-import Tour2 from "@assets/images/tour-2.png";
-import Tour3 from "@assets/images/tour-3.png";
+import ChallengeBox from "./components/challenge-box";
 
-import Header from "../../../(default)/_components/layout/header";
 import { SunIcon } from "@/app/_assets/svg/sun";
 import { CalendarIcon } from "@/app/_assets/svg/calendar";
 import { LightningIcon } from "@/app/_assets/svg/lightning";
 import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 import { Button } from "@/app/_components/ui/button";
 import { QuestionMarkIcon } from "@/app/_assets/svg/template";
+import { trackEvent } from "@/app/_lib/mixpanel";
+import { TimeLeft } from "@/app/_hooks/useTimeLeft";
+import { calculateTimeLeft } from "@/app/_hooks/useTimeLeft";
 
 export default function StatsPage() {
   const router = useRouter();
-  const navigateToEntry = useCallback(() => {
-    router.push("/game/snake/tournaments/entry");
-  }, [router]);
+  const { title } = useParams();
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(
+    calculateTimeLeft()
+  );
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div
@@ -46,7 +54,7 @@ export default function StatsPage() {
         loading="lazy"
         priority={false}
       />
-      <div className="flex gap-2 mt-4 absolute top-8 left-5 -z-1">
+      <div className="flex gap-2 mt-4 absolute top-8 left-5">
         <Chat />
       </div>
       <Image
@@ -83,230 +91,25 @@ export default function StatsPage() {
             </span>
           </div>
         </div>
-        <div className="p-2 px-4 rounded-full bg-[#EED1B8] flex text-[14px] text-[#745061] font-made-tommy font-semibold items-center justify-between w-full">
+        <div 
+          className="p-2 px-4 rounded-full bg-[#EED1B8] flex text-[14px] text-[#745061] font-made-tommy font-semibold items-center justify-between w-full"
+          onClick={() => {
+            router.push(`/game/${title}/tournaments/result-details`);
+            trackEvent(`Tournaments Results Details`);
+          }}
+        >
           Previous Results
           <CustomRightArrow color={"#745061"} />
         </div>
-        <div className="flex-1 flex flex-col overflow-auto rounded-[13px] bg-[#653F5654] w-full p-2 gap-y-1.5">
-          <div className="rounded-[14px] bg-[#EED1B8] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] flex flex-col gap-1.5 p-2">
-            <div className="flex justify-between gap-1.5">
-              <div className="rounded-[6px] bg-[#EED1B8] bg-[linear-gradient(0deg,rgba(233,140,0,0.40)_0%,rgba(233,140,0,0.40)_100%)] flex-1 flex justify-start items-center px-4">
-                <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
-                  {" "}
-                  Free Entry Tournament
-                </span>
-              </div>
-              <div
-                className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
-                onClick={navigateToEntry}
-              >
-                <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
-                  Play
-                </span>
-                <CustomRightArrow color={"#745061"} />
-              </div>
-            </div>
-            <div className="flex justify-between gap-1.5 p-2 rounded-[6px] bg-[#E3BEAA]">
-              <div className="flex items-center gap-1 border-r-2 border-r-[#74506140] pl-1 pr-4">
-                <Image src={Cup} alt="Cup" className="w-[30px] h-[30px]" />
-                <div className="flex flex-col justify-between">
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
-                    1st Place Prize
-                  </span>
-                  <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
-                    $1
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center gap-1 flex-1 pl-1">
-                <Image src={Tour1} alt="Cup" />
-                <div className="flex flex-col justify-between">
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
-                    Your Current Prize
-                  </span>
-                  <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
-                    Not Yet Entered
-                  </span>
-                </div>
-              </div>
-            </div>
+        <ChallengeBox />
+        {timeLeft && (
+          <div className="rounded-[8px_8px_22px_22px] bg-[#A970B5] w-full flex justify-center py-1.5">
+            <span className="text-white font-made-tommy text-[12px] font-bold">
+              🎁 Prizes distributed in {timeLeft.hours}h {timeLeft.minutes}m{" "}
+              {timeLeft.seconds}s
+            </span>
           </div>
-          <div className="rounded-[14px] bg-[#EED1B8] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] flex flex-col gap-1.5 p-2">
-            <div className="flex justify-between gap-1.5">
-              <div className="rounded-[6px] bg-[#EED1B8] bg-[linear-gradient(0deg,rgba(217,0,0,0.24)_0%,rgba(217,0,0,0.24)_100%)] flex-1 flex justify-start items-center px-4">
-                <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
-                  $0.25 Entry Tournament
-                </span>
-              </div>
-              <div
-                className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
-                onClick={navigateToEntry}
-              >
-                <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
-                  Play
-                </span>
-                <CustomRightArrow color={"#745061"} />
-              </div>
-            </div>
-            <div className="flex justify-between gap-1.5 p-2 rounded-[6px] bg-[#E3BEAA]">
-              <div className="flex items-center gap-1 border-r-2 border-r-[#74506140] pl-1 pr-4">
-                <Image src={Cup} alt="Cup" className="w-[30px] h-[30px]" />
-                <div className="flex flex-col justify-between">
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
-                    1st Place Prize
-                  </span>
-                  <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
-                    $5
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center gap-1 flex-1 pl-1">
-                <Image src={Tour3} alt="Cup" />
-                <div className="flex flex-col justify-between">
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
-                    Your Current Prize
-                  </span>
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-extrabold tracking-[0.12px]">
-                    Improve Score to Quality
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="rounded-[14px] bg-[#EED1B8] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] flex flex-col gap-1.5 p-2">
-            <div className="flex justify-between gap-1.5">
-              <div className="rounded-[6px] bg-[#EED1B8] bg-[linear-gradient(0deg,rgba(130,0,233,0.24)_0%,rgba(130,0,233,0.24)_100%)] flex-1 flex justify-start items-center px-4">
-                <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
-                  $0.50 Entry Tournament
-                </span>
-              </div>
-              <div
-                className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
-                onClick={navigateToEntry}
-              >
-                <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
-                  Play
-                </span>
-                <CustomRightArrow color={"#745061"} />
-              </div>
-            </div>
-            <div className="flex justify-between gap-1.5 p-2 rounded-[6px] bg-[#E3BEAA]">
-              <div className="flex items-center gap-1 border-r-2 border-r-[#74506140] pl-1 pr-4">
-                <Image src={Cup} alt="Cup" className="w-[30px] h-[30px]" />
-                <div className="flex flex-col justify-between">
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
-                    1st Place Prize
-                  </span>
-                  <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
-                    $7.50
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center gap-1 flex-1 pl-1">
-                <Image src={Tour2} alt="Cup" />
-                <div className="flex flex-col justify-between">
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
-                    Your Current Prize
-                  </span>
-                  <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
-                    50K
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="rounded-[14px] bg-[#EED1B8] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] flex flex-col gap-1.5 p-2">
-            <div className="flex justify-between gap-1.5">
-              <div className="rounded-[6px] bg-[#EED1B8] bg-[linear-gradient(0deg,rgba(0,148,255,0.24)_0%,rgba(0,148,255,0.24)_100%)] flex-1 flex justify-start items-center px-4">
-                <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
-                  {" "}
-                  $1 Entry Tournament
-                </span>
-              </div>
-              <div
-                className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
-                onClick={navigateToEntry}
-              >
-                <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
-                  Play
-                </span>
-                <CustomRightArrow color={"#745061"} />
-              </div>
-            </div>
-            <div className="flex justify-between gap-1.5 p-2 rounded-[6px] bg-[#E3BEAA]">
-              <div className="flex items-center gap-1 border-r-2 border-r-[#74506140] pl-1 pr-4">
-                <Image src={Cup} alt="Cup" className="w-[30px] h-[30px]" />
-                <div className="flex flex-col justify-between">
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
-                    1st Place Prize
-                  </span>
-                  <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
-                    $10
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center gap-1 flex-1 pl-1">
-                <Image src={Tour2} alt="Cup" />
-                <div className="flex flex-col justify-between">
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
-                    Your Current Prize
-                  </span>
-                  <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
-                    30.5K
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="rounded-[14px] bg-[#EED1B8] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] flex flex-col gap-1.5 p-2">
-            <div className="flex justify-between gap-1.5">
-              <div className="rounded-[6px] bg-[#EED1B8] bg-[linear-gradient(0deg,rgba(0,222,9,0.24)_0%,rgba(0,222,9,0.24)_100%)] flex-1 flex justify-start items-center px-4">
-                <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
-                  {" "}
-                  Free Entry Tournament
-                </span>
-              </div>
-              <div
-                className="rounded-[6px] bg-[#7FCA72] flex items-center gap-1 p-1 px-4"
-                onClick={navigateToEntry}
-              >
-                <span className="text-[#5F3F57] font-made-tommy text-[14px] font-bold">
-                  Play
-                </span>
-                <CustomRightArrow color={"#745061"} />
-              </div>
-            </div>
-            <div className="flex justify-between gap-1.5 p-2 rounded-[6px] bg-[#E3BEAA]">
-              <div className="flex items-center gap-1 border-r-2 border-r-[#74506140] pl-1 pr-4">
-                <Image src={Cup} alt="Cup" className="w-[30px] h-[30px]" />
-                <div className="flex flex-col justify-between">
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
-                    1st Place Prize
-                  </span>
-                  <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
-                    $1
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center gap-1 flex-1 pl-1">
-                <Image src={Tour1} alt="Cup" />
-                <div className="flex flex-col justify-between">
-                  <span className="text-[#745061] font-made-tommy text-[10px] font-bold tracking-[0.1px]">
-                    Your Current Prize
-                  </span>
-                  <span className="text-[#745061] font-made-tommy text-[12px] font-extrabold tracking-[0.12px]">
-                    Not Yet Entered
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="rounded-[8px_8px_22px_22px] bg-[#A970B5] w-full flex justify-center py-1.5">
-          <span className="text-white font-made-tommy text-[12px] font-bold">
-            🎁 Prizes distributed in 10h 30m 6s
-          </span>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -122,7 +122,7 @@ export default function HomePage() {
               </p>
             </div>
             <Button
-              onClick={() => router.push(`/game/${title}/challenge`)}
+              onClick={() => router.push(`/game/${title}/tournaments`)}
               className="bg-[url(/images/board.png)] bg-[length:100%_100%] bg-center rounded-[200px] p-3 pt-4 pb-2 h-20 w-full shadow-md flex justify-center items-center z-10"
             >
               <div className="bg-[url(/images/cyan-btn-bg.png)] h-full w-full bg-[length:100%_100%] bg-stretch bg-center bg-no-repeat flex justify-center relative items-center">

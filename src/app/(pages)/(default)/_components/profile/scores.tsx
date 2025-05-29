@@ -32,36 +32,10 @@ export const Scores = () => {
                 key={item?.id}
                 title={item.name}
                 message={item.description}
-                bgColor={`${item.details.color}`}
-                messageBgColor="#E3BEAA"
+                color={`${item.details.color}`}
                 score={item.score_summary?.yourTotalScore || 0}
               />
             ))}
-          {/* <TournamentItem
-            title="Snake: $0.25 Tournament"
-            message="Current Estimated Earnings: $100"
-            bgColor="bg-[#E99F8C]"
-            messageBgColor="bg-[#D7BDA4]"
-          />
-          <TournamentItem
-            title="Flappy Dunk: $10 1v1"
-            message="Improve your Score to qualify for a prize!"
-            bgColor="bg-[#D49FC4]"
-            messageBgColor="bg-[#E99F8C]"
-            messageTextColor="#853834"
-          />
-          <TournamentItem
-            title="50 KOKO Entry Tournament"
-            message="Improve your Score to qualify for a prize!"
-            bgColor="bg-[#B5C2C9]"
-            messageBgColor="bg-[#D7BDA4]"
-          />
-          <TournamentItem
-            title="$10 Challenge"
-            message="Improve your Score to qualify for a prize!"
-            bgColor="bg-[#B5D48E]"
-            messageBgColor="bg-[#D7BDA4]"
-          /> */}
         </div>
       </div>
     </div>
