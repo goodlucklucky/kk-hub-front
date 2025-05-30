@@ -5,16 +5,20 @@ import CurrentScores from "./current-scores";
 import EarningsSection from "./earnings-section";
 import { useChallenges } from "../../../../../../services/game/challenges";
 import { GeneralContext } from "@/app/_providers/generalProvider";
+import { useThirdweb } from "../../_context/thirdwebContext";
 
 export const Scores = () => {
-  const { sessionId, myUsdt } = useContext(GeneralContext);
+  const { sessionId } = useContext(GeneralContext);
+  const {
+    balance: { total },
+  } = useThirdweb();
   const [activeTab, setActiveTab] = useState("daily");
   const { data } = useChallenges(sessionId, activeTab);
 
   return (
     <div className="flex-1 flex flex-col gap-2 overflow-auto">
       <EarningsSection
-        amount={(myUsdt || 0)?.toLocaleString(undefined, {
+        amount={(total || 0)?.toLocaleString(undefined, {
           maximumFractionDigits: 2,
           minimumFractionDigits: 2,
         })}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ClockIcon, PlayIcon, GiftIcon, TickIcon } from "@/app/_assets/svg/etc";
 import { ProgressBar } from "./progress";
 import Image from "next/image";
@@ -7,7 +7,13 @@ import pet2 from "@assets/images/pet2.png";
 import pet3 from "@assets/images/pet3.png";
 import star from "@assets/images/star-group.png";
 import Button from "@/app/_components/shared/button";
-import { MissionCheckIcon, MissionClickIcon, MissionLeftIcon, MissionRightIcon, MissionIcon } from "@/app/_assets/svg/mission-direct";
+import {
+  MissionCheckIcon,
+  MissionClickIcon,
+  MissionLeftIcon,
+  MissionRightIcon,
+  MissionIcon,
+} from "@/app/_assets/svg/mission-direct";
 import useTimeLeft from "@/app/_hooks/useTimeLeft";
 
 const rewardList = [
@@ -41,7 +47,13 @@ const rewardList = [
   },
 ];
 
-const WeeklyRewardSection = ({ currentXp, maxXp }: { currentXp: number, maxXp: number }) => {
+const WeeklyRewardSection = ({
+  currentXp,
+  maxXp,
+}: {
+  currentXp: number;
+  maxXp: number;
+}) => {
   const [rewardClaimed, setRewardClaimed] = useState(false);
   const [inProgress, setInProgress] = useState(true);
   const [rewardId, setRewardId] = useState(0);
@@ -65,7 +77,7 @@ const WeeklyRewardSection = ({ currentXp, maxXp }: { currentXp: number, maxXp: n
           {currentXp == maxXp && (
             <div className="rounded-[5px] bg-[#568262] shadow-[inset_0px_2px_0px_0px_rgba(0,0,0,0.20)] flex items-center gap-1 p-1 py-0.5">
               <TickIcon fill="#FDE8C6" className="w-4 h-4" />
-              <p className="font-bumper-sticker text-base font-normal font-light text-[#FDE8C6]">
+              <p className="font-bumper-sticker text-base font-normal text-[#FDE8C6]">
                 {" "}
                 COMPLETED{" "}
               </p>
@@ -158,11 +170,23 @@ const WeeklyRewardSection = ({ currentXp, maxXp }: { currentXp: number, maxXp: n
         )}
       </div>
       <div className="flex gap-3 justify-center items-center">
-        <MissionLeftIcon className="w-[20px] drop-shadow-[0_0.3ch_#00000080]" onClick={() => setRewardId((rewardId + 2) % maxXp)}/>
-        {rewardList[rewardId].status == 0 && <MissionClickIcon className="w-[25px] h-[25px]"/>}
-        {rewardList[rewardId].status == 1 && <MissionIcon className="w-[25px] h-[25px]"/>}
-        {rewardList[rewardId].status == 2 && <MissionCheckIcon className="w-[25px] h-[25px]"/>}
-        <MissionRightIcon className="w-[20px] drop-shadow-[0_0.3ch_#00000080]" onClick={() => setRewardId((rewardId + 1) % maxXp)}/>
+        <MissionLeftIcon
+          className="w-[20px] drop-shadow-[0_0.3ch_#00000080]"
+          onClick={() => setRewardId((rewardId + 2) % maxXp)}
+        />
+        {rewardList[rewardId].status == 0 && (
+          <MissionClickIcon className="w-[25px] h-[25px]" />
+        )}
+        {rewardList[rewardId].status == 1 && (
+          <MissionIcon className="w-[25px] h-[25px]" />
+        )}
+        {rewardList[rewardId].status == 2 && (
+          <MissionCheckIcon className="w-[25px] h-[25px]" />
+        )}
+        <MissionRightIcon
+          className="w-[20px] drop-shadow-[0_0.3ch_#00000080]"
+          onClick={() => setRewardId((rewardId + 1) % maxXp)}
+        />
       </div>
     </>
   );

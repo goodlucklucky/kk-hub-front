@@ -10,9 +10,9 @@ import {
 } from "react";
 import { StaticImageData } from "next/image";
 import { useGeneral } from "@/app/_providers/generalProvider";
-import { IChallenge } from "../play/_screens/snake/services/challenges";
 import {
   ChallengeStatusEnum,
+  IChallenge,
   IChallengeResults,
   useChallenges,
   useOneChallenge,

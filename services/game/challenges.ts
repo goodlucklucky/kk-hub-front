@@ -9,7 +9,7 @@ export function useChallenges(
   gameKey: string = "1m1"
 ) {
   return useQuery({
-    queryKey: ["challenges", sessionId, type, status, dates],
+    queryKey: ["challenges", sessionId, type, status, dates, gameKey],
     queryFn: () =>
       baseInstance
         .get<IChallengeResults>(`/game-service/challenges`, {
@@ -26,6 +26,38 @@ export function useChallenges(
           headers: { "x-game-key": gameKey },
         })
         .then((res) => res.data),
+  });
+}
+
+export function useMultiplerChallenges(
+  sessionId?: TSessionId,
+  type: string = "daily",
+  status: ChallengeStatusEnum = ChallengeStatusEnum.ACTIVE,
+  dates: { min?: string; max?: string } = {},
+  gameKeys: string[] = ["1m1"]
+) {
+  return useQuery({
+    queryKey: ["challenges", sessionId, type, status, dates, gameKeys],
+    queryFn: async () =>
+      Promise.all(
+        gameKeys.map((key) =>
+          baseInstance
+            ?.get<IChallengeResults>(`/game-service/challenges`, {
+              params: {
+                sessionId,
+                type,
+                size: -1,
+                status,
+                is_active: true,
+                sort_by: "entry_fee,prize",
+                minDate: dates?.min,
+                maxDate: dates?.max,
+              },
+              headers: { "x-game-key": key },
+            })
+            .then((res) => res?.data)
+        )
+      ),
   });
 }
 
@@ -121,7 +153,7 @@ export function useOneChallenge(
   gameKey: string = "1m1"
 ) {
   return useMutation({
-    mutationKey: ["challenges", sessionId],
+    mutationKey: ["challenges", sessionId, status, gameKey],
     mutationFn: (id: string) =>
       baseInstance
         .get<IOneChallengeResults>(`/game-service/challenges/${id}/get`, {
@@ -135,14 +167,16 @@ export function useOneChallenge(
 export function useGetChallenge(
   id: string,
   sessionId?: TSessionId,
-  status?: ChallengeStatusEnum
+  status?: ChallengeStatusEnum,
+  gameKey: string = "1m1"
 ) {
   return useQuery({
-    queryKey: ["challenges", id, sessionId],
+    queryKey: ["challenges", id, sessionId, status, gameKey],
     queryFn: () =>
       baseInstance
         .get<IOneChallengeResults>(`/game-service/challenges/${id}/get`, {
           params: { sessionId, status },
+          headers: { "x-game-key": gameKey },
         })
         .then((res) => res.data),
   });

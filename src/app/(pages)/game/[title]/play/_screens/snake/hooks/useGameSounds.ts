@@ -1,9 +1,8 @@
 import { useEffect, useRef } from "react";
-// import endAudio0 from "@/_assets/audio/wrong-answer.mp3";
-// import endAudio2 from "@/_assets/audio/vine-boom.mp3";
-import endAudio1 from "../assets/audio/slap-oh.mp3";
-import eatAudio from "../assets/audio/munch-sound-effect.mp3";
-import backgroundMusic from "../assets/audio/back-game-v2.mp3";
+
+const endAudio1 = "/audio/slap-oh.mp3";
+const eatAudio = "/audio/munch-sound-effect.mp3";
+const backgroundMusic = "/audio/back-game-v2.mp3";
 
 interface GameSoundProps {
   isMuted: boolean;
@@ -19,11 +18,7 @@ export const useGameSound = ({ isMuted, isPlaying }: GameSoundProps) => {
     eatSoundRef.current = new Audio(eatAudio);
     bgMusicRef.current = new Audio(backgroundMusic);
 
-    gameOverSoundsRef.current = [
-      // new Audio(endAudio0),
-      new Audio(endAudio1),
-      // new Audio(endAudio2),
-    ];
+    gameOverSoundsRef.current = [new Audio(endAudio1)];
 
     if (bgMusicRef.current) {
       bgMusicRef.current.loop = true;

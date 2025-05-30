@@ -121,8 +121,7 @@ export default function MultiSteps() {
                   )}
                   disabled={index === step}
                   onClick={() => goToStep(index)}
-                >
-                </button>
+                ></button>
               ))}
             </div>
           </div>

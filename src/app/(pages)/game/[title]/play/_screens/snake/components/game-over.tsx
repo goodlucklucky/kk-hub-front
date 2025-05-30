@@ -2,10 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import {
-  IOneChallengeResults,
-  IPostScoreResultsDetails,
-} from "../services/challenges";
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import { ICheckUserBonus2, useAddBonus } from "../services/bonus";
 import { TGameState } from "../constants/Snake";
@@ -21,6 +17,10 @@ import { trackEvent } from "@/app/_lib/mixpanel";
 import { ChallengeBonusDialog } from "./challenge-bonus-dialog";
 import { StarsIcons } from "@/app/_assets/svg/etc";
 import BoxMain from "@/app/(pages)/(default)/_components/BoxMain";
+import {
+  IOneChallengeResults,
+  IPostScoreResultsDetails,
+} from "@/../services/game/challenges";
 
 interface GameOverProps {
   yourScore: number;

@@ -207,16 +207,15 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
           <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">
             Withdrawal Address
           </span>
-          <Input
-            name="address"
-          />
+          <Input name="address" />
         </div>
         <div className="flex justify-center items-center bg-[#E99F8C] rounded-[10px] mt-1.5 p-2 pr-1 gap-2">
           <span className="bg-[#853834] rounded-full w-4.5 h-4.5 px-2 flex items-center justify-center text-[#EED1B8] text-[12px]">
             i
           </span>
           <span className="text-[#853834] font-made-tommy text-[10px] font-bold leading-normal">
-            Make sure the address accepts USDC on Avalanche (AVAX C-Chain). Funds cannot be recovered
+            Make sure the address accepts USDC on Avalanche (AVAX C-Chain).
+            Funds cannot be recovered
           </span>
         </div>
         <div className="flex gap-2">
@@ -235,23 +234,28 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
             />
             <div className="flex flex-col gap-0 mt-2">
               <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
-                Max: {formatNumber(balance?.[selectedCurrency] || 0, {
+                Max:{" "}
+                {formatNumber(balance?.[selectedCurrency] || 0, {
                   maximumFractionDigits: 2,
                   minimumFractionDigits: 2,
                 })}{" "}
                 {selectedCurrency?.toUpperCase()}
               </span>
               <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
-                Transaction fee: {formatNumber(Number(amount) * 0.02 || 0, {
+                Transaction fee:{" "}
+                {formatNumber(Number(amount) * 0.02 || 0, {
                   maximumFractionDigits: 2,
                   minimumFractionDigits: 2,
-                })}{" "} {selectedCurrency?.toUpperCase()}
+                })}{" "}
+                {selectedCurrency?.toUpperCase()}
               </span>
               <span className="text-[#7C5C6B] font-made-tommy font-bold text-[10px] px-3">
-                Will receive: {formatNumber(Number(amount) - Number(amount) * 0.02 || 0, {
+                Will receive:{" "}
+                {formatNumber(Number(amount) - Number(amount) * 0.02 || 0, {
                   maximumFractionDigits: 2,
                   minimumFractionDigits: 2,
-                })}{" "} {selectedCurrency?.toUpperCase()}
+                })}{" "}
+                {selectedCurrency?.toUpperCase()}
               </span>
             </div>
           </div>

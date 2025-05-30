@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 
-import RightArrow from "@/app/_assets/images/Icon_NextPageArrow.png";
 import PrizeImage from "@/app/_assets/images/prize.png";
 import SmileImg from "@/app/_assets/images/smile.png";
 import GoldSmileImg from "@/app/_assets/images/gold-smile.png";
@@ -67,9 +66,7 @@ const ChallengeCard = ({ challenge }: ChallengeCardProps) => {
   }, [challenge.id, challenge.name, challenge?.score_summary, router, title]);
 
   return (
-    <div
-      className="rounded-[14px] bg-[#EED1B8] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] flex flex-col gap-1.5 p-2"
-    >
+    <div className="rounded-[14px] bg-[#EED1B8] shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)] flex flex-col gap-1.5 p-2">
       <div className="flex justify-between gap-1.5">
         <button
           className={`rounded-[6px] bg-[#EED1B8] bg-[linear-gradient(0deg,rgba(233,140,0,0.40)_0%,rgba(233,140,0,0.40)_100%)] flex-1 flex justify-start items-center px-4`}

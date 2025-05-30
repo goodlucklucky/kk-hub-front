@@ -18,7 +18,6 @@ import claimBack from "@assets/images/claim-back.png";
 import banner from "@assets/images/header-board.png";
 
 import { ClockIcon } from "@/app/_assets/svg/clock";
-import mainBack from "@assets/images/main-back.png";
 import RewardItem from "./rewardItem";
 import { GeneralContext } from "@/app/_providers/generalProvider";
 import { useQueryClient } from "@tanstack/react-query";
@@ -27,11 +26,28 @@ import {
   useCollectRewards,
   useCurrentDayClaimStatus,
   useDailyRewards,
-} from "../../../../../services/spins/daily";
+} from "@/../services/spins/daily";
 import { getRewardContent, getRewardData } from "./utils";
 import { IReward } from "./claim-reward-dialog";
 import toast from "react-hot-toast";
 import useTimeLeft from "@/app/_hooks/useTimeLeft";
+import Slider, { Settings as SliderPro } from "react-slick";
+
+//custom react carousel settings
+const settings: SliderPro = {
+  dots: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  infinite: true,
+  fade: true,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  adaptiveHeight: true,
+
+  appendDots: (dots: any) => <div>{dots}</div>,
+};
 
 type TReward = {
   collected: boolean;
@@ -48,6 +64,7 @@ type TReward = {
   created_at: string;
   updated_at: string;
 };
+
 export default function ClaimPage() {
   const { sessionId } = useContext(GeneralContext);
   const [, setOpenClaimDialog] = useState(false);
@@ -109,7 +126,7 @@ export default function ClaimPage() {
         setOpenClaimDialog(true);
 
         // await refreshMyUsdt?.();
-      } catch {
+      } catch (_error) {
         toast.error(
           <div className="text-center">
             <p>Collect Failed</p>
@@ -135,9 +152,7 @@ export default function ClaimPage() {
   return (
     <>
       <div
-        className={cn(
-          "flex flex-col flex-1 justify-center items-center p-2"
-        )}
+        className={cn("flex flex-col flex-1 justify-center items-center p-2")}
       >
         <Image
           src={claimBack}
@@ -179,31 +194,33 @@ export default function ClaimPage() {
                 </div>
               </div>
               <div className="rounded-xl border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] w-full pt-3 relative pb-8 flex-1 overflow-y-auto">
-                {rewardsPages?.map((page, index) => (
-                  <div
-                    className="!grid grid-cols-3 overflow-auto h-[35vh] gap-2 px-2"
-                    key={index}
-                  >
-                    {page?.map((reward, index) => (
-                      <RewardItem
-                        img={reward.img}
-                        collected={reward.collected}
-                        day={`Day ${reward.day}`}
-                        key={index}
-                        onClickCollect={() => {
-                          handleClaim(
-                            reward?.day,
-                            reward?.type,
-                            Number(reward?.details?.amount) || 1
-                          );
-                        }}
-                        isActive={reward.isActive}
-                        name={reward.name}
-                        isMegaReward={reward.isMega}
-                      />
-                    ))}
-                  </div>
-                ))}
+                <Slider {...settings} className="w-full">
+                  {rewardsPages?.map((page, index) => (
+                    <div
+                      className="!grid grid-cols-3 overflow-auto max-h-[51dvh] gap-2 px-2"
+                      key={index}
+                    >
+                      {page?.map((reward, index) => (
+                        <RewardItem
+                          img={reward.img}
+                          collected={reward.collected}
+                          day={`Day ${reward.day}`}
+                          key={index}
+                          onClickCollect={() => {
+                            handleClaim(
+                              reward?.day,
+                              reward?.type,
+                              Number(reward?.details?.amount) || 1
+                            );
+                          }}
+                          isActive={reward.isActive}
+                          name={reward.name}
+                          isMegaReward={reward.isMega}
+                        />
+                      ))}
+                    </div>
+                  ))}
+                </Slider>
                 {/* <Slider /> */}
                 {/* <div className="w-full px-10 absolute bottom-4 left-0 right-0 z-11">
                   <div className="bg-[#EFC6AC] rounded-[10px] border-2 border-[#db8e5e] p-1">

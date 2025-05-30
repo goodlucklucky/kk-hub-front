@@ -36,7 +36,11 @@ export default function MissionPage() {
 
   return (
     <>
-      <div className={cn("flex flex-col flex-1 h-full justify-center items-center gap-y-5 px-3")}>
+      <div
+        className={cn(
+          "flex flex-col flex-1 h-full justify-center items-center gap-y-5 px-3"
+        )}
+      >
         <Image
           src={mainBack}
           alt="Main background"
@@ -60,7 +64,9 @@ export default function MissionPage() {
             <div className="bg-[#F5D6B1] rounded-2xl p-3 py-2.5 shadow-md border-2 border-[#A96415] flex flex-col">
               <div className="flex justify-center gap-1.5">
                 <MemoizedNavigationButton
-                  icon={activeComponent === "daily" ? starscoreClick : starscore}
+                  icon={
+                    activeComponent === "daily" ? starscoreClick : starscore
+                  }
                   label="Daily"
                   isActive={activeComponent === "daily"}
                   onClick={() => handleCategoryChange("daily")}

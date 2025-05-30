@@ -13,6 +13,7 @@ export enum TDailyRewardType {
   CHEST = "chest",
   SPINS = "spins",
   MEGA = "mega",
+  LOOT_BOX = "loot_box",
 }
 export type TDailyItem = {
   id: string;
@@ -92,7 +93,7 @@ export function useCollectRewards({
       day: number;
     }) => {
       const res = await baseInstance.post<TCollectRewardsResponse>(
-        `/bonus-service/daily-spin-reward/users-daily`,
+        `/bonus-service/daily-rewards/claims`,
         { sessionId, day: day }
       );
       return res?.data?.data;

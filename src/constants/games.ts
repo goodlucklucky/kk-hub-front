@@ -10,11 +10,33 @@ export const games = [
     category: "games",
   },
   {
-    key: "flappykokomo",
+    key: "flappy",
     name: "Flappy Kokomo",
     image: "/images/flappykokomo.png",
     link: "#",
     page: "/game/flappy",
+    type: "Games",
+    webtype: "nextjs",
+    category: "games",
+    isNew: true,
+  },
+  {
+    key: "chess",
+    name: "Koko Chess",
+    image: "/images/ChessSet.jpg",
+    link: "#",
+    page: "/game/chess",
+    type: "Games",
+    webtype: "nextjs",
+    category: "games",
+    isNew: true,
+  },
+  {
+    key: "tetris",
+    name: "Tetris",
+    image: "/images/tetris.png",
+    link: "#",
+    page: "/game/tetris",
     type: "Games",
     webtype: "nextjs",
     category: "games",
@@ -30,6 +52,8 @@ export const games = [
     webtype: "unity",
     category: "games",
   },
+
+  // rewards
   {
     key: "1m1",
     name: "Daily Claim",

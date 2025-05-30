@@ -37,8 +37,9 @@ import {
   useStoreTypes,
 } from "@/../services/store";
 
-import PaymentDialog from "@/app/(pages)/(default)/_components/dialogs/payment";
+// import PaymentDialog from "@/app/(pages)/(default)/_components/dialogs/payment";
 import Footer from "@/app/(pages)/(default)/_components/layout/footer";
+import ShopPayment from "@/app/(pages)/(default)/_components/dialogs/payment/screens/shop";
 
 // Types
 type StoreCategory = "featured" | "items" | "kokitos" | "social";
@@ -274,7 +275,7 @@ export default function StorePage() {
       {/* Only render the dialog when we have both a selected item and the dialog should be open */}
       <Footer footerCategory="game" />
       {selectedItem && (
-        <PaymentDialog
+        <ShopPayment
           isOpen={isSkinDialogOpen}
           onClose={closeSkinDialog}
           item={{
