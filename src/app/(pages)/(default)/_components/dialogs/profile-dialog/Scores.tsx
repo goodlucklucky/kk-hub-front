@@ -49,8 +49,8 @@ export default function ScoresSection() {
               data?.map((item) => (
                 <TournamentItem
                   key={item?.id}
-                  title={`${item?.game_key} - ${item?.name}`}
-                  message={item?.description}
+                  title={`${item?.name}`}
+                  message={`${item?.game_key} - ${item?.description}`}
                   color={`${item?.details.color}`}
                   score={item.score_summary?.yourTotalScore || 0}
                 />

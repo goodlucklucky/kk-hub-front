@@ -37,9 +37,9 @@ const TournamentItem: React.FC<TournamentItemProps> = ({
         className="w-full h-[36px] flex justify-between items-center px-2"
         style={{ backgroundColor: color }}
       >
-        <div className="flex items-center gap-x-1">
+        <div className="flex items-center gap-x-1 flex-1">
           {icon && <Image alt={alt} src={icon} />}
-          <p className="text-[#FFF4E6] text-[14px] font-made-tommy font-bold leading-normal tracking-[0.14px] whitespace-nowrap overflow-auto line-clamp-1">
+          <p className="text-[#FFF4E6] text-[14px] font-made-tommy font-bold leading-normal tracking-[0.14px] whitespace-nowrap overflow-auto line-clamp-1 flex-1">
             {title}
           </p>
         </div>
