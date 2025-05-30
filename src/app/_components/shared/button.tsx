@@ -7,7 +7,7 @@ export default function Button({ ...props }: TButtonProps) {
   if (props?.className?.includes("#24BE62")) {
     props.className = cn(
       props.className,
-      "drop-shadow-[0px_2px_0px_rgba(37,112,94,0.9)]"
+      "drop-shadow-[0px_1px_0px_rgba(37,112,94,0.9)]"
     );
   }
   return (

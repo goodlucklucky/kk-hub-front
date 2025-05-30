@@ -84,7 +84,7 @@ const TourDialog = ({ isOpen, onClose }: TourDialogProps) => {
                       Connect Wallet
                     </div>
                   </div>
-                  <div className="rounded-[5px] bg-[#7A5B6940] drop-shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] p-2 mx-auto flex gap-3 mb-3">
+                  <div className="rounded-[5px] bg-[#7A5B6940] drop-shadow-[0px_1px_0px_0px_rgba(0,0,0,0.20)] p-2 mx-auto flex gap-3 mb-3">
                     <Image src={metamask} alt="wallet" width={44} height={44} />
                     <Image
                       src={coinbase}
