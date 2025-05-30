@@ -14,7 +14,6 @@ import { cn } from "@/app/_lib/utils";
 import statsBack from "@assets/images/stats-back.png";
 import statsIcon from "@assets/images/stats-icon.png";
 import statsPanel from "@assets/images/stats-panel.png";
-import Header from "../../../(default)/_components/layout/header";
 import Button from "@/app/_components/shared/button";
 import { StatsWalletIcon } from "@/app/_assets/svg/stats-wallet";
 import { TopArrow } from "@/app/_assets/svg/top-arrow";
@@ -57,7 +56,11 @@ export default function StatsPage() {
         priority={false}
       />
       <Button className="bg-[url(/images/yellow-btn-bg.png)] bg-cover bg-center bg-no-repeat w-10 h-10 p-1 m-1 absolute top-20 right-0 flex items-center justify-center">
-        <QuestionMarkIcon width={20} height={20} className="w-[20px] h-[20px]" />
+        <QuestionMarkIcon
+          width={20}
+          height={20}
+          className="w-[20px] h-[20px]"
+        />
       </Button>
       <div
         className={cn(
@@ -149,10 +152,7 @@ export default function StatsPage() {
                     </span>
                   </div>
                 </div>
-                <PreviousResults
-                  leftColor="#653F5654"
-                  rightColor="#12652980"
-                />
+                <PreviousResults leftColor="#653F5654" rightColor="#12652980" />
                 <div className="flex-1 flex flex-col overflow-y-auto rounded-[13px] bg-[#653F5654] w-full p-2 gap-y-2 min-h-[50px]">
                   {data &&
                     data.data.map((item) => (

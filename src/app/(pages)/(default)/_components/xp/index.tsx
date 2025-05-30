@@ -14,14 +14,18 @@ export default function UserXp() {
   const pathname = usePathname();
 
   React.useEffect(() => {
-    const footer = document.querySelector('footer');
+    const footer = document.querySelector("footer");
     setHasFooter(!!footer);
   }, [pathname]);
 
   return (
     <>
       {hasFooter ? (
-        <XpBar currentXp={userXp?.xp ?? 0} maxXp={userXp?.level?.maxXp ?? 0} onClick={() => setIsXpOpen(true)} />
+        <XpBar
+          currentXp={userXp?.xp ?? 0}
+          maxXp={userXp?.level?.maxXp ?? 0}
+          onClick={() => setIsXpOpen(true)}
+        />
       ) : (
         <BackHomeBar />
       )}

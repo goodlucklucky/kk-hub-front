@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import Image from "next/image";
 //import components
 import Gifts from "../../(default)/_components/gifts";
@@ -16,15 +16,12 @@ import BankDialog from "../../(default)/_components/dialogs/bank-dialog";
 import ProfileDialog from "../../(default)/_components/dialogs/profile-dialog";
 import ChatDialog from "../../(default)/_components/dialogs/chat-dialog";
 import { useApp } from "@/app/_contexts/appContext";
-import Header from "../../(default)/_components/layout/header";
 import Footer from "../../(default)/_components/layout/footer";
 import { Button } from "@/app/_components/ui/button";
 import { QuestionMarkIcon, MsgIcon } from "@/app/_assets/svg/template";
 import { PlusIcon } from "@/app/_assets/svg/plus";
-import snakeHome from "@assets/images/snake-home.png";
-import flappyHome from "@assets/images/flappy-home.png";
 import { useRouter, useParams } from "next/navigation";
-import UserXp from "../../(default)/_components/xp";
+import { games_contents } from "@/constants/games_contents";
 
 export default function HomePage() {
   const {
@@ -50,6 +47,14 @@ export default function HomePage() {
   const router = useRouter();
   const { title } = useParams();
 
+  const game = useMemo(() => {
+    return games_contents?.find((game) => game?.key === title);
+  }, [title]);
+
+  const wallpaper = useMemo(() => {
+    return game?.wallpaper?.home || mainBack?.src;
+  }, [game?.wallpaper?.home]);
+
   return (
     <>
       <div
@@ -58,19 +63,23 @@ export default function HomePage() {
         )}
       >
         <Image
-          src={mainBack}
+          src={wallpaper}
           alt="Main background"
           className="absolute inset-0 w-full h-full -z-10 object-cover object-center"
           loading="lazy"
           priority={false}
+          width={900}
+          height={1080}
         />
-        <Image
-          src={forestBack}
-          alt="Forest background"
-          className="absolute inset-0 w-full h-[555px] top-[70px] -z-10 rotate-180"
-          loading="lazy"
-          priority={false}
-        />
+        {game?.wallpaper?.home2 && (
+          <Image
+            src={forestBack}
+            alt="Forest background"
+            className="absolute inset-0 w-full h-[555px] top-[70px] -z-10 rotate-180"
+            loading="lazy"
+            priority={false}
+          />
+        )}
         <Gifts setIsOpen={handleMintDialogToggle} setIsMinting={setIsMinting} />
 
         <div
@@ -99,22 +108,18 @@ export default function HomePage() {
             </div>
           </div>
           <div className="w-full flex-1 px-2 flex flex-col gap-y-2 justify-end items-center relative">
-            <Image
-              src={
-                title === "snake"
-                  ? snakeHome
-                  : title === "flappy"
-                    ? flappyHome
-                    : ""
-              }
-              alt={`${title} home`}
-              className={cn(
-                "absolute bottom-10 left-1/2 -translate-x-1/2 z-1 w-[250px] h-[250px]",
-                title === "flappy" && "bottom-20"
-              )}
-              width={250}
-              height={250}
-            />
+            {game?.wallpaper?.homeFront && (
+              <Image
+                src={game?.wallpaper?.homeFront}
+                alt={`${title} home`}
+                className={cn(
+                  "absolute bottom-10 left-1/2 -translate-x-1/2 z-1 w-[250px] h-[250px]",
+                  title === "flappy" && "bottom-20"
+                )}
+                width={250}
+                height={250}
+              />
+            )}
             <div className="rounded-[10px] border border-[#CED0DF] bg-[#B1B5CC] backdrop-blur-[12.5px] flex justify-center items-center h-10 w-full gap-x-1 z-10">
               <PlusIcon className="w-5 h-5" />
               <p className="z-10 uppercase text-white text-center font-bumper-sticker text-[18px] font-normal [text-shadow:0px_2px_0px_rgba(0,0,0,0.20)]">
@@ -127,7 +132,7 @@ export default function HomePage() {
             >
               <div className="bg-[url(/images/cyan-btn-bg.png)] h-full w-full bg-[length:100%_100%] bg-stretch bg-center bg-no-repeat flex justify-center relative items-center">
                 <p className="-mt-[10px] text-[#F4FFFF] text-center font-bumper-sticker text-[28px] font-normal [text-shadow:0px_2px_0px_rgba(0,0,0,0.20)] z-10">
-                  Play {title === "snake" ? "Snake" : "Flappy dunk"} now
+                  Play {game?.contents?.homePlay || ""} now
                 </p>
               </div>
             </Button>

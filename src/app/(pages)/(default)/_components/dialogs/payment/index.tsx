@@ -2,7 +2,7 @@
 
 //import modules
 import Image from "next/image";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 
 //import components
 import {
@@ -25,14 +25,6 @@ import { TItem } from "./type";
 import { useInAppTransfer } from "@/app/_hooks/useInAppTransfer";
 import toast from "react-hot-toast";
 import { useToken } from "../../../_context/tokenContext";
-import { useBuyStore } from "../../../../../../../services/store";
-import { useGeneral } from "@/app/_providers/generalProvider";
-
-type TDialogProps = {
-  item: TItem;
-  isOpen: boolean;
-  onClose: () => void;
-};
 
 type DialogState =
   | "initial"
@@ -43,42 +35,43 @@ type DialogState =
   | "error"
   | "loading";
 
-export default function PaymentDialog({ isOpen, item, onClose }: TDialogProps) {
-  const [dialogState, setDialogState] = useState<DialogState>("initial");
-  const toWallet = useMemo(
-    () => process.env.NEXT_PUBLIC_STORE_WALLET as `0x${string}`,
-    []
+type TDialogProps = {
+  item: TItem;
+  isOpen: boolean;
+  onClose: () => void;
+
+  initial_state?: "initial" | "confirm";
+
+  to_wallet: `0x${string}`;
+  handleConfirm: (_: {
+    txHashes: string;
+    payment_method?: "in-app" | "external";
+  }) => Promise<void>;
+
+  comfirm_content?: {
+    title?: React.ReactNode | string;
+    itemTime?: React.ReactNode | string;
+    description?: React.ReactNode | string;
+    button?: React.ReactNode | string;
+  };
+};
+
+export default function PaymentDialog({
+  isOpen,
+  item,
+  onClose,
+  initial_state,
+
+  to_wallet: toWallet,
+  handleConfirm,
+  comfirm_content,
+}: TDialogProps) {
+  const [dialogState, setDialogState] = useState<DialogState>(
+    initial_state || "initial"
   );
-  const { sessionId } = useGeneral();
 
   const { inAppTransfer } = useInAppTransfer();
   const { transfer: externalTransfer } = useToken();
-  const { mutateAsync: confirm } = useBuyStore();
-
-  const handleConfirm = useCallback(
-    async ({
-      txHashes,
-      payment_method = "in-app",
-    }: {
-      txHashes: string;
-      payment_method?: "in-app" | "external";
-    }) => {
-      try {
-        await confirm({
-          txHash: txHashes,
-          payment_item_type: "store",
-          price: item?.price || 0,
-          item_id: item?.id,
-          payment_method,
-          sessionId,
-        });
-      } catch (error) {
-        // console.error("Error during confirmation:", error);
-        throw error;
-      }
-    },
-    [confirm, item?.id, item?.price, sessionId]
-  );
 
   const handleContinue = useCallback(() => {
     setDialogState("confirm");
@@ -90,8 +83,7 @@ export default function PaymentDialog({ isOpen, item, onClose }: TDialogProps) {
 
       const { data, error } = await inAppTransfer({
         to: toWallet,
-        // amount: item?.price || 0,
-        amount: 0.05,
+        amount: item?.price || 0,
       });
       if (error) {
         toast.error(error);
@@ -109,7 +101,7 @@ export default function PaymentDialog({ isOpen, item, onClose }: TDialogProps) {
       // console.log("Error during payment:", error);
       setDialogState("error");
     }
-  }, [toWallet, inAppTransfer, handleConfirm]);
+  }, [item?.price, toWallet, inAppTransfer, handleConfirm]);
 
   const handleExternalPayment = useCallback(async () => {
     try {
@@ -131,9 +123,9 @@ export default function PaymentDialog({ isOpen, item, onClose }: TDialogProps) {
   }, [toWallet, item?.price, externalTransfer, handleConfirm]);
 
   const handleClose = useCallback(() => {
-    setDialogState("initial");
+    setDialogState(initial_state || "initial");
     onClose();
-  }, [onClose]);
+  }, [onClose, initial_state]);
 
   const renderDialogContent = () => {
     switch (dialogState) {
@@ -155,6 +147,7 @@ export default function PaymentDialog({ isOpen, item, onClose }: TDialogProps) {
             handlePay={handleInAppPay}
             onDeposit={() => setDialogState("payment")}
             onPayDirect={() => setDialogState("payment")}
+            content={comfirm_content}
           />
         );
 

@@ -8,7 +8,11 @@ import {
   useDailySpins,
 } from "../../../../../../services/spins";
 import { Dialog } from "@radix-ui/react-dialog";
-import { DialogContent, DialogTrigger, DialogClose } from "@/app/_components/ui/dialog";
+import {
+  DialogContent,
+  DialogTrigger,
+  DialogClose,
+} from "@/app/_components/ui/dialog";
 import { ConnectButton } from "@/app/_components/shared/connect-button";
 import Button from "@/app/_components/shared/button";
 import { cn } from "@/app/_lib/utils";
@@ -96,7 +100,7 @@ export default function MoreSpins({
                 src={banner}
                 alt="banner"
                 className={cn(
-                  "w-36 h-16 scale-x-[1.5] absolute z-10 pointer-events-none mx-auto",
+                  "w-36 h-16 scale-x-[1.5] absolute z-10 pointer-events-none mx-auto"
                 )}
               />
               <span className="text-[#491F36] text-center [-webkit-text-stroke:1px_rgba(217,127,79,0.40)] font-bumper-sticker text-[25px] font-normal leading-normal tracking-[0.56px] lowercase z-20">
@@ -131,10 +135,14 @@ export default function MoreSpins({
                 <div className="w-full rounded-b-[14px] p-[10px] bg-[#7450611A]">
                   <Button
                     onClick={handleClaim}
-                    disabled={!dailySpins || (dailySpins?.data?.length || 0) > 0}
-                    className='rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center'
+                    disabled={
+                      !dailySpins || (dailySpins?.data?.length || 0) > 0
+                    }
+                    className="rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center"
                   >
-                    <span className='text-white text-sm font-bold py-[1px]'>Claim for Free</span>
+                    <span className="text-white text-sm font-bold py-[1px]">
+                      Claim for Free
+                    </span>
                   </Button>
                 </div>
               </div>
@@ -153,11 +161,15 @@ export default function MoreSpins({
                   </div>
                   <div className="w-full rounded-b-[14px] p-[10px] bg-[#7450611A]">
                     <Button
-                      onClick={() => (myScore || 0) >= 25000 && handleBuySpins?.()}
+                      onClick={() =>
+                        (myScore || 0) >= 25000 && handleBuySpins?.()
+                      }
                       disabled={(myScore || 0) < 25000}
-                      className='rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center'
+                      className="rounded-[4px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center"
                     >
-                      <span className='text-white text-sm font-bold py-[1px]'>Buy Spin</span>
+                      <span className="text-white text-sm font-bold py-[1px]">
+                        Buy Spin
+                      </span>
                     </Button>
                   </div>
                 </div>

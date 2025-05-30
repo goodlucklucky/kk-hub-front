@@ -36,3 +36,14 @@ export const bumperStickerFont = localFont({
     },
   ],
 });
+
+export const arcadeClassicFont = localFont({
+  variable: "--font-arcade-classic",
+  src: [
+    {
+      path: "../../../public/fonts/arcade-classic.woff",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+});

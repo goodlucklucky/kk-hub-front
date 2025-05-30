@@ -7,74 +7,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  // async rewrites() {
-  //   const gameRewrites =
-  //     games?.flatMap((game) => {
-  //       // Skip if link is # or invalid
-  //       if (game.link === "#" || !game.link) {
-  //         return [];
-  //       }
-
-  //       const baseRewrites = [
-  //         // Main game page rewrite
-  //         {
-  //           source: `/games/${game.page}/:path*`,
-  //           destination: `${game.link}/:path*`,
-  //         },
-  //         // Root path for the game
-  //         {
-  //           source: `/games/${game.page}`,
-  //           destination: game.link,
-  //         },
-  //       ];
-
-  //       // Special handling for Next.js apps
-  //       if (game.webtype === "nextjs") {
-  //         return [
-  //           ...baseRewrites,
-  //           // Proxy all static assets from root
-  //           {
-  //             source: "/_next/:path*",
-  //             destination: `${game.link}/_next/:path*`,
-  //           },
-  //           {
-  //             source: "/images/:path*",
-  //             destination: `${game.link}/images/:path*`,
-  //           },
-  //           // Handle Next.js image optimization
-  //           {
-  //             source: "/_next/image",
-  //             destination: `${game.link}/_next/image`,
-  //           },
-  //         ];
-  //       }
-
-  //       // Unity-specific rewrites
-  //       if (game.webtype === "unity") {
-  //         return [
-  //           ...baseRewrites,
-  //           {
-  //             source: "/games/Build/:path*",
-  //             destination: `${game.link}/Build/:path*`,
-  //           },
-  //           {
-  //             source: "/games/TemplateData/:path*",
-  //             destination: `${game.link}/TemplateData/:path*`,
-  //           },
-  //           {
-  //             source: "/games/ServiceWorker.js",
-  //             destination: `${game.link}/ServiceWorker.js`,
-  //           },
-  //         ];
-  //       }
-
-  //       return baseRewrites;
-  //     }) || [];
-
-  //   return gameRewrites;
-  // },
-
-  // Required for Next.js image optimization to work
   images: {
     remotePatterns: [
       ...(games
@@ -95,6 +27,12 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
+        pathname: "/**", // Allow all paths under this domain
+      },
+      // Add i.pravatar.cc domain explicitly
+      {
+        protocol: "https",
+        hostname: "i.pravatar.cc",
         pathname: "/**", // Allow all paths under this domain
       },
     ] as RemotePattern[],
@@ -165,6 +103,7 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+  devIndicators: false,
 };
 
 export default nextConfig;

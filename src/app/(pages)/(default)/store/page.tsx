@@ -36,7 +36,8 @@ import {
   useStoreItems,
   useStoreTypes,
 } from "@/../services/store";
-import PaymentDialog from "../_components/dialogs/payment";
+// import PaymentDialog from "../_components/dialogs/payment";
+import ShopPayment from "../_components/dialogs/payment/screens/shop";
 
 // Types
 type StoreCategory = "featured" | "items" | "kokitos" | "social";
@@ -271,7 +272,7 @@ export default function StorePage() {
       </div>
       {/* Only render the dialog when we have both a selected item and the dialog should be open */}
       {selectedItem && (
-        <PaymentDialog
+        <ShopPayment
           isOpen={isSkinDialogOpen}
           onClose={closeSkinDialog}
           item={{

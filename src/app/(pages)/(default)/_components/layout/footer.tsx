@@ -26,6 +26,8 @@ export default function Footer({
   footerCategory: string;
 }) {
   const pathname = usePathname();
+  // const params = useParams();
+  // const title = params?.title as string;
 
   const isPlayRoute = (path: string) => {
     return pathname?.includes(path);

@@ -68,6 +68,7 @@ export default function TasksPage() {
   const handleMint = useCallback(async () => {
     setIsMintDialogOpen(true);
     setIsMinting(true);
+
     try {
       await claimAirDrop({
         wallet: `${account?.address}`,

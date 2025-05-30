@@ -130,7 +130,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
                   "flex gap-2 rounded-md w-fit px-2",
                   "-mt-1 -ml-1 ",
                   "bg-[var(--color-blue)] shadow-[0_0.25ch_rgba(0,0,0,0.2)]",
-                  "text-white",
+                  "text-white"
                 )}
               >
                 <p className="2xs:pt-0.5">CLAIM OG</p>
@@ -179,7 +179,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
                   "flex gap-2 rounded-md w-fit px-2",
                   "-mt-1 -ml-1 ",
                   "bg-[var(--color-yellow)] shadow-[0_0.25ch_rgba(0,0,0,0.2)]",
-                  "text-[var(--color-golden-brown)]",
+                  "text-[var(--color-golden-brown)]"
                 )}
               >
                 <p className="2xs:pt-0.5">FREE KOKOMO NFT!</p>

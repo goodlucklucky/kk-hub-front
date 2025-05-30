@@ -28,9 +28,7 @@ export default function NavigationButton({
         isActive ? "bg-[#653F56]" : "bg-[#E3BEAA] border-2 border-[#91737733]"
       )}
     >
-      {icon && (
-        <Image src={icon} alt={label.toLowerCase()} className="w-5" />
-      )}
+      {icon && <Image src={icon} alt={label.toLowerCase()} className="w-5" />}
       <span
         className={cn(
           "drop-shadow-md text-[16px]/[16px] font-made-tommy font-bold",

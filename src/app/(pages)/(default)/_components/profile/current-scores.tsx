@@ -1,6 +1,6 @@
 "use client";
 
-import { TopArrow } from "@/app/_assets/svg/top-arrow";
+// import { TopArrow } from "@/app/_assets/svg/top-arrow";
 import TabButton from "./tab-button";
 
 interface CurrentScoresProps {

@@ -9,7 +9,9 @@ export default function Layout({
   return (
     <div className={cn("min-h-dvh flex flex-col max-h-dvh")}>
       <Header />
-      <main className="flex flex-col h-[calc(100vh-172px)] z-0">{children}</main>
+      <main className="flex flex-col h-[calc(100vh-172px)] z-0">
+        {children}
+      </main>
       <Footer footerCategory="home" />
     </div>
   );

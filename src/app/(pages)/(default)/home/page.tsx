@@ -101,7 +101,9 @@ export default function HomePage() {
               <div
                 className={cn(
                   "py-1.5 flex justify-center rounded-tl-2xl",
-                  tabOpen === "play" ? "bg-white text-golden-brown" : "bg-golden-brown text-white"
+                  tabOpen === "play"
+                    ? "bg-white text-golden-brown"
+                    : "bg-golden-brown text-white"
                 )}
                 onClick={() => setTabOpen("play")}
               >
@@ -113,12 +115,16 @@ export default function HomePage() {
               <div
                 className={cn(
                   "py-1.5 flex justify-center rounded-tr-2xl",
-                  tabOpen === "favourites" ? "bg-white text-golden-brown" : "bg-golden-brown text-white"
+                  tabOpen === "favourites"
+                    ? "bg-white text-golden-brown"
+                    : "bg-golden-brown text-white"
                 )}
                 onClick={() => setTabOpen("favourites")}
               >
                 <div className="flex gap-x-2 items-center">
-                  <StarIcon fill={tabOpen === "favourites" ? "#5F3F57" : "#FFF"} />
+                  <StarIcon
+                    fill={tabOpen === "favourites" ? "#5F3F57" : "#FFF"}
+                  />
                   <span>FAVOURITES</span>
                 </div>
               </div>

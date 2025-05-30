@@ -27,7 +27,12 @@ export default function RandomTable() {
     };
   };
 
-  const [rows, setRows] = useState<PrizeRow[]>([generateRandomRow(), generateRandomRow(), generateRandomRow(), generateRandomRow()]);
+  const [rows, setRows] = useState<PrizeRow[]>([
+    generateRandomRow(),
+    generateRandomRow(),
+    generateRandomRow(),
+    generateRandomRow(),
+  ]);
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;

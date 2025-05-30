@@ -52,3 +52,45 @@ export function useAirdropCheck() {
         .then((res) => res.data),
   });
 }
+
+export interface IAirdropRes {
+  data: {
+    data: IAirdrop[];
+    total: number;
+    size: number;
+    start: number;
+    end: number;
+  };
+}
+
+export interface IAirdrop {
+  id: string;
+  sessionId: string;
+  walletAddress: string;
+  type: string;
+  isClaimed: boolean;
+  contractAddress: string;
+  tokenId: string;
+  game_key: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export function useAirdrop({
+  sessionId,
+  type,
+}: {
+  sessionId: TSessionId;
+  type?: string;
+}) {
+  return useQuery({
+    queryKey: ["airdrop"],
+    queryFn: () =>
+      baseInstance
+        .get<IAirdropRes>(`/nft-service/nft/airdrop/all`, {
+          params: { sessionId, type },
+        })
+        .then((res) => res?.data?.data),
+    enabled: !!sessionId,
+  });
+}

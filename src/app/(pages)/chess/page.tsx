@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Header from "../(default)/_components/layout/header";
-import UserXp from "../(default)/_components/xp";
 import { GiftSlide } from "../(default)/_components/gifts/slides";
 import Button from "@/app/_components/shared/button";
 import { MsgIcon, QuestionMarkIcon } from "@/app/_assets/svg/template";

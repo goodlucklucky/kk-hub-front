@@ -108,7 +108,9 @@ export function Select({
               }}
               className={cn(
                 "flex items-center gap-1 p-1 cursor-pointer font-made-tommy text-[#5F3F57] font-bold text-[14px] rounded-[7px]",
-                selected?.value != option?.value ? "bg-[#eed1b8] border-[2px] border-[#917377]" : "pl-1.5"
+                selected?.value != option?.value
+                  ? "bg-[#eed1b8] border-[2px] border-[#917377]"
+                  : "pl-1.5"
               )}
             >
               {option.icon}

@@ -43,9 +43,7 @@ export default function StatsPage() {
 
   return (
     <div
-      className={cn(
-        "flex flex-col flex-1 h-full items-center gap-y-5 px-2"
-      )}
+      className={cn("flex flex-col flex-1 h-full items-center gap-y-5 px-2")}
     >
       <Image
         src={statsBack}
@@ -65,7 +63,11 @@ export default function StatsPage() {
         priority={false}
       />
       <Button className="bg-[url(/images/yellow-btn-bg.png)] bg-cover bg-center bg-no-repeat w-10 h-10 p-1 m-1 absolute top-20 right-0 flex items-center justify-center">
-        <QuestionMarkIcon width={20} height={20} className="w-[20px] h-[20px]" />
+        <QuestionMarkIcon
+          width={20}
+          height={20}
+          className="w-[20px] h-[20px]"
+        />
       </Button>
       <div className="bg-[url(/images/tournament-panel.png)] bg-[size:100%_100%] fixed top-36 left-3 right-3 bottom-3 flex flex-col gap-1.5 bg-center bg-no-repeat z-10 rounded-3xl mx-auto p-4 pt-3">
         <div className="text-[#5F3F57] text-center font-made-tommy text-[22px] font-extrabold tracking-[0.22px]">
@@ -91,7 +93,7 @@ export default function StatsPage() {
             </span>
           </div>
         </div>
-        <div 
+        <div
           className="p-2 px-4 rounded-full bg-[#EED1B8] flex text-[14px] text-[#745061] font-made-tommy font-semibold items-center justify-between w-full"
           onClick={() => {
             router.push(`/game/${title}/tournaments/result-details`);

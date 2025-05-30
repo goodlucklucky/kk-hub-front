@@ -5,6 +5,14 @@ import Button from "@/app/_components/shared/button";
 import { CloseIcon } from "@/app/_assets/svg/close";
 import { DollarScoreIcon } from "@/app/_assets/svg/dollar";
 import { formatNumber } from "@/app/_utils/number";
+import { cn } from "@/app/_lib/utils";
+
+const defaultContent = {
+  title: "CONFIRM PURCHASE",
+  itemTime: "Buy an Item",
+  description: "",
+  button: "PAY",
+};
 
 export type TClose = {
   price?: number;
@@ -14,6 +22,13 @@ export type TClose = {
   handlePay?: () => Promise<void> | void;
   onDeposit?: () => Promise<void> | void;
   onPayDirect?: () => Promise<void> | void;
+
+  content?: {
+    title?: React.ReactNode | string;
+    itemTime?: React.ReactNode | string;
+    description?: React.ReactNode | string;
+    button?: React.ReactNode | string;
+  };
 };
 
 export default function ConfirmPayment({
@@ -24,6 +39,8 @@ export default function ConfirmPayment({
   handlePay,
   onDeposit,
   onPayDirect,
+
+  content,
 }: TClose) {
   const [isPending, setIsPending] = useState(false);
 
@@ -45,15 +62,20 @@ export default function ConfirmPayment({
           <CloseIcon onClick={onClose} />
         </div>
         <div className="flex flex-col justify-center items-center">
-          <span className="text-[#491F36] font-bumper-sticker text-[22px] pt-2 pb-4 font-bold leading-normal">
-            CONFIRM PURCHASE
+          <span
+            className={cn(
+              "text-[#5F3F57] text-center font-bumper-sticker text-[26px]",
+              "flex justify-center items-center gap-1.5"
+            )}
+          >
+            {content?.title || defaultContent.title}
           </span>
         </div>
         <div className="px-2 flex flex-col gap-y-2">
-          <div>
-            <div className="bg-[#E3BEAA] rounded-t-[22px] p-2 w-full flex flex-col gap-y-1">
+          <div className="flex flex-col rounded-3xl contain-content bg-[#E3BEAA] ">
+            <div className="p-2 w-full flex flex-col gap-y-1">
               <span className="text-[#6C4C5F] font-made-tommy text-[16px] font-bold leading-normal text-center">
-                Confirm: Buy an Item
+                Confirm: {content?.itemTime || defaultContent?.itemTime}
               </span>
               <div className="flex justify-center items-center gap-x-2 font-made-tommy text-[#5F3F57] text-[22px] font-bold leading-normal">
                 <DollarScoreIcon />
@@ -63,11 +85,20 @@ export default function ConfirmPayment({
                 })}
               </div>
             </div>
-            <div className="bg-[#5F3F57] rounded-b-[22px] p-1 w-full flex flex-col gap-y-1">
-              <span className="text-[#E3BEAA] font-made-tommy text-[16px] font-bold leading-normal text-center">
-                {title?.toUpperCase?.()}
-              </span>
-            </div>
+            {content?.description ? (
+              <>
+                <hr className="border-[rgba(138,105,114,0.20)] border-1" />
+                <p className="text-[rgba(95,63,87,0.75)] leading-[28px] text-center font-bumper-sticker text-[10px]">
+                  {content?.description || defaultContent?.description}
+                </p>
+              </>
+            ) : (
+              <div className="bg-[#5F3F57] p-1 w-full flex flex-col gap-y-1">
+                <span className="text-[#E3BEAA] font-made-tommy text-[16px] font-bold leading-normal text-center">
+                  {title?.toUpperCase?.()}
+                </span>
+              </div>
+            )}
           </div>
           <Button
             className="rounded-[10px] border w-[80%] mx-auto border-[#91FF6A] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] p-2 py-1 flex flex-col"
@@ -75,7 +106,9 @@ export default function ConfirmPayment({
             disabled={isPending}
           >
             <span className="text-[#EFF6FF] text-center text-shadow-[0px_1px_0px_rgba(62,36,105,0.20)] font-made-tommy text-[18px]/[18px] font-extrabold leading-normal tracking-[0.4px]">
-              {isPending ? "PAYING..." : "PAY"}
+              {isPending
+                ? "PAYING..."
+                : content?.button || defaultContent?.button}
             </span>
           </Button>
         </div>

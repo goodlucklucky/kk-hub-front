@@ -8,17 +8,9 @@ import { LoaderIcon } from "react-hot-toast";
 // import components
 import { Dialog, DialogPortal } from "@/app/_components/ui/dialog";
 import NavigationButton from "@/app/(pages)/(default)/_components/profile/navigateBtn";
-import EarningsSection from "../profile/earnings-section";
-import CurrentScores from "../profile/current-scores";
-import PreviousResults from "../profile/previous-results";
-import TournamentItem from "../profile/tournament-item";
-import InventorySection from "../profile/inventory-section";
 import Button from "@/app/_components/shared/button";
-import Social from "../profile/social";
 
 // import providers
-import { useGeneral } from "@/app/_providers/generalProvider";
-import { useApp } from "@/app/_contexts/appContext";
 
 // import assets
 import { CloseIcon } from "@/app/_assets/svg/close";
@@ -39,91 +31,50 @@ import starscoreClick from "@assets/svg/star-score-click.svg";
 import inventory from "@assets/svg/inventory.svg";
 import inventoryClick from "@assets/svg/inventory-click.svg";
 
-import lootbox1 from "@assets/images/loot1.png";
-import lootbox2 from "@assets/images/loot2.png";
-import lootbox3 from "@assets/images/loot3.png";
-import lootbox4 from "@assets/images/loot4.png";
-import pet1 from "@assets/images/pet1.png";
-import pet2 from "@assets/images/pet2.png";
-import pet3 from "@assets/images/pet3.png";
-import pet4 from "@assets/images/pet4.png";
-import stars_svg from "@assets/svg/stars_svg.svg";
-import money_sack from "@assets/svg/money-sack.svg";
-import caution_sign from "@assets/svg/caution-sign.svg";
+import { useGeneral } from "@/app/_providers/generalProvider";
+import { useApp } from "@/app/_contexts/appContext";
+import Inventory from "./Inventory";
+// import pet1 from "@assets/images/pet1.png";
+// import pet2 from "@assets/images/pet2.png";
+// import pet3 from "@assets/images/pet3.png";
+// import pet4 from "@assets/images/pet4.png";
+import Social from "../../profile/social";
+import ScoresSection from "./Scores";
 
-const lootboxes = [
-  {
-    id: 1,
-    title: "LOOTBOX",
-    name: "Tier 1",
-    image: lootbox1,
-    badge: 4,
-    nameColor: "#745162",
-    titleColor: "#745162",
-  },
-  {
-    id: 2,
-    title: "LOOTBOX",
-    name: "Tier 2",
-    image: lootbox2,
-    badge: 4,
-    nameColor: "#126529",
-    titleColor: "#745162",
-  },
-  {
-    id: 3,
-    title: "LOOTBOX",
-    name: "Tier 3",
-    image: lootbox3,
-    badge: 4,
-    nameColor: "#3C2BA0",
-    titleColor: "#745162",
-  },
-  {
-    id: 4,
-    title: "LOOTBOX",
-    name: "Tier 4",
-    image: lootbox4,
-    badge: 1,
-    nameColor: "#3C2BA0",
-    titleColor: "#745162",
-  },
-];
-
-const pets = [
-  {
-    id: 1,
-    title: "OG NFT",
-    name: "NFT",
-    image: pet1,
-    nameColor: "#853834",
-    titleColor: "#853834",
-  },
-  {
-    id: 2,
-    title: "COLLECTIBLE",
-    name: "NFT",
-    image: pet2,
-    nameColor: "#853834",
-    titleColor: "#853834",
-  },
-  {
-    id: 3,
-    title: "SLUG",
-    name: "NFT",
-    image: pet3,
-    nameColor: "#71335E",
-    titleColor: "#71335E",
-  },
-  {
-    id: 4,
-    title: "FERRET",
-    name: "NFT",
-    image: pet4,
-    nameColor: "#608532",
-    titleColor: "#608532",
-  },
-];
+// const pets = [
+//   {
+//     id: 1,
+//     title: "OG NFT",
+//     name: "NFT",
+//     image: pet1,
+//     nameColor: "#853834",
+//     titleColor: "#853834",
+//   },
+//   {
+//     id: 2,
+//     title: "COLLECTIBLE",
+//     name: "NFT",
+//     image: pet2,
+//     nameColor: "#853834",
+//     titleColor: "#853834",
+//   },
+//   {
+//     id: 3,
+//     title: "SLUG",
+//     name: "NFT",
+//     image: pet3,
+//     nameColor: "#71335E",
+//     titleColor: "#71335E",
+//   },
+//   {
+//     id: 4,
+//     title: "FERRET",
+//     name: "NFT",
+//     image: pet4,
+//     nameColor: "#608532",
+//     titleColor: "#608532",
+//   },
+// ];
 
 //interface
 interface ProfileDialogProps {
@@ -144,7 +95,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
   }, [user?.username]);
 
   const handleUsernameEdit = () => {
-    const input = document.querySelector('.username-input') as HTMLInputElement;
+    const input = document.querySelector(".username-input") as HTMLInputElement;
     if (input) {
       input.readOnly = false;
       input.focus();
@@ -152,7 +103,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
   };
 
   const handleUsernameSave = () => {
-    const input = document.querySelector('.username-input') as HTMLInputElement;
+    const input = document.querySelector(".username-input") as HTMLInputElement;
     if (input) {
       input.readOnly = true;
       // TODO: make an API call to update the username
@@ -160,7 +111,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleUsernameSave();
     }
   };
@@ -170,76 +121,9 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
       case "social":
         return <Social />;
       case "scores":
-        return (
-          <div className="flex-1 flex flex-col gap-2">
-            <EarningsSection amount="235.50" />
-            <CurrentScores activeTab="daily" onTabChange={() => {}} />
-            <div className="w-full overflow-y-hidden flex-1 rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] pt-1">
-              <div className="w-full h-full overflow-y-auto p-2 pt-1">
-                <div className="w-full flex flex-col gap-2 bg-[#EED1B8] rounded-[22px] p-3 overflow-y-auto">
-                  <TournamentItem
-                    alt="stars_svg"
-                    color="#CC8A36"
-                    icon={stars_svg}
-                    title="Special Tournament"
-                    score={0}
-                    message="👎 You have not joined this challenge."
-                    path="/game/snake/tournaments"
-                  />
-                  <TournamentItem
-                    alt="money_sack"
-                    color="#608532"
-                    icon={money_sack}
-                    title="$10 Entry Tournament"
-                    score={872}
-                    message="🤑 Current Estimated Earnings: $100"
-                    path="/game/snake/tournaments"
-                  />
-                  <TournamentItem
-                    alt="caution_sign"
-                    color="#853834"
-                    icon={caution_sign}
-                    title="$1 Entry Tournament"
-                    score={872}
-                    message="‼️ Improve your Score to qualify for a prize!"
-                    path="/game/snake/tournaments"
-                  />
-                  <TournamentItem
-                    alt="money_sack"
-                    color="#608532"
-                    icon={money_sack}
-                    title="Koko Tower"
-                    score={872}
-                    message="🤑 Current Estimated Earnings: $100"
-                    path="/game/snake/tournaments"
-                  />
-                </div>
-              </div>
-            </div>
-            <PreviousResults leftColor="#653F5654" rightColor="#12652980" />
-          </div>
-        );
+        return <ScoresSection />;
       case "inventory":
-        return (
-          <div className="w-full bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-scroll">
-            <InventorySection
-              title="Lootboxes"
-              count={13}
-              items={lootboxes}
-              itemPadding="px-2 py-2"
-              itemWidth={50}
-              itemHeight={50}
-            />
-            <InventorySection
-              title="Items & Koko Pets"
-              count={10}
-              items={pets}
-              itemPadding="px-1 pt-1 pb-1"
-              itemWidth={58}
-              itemHeight={58}
-            />
-          </div>
-        );
+        return <Inventory />;
       default:
         return <Social />;
     }
@@ -262,7 +146,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                 className=" w-[70px] h-[70px]"
               />
               <div className="flex-1">
-                <div className="border-2 border-[#CDAA98] bg-[#D9B8A3] flex justify-between items-center rounded-md w-full p-0.5 border-[2px] border-[#CDAA98] gap-1">
+                <div className="bg-[#D9B8A3] flex justify-between items-center rounded-md w-full p-0.5 border-[2px] border-[#CDAA98] gap-1">
                   <input
                     type="text"
                     value={username}
@@ -272,7 +156,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                     className="username-input text-[#5F3F57] font-made-tommy font-[800] text-[15px] pl-1 flex-1 bg-transparent outline-none"
                     readOnly
                   />
-                  <div 
+                  <div
                     className="bg-[#917377] w-[24px] h-[24px] p-[3.7px] rounded-[0px_3px_3px_0px] cursor-pointer"
                     onClick={handleUsernameEdit}
                   >
@@ -288,7 +172,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                       {isLoadingUserXp ? (
                         <LoaderIcon className="size-5" />
                       ) : (
-                        <>{userXp?.level?.order || 1}</>
+                        <>{userXp?.level?.name || 1}</>
                       )}
                     </p>
                   </div>
@@ -301,7 +185,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                         {isLoadingUserXp ? (
                           <LoaderIcon className="size-5" />
                         ) : (
-                          <>{userXp?.level?.name || "-"}</>
+                          <>{userXp?.level?.order || "-"}</>
                         )}
                       </p>
                     </div>

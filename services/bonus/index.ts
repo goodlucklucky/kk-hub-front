@@ -328,7 +328,7 @@ export function useCheckUserBonuses(
             params: { userId, bonusName },
             signal: abortController?.signal,
           })
-          .then((res) => res.data)
+          .then((res) => res?.data)
           .catch(() => null),
     })),
   });

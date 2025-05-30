@@ -12,14 +12,7 @@ import Image from "next/image";
 import BackgroundImg from "../assets/snake-game-bg.png";
 import BackgroundLeaf from "../assets/Background_InGame_Layer.png";
 import { useGeneral } from "@/app/_providers/generalProvider";
-import { useRouter, useSearchParams } from "next/navigation";
-import {
-  ChallengeStatusEnum,
-  IPostScoreResultsDetails,
-  useGetChallenge,
-  usePayFee,
-  usePostScore,
-} from "../services/challenges";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { trackEvent } from "@/app/_lib/mixpanel";
 import { useGameStore } from "../store/game-store";
@@ -29,6 +22,14 @@ import GameOver from "../components/game-over";
 import Onboarding from "../components/onboarding";
 import Cosmetics from "../components/cosmetics";
 import { availableBalance } from "@/app/_utils/number";
+import {
+  ChallengeStatusEnum,
+  IPostScoreResultsDetails,
+  useGetChallenge,
+  usePayFee,
+  usePostScore,
+} from "@/../services/game/challenges";
+import { gameKeys } from "../../../../tournaments/constants/gameKeys";
 
 const GameBoardV2 = dynamic(() => import("../components/game-board-2"), {
   ssr: false,
@@ -57,11 +58,23 @@ export default function SnakePlayScreen() {
     [searchParams]
   );
   const source = useMemo(() => searchParams.get("source"), [searchParams]);
+
+  const params = useParams();
+  const title = useMemo(() => params?.title, [params?.title]);
+  const gameKey = useMemo(
+    () => gameKeys[title as keyof typeof gameKeys],
+    [title]
+  );
   const {
     data: challenge,
     error: challengeError,
     refetch: refetchChallenge,
-  } = useGetChallenge(challenge_id!, sessionId, ChallengeStatusEnum.ACTIVE);
+  } = useGetChallenge(
+    challenge_id!,
+    sessionId,
+    ChallengeStatusEnum.ACTIVE,
+    gameKey
+  );
 
   const { mutateAsync: postScore, isPending } = usePostScore();
   const { mutateAsync: payFee } = usePayFee({

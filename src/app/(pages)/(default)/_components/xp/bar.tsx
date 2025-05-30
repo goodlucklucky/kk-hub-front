@@ -2,8 +2,6 @@ import React from "react";
 
 import { cn } from "@/app/_lib/utils";
 
-import Image from "next/image";
-import headerBack from "@assets/images/header-back.png";
 import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 import { useParams, useRouter } from "next/navigation";
 
@@ -59,19 +57,20 @@ const XpProgress: React.FC<{ currentXp: number; maxXp: number }> = ({
 export const XpBar = ({ currentXp, maxXp, className, onClick }: XpBarProps) => {
   return (
     <div
+      style={{ backdropFilter: "blur(5px) saturate(0.7) brightness(2)" }}
       className={cn(
-        "relative shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)] z-1",
+        "relative shadow-[0px_2px_2px_0px_rgba(62,36,105,0.20)] bg-white/45 z-[1]",
         className
       )}
       onClick={onClick}
     >
-      <Image
+      {/* <Image
         src={headerBack}
         alt="header-back"
         width={75}
         height={50}
         className="absolute size-full inset-0 !-z-[1]"
-      />
+      /> */}
       <div
         className={cn(
           "flex items-center gap-3",
@@ -84,7 +83,6 @@ export const XpBar = ({ currentXp, maxXp, className, onClick }: XpBarProps) => {
     </div>
   );
 };
-
 
 const LeftBack: React.FC<{ className?: string }> = ({ className }) => {
   const router = useRouter();
@@ -106,11 +104,7 @@ const LeftBack: React.FC<{ className?: string }> = ({ className }) => {
   );
 };
 
-export const BackHomeBar = ({
-  className,
-}: {
-  className?: string;
-}) => {
+export const BackHomeBar = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
