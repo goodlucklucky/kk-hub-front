@@ -11,6 +11,10 @@ export function roundNumber(num: number, precision: number = 2) {
   return Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision);
 }
 
+export function formatAddress(address?: string) {
+  return address ? `${address?.slice?.(0, 4)}...${address?.slice?.(-4)}` : "";
+}
+
 export function formatBigNumber(
   number: number,
   precision: number = 2,

@@ -1,9 +1,12 @@
+"use client";
+
 import React from "react";
 import { TaskIcon } from "@/app/_assets/svg/task";
 import { ClaimIcon } from "@/app/_assets/svg/claim";
 import TaskItem from "./task-item";
 import Button from "@/app/_components/shared/button";
 import { ITask } from "../../../../../../services/tasks";
+import { useGeneral } from "@/app/_providers/generalProvider";
 
 interface ClaimOGSectionProps {
   onMintClick: () => void;
@@ -14,6 +17,8 @@ export const ClaimOGSection: React.FC<ClaimOGSectionProps> = ({
   onMintClick,
   data: claimogTasks,
 }) => {
+  const { completionStatus } = useGeneral();
+
   return (
     <>
       <div className="flex flex-col gap-2 px-2">
@@ -46,6 +51,10 @@ export const ClaimOGSection: React.FC<ClaimOGSectionProps> = ({
         <Button
           className="rounded-[10px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center"
           onClick={onMintClick}
+          disabled={
+            (completionStatus?.completedNftBonuses || 0) <
+            (claimogTasks?.length || 1)
+          }
         >
           <ClaimIcon className="w-4.5 h-4.5" />
           <span className="text-white text-lg font-bold py-0.5 font-made-tommy">

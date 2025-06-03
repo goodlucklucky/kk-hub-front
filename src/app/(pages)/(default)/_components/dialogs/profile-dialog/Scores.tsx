@@ -13,6 +13,7 @@ import {
 } from "@/../services/game/challenges";
 import { useGeneral } from "@/app/_providers/generalProvider";
 import { gameKeys } from "@/app/(pages)/game/[title]/tournaments/constants/gameKeys";
+import { getNameByKey } from "@/app/_utils/game_keys";
 
 export default function ScoresSection() {
   const {
@@ -53,6 +54,7 @@ export default function ScoresSection() {
                   message={`${item?.game_key} - ${item?.description}`}
                   color={`${item?.details.color}`}
                   score={item.score_summary?.yourTotalScore || 0}
+                  path={`/game/${getNameByKey(item?.game_key)}/tournaments/${item?.id}`}
                 />
               ))}
           </div>

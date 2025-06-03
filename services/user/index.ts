@@ -54,12 +54,12 @@ export function useUpdateUser() {
   });
 }
 
-export function useFindOrCreateUser() {
+export function useEditUser() {
   return useMutation({
     mutationKey: ["user-update"],
-    mutationFn: (body: Partial<IUser> & { referrerSessionId?: string }) =>
+    mutationFn: ({ id, body }: { id?: TSessionId; body: Partial<IUser> }) =>
       baseInstance
-        .post<IUser>(`/user-service/users/find-or-create`, body)
+        .patch<IUser>(`/user-service/users/${id}`, body)
         .then((res) => res.data),
   });
 }

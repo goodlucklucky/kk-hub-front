@@ -262,7 +262,7 @@ export default function TournamentEntryPage(props: Iprops) {
           />
         </Button>
         <div className="bg-[url(/images/tournament-panel.png)] bg-[size:100%_100%] fixed top-36 left-3 right-3 bottom-3 bg-no-repeat z-10 rounded-3xl mx-auto p-3 2xs:p-4 pt-2 2xs:pt-3 xs:pt-5">
-          <div className="rouded-[15px] overflow-hidden h-full">
+          <div className="rounded-3xl overflow-hidden h-full">
             <div className="flex flex-col gap-1.5 w-full h-full overflow-y-auto">
               <div className="text-[#5F3F57] text-center font-made-tommy text-[22px] font-extrabold tracking-[0.22px]">
                 {challenge?.name}
@@ -472,7 +472,6 @@ export default function TournamentEntryPage(props: Iprops) {
       </div>
       <TournamentsPayment
         isOpen={openDialog}
-        onClose={() => setOpenDialog(false)}
         item={{
           id: `${challenge?.id}`,
           name: challenge?.name,
@@ -481,6 +480,8 @@ export default function TournamentEntryPage(props: Iprops) {
           price: challenge?.entry_fee || 0,
         }}
         wallet_address={challenge?.wallet?.backend_wallet as `0x${string}`}
+        onClose={() => setOpenDialog(false)}
+        onSuccess={playTornament}
       />
       <PayDialog
         isPaying={isPaying}

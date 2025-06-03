@@ -31,7 +31,7 @@ type TDailyRewards = {
 };
 type CurrentDayClaimStatus = {
   data: {
-    isClaimed: boolean;
+    isDailyClaimed: boolean;
     day: number;
   };
 };

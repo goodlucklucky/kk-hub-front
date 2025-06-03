@@ -27,7 +27,7 @@ export function ThirdWeb({ children }: ThirdWebProps) {
     [account?.address]
   );
   const startParam = useMemo(
-    () => searchParams?.get("tgWebAppStartParam") || "",
+    () => searchParams?.get("startapp") || "",
     [searchParams]
   );
 

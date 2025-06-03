@@ -1,7 +1,7 @@
 "use client";
 
 // import modules
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { LoaderIcon } from "react-hot-toast";
 
@@ -34,47 +34,9 @@ import inventoryClick from "@assets/svg/inventory-click.svg";
 import { useGeneral } from "@/app/_providers/generalProvider";
 import { useApp } from "@/app/_contexts/appContext";
 import Inventory from "./Inventory";
-// import pet1 from "@assets/images/pet1.png";
-// import pet2 from "@assets/images/pet2.png";
-// import pet3 from "@assets/images/pet3.png";
-// import pet4 from "@assets/images/pet4.png";
 import Social from "../../profile/social";
 import ScoresSection from "./Scores";
-
-// const pets = [
-//   {
-//     id: 1,
-//     title: "OG NFT",
-//     name: "NFT",
-//     image: pet1,
-//     nameColor: "#853834",
-//     titleColor: "#853834",
-//   },
-//   {
-//     id: 2,
-//     title: "COLLECTIBLE",
-//     name: "NFT",
-//     image: pet2,
-//     nameColor: "#853834",
-//     titleColor: "#853834",
-//   },
-//   {
-//     id: 3,
-//     title: "SLUG",
-//     name: "NFT",
-//     image: pet3,
-//     nameColor: "#71335E",
-//     titleColor: "#71335E",
-//   },
-//   {
-//     id: 4,
-//     title: "FERRET",
-//     name: "NFT",
-//     image: pet4,
-//     nameColor: "#608532",
-//     titleColor: "#608532",
-//   },
-// ];
+import { useEditUser } from "@/../services/user";
 
 //interface
 interface ProfileDialogProps {
@@ -86,35 +48,47 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
   const [activeComponent, setActiveComponent] = useState("social");
   const [username, setUsername] = useState("KOKOMON118");
   const { setIsBankingOpen, setIsProfileOpen, setIsXpOpen } = useApp();
-  const { user, userXp, isLoadingUserXp } = useGeneral();
+  const { user, userXp, isLoadingUserXp, sessionId, setUser } = useGeneral();
 
   useEffect(() => {
-    if (user?.username) {
-      setUsername(user.username);
-    }
+    if (user?.username) setUsername(user.username);
   }, [user?.username]);
 
-  const handleUsernameEdit = () => {
+  const { mutateAsync: editUser } = useEditUser();
+
+  const handleUsernameEdit = useCallback(() => {
     const input = document.querySelector(".username-input") as HTMLInputElement;
     if (input) {
       input.readOnly = false;
       input.focus();
     }
-  };
+  }, []);
 
-  const handleUsernameSave = () => {
-    const input = document.querySelector(".username-input") as HTMLInputElement;
-    if (input) {
-      input.readOnly = true;
-      // TODO: make an API call to update the username
-    }
-  };
+  const handleUsernameSave = useCallback(async () => {
+    try {
+      const input = document.querySelector(
+        ".username-input"
+      ) as HTMLInputElement;
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleUsernameSave();
+      if (input) {
+        input.readOnly = true;
+
+        const value = input?.value;
+
+        await editUser({ id: sessionId, body: { username: value } });
+        setUser?.((p) => ({ ...(p || {}), username: value }));
+      }
+    } catch {
+      // console.log(error);
     }
-  };
+  }, [editUser, sessionId, setUser]);
+
+  const handleKeyPress = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Enter") handleUsernameSave();
+    },
+    [handleUsernameSave]
+  );
 
   const renderComponent = () => {
     switch (activeComponent) {

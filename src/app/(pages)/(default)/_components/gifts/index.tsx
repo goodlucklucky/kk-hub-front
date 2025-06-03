@@ -8,6 +8,8 @@ import { GeneralContext } from "@/app/_providers/generalProvider";
 import { useBonusCompletion } from "../../../../../../services/bonus";
 import { useRouter } from "next/navigation";
 import { useApp } from "@/app/_contexts/appContext";
+import { useActiveAccount } from "thirdweb/react";
+import { useAirdropNft } from "../../../../../../services/nft";
 
 //interface
 interface GiftsProps {
@@ -32,6 +34,9 @@ const settings = {
 export default function Gifts({ setIsOpen, setIsMinting }: GiftsProps) {
   const { sessionId } = useContext(GeneralContext);
   const { isProfileOpen, setIsProfileOpen } = useApp();
+  const account = useActiveAccount();
+  const { mutateAsync: claimAirDrop } = useAirdropNft();
+
   const { data: completionStatus } = useBonusCompletion({ sessionId });
   const router = useRouter();
 
@@ -48,6 +53,16 @@ export default function Gifts({ setIsOpen, setIsMinting }: GiftsProps) {
       )?.length || 0,
     [completionStatus?.bonuses]
   );
+
+  const processMint = async () => {
+    setIsMinting(true);
+    await claimAirDrop({
+      wallet: `${account?.address}`,
+      sessionId,
+      type: "welcome",
+    });
+    setIsMinting(false);
+  };
 
   return (
     <div className="flex items-center justify-center gap-3 pl-0 w-[335px]">
@@ -66,7 +81,7 @@ export default function Gifts({ setIsOpen, setIsMinting }: GiftsProps) {
         <GiftSlide
           type="nft"
           setIsOpen={setIsOpen}
-          setIsMinting={setIsMinting}
+          setIsMinting={processMint}
         />
       </Slider>
       {/* </div> */}
