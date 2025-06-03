@@ -14,11 +14,13 @@ import pet4 from "@assets/images/pet4.png";
 import { useLootboxes } from "@/../services/bonus/lootboxes";
 import { useGeneral } from "@/app/_providers/generalProvider";
 import { useAirdrop } from "@/../services/nft";
+import { useCollectables } from "../../../../../../../services/nft/collectables";
 
 export default function Inventory() {
   const { sessionId } = useGeneral();
   const { data: lootboxData } = useLootboxes({ sessionId });
   const { data: airdropData } = useAirdrop({ sessionId });
+  const { data: collectableData } = useCollectables(sessionId);
 
   const airdropCount = useMemo(
     () => airdropData?.data?.length,
@@ -91,6 +93,7 @@ export default function Inventory() {
         image: pet2,
         nameColor: "#853834",
         titleColor: "#853834",
+        badge: collectableData?.total || 0,
       },
       {
         id: 3,
@@ -109,7 +112,7 @@ export default function Inventory() {
         titleColor: "#608532",
       },
     ]?.filter((one) => (one?.badge || 0) > 0);
-  }, [airdropCount]);
+  }, [airdropCount, collectableData?.total]);
 
   return (
     <div className="w-full bg-[#E3BEAA] rounded-[7px] p-2 flex flex-col gap-2 overflow-y-scroll">
