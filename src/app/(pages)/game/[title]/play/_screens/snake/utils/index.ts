@@ -1,40 +1,66 @@
-export const calculateSpeedData = (dayRetention = 0) => {
-  // --- 1. Define the progression curve using a sigmoid ---
-  const sigmoid = (t: number, steepness: number = 0.5, midpoint: number = 3) =>
-    1 / (1 + Math.exp(-steepness * (t - midpoint)));
+export const calculateSpeedData = (score: number) => {
+  // Balance base speed for engagement while keeping it manageable
+  const BASE_SPEED = 0.875; // Increased from 0.75 but still less than 0.9
+  const MIN_SPEED = 0.875;
+  const MAX_SPEED = 4.8; // Keep max speed cap
 
-  const progression = sigmoid(dayRetention);
+  let speedIncrease;
 
-  // --- 2. Establish baseline speeds ---
-  const minBaseSpeed = 0.4; // Slightly increased from 0.3 for a more engaging start
-  const maxBaseSpeed = 3.0; // Reduced from 2.5 to provide a broader range of speeds
-  // Baseline speeds increase gradually with progression.
-  const baselineMinSpeed =
-    minBaseSpeed + (maxBaseSpeed - minBaseSpeed) * progression;
-  const baselineMaxSpeed = baselineMinSpeed + 0.7; // Increased fixed offset for more challenge
+  if (score <= 5) {
+    // First 5 eggs - gentle introduction
+    speedIncrease = score * 0.02; // Gentle but noticeable
+  } else if (score <= 10) {
+    // Next 5 eggs - slightly faster
+    const baseIncrease = 5 * 0.02;
+    const additionalScore = score - 5;
+    speedIncrease = baseIncrease + additionalScore * 0.025;
+  } else if (score <= 15) {
+    // Next 5 eggs - medium increase
+    const baseIncrease = 5 * 0.02 + 5 * 0.025;
+    const additionalScore = score - 10;
+    speedIncrease = baseIncrease + additionalScore * 0.03;
+  } else if (score <= 20) {
+    // Next 5 eggs - faster linear
+    const baseIncrease = 5 * 0.02 + 5 * 0.025 + 5 * 0.03;
+    const additionalScore = score - 15;
+    speedIncrease = baseIncrease + additionalScore * 0.035;
+  } else if (score <= 25) {
+    // Last 5 eggs of linear phase
+    const baseIncrease = 5 * 0.02 + 5 * 0.025 + 5 * 0.03 + 5 * 0.035;
+    const additionalScore = score - 20;
+    speedIncrease = baseIncrease + additionalScore * 0.04;
+  } else {
+    // Exponential phase starting at score 25
+    const baseIncrease = 5 * 0.02 + 5 * 0.025 + 5 * 0.03 + 5 * 0.035 + 5 * 0.04;
+    const additionalScore = score - 25;
+    // Slightly more aggressive exponential curve
+    const expIncrease = (Math.pow(1.075, additionalScore) - 1) * 0.38;
+    speedIncrease = baseIncrease + expIncrease;
+  }
 
-  // --- 3. Introduce a mild noise factor ---
-  // A mild noise factor can add variability to keep the game interesting.
-  const noiseFactor = 1 + (Math.random() - 0.5) * 0.2; // Random noise between 0.9 and 1.1
+  const currentSpeed = Math.min(
+    MAX_SPEED,
+    Math.max(MIN_SPEED, BASE_SPEED + speedIncrease)
+  );
 
-  // --- 4. Combine baseline speeds with the noise ---
-  const minSpeed = baselineMinSpeed * noiseFactor;
-  let maxSpeed = baselineMaxSpeed * noiseFactor;
-
-  // --- 5. Enforce a dynamic cap on max speed ---
-  const dynamicMaxSpeedCap = 3.5 + Math.min(1.0, Math.sqrt(dayRetention) * 0.2);
-  maxSpeed = Math.min(maxSpeed, dynamicMaxSpeedCap);
-
-  // --- 6. Helper for rounding to two decimals ---
-  const roundToTwo = (num: number) => Math.round(num * 100) / 100;
-
-  // --- 7. Compute maxLevel based on progression ---
-  const baseLevel = 60 - dayRetention * 2; // Adjusted logic for a higher starting level
-  const maxLevel = Math.max(Math.round(baseLevel * progression), 15); // Ensure a minimum level of 15
+  const maxLevel = Math.max(15, Math.round(100 - currentSpeed * 15));
 
   return {
-    min: roundToTwo(Math.min(minSpeed, maxSpeed)),
-    max: roundToTwo(Math.max(minSpeed, maxSpeed)),
+    min: Number(currentSpeed.toFixed(2)),
+    max: Number(currentSpeed.toFixed(2)),
     maxLevel,
   };
 };
+
+// Speed progression:
+// Score  0: 0.82 (balanced start - engaging but manageable)
+// Score  5: 0.92 (end of first phase)
+// Score 10: 1.05 (end of second phase)
+// Score 15: 1.20 (end of third phase)
+// Score 20: 1.38 (end of fourth phase)
+// Score 25: 1.58 (end of linear phases)
+// Score 30: 1.99 (exponential kicking in)
+// Score 35: 2.54 (challenging)
+// Score 40: 3.27 (very challenging)
+// Score 45: 4.21 (highly challenging)
+// Score 47: 4.80 (maximum speed reached)

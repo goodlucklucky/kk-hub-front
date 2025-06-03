@@ -14,6 +14,7 @@ export default function TaskSection({
   onMintClick: () => void;
 }) {
   const { data } = useTasks();
+
   if (tab == "Claim OG")
     return (
       <ClaimOGSection

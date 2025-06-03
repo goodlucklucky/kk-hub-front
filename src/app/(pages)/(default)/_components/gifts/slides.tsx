@@ -61,8 +61,6 @@ export const GiftSlide: React.FC<SlideProps> = ({
   const { data: completionStatusData } = useBonusCompletion({ sessionId });
   const timeLeft = useTimeLeft();
 
-  // console.log("DAta@@@@@@@@@@@@@@", completionStatusData?.completionPercentage);
-
   const getSlideContent = () => {
     switch (type) {
       case "daily":
@@ -127,6 +125,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
             />
           </>
         );
+
       case "invite":
         return (
           <>
@@ -153,6 +152,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
             />
           </>
         );
+
       case "og":
         return (
           <>
@@ -202,20 +202,22 @@ export const GiftSlide: React.FC<SlideProps> = ({
             />
           </>
         );
+
       case "nft":
         return (
           <>
             <div className="flex-1 h-[57px] bg-[var(--color-blown-dark)] rounded-l-[7px] min-w-[270px]">
-              <div
+              <p
                 className={cn(
                   "flex gap-2 rounded-md w-fit px-2",
                   "-mt-1 -ml-1 ",
                   "bg-[var(--color-yellow)] shadow-[0_0.25ch_rgba(0,0,0,0.2)]",
-                  "text-[var(--color-golden-brown)]"
+                  "text-[var(--color-golden-brown)]",
+                  "2xs:pt-0.5"
                 )}
               >
-                <p className="2xs:pt-0.5">FREE KOKOMO NFT!</p>
-              </div>
+                FREE KOKOMO NFT!
+              </p>
               <div className="text-[var(--color-golden-brown)] font-made-tommy text-[12px] font-bold leading-[14px] bg-[var(--color-blown-dark)] rounded-[3px] mx-2 mt-[3px] p-[1px]">
                 Claim your free welcome gift - a Kokomo Collectible NFT!
               </div>
