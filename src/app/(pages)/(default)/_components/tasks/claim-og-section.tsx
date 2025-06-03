@@ -7,6 +7,7 @@ import TaskItem from "./task-item";
 import Button from "@/app/_components/shared/button";
 import { ITask } from "../../../../../../services/tasks";
 import { useGeneral } from "@/app/_providers/generalProvider";
+import toast from "react-hot-toast";
 
 interface ClaimOGSectionProps {
   onMintClick: () => void;
@@ -50,11 +51,14 @@ export const ClaimOGSection: React.FC<ClaimOGSectionProps> = ({
       <div className="flex px-2">
         <Button
           className="rounded-[10px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-0.5 w-full flex gap-x-1 items-center justify-center"
-          onClick={onMintClick}
-          disabled={
-            (completionStatus?.completedNftBonuses || 0) <
-            (claimogTasks?.length || 1)
-          }
+          onClick={() => {
+            if (
+              (completionStatus?.completedNftBonuses || 0) <
+              (claimogTasks?.length || 1)
+            )
+              toast.error("You need to complete all tasks first");
+            else onMintClick();
+          }}
         >
           <ClaimIcon className="w-4.5 h-4.5" />
           <span className="text-white text-lg font-bold py-0.5 font-made-tommy">

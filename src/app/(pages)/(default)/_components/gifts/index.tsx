@@ -1,5 +1,5 @@
 //import modules
-import React, { useContext, useMemo } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import Slider from "react-slick";
 
 //import components
@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useApp } from "@/app/_contexts/appContext";
 import { useActiveAccount } from "thirdweb/react";
 import { useAirdropNft } from "../../../../../../services/nft";
+import toast from "react-hot-toast";
 
 //interface
 interface GiftsProps {
@@ -54,15 +55,21 @@ export default function Gifts({ setIsOpen, setIsMinting }: GiftsProps) {
     [completionStatus?.bonuses]
   );
 
-  const processMint = async () => {
-    setIsMinting(true);
-    await claimAirDrop({
-      wallet: `${account?.address}`,
-      sessionId,
-      type: "welcome",
-    });
+  const processMint = useCallback(async () => {
+    try {
+      setIsMinting(true);
+      await claimAirDrop({
+        wallet: `${account?.address}`,
+        sessionId,
+        type: "welcome",
+      });
+    } catch (error: any) {
+      const err = error?.response?.data?.message?.split?.("(")?.[0];
+      toast.error(err || "Failed to claim airdrop");
+      setIsOpen();
+    }
     setIsMinting(false);
-  };
+  }, [account?.address, sessionId, claimAirDrop, setIsMinting]);
 
   return (
     <div className="flex items-center justify-center gap-3 pl-0 w-[335px]">
