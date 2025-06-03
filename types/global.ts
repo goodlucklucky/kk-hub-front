@@ -23,6 +23,8 @@ declare global {
     photo_url: string;
     twitterUsername: string;
     twitterUserId: string;
+    telegramUsername: string;
+    telegramUserId: string;
     email: string;
     referrals?: any[];
     created_at: Date;
@@ -35,5 +37,10 @@ declare global {
       created_at: Date;
       updated_at: Date;
     }[];
+  }
+
+  interface ITotalPoints {
+    sessionId: string;
+    total: number;
   }
 }

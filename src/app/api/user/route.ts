@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { baseInstance } from "../../../../services/axios";
+import { baseInstance } from "@/../services/axios";
 
 export async function POST(req: NextRequest) {
   // // Get the session token from the request
@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
       }
     );
 
+    // console.log("res", res?.data);
     return NextResponse.json(res?.data);
   } catch (error) {
     // console.log("Error in find-or-create-v2", error);

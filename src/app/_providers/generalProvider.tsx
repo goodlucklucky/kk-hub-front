@@ -17,16 +17,19 @@ import {
   IUserWallet,
   IUserWalletRes,
   useUserWallet,
-} from "../../../services/banking/wallet";
-import { IInitialPoints, useInitialPoints } from "../../../services/user";
-import { IUsdt, useUsdt } from "../../../services/usdt";
+} from "@/../services/banking/wallet";
+import { IInitialPoints, useInitialPoints } from "@/../services/user";
+import { IUsdt, useUsdt } from "@/../services/usdt";
 import { useSocialData } from "../_hooks/use-social-data";
-import { IBonusCompletion } from "../../../services/bonus";
-import { IUserXP, useUserXp } from "../../../services/xp/user";
+import { IBonusCompletion } from "@/../services/bonus";
+import { IUserXP, useUserXp } from "@/../services/xp/user";
 
 export interface IGeneralContext {
-  user?: IUser | null;
   sessionId?: TSessionId;
+
+  user?: IUser | null;
+  setUser?: Setter<Partial<IUser> | null>;
+
   addMyUsdt?: (_score: number) => void;
   isLoadingMyUsdt?: boolean;
   refreshMyUsdt?: Refresher<{ data: IUsdt }>;
@@ -139,8 +142,13 @@ export function GeneralProvider({
   return (
     <GeneralContext.Provider
       value={{
-        user,
         sessionId,
+
+        user,
+        setUser: (value) =>
+          setUser((prev) =>
+            prev ? { ...prev, ...value } : ({ ...value } as IUser)
+          ),
 
         encrypted,
 

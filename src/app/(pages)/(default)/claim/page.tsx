@@ -42,7 +42,7 @@ const settings: SliderPro = {
   arrows: false,
   infinite: true,
   fade: true,
-  autoplay: true,
+  // autoplay: true,
   autoplaySpeed: 4000,
   adaptiveHeight: true,
 
@@ -72,7 +72,8 @@ export default function ClaimPage() {
   const queryClient = useQueryClient();
 
   const { data } = useDailyRewards();
-  const { data: currentClaimData } = useCurrentDayClaimStatus({ sessionId });
+  const { data: currentClaimData, refetch: refreshCurrent } =
+    useCurrentDayClaimStatus({ sessionId });
 
   const [, setReward] = useState<IReward | null>();
   const [rewards, setRewards] = useState<TReward[]>([]);
@@ -85,7 +86,7 @@ export default function ClaimPage() {
         ...reward,
         collected: reward.day <= (currentClaimData?.data?.day ?? Infinity),
         isActive:
-          !currentClaimData?.data?.isClaimed &&
+          !currentClaimData?.data?.isDailyClaimed &&
           reward?.day === (currentClaimData?.data?.day ?? 1),
         isMega: reward.type === TDailyRewardType.MEGA,
         img: getRewardData(reward?.type)?.image,
@@ -98,7 +99,7 @@ export default function ClaimPage() {
   }, [
     data?.data,
     currentClaimData?.data?.day,
-    currentClaimData?.data?.isClaimed,
+    currentClaimData?.data?.isDailyClaimed,
   ]);
 
   const { mutateAsync: collectReward, isPending: isCollectingRewards } =
@@ -125,6 +126,8 @@ export default function ClaimPage() {
         });
         setOpenClaimDialog(true);
 
+        await refreshCurrent();
+
         // await refreshMyUsdt?.();
       } catch (_error) {
         toast.error(
@@ -135,7 +138,7 @@ export default function ClaimPage() {
         );
       }
     },
-    [collectReward, isCollectingRewards, sessionId]
+    [collectReward, isCollectingRewards, sessionId, refreshCurrent]
   );
 
   const rewardsPages = useMemo(() => {
@@ -177,7 +180,7 @@ export default function ClaimPage() {
               Koko Chests
             </span>
           </div>
-          <div className="bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1] rounded-[15px] py-6 shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] border border-[#A96415] flex flex-col overflow-y-auto pb-21 h-full">
+          <div className="bg-gradient-to-b from-[#FDE9C7] to-[#F5D6B1] rounded-[15px] py-6 pb-0 shadow-[0px_2px_0px_0px_rgba(0,0,0,0.20)] border border-[#A96415] flex flex-col overflow-y-auto h-full">
             <div className="px-5 flex flex-col items-center gap-2 pb-2 h-full">
               <span className="text-[#8F6E75] text-center text-[15px] font-made-tommy font-bold">
                 Collect daily rewards & win mystery prizes from Koko Chests!

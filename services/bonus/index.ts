@@ -208,6 +208,7 @@ export function useGetUserBonuses({ userId }: { userId: TSessionId }) {
 export interface IBonusCompletion {
   completionPercentage: string;
   totalBonuses: number;
+  completedNftBonuses: number;
   completedBonuses: number;
   bonuses: {
     bonusName: string;
@@ -450,10 +451,17 @@ export function useAddBonusPoints({
 export function useCheckIfUserInCommunity() {
   return useMutation({
     mutationKey: ["check-if-user-in-community"],
-    mutationFn: async ({ sessionId }: { sessionId: TSessionId }) => {
+    mutationFn: async ({
+      sessionId,
+      tgUserId,
+    }: {
+      sessionId: TSessionId;
+      tgUserId: string;
+    }) => {
       const data = await baseInstance
         .get<ICheckCommunity>(
-          `/bonus-service/bonus/telegram/check-is-user-in-community?tgUserId=${sessionId}`
+          `/bonus-service/bonus/telegram/check-is-user-in-community`,
+          { params: { tgUserId, sessionId } }
         )
         .then((res) => res.data);
       return data;

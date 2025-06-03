@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
 import { CustomRightArrow } from "@/app/_assets/svg/right-arrow";
 import { StaticImageData } from "next/image";
 import { useRouter } from "next/navigation";
+import { useApp } from "@/app/_contexts/appContext";
 
 interface TournamentItemProps {
   alt?: string;
@@ -24,14 +25,17 @@ const TournamentItem: React.FC<TournamentItemProps> = ({
   path = "/#",
 }) => {
   const router = useRouter();
-  const handleClick = () => {
+  const { setIsProfileOpen } = useApp();
+
+  const handleClick = useCallback(() => {
     router.push(path);
-  };
+    setIsProfileOpen(false);
+  }, [router, setIsProfileOpen, path]);
 
   return (
     <div
       onClick={handleClick}
-      className="rounded-[6px] border border-[#D7BDA4] w-full h-[60px] flex-shrink-0 overflow-hidden shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)]"
+      className="rounded-[6px] border border-[#D7BDA4] bg-neutral-500 w-full h-[60px] flex-shrink-0 overflow-hidden shadow-[0px_2px_0px_0px_rgba(0,0,0,0.16)]"
     >
       <div
         className="w-full h-[36px] flex justify-between items-center px-2"
@@ -47,7 +51,7 @@ const TournamentItem: React.FC<TournamentItemProps> = ({
           <div className="w-[69px] h-[18px] flex-shrink-0 rounded-[5px] flex items-center justify-center bg-[#FFFFFFA0]">
             <p
               className="font-made-tommy text-center text-[14px] font-semibold leading-normal tracking-[0.14px]"
-              style={{ color }}
+              style={{ color: `color-mix(in srgb, ${color}, #333)` }}
             >
               {score ? score + " PTS" : "No Score"}
             </p>

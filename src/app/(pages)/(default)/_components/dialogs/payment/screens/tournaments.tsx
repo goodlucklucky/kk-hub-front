@@ -11,6 +11,7 @@ type TDialogProps = {
   wallet_address: `0x${string}`;
   isOpen: boolean;
   onClose: () => void;
+  onSuccess?: () => Promise<void> | void;
 };
 
 export default function TournamentsPayment({
@@ -18,6 +19,7 @@ export default function TournamentsPayment({
   wallet_address,
   item,
   onClose,
+  onSuccess,
 }: TDialogProps) {
   const { sessionId } = useGeneral();
   const { mutateAsync: payFee } = usePayFeeV2({});
@@ -41,12 +43,14 @@ export default function TournamentsPayment({
         //   payment_method,
         //   sessionId,
         // });
+
+        onSuccess?.();
       } catch (error) {
         // console.error("Error during confirmation:", error);
         throw error;
       }
     },
-    [item?.id, sessionId, payFee]
+    [item?.id, sessionId, payFee, onSuccess]
   );
 
   return (

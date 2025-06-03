@@ -5,6 +5,7 @@ import { DailyBarge } from "./barge";
 import DayBarge from "./day-barge";
 import { useBonusCompletion } from "../../../../../../services/bonus";
 import { GeneralContext } from "@/app/_providers/generalProvider";
+import useTimeLeft from "@/app/_hooks/useTimeLeft";
 
 interface SlideProps {
   setIsOpen?: () => void;
@@ -58,6 +59,8 @@ export const GiftSlide: React.FC<SlideProps> = ({
   };
   const { sessionId } = useContext(GeneralContext);
   const { data: completionStatusData } = useBonusCompletion({ sessionId });
+  const timeLeft = useTimeLeft();
+
   // console.log("DAta@@@@@@@@@@@@@@", completionStatusData?.completionPercentage);
 
   const getSlideContent = () => {
@@ -76,10 +79,39 @@ export const GiftSlide: React.FC<SlideProps> = ({
               >
                 <p className="2xs:pt-0.5">daily claim</p>
                 <DailyBarge>
-                  <span>4/28</span>
+                  <span>
+                    {(() => {
+                      const now = new Date();
+                      now.setHours(now.getHours() + (timeLeft?.hours || 0));
+                      now.setMinutes(
+                        now.getMinutes() + (timeLeft?.minutes || 0)
+                      );
+                      now.setSeconds(
+                        now.getSeconds() + (timeLeft?.seconds || 0)
+                      );
+                      // Format as MM/DD
+                      return `${String(now.getMonth() + 1).padStart(2, "0")}/${String(now.getDate()).padStart(2, "0")}`;
+                    })()}
+                  </span>
                 </DailyBarge>
                 <DailyBarge>
-                  <span>23:39:01</span>
+                  <span>
+                    {(() => {
+                      const now = new Date();
+                      now.setHours(now.getHours() + (timeLeft?.hours || 0));
+                      now.setMinutes(
+                        now.getMinutes() + (timeLeft?.minutes || 0)
+                      );
+                      now.setSeconds(
+                        now.getSeconds() + (timeLeft?.seconds || 0)
+                      );
+                      // Format as HH:MM
+                      return now.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      });
+                    })()}
+                  </span>
                 </DailyBarge>
               </div>
               <div className={cn("px-1 py-2 text-green-dark", "flex gap-2")}>

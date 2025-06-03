@@ -305,7 +305,7 @@ export default function GameOver({
                   <Button
                     className="bg-green hover:bg-green/80 text-white text-lg font-bold btn-animate !shadow-[0_0.15rem] !shadow-[#2C7C4C] rounded-2xl"
                     onClick={() => {
-                      router.push(`./challenge/${challenge?.id}`);
+                      router.push(`./tournaments/${challenge?.id}`);
                       trackEvent("Tournaments Page");
                       resetGame?.();
                     }}

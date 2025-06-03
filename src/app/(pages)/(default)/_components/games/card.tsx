@@ -104,6 +104,7 @@ export function GameItemCard({
   number,
   handlePreviewDialogToggle,
 }: TGameItemCardProps) {
+  const Title = (title?.charAt(0) || "")?.toUpperCase() + title?.slice(1);
   return (
     <div
       className="rounded-lg w-[70px] relative overflow-hidden"
@@ -112,8 +113,8 @@ export function GameItemCard({
           title: title || "",
           link: link || "",
           image: image || "",
-          description: "Ever made memecoin money playing Snake?!",
-          msg: "Win $ playing classic Snake in Tournaments, PvP, and more!",
+          description: `Ever made memecoin money playing ${Title}?!`,
+          msg: `Win $ playing classic ${Title} in Tournaments, PvP, and more!`,
         })
       }
     >

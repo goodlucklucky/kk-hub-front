@@ -1,3 +1,4 @@
+import { cn } from "@/app/_lib/utils";
 import React from "react";
 
 export function CloseSocialIcon(props: React.ComponentProps<"svg">) {
@@ -9,6 +10,7 @@ export function CloseSocialIcon(props: React.ComponentProps<"svg">) {
       viewBox="0 0 23 24"
       fill="none"
       {...props}
+      className={cn("cursor-pointer min-w-6 min-h-6", props?.className)}
     >
       <g filter="url(#filter0_d_1114_13141)">
         <path

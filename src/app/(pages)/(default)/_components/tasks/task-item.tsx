@@ -23,6 +23,7 @@ import { trackEvent } from "@/app/_lib/mixpanel";
 import { cn } from "@/app/_lib/utils";
 import useShare from "@/app/_hooks/use-share";
 import ShareDialog from "../profile/share-dialog";
+import { useApp } from "@/app/_contexts/appContext";
 
 interface TaskItemProps {
   title: string;
@@ -41,6 +42,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
   actionTitle,
   task,
 }) => {
+  const { setIsProfileOpen } = useApp();
   const { sessionId, user, addMyScore } = useContext(GeneralContext);
   const isFriend = useMemo(() => reward == "invite_3_friends", [reward]);
   const referrals = useMemo(() => user?.referrals || [], [user?.referrals]);
@@ -95,10 +97,16 @@ const TaskItem: React.FC<TaskItemProps> = ({
 
   const handleJoinCommunity = useCallback(async () => {
     try {
+      const tgUserId = user?.telegramUserId;
+      if (!tgUserId) {
+        toast.error("Please connect your telegram first");
+        return setIsProfileOpen(true);
+      }
+
       toast.loading("Checking community status...");
 
       setTaskStatus("FETCHING");
-      const res = await checkIfUserInCommunity({ sessionId });
+      const res = await checkIfUserInCommunity({ sessionId, tgUserId });
       if (res?.inChannel) {
         refreshCheckUserBonus();
         setTaskStatus("CLAIMED");
@@ -123,6 +131,8 @@ const TaskItem: React.FC<TaskItemProps> = ({
     }
   }, [
     // manageToast,
+    setIsProfileOpen,
+    user?.telegramUserId,
     task.details?.link,
     checkIfUserInCommunity,
     refreshCheckUserBonus,
