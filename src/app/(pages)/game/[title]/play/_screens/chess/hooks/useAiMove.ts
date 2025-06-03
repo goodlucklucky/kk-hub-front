@@ -74,7 +74,7 @@ export function useAiMove({ game, actions, moves }: TProps) {
     } finally {
       actions?.setComputerThinking(false);
     }
-  }, [game, actions, game?.fen()]);
+  }, [game, actions]);
 
   useEffect(() => {
     if (moves.length > previousMovesCount.current) {

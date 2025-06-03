@@ -69,7 +69,7 @@ export default function Gifts({ setIsOpen, setIsMinting }: GiftsProps) {
       setIsOpen();
     }
     setIsMinting(false);
-  }, [account?.address, sessionId, claimAirDrop, setIsMinting]);
+  }, [account?.address, sessionId, claimAirDrop, setIsMinting, setIsOpen]);
 
   return (
     <div className="flex items-center justify-center gap-3 pl-0 w-[335px]">

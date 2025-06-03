@@ -55,9 +55,10 @@ export default function ChessPlayScreen() {
 
   const { user, sessionId, myScore } = useGeneral();
   const dummyUser = useDummyUser();
+  const game_turn = game?.turn();
   const activeUser = useMemo(
     () =>
-      game?.turn() === "w"
+      game_turn === "w"
         ? {
             ...user,
             name: user?.username?.startsWith("0x")
@@ -70,7 +71,7 @@ export default function ChessPlayScreen() {
               ? `${dummyUser?.name?.slice(0, 4)}...${dummyUser?.name?.slice(-4)}`
               : dummyUser?.name,
           },
-    [game, game?.turn(), user, dummyUser]
+    [game_turn, user, dummyUser]
   );
 
   const { formattedTime } = useTimer();
@@ -279,6 +280,7 @@ export default function ChessPlayScreen() {
     score,
     sessionId,
     source,
+    title,
   ]);
 
   useEffect(() => {
@@ -299,7 +301,7 @@ export default function ChessPlayScreen() {
       );
       router?.replace(`/game/${title}/tournaments`);
     }
-  }, [challenge?.data, challengeError?.message, router, source]);
+  }, [challenge?.data, challengeError?.message, router, source, title]);
 
   return (
     <ChessProvider>

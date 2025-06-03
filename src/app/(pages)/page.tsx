@@ -1,6 +1,4 @@
-import { headers } from "next/headers";
 import { KokomoLogo } from "../_assets/svg/logo";
-import { isMobile } from "../_utils/isMobile";
 import MultiSteps from "./_components/multi-steps";
 
 export default async function Home() {

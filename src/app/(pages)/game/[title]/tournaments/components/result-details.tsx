@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import moment from "moment";
 
@@ -27,7 +26,6 @@ export type ResultType = {
 
 const ResultDetails = () => {
   const { sessionId } = useGeneral();
-  const router = useRouter();
 
   // useTelegramBackButton();
 

@@ -143,6 +143,7 @@ export default function SnakePlayScreen() {
     challenge?.data?.score_summary?.freeEntryBonus,
     challenge?.data?.score_summary?.participationCount,
     router,
+    title,
   ]);
 
   useEffect(() => {
@@ -166,6 +167,7 @@ export default function SnakePlayScreen() {
     score,
     sessionId,
     source,
+    title,
   ]);
 
   useEffect(() => {
@@ -186,7 +188,7 @@ export default function SnakePlayScreen() {
       );
       router?.replace(`/game/${title}/tournaments`);
     }
-  }, [challenge?.data, challengeError?.message, router, source]);
+  }, [challenge?.data, challengeError?.message, router, source, title]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;

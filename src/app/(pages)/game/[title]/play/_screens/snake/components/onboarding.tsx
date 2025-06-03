@@ -7,7 +7,6 @@ import Collide from "../assets/collide.png";
 import SwipeImage from "../assets/swipe-image.png";
 import Money from "../assets/money.png";
 import Prize from "../assets/prize.png";
-import Goal from "../assets/goal.png";
 import OnboardingBoard from "../assets/onboarding-board.png";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
