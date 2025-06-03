@@ -266,7 +266,7 @@ export default function ChessPlayScreen() {
 
       if (!paid && source == "invite") {
         if (entry_fee && entry_fee >= score)
-          router?.replace(`/challenge/${challengeId}`);
+          router?.replace(`/game/${title}/tournaments/${challengeId}`);
         else payFee({ sessionId, id: challengeId });
       }
     }
@@ -297,7 +297,7 @@ export default function ChessPlayScreen() {
         </div>,
         { duration: 6000 }
       );
-      router?.replace(`/challenge`);
+      router?.replace(`/game/${title}/tournaments`);
     }
   }, [challenge?.data, challengeError?.message, router, source]);
 

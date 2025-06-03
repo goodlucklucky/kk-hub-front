@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 import SoundPlaying from "../assets/svg/sound-playing.svg";
 import SoundMuted from "../assets/svg/sound-muted.svg";
 import Scoreboard from "../assets/score-board.png";
-import { IPostScoreResultsDetails } from "../services/challenges";
+import { IPostScoreResultsDetails } from "@/../services/game/challenges";
 import { formatBigNumber } from "@/app/_utils/number";
 import { ConnectButton } from "@/app/_components/shared/connect-button";
 
@@ -34,16 +34,16 @@ export const ScoreBoard = ({
       <Image alt="Score board" src={Scoreboard} className="w-full h-full" />
       <div className="absolute w-[83%] top-1/2 -translate-y-1/2 left-[1.5%] flex justify-between items-center">
         <div className="w-[56%] flex flex-col items-center">
-          <div className="text-[#8B7355] font-bold text-sm">POINTS:</div>
+          <div className="text-[#5F3F57] font-bold text-sm">KOKOS:</div>
           <div className="text-xl text-center font-bold text-[#4A4A4A]">
             {formatBigNumber(score)}
             <div className="text-xs text-[#8A8A8A]">
-              SCORE TO BEAT: {scoreToQualify}
+              YOUR BEST: {scoreToQualify}
             </div>
           </div>
         </div>
         <div className="w-[44%] flex flex-col items-center">
-          <div className="text-[#8B7355] font-bold text-sm">TIME:</div>
+          <div className="text-[#5F3F57] font-bold text-sm">TIME:</div>
           <div className="text-xl font-bold text-center text-[#4A4A4A]">
             {time}
             <div className="text-xs text-[#8A8A8A]">YOUR BEST: {bestTime}</div>

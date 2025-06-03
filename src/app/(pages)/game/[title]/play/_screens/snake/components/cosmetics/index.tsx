@@ -75,7 +75,7 @@ export default function Cosmetics({ isLoading, setGameState }: CosmeticsProps) {
           <div className="w-full flex flex-col gap-2">
             <Button
               disabled={isLoading}
-              className="bg-green hover:bg-green/80 text-white text-xl font-bold btn-animate !shadow-[0_0.15rem] !shadow-[#2C7C4C] rounded-2xl"
+              className="border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] hover:bg-green/80 text-white text-xl font-bold btn-animate !shadow-[0_1px] !shadow-[#2C7C4C] rounded-2xl"
               onClick={() => {
                 setGameState("playing");
               }}

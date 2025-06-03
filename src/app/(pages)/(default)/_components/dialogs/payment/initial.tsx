@@ -44,7 +44,7 @@ export default function InitialScreen({ item, onClose, handleBuy }: TClose) {
         </span>
         <div className="bg-[#E3BEAA] rounded-[14px] p-2 w-full flex flex-col gap-y-2">
           <Button
-            className="rounded-[6px] border border-[#91FF6A] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] p-2 py-1 w-full flex flex-col"
+            className="!shadow-[0_1px] !shadow-[#2C7C4C] rounded-[14px] border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] p-2 py-1 w-full flex flex-col"
             onClick={handleBuy}
           >
             <span className="text-[#EFF6FF] text-center text-shadow-[0px_1px_0px_rgba(62,36,105,0.20)] font-made-tommy text-[20px]/[20px] font-extrabold leading-normal tracking-[0.4px]">

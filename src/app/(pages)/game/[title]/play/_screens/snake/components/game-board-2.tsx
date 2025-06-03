@@ -230,7 +230,7 @@ export const GameBoardV2 = ({
   // }, [food, snake]);
 
   return (
-    <div className="relative size-full flex flex-col justify-center items-center">
+    <div className="relative size-full flex flex-col justify-around items-center">
       <Canvas
         draw={draw}
         options={{ fps: GAME?.fps }}

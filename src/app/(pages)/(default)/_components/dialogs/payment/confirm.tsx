@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
+import Image from "next/image";
 import Button from "@/app/_components/shared/button";
 import { CloseIcon } from "@/app/_assets/svg/close";
-import { DollarScoreIcon } from "@/app/_assets/svg/dollar";
+import brown_dollar_circle from "@assets/svg/brown-dollar-circle.svg";
 import { formatNumber } from "@/app/_utils/number";
 import { cn } from "@/app/_lib/utils";
+import { WalletIcon } from "@/app/_assets/svg/wallet";
 
 const defaultContent = {
   title: "CONFIRM PURCHASE",
@@ -57,7 +59,7 @@ export default function ConfirmPayment({
 
   return (
     <>
-      <div className="bg-[#F5D6B1] rounded-t-2xl py-4 px-2 shadow-md border-2 border-[#A96415] flex flex-col">
+      <div className="bg-[#F5D6B1] rounded-2xl py-4 px-2 shadow-md border-2 border-[#A96415] flex flex-col gap-y-3">
         <div className="flex justify-center items-center w-full absolute -bottom-5 right-0">
           <CloseIcon onClick={onClose} />
         </div>
@@ -77,8 +79,11 @@ export default function ConfirmPayment({
               <span className="text-[#6C4C5F] font-made-tommy text-[16px] font-bold leading-normal text-center">
                 Confirm: {content?.itemTime || defaultContent?.itemTime}
               </span>
-              <div className="flex justify-center items-center gap-x-2 font-made-tommy text-[#5F3F57] text-[22px] font-bold leading-normal">
-                <DollarScoreIcon />
+              <div className="flex justify-center items-center gap-x-2 text-[#5F3F57] text-center font-made-tommy text-[24px] font-bold">
+                <Image
+                  src={brown_dollar_circle}
+                  alt="brown_dollar_circle"
+                />
                 {formatNumber(price || 0, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
@@ -101,35 +106,37 @@ export default function ConfirmPayment({
             )}
           </div>
           <Button
-            className="rounded-[10px] border w-[80%] mx-auto border-[#91FF6A] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] p-2 py-1 flex flex-col"
+            className="rounded-[10px] h-[34px] border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] mx-5"
             onClick={handelPayment}
             disabled={isPending}
           >
-            <span className="text-[#EFF6FF] text-center text-shadow-[0px_1px_0px_rgba(62,36,105,0.20)] font-made-tommy text-[18px]/[18px] font-extrabold leading-normal tracking-[0.4px]">
+            <span className="text-[#EEFDF4] text-center font-bumper-sticker text-[18px] xs:text-[20px] tracking-[0.18px] [text-shadow:0px_1px_0px_rgba(0,0,0,0.20)] font-normal">
               {isPending
                 ? "PAYING..."
                 : content?.button || defaultContent?.button}
             </span>
           </Button>
         </div>
-      </div>
-      <div className="bg-[#F5D6B1] rounded-b-2xl py-2.5 shadow-md border-2 border-[#A96415] border-t-1 border-t-[#A96415] flex -mt-4 gap-x-2 px-4 pb-6">
-        <Button
-          className="rounded-[6px] border border-[#CDEBEE] bg-gradient-to-b from-[#A291FF] to-[#856FFF] p-2 py-1 flex flex-col w-full"
-          onClick={onDeposit}
-        >
-          <span className="text-[#EFF6FF] text-center text-shadow-[0px_1px_0px_rgba(62,36,105,0.20)] font-made-tommy text-[16px]/[16px] font-extrabold leading-normal tracking-[0.4px]">
-            DEPOSIT FUNDS
-          </span>
-        </Button>
-        <Button
-          className="rounded-[6px] border border-[#CDEBEE] bg-gradient-to-b from-[#A291FF] to-[#856FFF] p-2 py-1 flex flex-col w-full"
-          onClick={onPayDirect}
-        >
-          <span className="text-[#EFF6FF] text-center text-shadow-[0px_1px_0px_rgba(62,36,105,0.20)] font-made-tommy text-[16px]/[16px] font-extrabold leading-normal tracking-[0.4px]">
-            PAY DIRECTLY
-          </span>
-        </Button>
+        <hr className="border-[#A96415] border-0.5 -mx-2 mt-2" />
+        <div className="flex gap-2 justify-between">
+          <Button
+            className="w-full flex flex-1 gap-1 items-center justify-center h-[28px] rounded-[6px]"
+            onClick={onDeposit}
+          >
+            <span className="text-white font-bumper-sticker font-medium text-base tracking-[0.32px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)] uppercase">
+              Deposit funds
+            </span>
+          </Button>
+          <Button
+            className="w-full flex flex-1 gap-1 items-center justify-center h-[28px] rounded-[6px]"
+            onClick={onPayDirect}
+          >
+            <WalletIcon width={12} color="#FFF" />
+            <span className="text-white font-bumper-sticker font-medium text-base tracking-[0.32px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)] uppercase">
+              Pay Directly
+            </span>
+          </Button>
+        </div>
       </div>
     </>
   );

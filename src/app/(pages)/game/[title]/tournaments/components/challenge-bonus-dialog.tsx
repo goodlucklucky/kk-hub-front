@@ -183,7 +183,7 @@ export function ChallengeBonusCard({
         </div>
         <div className="bg-[#E3BEAA] rounded-2xl p-2 space-y-2">
           <Button
-            className={`bg-green px-14 font-extrabold text-white h-8 w-full rounded-xl hover:bg-emerald-500 shadow-[0_0.15rem] shadow-[#2C7C4C] ${
+            className={`border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] px-14 font-extrabold text-white h-8 w-full rounded-xl hover:bg-emerald-500 shadow-[0_1px] shadow-[#2C7C4C] ${
               isDisabled ? "opacity-50 cursor-not-allowed" : ""
             }`}
             disabled={isDisabled || isClaimed}

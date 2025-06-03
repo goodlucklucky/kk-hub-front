@@ -135,7 +135,7 @@ export default function SnakePlayScreen() {
       const challengeId = challenge?.data?.id;
 
       if (attempts >= maxAttempts && additional <= 0)
-        router?.replace(`/challenge/${challengeId}`);
+        router?.replace(`/game/${title}/tournaments/${challengeId}`);
     }
   }, [
     challenge?.data?.id,
@@ -153,7 +153,7 @@ export default function SnakePlayScreen() {
 
       if (!paid && source == "invite") {
         if (entry_fee && entry_fee >= score)
-          router?.replace(`/challenge/${challengeId}`);
+          router?.replace(`/game/${title}/tournaments/${challengeId}`);
         else payFee({ sessionId, id: challengeId });
       }
     }
@@ -184,7 +184,7 @@ export default function SnakePlayScreen() {
         </div>,
         { duration: 6000 }
       );
-      router?.replace(`/challenge`);
+      router?.replace(`/game/${title}/tournaments`);
     }
   }, [challenge?.data, challengeError?.message, router, source]);
 
@@ -291,13 +291,13 @@ export default function SnakePlayScreen() {
 
   return (
     <SnakeProvider>
-      <div>
+      <div className="w-full">
         <Image
           alt="Background"
           src={BackgroundImg}
-          className="absolute w-full h-[100dvh]"
+          className="absolute w-full h-screen top-0"
         />
-        <div className="px-6 py-6 space-y-2 h-[100dvh] grid grid-rows-[auto_minmax(0,1fr)] gap-2">
+        <div className="px-6 pt-[10px] h-[calc(100dvh_-_77px)] flex flex-col justify-around">
           <ScoreBoard
             gameOverDetails={gameOverDetails}
             score={score}

@@ -10,7 +10,7 @@ const ResultCard = ({
 }: ResultType) => {
   return (
     <div
-      className=" bg-[#EED1B8] border border-[rgba(250,238,210,0.65)] rounded-2xl p-2 space-y-2 text-[#5F3F57]"
+      className="flex flex-col bg-[#EED1B8] border border-[rgba(250,238,210,0.65)] rounded-2xl p-2 gap-y-2 text-[#5F3F57]"
       style={{ boxShadow: "0px 2px 0px 0px rgba(0, 0, 0, 0.16)" }}
     >
       <div

@@ -9,7 +9,13 @@ import { usePathname } from "next/navigation";
 
 export default function UserXp() {
   const { userXp } = useGeneral();
-  const { isXpOpen, setIsXpOpen } = useApp();
+  const {
+    isXpOpen,
+    setIsXpOpen,
+    wasProfileOpen,
+    setWasProfileOpen,
+    setIsProfileOpen,
+  } = useApp();
   const [hasFooter, setHasFooter] = React.useState(false);
   const pathname = usePathname();
 
@@ -29,7 +35,16 @@ export default function UserXp() {
       ) : (
         <BackHomeBar />
       )}
-      <XpDialog isOpen={isXpOpen} onClose={() => setIsXpOpen(!isXpOpen)} />
+      <XpDialog
+        isOpen={isXpOpen}
+        onClose={() => {
+          setIsXpOpen(!isXpOpen);
+          setWasProfileOpen(false);
+        }}
+        wasProfileOpen={wasProfileOpen}
+        setWasProfileOpen={setWasProfileOpen}
+        setIsProfileOpen={setIsProfileOpen}
+      />
     </>
   );
 }

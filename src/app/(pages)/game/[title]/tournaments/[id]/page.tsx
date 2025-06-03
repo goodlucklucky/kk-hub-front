@@ -411,7 +411,7 @@ export default function TournamentEntryPage(props: Iprops) {
                 <div className="flex flex-col bg-[#D2AE9F] rounded-[14px] p-1.5 xs:p-2 gap-1 xs:gap-1.5">
                   <Button
                     className="rounded-[6px] border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%]"
-                    disabled={!status?.isAvailable}
+                    // disabled={!status?.isAvailable}
                     onClick={() => {
                       if (
                         challenge?.score_summary?.paid ||

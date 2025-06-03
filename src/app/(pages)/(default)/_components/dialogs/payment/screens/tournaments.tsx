@@ -75,7 +75,7 @@ export default function TournamentsPayment({
         ),
         itemTime: `Tournament Entry Fee`,
         description: "One payment - unlimited attempts!",
-        button: "Play Now",
+        button: "Play Now!",
       }}
     />
   );

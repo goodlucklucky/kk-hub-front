@@ -23,6 +23,9 @@ import rankBlack from "@/app/_assets/svg/rank_black.svg";
 interface ProfileDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  wasProfileOpen: boolean;
+  setWasProfileOpen: (isOpen: boolean) => void;
+  setIsProfileOpen: (isOpen: boolean) => void;
 }
 
 const xpLevels = [
@@ -130,7 +133,7 @@ const xpLevels = [
   },
 ];
 
-const XpDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
+const XpDialog = ({ isOpen, onClose, wasProfileOpen, setWasProfileOpen, setIsProfileOpen }: ProfileDialogProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogPortal>
@@ -142,14 +145,23 @@ const XpDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
               <CloseIcon onClick={onClose} />
             </div>
             <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-2">
-                <Button className="w-[35px] h-[35px] rounded-[7px] border border-[#A15A24] bg-gradient-to-b from-[#FFD093] to-[#FFC880] shadow-[0_2px_0_0_#6B340A] p-1">
-                  <RightArrow
-                    color="#6B340A"
-                    className="w-[11px] h-[17px] rotate-180"
-                  />
-                </Button>
-                <h1 className="text-[28px] font-normal text-[#491F36] uppercase tracking-[0.56px] font-bumper-sticker">
+              <div className="flex items-center">
+                {wasProfileOpen && (
+                  <Button
+                    className="w-[35px] h-[35px] rounded-[7px] border border-[#A15A24] bg-gradient-to-b from-[#FFD093] to-[#FFC880] shadow-[0_2px_0_0_#6B340A] p-1"
+                    onClick={() => {
+                      setWasProfileOpen(false);
+                      setIsProfileOpen(true);
+                      onClose();
+                    }}
+                  >
+                    <RightArrow
+                      color="#6B340A"
+                      className="w-[11px] h-[17px] rotate-180"
+                    />
+                  </Button>
+                )}
+                <h1 className="pl-2 text-[28px] font-normal text-[#491F36] uppercase tracking-[0.56px] font-bumper-sticker">
                   KOKOMO LEVELS
                 </h1>
               </div>
