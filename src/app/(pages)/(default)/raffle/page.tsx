@@ -17,19 +17,17 @@ import { ClaimRaffleIcon } from "@/app/_assets/svg/claim";
 import { CheckIcon } from "@/app/_assets/svg/check";
 import TicketDialog from "../_components/dialogs/ticket-dialog";
 import RaffleDialog from "../_components/dialogs/raffle-dialog";
-import {
-  useEnterRaffle,
-  useClaimRaffle,
-  useRaffleStore,
-  useGetRaffleEntry,
-  useGetUnclaimedRaffle,
-  IEnterRaffle,
-} from "../../../../../services/raffle";
 import { GeneralContext } from "@/app/_providers/generalProvider";
 import useTimeLeft from "@/app/_hooks/useTimeLeft";
+import {
+  ITicket,
+  useEnterUser,
+  useGetRaffleUserEntries,
+} from "@/../services/raffle";
+import toast from "react-hot-toast";
 
 // Helper function to check if any ticket is a winner and collect winning numbers
-function checkWinningTickets(tickets: IEnterRaffle[]) {
+function checkWinningTickets(tickets: ITicket[]) {
   if (!tickets || tickets.length === 0) {
     return {
       isWinner: false,
@@ -60,50 +58,52 @@ export default function RafflePage() {
   const [raffleDialogOpen, setRaffleDialogOpen] = useState(false);
   const { sessionId } = useContext(GeneralContext);
 
-  const { mutate: fetchUnclaimedRaffleData, data } = useGetUnclaimedRaffle();
-  // console.log("Unclaimed Data@@@", data);
-  const { mutateAsync: enterRaffleMutate } = useEnterRaffle();
-  const { mutateAsync: getRaffleEntryMutate } = useGetRaffleEntry();
+  // const { mutate: fetchUnclaimedRaffleData, data } = useGetUnclaimedRaffle();
+  // // console.log("Unclaimed Data@@@", data);
+  // const { mutateAsync: enterRaffleMutate } = useEnterRaffle();
+  // const { mutateAsync: getRaffleEntryMutate } = useGetRaffleEntry();
 
-  useEffect(() => {
-    if (sessionId) {
-      fetchUnclaimedRaffleData(sessionId);
-      enterRaffleMutate(
-        { sessionId },
-        {
-          onSuccess: () => {
-            setStartAnimation(true);
-          },
-          onError: () => {
-            getRaffleEntryMutate(sessionId);
-          },
-        }
-      );
-    }
-  }, [
-    sessionId,
-    enterRaffleMutate,
-    getRaffleEntryMutate,
-    fetchUnclaimedRaffleData,
-  ]);
+  // useEffect(() => {
+  //   if (sessionId) {
+  //     fetchUnclaimedRaffleData(sessionId);
+  //     enterRaffleMutate(
+  //       { sessionId },
+  //       {
+  //         onSuccess: () => {
+  //           setStartAnimation(true);
+  //         },
+  //         onError: () => {
+  //           getRaffleEntryMutate(sessionId);
+  //         },
+  //       }
+  //     );
+  //   }
+  // }, [
+  //   sessionId,
+  //   enterRaffleMutate,
+  //   getRaffleEntryMutate,
+  //   fetchUnclaimedRaffleData,
+  // ]);
 
   // const raffleMutation = useRaffle();
-  const raffleMutation = useClaimRaffle();
+  const { mutateAsync: enterUser } = useEnterUser();
 
-  const handleClaimTicket = useCallback(() => {
+  const handleClaimTicket = useCallback(async () => {
     setClaimTicket(true);
 
     if (sessionId) {
-      raffleMutation.mutate({
-        sessionId: sessionId,
-        openNow: true,
-      });
+      try {
+        await enterUser({ sessionId: sessionId });
+      } catch (error: any) {
+        console.log("error", error);
+        toast?.error(error?.response?.data?.message || "Something went wrong");
+      }
     }
-  }, [sessionId, raffleMutation]);
-  const { ticket } = useRaffleStore();
+  }, [sessionId, enterUser]);
 
   // Get winner status and winning numbers
-  const { isWinner, winningNumbers } = checkWinningTickets(ticket);
+  // const { isWinner, winningNumbers } = checkWinningTickets(ticket);
+  const { data: entries } = useGetRaffleUserEntries({ sessionId });
 
   return (
     <>
@@ -154,11 +154,11 @@ export default function RafflePage() {
                     className="object-cover w-auto h-20 2xs:h-30 fixed"
                   />
                   {startAnimation &&
-                  ticket?.length > 0 &&
-                  ticket[0]?.ticketNumber ? (
+                  (entries?.tickets ?? []).length > 0 &&
+                  entries?.tickets?.[0]?.ticketNumber ? (
                     <CountUp
                       start={0}
-                      end={ticket[0].ticketNumber}
+                      end={entries?.tickets?.[0].ticketNumber}
                       duration={2.5}
                       onEnd={() => setRaffleDialogOpen(true)}
                       className="text-[#8A6C48] text-[35px] font-bumper-sticker font-normal rotate-[-2deg] z-20 mr-4"
@@ -191,7 +191,7 @@ export default function RafflePage() {
                   // disabled={data?.data?.length == 0}
                   className="rounded-[6px] bg-gradient-to-b from-[#24BE62] from-[10%] to-[#1AB257] to-[201.67%] py-[3px] w-full flex gap-x-1 items-center justify-center"
                 >
-                  {data && data?.data?.length === 0 ? (
+                  {entries?.tickets?.length != 0 ? (
                     <>
                       <CheckIcon color="#ffffff" className="w-4 h-4 -mt-1" />
                       <span className="text-white text-sm font-bold py-1">
@@ -215,7 +215,7 @@ export default function RafflePage() {
                     My Entries
                   </span>
                   <span className="text-[#FCE7C5] text-center font-made-tommy text-[16px] font-bold leading-[20px] bg-[#8F6E75] px-1 h-5 rounded-[5px]">
-                    {ticket.length}
+                    {entries?.tickets?.length || 0}
                   </span>
                 </div>
               </div>
@@ -226,20 +226,19 @@ export default function RafflePage() {
       {raffleDialogOpen && (
         <RaffleDialog
           isOpen={raffleDialogOpen}
-          onClose={() => {
-            setRaffleDialogOpen(!raffleDialogOpen);
-          }}
-          tickets={data?.data ?? []}
-          isWinner={isWinner}
-          winningNumbers={winningNumbers}
+          onClose={() => setRaffleDialogOpen(!raffleDialogOpen)}
+          tickets={entries?.tickets ?? []}
+          isWinner={false}
+          winningNumbers={[]}
+          // winningNumbers={winningNumbers}
+          isClaiming={false}
           showWinner={true}
-          isClaiming={isWinner}
         />
       )}
       <TicketDialog
         isOpen={ticketDialogOpen}
         onClose={() => setTicketDialogOpen(false)}
-        tickets={ticket ?? []}
+        tickets={entries?.tickets ?? []}
       />
     </>
   );

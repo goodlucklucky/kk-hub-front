@@ -2,66 +2,35 @@
 
 import Image from "next/image";
 import { Button } from "@/app/_components/ui/button";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import TetrisRefreshIcon from "@/app/_assets/svg/tetris-refresh.svg";
 import NeonMountainsVisualImage from "@/app/_assets/images/neon-mountains-visual.png";
 import { useAudioPlayer } from "@/app/_hooks/use-audio";
 import { arcadeClassicFont } from "@/app/_lib/fonts";
+import { TetrisBoard } from "./components/board";
+import {
+  BOARD_HEIGHT,
+  BOARD_WIDTH,
+  EMPTY_BOARD,
+  TETROMINOS,
+} from "./constants";
+import { PreviewPiece } from "./components/previewNext";
+import { cn } from "@/app/_lib/utils";
+import { TetrisProvider } from "./contexts/tetris-context";
+import GameOver from "./components/game-over";
+import {
+  ChallengeStatusEnum,
+  IPostScoreResultsDetails,
+  useGetChallenge,
+  usePostScore,
+} from "@/../services/game/challenges";
+import { useParams, useSearchParams } from "next/navigation";
+import { useGeneral } from "@/app/_providers/generalProvider";
+import { gameKeys } from "../../../tournaments/constants/gameKeys";
+import { useThirdweb } from "@/app/(pages)/(default)/_context/thirdwebContext";
+import { availableBalance } from "@/app/_utils/number";
+import useTimer from "../chess/hooks/useTimer";
 // Tetris piece definitions
-const TETROMINOS = {
-  I: {
-    shape: [[1, 1, 1, 1]],
-    color: "#00f5ff",
-  },
-  O: {
-    shape: [
-      [1, 1],
-      [1, 1],
-    ],
-    color: "#ffff00",
-  },
-  T: {
-    shape: [
-      [0, 1, 0],
-      [1, 1, 1],
-    ],
-    color: "#a000f0",
-  },
-  S: {
-    shape: [
-      [0, 1, 1],
-      [1, 1, 0],
-    ],
-    color: "#00f000",
-  },
-  Z: {
-    shape: [
-      [1, 1, 0],
-      [0, 1, 1],
-    ],
-    color: "#f00000",
-  },
-  J: {
-    shape: [
-      [1, 0, 0],
-      [1, 1, 1],
-    ],
-    color: "#0000f0",
-  },
-  L: {
-    shape: [
-      [0, 0, 1],
-      [1, 1, 1],
-    ],
-    color: "#ffa500",
-  },
-};
-
-const BOARD_WIDTH = 10;
-const BOARD_HEIGHT = 20;
-const EMPTY_BOARD = Array(BOARD_HEIGHT)
-  .fill(null)
-  .map(() => Array(BOARD_WIDTH).fill(0));
 
 interface Position {
   x: number;
@@ -80,18 +49,97 @@ export default function TetrisGame() {
   const [currentPiece, setCurrentPiece] = useState<Piece | null>(null);
   const [nextPiece, setNextPiece] = useState<string>("I");
   const [score, setScore] = useState(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [level, setLevel] = useState(1);
   const [gameOver, setGameOver] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isPaused, setIsPaused] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [gameOverDetails, setGameOverDetails] =
+    useState<IPostScoreResultsDetails>();
+
+  const { time } = useTimer();
 
   const gameLoopRef = useRef<NodeJS.Timeout>(null);
+  const isSubmittingRef = useRef(false);
   const dropTimeRef = useRef(700);
 
   const movePieceSound = useAudioPlayer("/sounds/move-piece.mp3", sectionRef);
   const hardDropSound = useAudioPlayer("/sounds/hard-drop.mp3", sectionRef);
   const gameOverSound = useAudioPlayer("/sounds/game-over.mp3", sectionRef);
+
+  const { sessionId, myScore } = useGeneral();
+  const searchParams = useSearchParams();
+  const challenge_id = useMemo(
+    () => searchParams.get("challenge_id"),
+    [searchParams]
+  );
+
+  const params = useParams();
+  const title = useMemo(() => params?.title, [params?.title]);
+  const gameKey = useMemo(
+    () => gameKeys[title as keyof typeof gameKeys],
+    [title]
+  );
+
+  const {
+    balance: { refresh: refreshBalance },
+  } = useThirdweb();
+
+  const {
+    data: challenge,
+    error: challengeError,
+    refetch: refetchChallenge,
+  } = useGetChallenge(
+    challenge_id!,
+    sessionId,
+    ChallengeStatusEnum.ACTIVE,
+    gameKey
+  );
+  const { mutateAsync: postScore, isPending } = usePostScore();
+
+  const status = useMemo(() => {
+    const chall = challenge?.data;
+    // check if active
+    const is_active = chall?.is_active;
+
+    const currentBalance = availableBalance(
+      { kokos: myScore || 0 },
+      chall?.currency
+    );
+
+    // check balance
+    const balanceAvailable =
+      !chall?.entry_fee || (currentBalance || 0) >= chall?.entry_fee;
+
+    // check attempt limit
+    const attemptLimit =
+      !chall?.max_participations ||
+      chall?.max_participations >
+        (chall?.score_summary?.total_attempts || 0) + 1;
+
+    const isAvailable = is_active && balanceAvailable && attemptLimit;
+    return { isAvailable, is_active, balanceAvailable, attemptLimit };
+  }, [challenge?.data, myScore]);
+
+  const handelMatchEnd = useCallback(async () => {
+    if (isSubmittingRef.current) return;
+    isSubmittingRef.current = true;
+    try {
+      const data = await postScore({
+        challenge_id: challenge?.data?.id || "",
+        score,
+        sessionId,
+        status: "active",
+        details: { play_time: time, scores: score },
+      });
+      // mixpanel?.track();
+      setGameOverDetails?.(data?.details || {});
+      // refreshChallengesPlayed?.();
+    } catch {
+      // console.log(error);
+    } finally {
+      isSubmittingRef.current = false;
+    }
+  }, [challenge?.data?.id, postScore, score, sessionId, time]);
 
   const getRandomPiece = useCallback((): string => {
     const pieces = Object.keys(TETROMINOS);
@@ -112,12 +160,12 @@ export default function TetrisGame() {
     };
   }, []);
 
-  const rotatePiece = (piece: Piece): Piece => {
-    const rotated = piece.shape[0].map((_, index) =>
-      piece.shape.map((row) => row[index]).reverse()
+  const rotatePiece = useCallback((piece: Piece): Piece => {
+    const rotated = piece?.shape?.[0]?.map?.((_, index) =>
+      piece?.shape?.map((row) => row[index]).reverse()
     );
     return { ...piece, shape: rotated };
-  };
+  }, []);
 
   const isValidMove = useCallback(
     (piece: Piece, newBoard: number[][]): boolean => {
@@ -183,14 +231,17 @@ export default function TetrisGame() {
     const newPiece = createPiece(nextPiece);
     setCurrentPiece(newPiece);
     setNextPiece(getRandomPiece());
+
     if (!isValidMove(newPiece, board)) {
       gameOverSound.play();
       setGameOver(true);
+      handelMatchEnd?.();
     }
   }, [
     nextPiece,
     createPiece,
     getRandomPiece,
+    handelMatchEnd,
     board,
     isValidMove,
     gameOverSound,
@@ -202,6 +253,7 @@ export default function TetrisGame() {
       if (playSound) {
         movePieceSound.play();
       }
+
       const newPiece = {
         ...currentPiece,
         position: {
@@ -253,6 +305,7 @@ export default function TetrisGame() {
       if (playSound) {
         hardDropSound.play();
       }
+
       let dropDistance = 0;
       let testPiece = { ...currentPiece };
 
@@ -277,6 +330,21 @@ export default function TetrisGame() {
     ]
   );
 
+  const reset = useCallback(() => {
+    setBoard(EMPTY_BOARD);
+    setGameOver(false);
+    setIsPaused(false);
+    setCurrentPiece(null);
+    setScore(0);
+    setLevel(1);
+
+    const next = getRandomPiece();
+    setNextPiece(next);
+
+    setGameOver(false);
+    spawnNewPiece();
+  }, []);
+
   // Game loop
   useEffect(() => {
     if (gameOver || isPaused) return;
@@ -292,11 +360,11 @@ export default function TetrisGame() {
     };
   }, [movePiece, gameOver, isPaused]);
 
-  // Initialize game
+  // // Initialize game
   useEffect(() => {
     setNextPiece(getRandomPiece());
     spawnNewPiece();
-  }, [getRandomPiece, spawnNewPiece]);
+  }, []);
 
   // Keyboard controls
   useEffect(() => {
@@ -335,207 +403,173 @@ export default function TetrisGame() {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [movePiece, rotatePieceHandler, hardDrop, gameOver]);
 
-  const renderBoard = () => {
-    const displayBoard = board.map((row) => [...row]);
-
-    if (currentPiece) {
-      for (let y = 0; y < currentPiece.shape.length; y++) {
-        for (let x = 0; x < currentPiece.shape[y].length; x++) {
-          if (currentPiece.shape[y][x]) {
-            const boardY = currentPiece.position.y + y;
-            const boardX = currentPiece.position.x + x;
-            if (
-              boardY >= 0 &&
-              boardY < BOARD_HEIGHT &&
-              boardX >= 0 &&
-              boardX < BOARD_WIDTH
-            ) {
-              displayBoard[boardY][boardX] = currentPiece.color;
-            }
-          }
-        }
+  const handlePlayAgain = useCallback(async () => {
+    if (isLoading) return;
+    setIsLoading(true);
+    try {
+      reset?.();
+      if (
+        challenge?.data?.entry_fee != null &&
+        !challenge?.data?.score_summary?.paid
+      ) {
+        setTimeout(async () => {
+          await Promise.all([await refreshBalance?.()]);
+        }, 5000);
       }
+    } catch {
+      // console.error("Error while restarting game:", error);
+    } finally {
+      setIsLoading(false);
     }
-
-    return displayBoard.map((row, y) => (
-      <div key={y} className="grid grid-cols-10">
-        {row.map((cell, x) => (
-          <div
-            key={x}
-            className="w-full h-6 flex items-center justify-center"
-            style={{
-              border: "0.5px solid #18181b",
-              backgroundColor: cell ? cell : "transparent",
-              boxShadow: cell
-                ? "inset 0 0 0 1px rgba(255,255,255,0.3)"
-                : "none",
-            }}
-          >
-            {cell ? (
-              <div
-                className="w-5 h-5 rounded-sm"
-                style={{
-                  background: `linear-gradient(135deg, ${cell}, ${cell}dd)`,
-                }}
-              />
-            ) : null}
-          </div>
-        ))}
-      </div>
-    ));
-  };
-
-  const renderPreviewPiece = (pieceType: string | null) => {
-    if (!pieceType) return null;
-
-    const tetromino = TETROMINOS[pieceType as keyof typeof TETROMINOS];
-    return (
-      <div className="flex flex-col items-center">
-        {tetromino.shape.map((row, y) => (
-          <div key={y} className="flex">
-            {row.map((cell, x) => (
-              <div
-                key={x}
-                className="w-2 h-2"
-                style={{
-                  backgroundColor: cell ? tetromino.color : "transparent",
-                }}
-              >
-                {cell ? (
-                  <div
-                    className="w-full h-full rounded-sm"
-                    style={{
-                      background: `linear-gradient(135deg, ${tetromino.color}, ${tetromino.color}dd)`,
-                    }}
-                  />
-                ) : null}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    );
-  };
+  }, [
+    reset,
+    isLoading,
+    challenge?.data?.entry_fee,
+    challenge?.data?.score_summary?.paid,
+    refreshBalance,
+  ]);
 
   return (
-    <div
-      ref={sectionRef}
-      style={{
-        backgroundImage: `url(${NeonMountainsVisualImage.src})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        minHeight: "100dvh",
-        minWidth: "100vw",
-        position: "relative",
-        overflow: "hidden",
-      }}
-      className={`p-2 flex flex-col -z-10 ${arcadeClassicFont.className}`}
-    >
+    <TetrisProvider>
       <div
+        ref={sectionRef}
         style={{
-          background: "transparent",
+          backgroundImage: `url(${NeonMountainsVisualImage?.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+          minHeight: "100%",
+          minWidth: "100dvw",
+          position: "relative",
+          overflow: "hidden",
         }}
-        className="relative z-10 backdrop-blur-md flex-1 h-full  border-purple-700 border-2 rounded-xl flex flex-col items-center p-2"
+        className={cn(`p-2 flex flex-col z-10 ${arcadeClassicFont.className}`)}
       >
-        <div className="border-2 rounded-md mb-2 px-6 py-1 mx-auto border-[rgba(255,_55,_212,_1)]">
-          <h2
-            style={{ WebkitTextStroke: "1px sky" }}
-            className="text-2xl text-transparent bg-clip-text bg-gradient-to-b from-purple-400 via-blue-500 to-pink-500 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] font-bold "
-          >
-            TETRIS
-          </h2>
-        </div>
-        <div className="flex space-x-2 w-full">
-          {/* Left panel */}
-          <div className="w-[15%]">
-            <div className="text-[8px] text-center font-bold mb-2">SCORE</div>
-            <div className="rounded-md bg-gradient-to-tr from-violet-400 via-purple-600 to-pink-400 p-0.5">
-              <div className="bg-gray-900 p-2 rounded min-h-[40px] flex items-center justify-center">
-                <span className="text-yellow-600 tabular-nums">{score}</span>
+        <div
+          style={{
+            background: "transparent",
+          }}
+          className="relative z-10 backdrop-blur-md flex-1 h-full  border-purple-700 border-2 rounded-xl flex flex-col items-center p-2"
+        >
+          <div className="border-2 rounded-md mb-2 px-6 py-1 mx-auto border-[rgba(255,_55,_212,_1)]">
+            <h2
+              style={{ WebkitTextStroke: "1px sky" }}
+              className="text-2xl text-transparent bg-clip-text bg-gradient-to-b from-purple-400 via-blue-500 to-pink-500 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] font-bold "
+            >
+              TETRIS
+            </h2>
+          </div>
+          <div className="flex space-x-2 w-full">
+            {/* Left panel */}
+            <div className="w-[15%]">
+              <div className="text-[8px] text-center font-bold mb-2">SCORE</div>
+              <div className="rounded-md bg-gradient-to-tr from-violet-400 via-purple-600 to-pink-400 p-0.5">
+                <div className="bg-gray-900 p-2 rounded min-h-[40px] flex items-center justify-center">
+                  <span className="text-yellow-600 tabular-nums">{score}</span>
+                </div>
+              </div>
+            </div>
+            {/* Game board */}
+            <div className="w-[70%] rounded border-2 border-purple-600/60">
+              <div className="bg-zinc-900/40 backdrop-blur-sm p-px rounded">
+                {/* {renderBoard()} */}
+                <TetrisBoard
+                  board={board}
+                  currentPiece={currentPiece}
+                  BOARD_HEIGHT={BOARD_HEIGHT}
+                  BOARD_WIDTH={BOARD_WIDTH}
+                />
+              </div>
+            </div>
+            {/* Right Panel */}
+            <div className="w-[15%]">
+              <div className="text-[8px] text-center font-bold mb-2 text-[#14FCEC]">
+                NEXT PIECE
+              </div>
+              <div className="rounded-md bg-gradient-to-tr from-violet-400 via-purple-600 to-pink-400 p-0.5">
+                <div className="bg-gray-900 p-2 rounded min-h-[40px] flex items-center justify-center">
+                  {/* {renderPreviewPiece(nextPiece)} */}
+                  <PreviewPiece pieceType={nextPiece} />
+                </div>
               </div>
             </div>
           </div>
-          {/* Game board */}
-          <div className="w-[70%] rounded border-2 border-purple-600/60">
-            <div className="bg-zinc-900/40 backdrop-blur-sm p-px rounded">
-              {renderBoard()}
-            </div>
-          </div>
-          {/* Right Panel */}
-          <div className="w-[15%]">
-            <div className="text-[8px] text-center font-bold mb-2 text-[#14FCEC]">
-              NEXT PIECE
-            </div>
-            <div className="rounded-md bg-gradient-to-tr from-violet-400 via-purple-600 to-pink-400 p-0.5">
-              <div className="bg-gray-900 p-2 rounded min-h-[40px] flex items-center justify-center">
-                {renderPreviewPiece(nextPiece)}
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Controls */}
-        <div className="flex my-auto items-center justify-between w-full">
-          <div className="relative">
-            <div className="grid grid-cols-3 gap-2">
-              <div></div>
-              <button
-                className="bg-zinc-800 active:bg-zinc-950 transition-all active:ring-black flex items-center justify-center ring-inset ring-2 ring-zinc-700 rounded-full size-10 text-white"
-                onClick={() => rotatePieceHandler()}
-              >
-                <Chevron className="rotate-180" />
-              </button>
-              <div></div>
-              <button
-                className="bg-zinc-800 active:bg-zinc-950 transition-all active:ring-black flex items-center justify-center ring-inset ring-2 ring-zinc-700 rounded-full size-10 text-white"
-                onClick={() => movePiece(-1, 0, true)}
-              >
-                <Chevron className="rotate-90" />
-              </button>
-              <button
-                className="bg-zinc-800 active:bg-zinc-950 transition-all active:ring-black flex items-center justify-center ring-inset ring-2 ring-zinc-700 rounded-full size-10 text-white"
-                onClick={() => hardDrop(true)}
-              >
-                <Chevron />
-              </button>
-              <button
-                className="bg-zinc-800 hover:bg-zinc-950 flex items-center justify-center ring-inset ring-2 ring-zinc-700 rounded-full size-10 text-white"
-                onClick={() => movePiece(1, 0, true)}
-              >
-                <Chevron className="rotate-270" />
-              </button>
+          {/* Controls */}
+          <div className="flex my-auto items-center justify-between w-full">
+            <div className="relative">
+              <div className="grid grid-cols-3 gap-2">
+                <div></div>
+                <button
+                  className="bg-zinc-800 active:bg-zinc-950 transition-all active:ring-black flex items-center justify-center ring-inset ring-2 ring-zinc-700 rounded-full size-10 text-white"
+                  onClick={() => rotatePieceHandler()}
+                >
+                  <Chevron className="rotate-180" />
+                </button>
+                <div></div>
+                <button
+                  className="bg-zinc-800 active:bg-zinc-950 transition-all active:ring-black flex items-center justify-center ring-inset ring-2 ring-zinc-700 rounded-full size-10 text-white"
+                  onClick={() => movePiece(-1, 0, true)}
+                >
+                  <Chevron className="rotate-90" />
+                </button>
+                <button
+                  className="bg-zinc-800 active:bg-zinc-950 transition-all active:ring-black flex items-center justify-center ring-inset ring-2 ring-zinc-700 rounded-full size-10 text-white"
+                  onClick={() => hardDrop(true)}
+                >
+                  <Chevron />
+                </button>
+                <button
+                  className="bg-zinc-800 hover:bg-zinc-950 flex items-center justify-center ring-inset ring-2 ring-zinc-700 rounded-full size-10 text-white"
+                  onClick={() => movePiece(1, 0, true)}
+                >
+                  <Chevron className="rotate-270" />
+                </button>
+              </div>
             </div>
+            <button className="cursor-pointer" onClick={rotatePieceHandler}>
+              <Image
+                src={TetrisRefreshIcon}
+                alt="shuffle tetris piece"
+                width={96}
+                height={96}
+                className="w-24 h-24 object-cover object-center"
+              />
+            </button>
           </div>
-          <button className="cursor-pointer" onClick={rotatePieceHandler}>
-            <Image
-              src={TetrisRefreshIcon}
-              alt="shuffle tetris piece"
-              width={96}
-              height={96}
-              className="w-24 h-24 object-cover object-center"
+
+          {/* Game Over */}
+          {/* {gameOver ? (
+            <div className="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center z-20">
+              <div className="bg-gray-800 p-6 rounded-lg text-center">
+                <h2 className="text-2xl font-bold mb-4">Game Over</h2>
+                <p className="mb-4">Final Score: {score}</p>
+                <Button
+                  onClick={reset}
+                  className="bg-blue-600 hover:bg-blue-500"
+                >
+                  Play Again
+                </Button>
+              </div>
+            </div>
+          ) : null} */}
+          {gameOver && (
+            <GameOver
+              yourScore={score}
+              challenge={challenge?.data}
+              gameOverDetails={gameOverDetails}
+              isPending={isPending}
+              isLoading={isLoading}
+              resetGame={reset}
+              canPlayAgain={status?.isAvailable}
+              refetchChallenge={refetchChallenge}
+              onPlayAgain={handlePlayAgain}
             />
-          </button>
+          )}
         </div>
-
-        {/* Game Over */}
-        {gameOver ? (
-          <div className="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center z-20">
-            <div className="bg-gray-800 p-6 rounded-lg text-center">
-              <h2 className="text-2xl font-bold mb-4">Game Over</h2>
-              <p className="mb-4">Final Score: {score}</p>
-              <Button
-                onClick={() => window.location.reload()}
-                className="bg-blue-600 hover:bg-blue-500"
-              >
-                Play Again
-              </Button>
-            </div>
-          </div>
-        ) : null}
       </div>
-    </div>
+    </TetrisProvider>
   );
 }
 
