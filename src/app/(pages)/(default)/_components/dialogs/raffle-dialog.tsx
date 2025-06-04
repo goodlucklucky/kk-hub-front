@@ -19,16 +19,13 @@ import { TicketList } from "./raffle/ticket-list";
 import { NoWinMessage } from "./raffle/no-win-message";
 import Button from "@/app/_components/shared/button";
 import { CheckIcon } from "@/app/_assets/svg/check";
-import {
-  IRafflePrize,
-  useRaffleStore,
-} from "../../../../../../services/raffle";
 import { WinningNumbers } from "./raffle/winning-numbers";
+import { ITicket } from "@/../services/raffle";
 
 interface RaffleDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  tickets: IRafflePrize[];
+  tickets: ITicket[];
   isWinner: boolean;
   winningNumbers: number[];
   showWinner: boolean;
@@ -45,7 +42,6 @@ const RaffleDialog = ({
   isClaiming,
 }: RaffleDialogProps) => {
   const [openLootbox, setOpenLootbox] = useState(false);
-  const { ticket } = useRaffleStore();
 
   // console.log("winningNumbers!!!", winningNumbers);
   // console.log("Tickets!!!", tickets);
@@ -90,7 +86,7 @@ const RaffleDialog = ({
                     className="object-cover w-auto h-20 fixed"
                   />
                   <span className="text-[#8A6C48] text-[30px] font-bumper-sticker font-normal rotate-[-2deg] z-20 mr-4 mb-4.5">
-                    {ticket[0]?.ticketNumber}
+                    {tickets?.[0]?.ticketNumber}
                   </span>
                 </div>
               </>

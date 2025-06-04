@@ -1,39 +1,57 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import Image from "next/image";
+
 //import components
 import Chat from "../../../(default)/_components/chat";
+import Button from "@/app/_components/shared/button";
+import PreviousResults from "../../../(default)/_components/profile/previous-results";
+import EarningsSection from "@/app/(pages)/(default)/_components/profile/earnings-section";
+import TournamentItem from "@/app/(pages)/(default)/_components/profile/tournament-item";
+
+// import provider
+import { GeneralContext } from "@/app/_providers/generalProvider";
+import { useApp } from "@/app/_contexts/appContext";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
+import { gameKeys } from "../tournaments/constants/gameKeys";
+import {
+  ChallengeStatusEnum,
+  useChallenges,
+  useGetATH,
+} from "@/../services/game/challenges";
 
 //import icons
-
-//import images
-import statsBack from "@assets/images/stats-back.png";
-import statsIcon from "@assets/images/stats-icon.png";
-import statsPanel from "@assets/images/stats-panel.png";
-import Button from "@/app/_components/shared/button";
+import { QuestionMarkIcon } from "@/app/_assets/svg/template";
 import { StatsWalletIcon } from "@/app/_assets/svg/stats-wallet";
 import { TopArrow } from "@/app/_assets/svg/top-arrow";
 import { StarStatsIcon } from "@/app/_assets/svg/star";
 import { SunIcon } from "@/app/_assets/svg/sun";
 import { CalendarIcon } from "@/app/_assets/svg/calendar";
-import PreviousResults from "../../../(default)/_components/profile/previous-results";
-import EarningsSection from "@/app/(pages)/(default)/_components/profile/earnings-section";
-import { GeneralContext } from "@/app/_providers/generalProvider";
-import TournamentItem from "@/app/(pages)/(default)/_components/profile/tournament-item";
-import {
-  useChallenges,
-  useGetATH,
-} from "../../../../../../services/game/challenges";
-import { QuestionMarkIcon } from "@/app/_assets/svg/template";
-import { useApp } from "@/app/_contexts/appContext";
 
-export default function StatsPage() {
+//import images
+import statsBack from "@assets/images/stats-back.png";
+import statsIcon from "@assets/images/stats-icon.png";
+import statsPanel from "@assets/images/stats-panel.png";
+
+export default function StatsPage({ params }: any) {
   const { sessionId, myUsdt } = useContext(GeneralContext);
-  const { data } = useChallenges(sessionId, "daily");
+
+  const title = params?.title;
+  const gameKey = useMemo(
+    () => gameKeys[title as keyof typeof gameKeys],
+    [title]
+  );
+
+  const { data } = useChallenges(
+    sessionId,
+    "daily",
+    ChallengeStatusEnum.ACTIVE,
+    {},
+    gameKey
+  );
   const { data: ath } = useGetATH(sessionId);
   const { setIsBankingOpen } = useApp();
   return (
@@ -160,8 +178,9 @@ export default function StatsPage() {
                         key={item?.id}
                         title={item.name}
                         message={item.description}
-                        color={`${item.details.color}`}
+                        color={item?.details?.color}
                         score={item.score_summary?.yourTotalScore || 0}
+                        path={`/game/${title}/tournaments/${item?.id}`}
                       />
                     ))}
                 </div>

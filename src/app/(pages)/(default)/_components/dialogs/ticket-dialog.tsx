@@ -10,13 +10,13 @@ import {
 //import icons
 import { CloseIcon } from "@/app/_assets/svg/close";
 import { ClaimRaffleIcon } from "@/app/_assets/svg/claim";
-import { IEnterRaffle } from "../../../../../../services/raffle";
+import { ITicket } from "@/../services/raffle";
 
 //interface
 interface TicketDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  tickets: IEnterRaffle[];
+  tickets: ITicket[];
 }
 
 const TicketDialog = ({ isOpen, onClose, tickets }: TicketDialogProps) => {

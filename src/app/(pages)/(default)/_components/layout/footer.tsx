@@ -3,7 +3,7 @@
 //import modules
 import React from "react";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 
 //import utils
 import { cn } from "@/app/_lib/utils";
@@ -26,8 +26,8 @@ export default function Footer({
   footerCategory: string;
 }) {
   const pathname = usePathname();
-  // const params = useParams();
-  // const title = params?.title as string;
+  const params = useParams();
+  const title = params?.title as string;
 
   const isPlayRoute = (path: string) => {
     return pathname?.includes(path);
@@ -45,18 +45,18 @@ export default function Footer({
         <Item
           Icon={SpeakerIcon}
           isPlay={isPlayRoute(
-            footerCategory === "home" ? "tasks" : "game/snake/tasks"
+            footerCategory === "home" ? "tasks" : `game/${title}/tasks`
           )}
           label="TASKS"
-          path={footerCategory === "home" ? "tasks" : "game/snake/tasks"}
+          path={footerCategory === "home" ? "tasks" : `game/${title}/tasks`}
         />
         <Item
           Icon={StoreIcon}
           isPlay={isPlayRoute(
-            footerCategory === "home" ? "store" : "game/snake/store"
+            footerCategory === "home" ? "store" : `game/${title}/store`
           )}
           label="Store"
-          path={footerCategory === "home" ? "store" : "game/snake/store"}
+          path={footerCategory === "home" ? "store" : `game/${title}/store`}
         />
         {footerCategory === "home" && (
           <Item
@@ -69,9 +69,9 @@ export default function Footer({
         {footerCategory === "game" && (
           <Item
             Icon={PlayIcon}
-            isPlay={isPlayRoute("/game/snake/tournaments")}
+            isPlay={isPlayRoute(`game/${title}/tournaments`)}
             label="PLAY"
-            path="game/snake/tournaments"
+            path={`game/${title}/tournaments`}
           />
         )}
         {footerCategory === "home" && (
@@ -85,9 +85,9 @@ export default function Footer({
         {footerCategory === "game" && (
           <Item
             Icon={StatsIcon}
-            isPlay={isPlayRoute("/game/snake/stats")}
+            isPlay={isPlayRoute(`game/${title}/stats`)}
             label="STATS"
-            path="game/snake/stats"
+            path={`game/${title}/stats`}
           />
         )}
         {footerCategory === "home" && (
