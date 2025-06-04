@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 export default function DynamicPlayScreen({ title }: { title: string }) {
   let Component;
+
   if (title === "flappy")
     Component = dynamic(() => import("./_screens/flappy"), {
       ssr: false,

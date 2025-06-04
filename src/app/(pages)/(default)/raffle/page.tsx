@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useContext, useEffect } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import Image from "next/image";
 import CountUp from "react-countup";
 
@@ -19,38 +19,34 @@ import TicketDialog from "../_components/dialogs/ticket-dialog";
 import RaffleDialog from "../_components/dialogs/raffle-dialog";
 import { GeneralContext } from "@/app/_providers/generalProvider";
 import useTimeLeft from "@/app/_hooks/useTimeLeft";
-import {
-  ITicket,
-  useEnterUser,
-  useGetRaffleUserEntries,
-} from "@/../services/raffle";
+import { useEnterUser, useGetRaffleUserEntries } from "@/../services/raffle";
 import toast from "react-hot-toast";
 
 // Helper function to check if any ticket is a winner and collect winning numbers
-function checkWinningTickets(tickets: ITicket[]) {
-  if (!tickets || tickets.length === 0) {
-    return {
-      isWinner: false,
-      winningNumbers: [],
-    };
-  }
+// function checkWinningTickets(tickets: ITicket[]) {
+//   if (!tickets || tickets.length === 0) {
+//     return {
+//       isWinner: false,
+//       winningNumbers: [],
+//     };
+//   }
 
-  // Get winning ticket numbers
-  const winningNumbers = tickets
-    .filter((ticket) => ticket.win)
-    .map((ticket) => ticket.ticketNumber);
+//   // Get winning ticket numbers
+//   const winningNumbers = tickets
+//     .filter((ticket) => ticket.win)
+//     .map((ticket) => ticket.ticketNumber);
 
-  // Check if there's at least one winning ticket
-  const isWinner = winningNumbers.length > 0;
+//   // Check if there's at least one winning ticket
+//   const isWinner = winningNumbers.length > 0;
 
-  return {
-    isWinner,
-    winningNumbers,
-  };
-}
+//   return {
+//     isWinner,
+//     winningNumbers,
+//   };
+// }
 
 export default function RafflePage() {
-  const [startAnimation, setStartAnimation] = useState(false);
+  const [startAnimation] = useState(false);
   const timeLeft = useTimeLeft();
   const [, setClaimTicket] = useState(false);
 
@@ -86,6 +82,9 @@ export default function RafflePage() {
   // ]);
 
   // const raffleMutation = useRaffle();
+  const { data: entries, refetch: refetchEntries } = useGetRaffleUserEntries({
+    sessionId,
+  });
   const { mutateAsync: enterUser } = useEnterUser();
 
   const handleClaimTicket = useCallback(async () => {
@@ -94,16 +93,17 @@ export default function RafflePage() {
     if (sessionId) {
       try {
         await enterUser({ sessionId: sessionId });
+
+        await refetchEntries?.();
       } catch (error: any) {
-        console.log("error", error);
+        // console.log("error", error);
         toast?.error(error?.response?.data?.message || "Something went wrong");
       }
     }
-  }, [sessionId, enterUser]);
+  }, [sessionId, enterUser, refetchEntries]);
 
   // Get winner status and winning numbers
   // const { isWinner, winningNumbers } = checkWinningTickets(ticket);
-  const { data: entries } = useGetRaffleUserEntries({ sessionId });
 
   return (
     <>

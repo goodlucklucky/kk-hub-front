@@ -3,7 +3,7 @@
 // import modules
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { LoaderIcon } from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
 
 // import components
 import { Dialog, DialogPortal } from "@/app/_components/ui/dialog";
@@ -37,6 +37,7 @@ import Inventory from "./Inventory";
 import Social from "../../profile/social";
 import ScoresSection from "./Scores";
 import { useEditUser } from "@/../services/user";
+import { useUserContext } from "@/app/_providers/userProvider";
 
 //interface
 interface ProfileDialogProps {
@@ -49,12 +50,8 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
   const [username, setUsername] = useState("KOKOMON118");
   const { setIsBankingOpen, setIsProfileOpen, setIsXpOpen, setWasProfileOpen } = useApp();
   const { user, userXp, isLoadingUserXp, sessionId, setUser } = useGeneral();
-
-  useEffect(() => {
-    if (user?.username) setUsername(user.username);
-  }, [user?.username]);
-
   const { mutateAsync: editUser } = useEditUser();
+  const { refetch: refetchUser } = useUserContext();
 
   const handleUsernameEdit = useCallback(() => {
     const input = document.querySelector(".username-input") as HTMLInputElement;
@@ -70,14 +67,19 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
         ".username-input"
       ) as HTMLInputElement;
 
-      if (input) {
-        input.readOnly = true;
+      if (!input) return;
 
-        const value = input?.value;
+      input.readOnly = true;
+      const value = input?.value;
 
-        await editUser({ id: sessionId, body: { username: value } });
-        setUser?.((p) => ({ ...(p || {}), username: value }));
+      if (value == sessionId) {
+        toast.error("Something went wrong");
+        setUsername(user?.username || "");
+        return;
       }
+
+      await editUser({ id: sessionId, body: { username: value } });
+      setUser?.((p) => ({ ...(p || {}), username: value }));
     } catch {
       // console.log(error);
     }
@@ -89,6 +91,20 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
     },
     [handleUsernameSave]
   );
+
+  useEffect(() => {
+    if (user?.username) setUsername(user.username);
+  }, [user?.username]);
+
+  useEffect(() => {
+    if (!user?.username || sessionId == user?.username) {
+      const random = Math.floor(Math.random() * 1000);
+      setUsername(`KOKOMON${random}`);
+
+      editUser({ id: sessionId, body: { username: `KOKOMON${random}` } });
+      refetchUser?.();
+    }
+  }, [sessionId, user?.username, refetchUser, editUser]);
 
   const renderComponent = () => {
     switch (activeComponent) {
