@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "@/app/_components/ui/button";
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import TetrisRefreshIcon from "@/app/_assets/svg/tetris-refresh.svg";
 import NeonMountainsVisualImage from "@/app/_assets/images/neon-mountains-visual.png";
@@ -86,7 +85,7 @@ export default function TetrisGame() {
 
   const {
     data: challenge,
-    error: challengeError,
+    // error: challengeError,
     refetch: refetchChallenge,
   } = useGetChallenge(
     challenge_id!,
@@ -296,7 +295,7 @@ export default function TetrisGame() {
     if (isValidMove(rotatedPiece, board)) {
       setCurrentPiece(rotatedPiece);
     }
-  }, [currentPiece, board, gameOver, isPaused, isValidMove]);
+  }, [currentPiece, board, gameOver, isPaused, isValidMove, rotatePiece]);
 
   const hardDrop = useCallback(
     (playSound = false) => {
@@ -343,7 +342,7 @@ export default function TetrisGame() {
 
     setGameOver(false);
     spawnNewPiece();
-  }, []);
+  }, [spawnNewPiece, getRandomPiece]);
 
   // Game loop
   useEffect(() => {

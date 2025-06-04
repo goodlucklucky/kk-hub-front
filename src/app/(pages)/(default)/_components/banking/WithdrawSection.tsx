@@ -63,6 +63,7 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
           contract_address,
           to: `${currentData?.address}`,
           amount: `${currentData?.amount}`,
+          type: "withdraw",
         });
         if (error) throw error;
         // console.log("handleManualWithdraw res: ", res);

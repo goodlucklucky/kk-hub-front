@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { baseInstance } from "../axios";
-import { create } from "zustand";
 
 export interface IRaffleEntry {
   entry: Entry | null;

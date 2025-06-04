@@ -70,14 +70,14 @@ export function useChat(sessionId: TSessionId, username: string | null) {
   }, [sessionId, username, hasIncrypted]);
 
   useEffect(() => {
-    console.log("isConnected", isConnected);
+    // console.log("isConnected", isConnected);
 
     if (isConnected) return;
 
     const reconnectTimeout = setTimeout(() => {
       if (isConnected) return;
 
-      console.log("Reconnecting...");
+      // console.log("Reconnecting...");
       connectedSocket?.connect();
     }, 3000);
 
@@ -93,12 +93,12 @@ export function useChat(sessionId: TSessionId, username: string | null) {
     connectedSocket?.on("newMessage", async (compressed) => {
       try {
         const data: IMessage = await decompress(compressed);
-        console.log("Here is the new message*******", compressed);
+        // console.log("Here is the new message*******", compressed);
         setNewMessage(data);
 
         if (data?.sessionId !== sessionId) addMessage(data);
       } catch (error) {
-        console.error("Error decompressing newMessage:", error);
+        // console.error("Error decompressing newMessage:", error);
       }
     });
 
@@ -115,7 +115,7 @@ export function useChat(sessionId: TSessionId, username: string | null) {
     if (!connectedSocket) return;
 
     const compressed = await compress(data);
-    console.log("Message sent", event);
+    // console.log("Message sent", event);
     connectedSocket?.emit(event, compressed);
 
     if (event === "createMessage")

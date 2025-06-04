@@ -40,7 +40,7 @@ export function TetrisBoard({
       }
     }
     return displayBoard;
-  }, [board, currentPiece]);
+  }, [board, currentPiece, BOARD_HEIGHT, BOARD_WIDTH]);
 
   return (
     <>

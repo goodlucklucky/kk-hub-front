@@ -13,8 +13,8 @@ import { DollarIcon } from "@/app/_assets/svg/dollar";
 
 import coinbase from "@assets/svg/coinbase.svg";
 import metamask from "@assets/svg/metamask.svg";
-import { useContext, useMemo } from "react";
-import { GeneralContext } from "@/app/_providers/generalProvider";
+import { useCallback, useMemo } from "react";
+import { useGeneral } from "@/app/_providers/generalProvider";
 import ShareButtons from "./share-buttons";
 import {
   createWallet,
@@ -26,17 +26,18 @@ import { client } from "@/app/_utils/thirdWebClient";
 import { avalanche } from "thirdweb/chains";
 import { useProfiles } from "thirdweb/react";
 import { cn } from "@/app/_lib/utils";
-import { useCallback } from "react";
 import { formatAddress, formatNumber } from "@/app/_utils/number";
-import { useUpdateUser } from "../../../../../../services/user";
+import { useUpdateUser } from "@/../services/user";
 import { useThirdweb } from "../../_context/thirdwebContext";
+import { useUserContext } from "@/app/_providers/userProvider";
 
 const spanClassName =
   "text-[#745061] font-made-tommy text-[14px] font-medium tracking-[0.14px] break-all line-clamp-1";
 const iconSize = "min-w-5 min-h-5";
 
 export default function Social() {
-  const { user, sessionId, setUser } = useContext(GeneralContext);
+  const { user, sessionId } = useGeneral();
+  const { refetch: refetchUser } = useUserContext();
   const { data: profiles, refetch } = useProfiles({ client });
   const { mutateAsync: updateUser } = useUpdateUser();
   const {
@@ -44,8 +45,8 @@ export default function Social() {
   } = useThirdweb();
 
   const telegram = useMemo(
-    () => profiles?.find((p) => p?.type == "telegram"),
-    [profiles]
+    () => user?.telegramUserId && profiles?.find((p) => p?.type == "telegram"),
+    [profiles, user?.telegramUserId]
   );
   const twitter = useMemo(
     () => profiles?.find((p) => p?.type == "x"),
@@ -76,24 +77,27 @@ export default function Social() {
         const newProfile = profiles?.find((p) => p?.type == provider)?.details;
 
         if (provider == "telegram" && newProfile) {
-          updateUser({
+          await updateUser({
             sessionId,
             body: {
               telegramUserId: newProfile?.id,
               telegramUsername: newProfile?.["username" as "id"],
             },
           });
-          setUser?.({
-            telegramUserId: newProfile?.id,
-            telegramUsername: newProfile?.["username" as "id"],
-          });
+
+          refetchUser?.();
+
+          // setUser?.({
+          //   telegramUserId: newProfile?.id,
+          //   telegramUsername: newProfile?.["username" as "id"],
+          // });
         }
         // console.log("result", result);
       } catch {
         // error
       }
     },
-    [refetch, profiles, sessionId, setUser, updateUser]
+    [refetch, profiles, sessionId, refetchUser, updateUser]
   );
 
   const unlinkOtherProfiles = useCallback(

@@ -2,13 +2,12 @@ import { useMemo } from "react";
 import { TETROMINOS } from "../constants";
 
 export function PreviewPiece({ pieceType }: { pieceType: string | null }) {
-  if (!pieceType) return null;
-
   const tetromino = useMemo(
     () => TETROMINOS[pieceType as keyof typeof TETROMINOS],
     [pieceType]
   );
 
+  if (!pieceType) return null;
   return (
     <div className="flex flex-col items-center">
       {tetromino.shape.map((row, y) => (
