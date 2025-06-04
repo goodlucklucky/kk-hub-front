@@ -69,7 +69,7 @@ export const GiftSlide: React.FC<SlideProps> = ({
             <div className="flex-1 h-[57px] bg-[#CDAA98] rounded-l-[7px] min-w-[270px]">
               <div
                 className={cn(
-                  "flex gap-2 rounded-md w-fit px-2",
+                  "flex gap-2 rounded-md w-fit pl-2",
                   "-mt-1 -ml-1 ",
                   "bg-[#653F56] shadow-[0_0.25ch_rgba(0,0,0,0.2)]",
                   "text-[#E3BEAA]"

@@ -1,3 +1,4 @@
+import { cn } from "@/app/_lib/utils";
 import React from "react";
 
 export function CashIcon(props: React.ComponentProps<"svg">) {
@@ -934,209 +935,38 @@ export function PetIcon(props: React.ComponentProps<"svg">) {
       viewBox="0 0 31 32"
       fill="none"
       {...props}
+      className={cn(props.className, "ml-0.5")}
     >
       <g filter="url(#filter0_d_799_42035)">
         <path
           d="M12.0329 9.26845C13.9422 9.96753 16.2347 8.49793 17.154 5.98625C18.0727 3.47452 17.2699 0.872326 15.361 0.173673C13.4512 -0.524435 11.159 0.94474 10.2398 3.45642C9.32096 5.96815 10.1238 8.57034 12.0329 9.26845Z"
-          fill="#584255"
+          fill="currentColor"
         />
       </g>
       <g filter="url(#filter1_d_799_42035)">
         <path
           d="M4.77807 13.2759C6.77534 13.1027 8.20976 10.8332 7.98277 8.20509C7.75529 5.57789 5.95171 3.58819 3.95445 3.76038C1.95736 3.93409 0.523 6.20407 0.750233 8.83175C0.977769 11.4589 2.78104 13.4486 4.77807 13.2759Z"
-          fill="#584255"
+          fill="currentColor"
         />
       </g>
       <g filter="url(#filter2_d_799_42035)">
         <path
           d="M20.3324 13.1868C22.0853 14.2172 24.6041 13.1824 25.9588 10.8767C27.3134 8.56951 26.9905 5.86597 25.2373 4.8357C23.4844 3.80633 20.9651 4.84157 19.6107 7.14726C18.2561 9.45405 18.5795 12.1575 20.3324 13.1868Z"
-          fill="#584255"
+          fill="currentColor"
         />
       </g>
       <g filter="url(#filter3_d_799_42035)">
         <path
           d="M29.7212 15.9167C28.5847 14.2655 25.9025 14.1379 23.7299 15.6325C21.5567 17.128 20.7169 19.6783 21.8531 21.33C22.9894 22.9811 25.6718 23.1089 27.8445 21.6137C30.0169 20.1186 30.8572 17.5683 29.7212 15.9167Z"
-          fill="#584255"
+          fill="currentColor"
         />
       </g>
       <g filter="url(#filter4_d_799_42035)">
         <path
           d="M18.0509 16.2312C17.8341 14.7313 16.9147 13.3633 15.445 12.6696C13.9757 11.9763 12.335 12.1363 11.0397 12.922C9.60804 13.7908 8.6922 14.9258 7.4591 15.422C6.22618 15.918 2.77276 14.4406 0.622607 18.3451C-0.895974 21.1029 0.498062 24.5892 3.34493 25.9325C5.50876 26.9536 7.22133 26.8396 8.47859 27.4325C9.73567 28.0255 10.7364 29.4203 12.9 30.4412C15.7468 31.7846 19.3241 30.6448 20.4875 27.7192C22.1347 23.5774 18.7984 21.8509 18.3973 20.5837C17.9965 19.3168 18.2906 17.8882 18.0509 16.2312Z"
-          fill="#584255"
+          fill="currentColor"
         />
       </g>
-      <defs>
-        <filter
-          id="filter0_d_799_42035"
-          x="9.85938"
-          y="0"
-          width="7.6748"
-          height="10.4414"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dy="1" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
-          />
-          <feBlend
-            mode="normal"
-            in2="BackgroundImageFix"
-            result="effect1_dropShadow_799_42035"
-          />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="effect1_dropShadow_799_42035"
-            result="shape"
-          />
-        </filter>
-        <filter
-          id="filter1_d_799_42035"
-          x="0.726562"
-          y="3.75"
-          width="7.28027"
-          height="10.5352"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dy="1" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
-          />
-          <feBlend
-            mode="normal"
-            in2="BackgroundImageFix"
-            result="effect1_dropShadow_799_42035"
-          />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="effect1_dropShadow_799_42035"
-            result="shape"
-          />
-        </filter>
-        <filter
-          id="filter2_d_799_42035"
-          x="18.7734"
-          y="4.4375"
-          width="8.02246"
-          height="10.1484"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dy="1" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
-          />
-          <feBlend
-            mode="normal"
-            in2="BackgroundImageFix"
-            result="effect1_dropShadow_799_42035"
-          />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="effect1_dropShadow_799_42035"
-            result="shape"
-          />
-        </filter>
-        <filter
-          id="filter3_d_799_42035"
-          x="21.3467"
-          y="14.5898"
-          width="8.88086"
-          height="9.06641"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dy="1" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
-          />
-          <feBlend
-            mode="normal"
-            in2="BackgroundImageFix"
-            result="effect1_dropShadow_799_42035"
-          />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="effect1_dropShadow_799_42035"
-            result="shape"
-          />
-        </filter>
-        <filter
-          id="filter4_d_799_42035"
-          x="0"
-          y="12.2305"
-          width="20.9414"
-          height="19.7695"
-          filterUnits="userSpaceOnUse"
-          colorInterpolationFilters="sRGB"
-        >
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feColorMatrix
-            in="SourceAlpha"
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            result="hardAlpha"
-          />
-          <feOffset dy="1" />
-          <feComposite in2="hardAlpha" operator="out" />
-          <feColorMatrix
-            type="matrix"
-            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
-          />
-          <feBlend
-            mode="normal"
-            in2="BackgroundImageFix"
-            result="effect1_dropShadow_799_42035"
-          />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="effect1_dropShadow_799_42035"
-            result="shape"
-          />
-        </filter>
-      </defs>
     </svg>
   );
 }
@@ -1486,7 +1316,7 @@ export function HomeIcon(props: React.ComponentProps<"svg">) {
       <g filter="url(#filter0_d_1793_18733)">
         <path
           d="M1.75 10.5V26.25H10.5V19.25C10.5 17.317 12.067 15.75 14 15.75C15.933 15.75 17.5 17.317 17.5 19.25V26.25H26.25V10.5L14 0L1.75 10.5Z"
-          fill="#584255"
+          fill="currentColor"
         />
       </g>
       <defs>
@@ -1542,13 +1372,13 @@ export function StatsIcon(props: React.ComponentProps<"svg">) {
       <g filter="url(#filter0_d_1793_18735)">
         <path
           d="M9.68751 19.375C15.0378 19.375 19.375 15.0378 19.375 9.68751C19.375 4.33724 15.0378 0 9.68751 0C4.33724 0 0 4.33724 0 9.68751C0 15.0378 4.33724 19.375 9.68751 19.375Z"
-          fill="#584255"
+          fill="currentColor"
         />
       </g>
       <g filter="url(#filter1_d_1793_18735)">
         <path
           d="M1.9375 20.8086V29.0619C1.9375 29.7773 2.33081 30.4336 2.96099 30.7703C3.58922 31.1088 4.3555 31.0691 4.94935 30.6739L9.68751 27.5162L14.4247 30.6744C14.7483 30.8899 15.1227 30.9999 15.4995 30.9999C15.8134 30.9999 16.1278 30.9243 16.4135 30.7707C17.0437 30.4341 17.437 29.7773 17.437 29.0624V20.8086C15.2384 22.3431 12.571 23.2494 9.68751 23.2494C6.80402 23.2494 4.13608 22.3431 1.9375 20.8086Z"
-          fill="#584255"
+          fill="currentColor"
         />
       </g>
       <defs>

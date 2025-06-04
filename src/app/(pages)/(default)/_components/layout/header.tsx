@@ -78,7 +78,7 @@ function KokoLogo({
           className="absolute w-[20px] h-[20px] top-[4px] right-0"
         />
       )}
-      <span className="text-[10px] font-bold text-yellow-2 absolute -bottom-7 right-0 w-full text-center">
+      <span className="text-[10px] font-bold text-yellow-2 absolute -bottom-6 right-0 w-full text-center">
         LVL {level}
       </span>
     </>

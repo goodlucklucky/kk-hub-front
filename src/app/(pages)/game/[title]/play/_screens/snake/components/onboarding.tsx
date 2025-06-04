@@ -7,7 +7,6 @@ import Collide from "../assets/collide.png";
 import SwipeImage from "../assets/swipe-image.png";
 import Money from "../assets/money.png";
 import Prize from "../assets/prize.png";
-import Goal from "../assets/goal.png";
 import OnboardingBoard from "../assets/onboarding-board.png";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
@@ -25,7 +24,6 @@ const ONBOARDING_DATA = [
   { src: SwipeImage, height: 56, alt: "SwipeImage" },
   { src: Money, height: 56, alt: "Money" },
   { src: Prize, height: 56, alt: "Prize" },
-  { src: Goal, height: 73, alt: "Goal" },
 ];
 
 const Onboarding = ({ setGameState }: OnboardingProps) => {
@@ -44,7 +42,7 @@ const Onboarding = ({ setGameState }: OnboardingProps) => {
 
   const handleTouch = () => {
     if (isTransitioning) return; // Prevent touch during transition
-    if (onboardingStep === 6) {
+    if (onboardingStep === 5) {
       setGameState("playing");
       return;
     }
@@ -63,14 +61,14 @@ const Onboarding = ({ setGameState }: OnboardingProps) => {
   useEffect(() => {
     const stepString = searchParams?.get("step");
     const step = Number(stepString) || 0;
-    if (step == 7) {
-      setOnboardingStep(6);
+    if (step == 6) {
+      setOnboardingStep(5);
       setTimeout(() => {
         setGameState("playing");
       }, 2000);
       return;
     }
-    if (step < 0 || step > 6) return;
+    if (step < 0 || step > 5) return;
     setOnboardingStep(step);
   }, [searchParams, setGameState]);
 
@@ -88,7 +86,7 @@ const Onboarding = ({ setGameState }: OnboardingProps) => {
       >
         <div
           className={`bg-[rgba(0,0,0,0.6)] px-3 py-2 rounded-t-[22px] ${
-            onboardingStep === 6 && "rounded-b-[22px]"
+            onboardingStep === 5 && "rounded-b-[22px]"
           }`}
         >
           <div
@@ -96,7 +94,7 @@ const Onboarding = ({ setGameState }: OnboardingProps) => {
               isFading ? "opacity-0" : "opacity-100"
             }`}
           >
-            {onboardingStep === 6 ? (
+            {onboardingStep === 5 ? (
               <div className="py-2 flex flex-col gap-6 pb-6">
                 <div className="text-center text-white text-xl font-bold pt-5">
                   Ready?🤑
@@ -109,15 +107,9 @@ const Onboarding = ({ setGameState }: OnboardingProps) => {
                   <>
                     <Button
                       onClick={() => handleTouch()}
-                      className={`p-0 py-1 h-auto flex-1 flex gap-1 !rounded-lg hover:bg-green/80 text-white font-bold btn-animate !shadow-[0_1px] bg-green !shadow-[#2C7C4C] w-full`}
+                      className={`p-0 py-1 h-auto flex-1 flex gap-1 !rounded-lg hover:bg-green/80 text-white font-bold btn-animate rounded-[10px] border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] w-full`}
                     >
                       Start!
-                    </Button>
-                    <Button
-                      onClick={() => setGameState("cosmetics")}
-                      className={`p-0 py-1 h-auto flex-1 flex gap-1 !rounded-lg hover:bg-green/80 text-white font-bold btn-animate !shadow-[0_1px] bg-green !shadow-[#2C7C4C] w-full`}
-                    >
-                      🌟NEW: Change Snake Skin
                     </Button>
                   </>
                 )}
@@ -159,24 +151,18 @@ const Onboarding = ({ setGameState }: OnboardingProps) => {
                       Every player’s Entry Fees go into a Prize Pot.
                       <br /> More Players = Bigger Prizes!
                     </p>
-                  ) : onboardingStep === 4 ? (
+                  ) : (
                     <p className="text-center text-white text-base font-bold leading-[22px]">
                       At the end of the day, players
                       <br /> are ranked and the highest
                       <br /> Scores win from the Pot!
-                    </p>
-                  ) : (
-                    <p className="text-center text-white text-base font-bold leading-[22px]">
-                      Play Tournaments & win Kokos.
-                      <br /> Once you have 1 Million and 1 Kokos, claim an $AVAX
-                      Prize!
                     </p>
                   )}
                 </div>
               </>
             )}
           </div>
-          {onboardingStep < 6 && (
+          {onboardingStep < 5 && (
             <div className="flex items-center justify-center mt-3 mb-1 gap-3">
               {ONBOARDING_DATA.map((_, index) => (
                 <div
@@ -191,7 +177,7 @@ const Onboarding = ({ setGameState }: OnboardingProps) => {
             </div>
           )}
         </div>
-        {onboardingStep < 6 && (
+        {onboardingStep < 5 && (
           <div className="flex p-3 gap-3 rounded-b-[22px]">
             <Button
               onClick={() => setOnboardingStep(5)}
@@ -201,7 +187,7 @@ const Onboarding = ({ setGameState }: OnboardingProps) => {
             </Button>
             <Button
               onClick={() => handleTouch()}
-              className={`p-0 py-1 h-auto flex-1 flex gap-1 !rounded-lg hover:bg-green/80 text-white font-bold btn-animate !shadow-[0_1px] bg-green !shadow-[#2C7C4C]`}
+              className={`p-0 py-1 h-auto flex-1 flex gap-1 !rounded-lg hover:bg-green/80 text-white font-bold btn-animate rounded-[10px] border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%]`}
             >
               Next
             </Button>

@@ -116,10 +116,7 @@ export const BackHomeBar = ({ className }: { className?: string }) => {
     >
       <LeftBack />
       <span className="text-[#ECEFFFA8] text-2xl font-normal leading-normal font-bumper-sticker [text-shadow:0px_1px_0px_rgba(0,0,0,0.20)]">
-        BACK TO
-      </span>
-      <span className="text-[#ECEFFF] text-2xl font-normal leading-normal font-bumper-sticker [text-shadow:0px_1px_0px_rgba(0,0,0,0.20)]">
-        HOME
+        BACK TO HOME
       </span>
     </div>
   );

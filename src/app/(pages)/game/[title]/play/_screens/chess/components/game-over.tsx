@@ -279,7 +279,7 @@ export default function GameOver({
                 <div className="w-full flex flex-col gap-2">
                   <Button
                     disabled={canClick}
-                    className="bg-green hover:bg-green/80 text-white text-xl font-bold btn-animate !shadow-[0_0.15rem] !shadow-[#2C7C4C] rounded-2xl"
+                    className="!shadow-[0_1px] !shadow-[#2C7C4C] rounded-[14px] border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] hover:bg-green/80 text-white text-xl font-bold btn-animate"
                     onClick={() => {
                       if (canOpenBonusDialog) {
                         setOpenBonusDialog(true);
@@ -303,7 +303,7 @@ export default function GameOver({
                           : "Play Again!"}
                   </Button>
                   <Button
-                    className="bg-green hover:bg-green/80 text-white text-lg font-bold btn-animate !shadow-[0_0.15rem] !shadow-[#2C7C4C] rounded-2xl"
+                    className="border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] hover:bg-green/80 text-white text-lg font-bold btn-animate !shadow-[0_1px] !shadow-[#2C7C4C] rounded-[14px]"
                     onClick={() => {
                       router.push(`./tournaments/${challenge?.id}`);
                       trackEvent("Tournaments Page");

@@ -44,8 +44,25 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
 
   const { address } = useAccount();
   const [amount, setAmount] = useState(balance?.[selectedCurrency] ?? 0);
+  const [withdrawalAddress, setWithdrawalAddress] = useState("");
 
   const { transfer, isPending } = useTransfer();
+
+  const isValidAddress = useMemo(() => {
+    return withdrawalAddress.startsWith("0x");
+  }, [withdrawalAddress]);
+
+  const maxWithdrawableAmount = useMemo(() => {
+    const max = Number(balance?.[selectedCurrency] || 0);
+    return max * 1.0 / 1.02;
+  }, [balance, selectedCurrency]);
+
+  const isAmountValid = useMemo(() => {
+    const numericAmount = Number(amount);
+    return numericAmount > 0 && numericAmount <= maxWithdrawableAmount;
+  }, [amount, maxWithdrawableAmount]);
+
+  const isButtonEnabled = isValidAddress && isAmountValid && !isPending;
 
   const handleManualWithdraw = useCallback<FormEventHandler<HTMLFormElement>>(
     async (e) => {
@@ -207,7 +224,11 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
           <span className="text-[#7C5C6B] font-made-tommy text-[14px] font-bold leading-normal pt-1 px-2 mb-0.5">
             Withdrawal Address
           </span>
-          <Input name="address" />
+          <Input 
+            name="address" 
+            value={withdrawalAddress}
+            onChange={(e) => setWithdrawalAddress(e.target.value)}
+          />
         </div>
         <div className="flex justify-center items-center bg-[#E99F8C] rounded-[10px] mt-1.5 p-2 pr-1 gap-2">
           <span className="bg-[#853834] rounded-full w-4.5 h-4.5 px-2 flex items-center justify-center text-[#EED1B8] text-[12px]">
@@ -260,7 +281,11 @@ export const WithdrawSection = ({ isConnected }: WithdrawSectionProps) => {
             </div>
           </div>
         </div>
-        <Button className="w-full flex gap-1 items-center justify-center bg-gradient-to-b from-[#24BE62] to-[#1AB257] mt-2">
+        <Button 
+          className="w-full flex gap-1 items-center justify-center bg-gradient-to-b from-[#24BE62] to-[#1AB257] mt-2"
+          disabled={!isButtonEnabled}
+          style={{ opacity: isButtonEnabled ? 1 : 0.66 }}
+        >
           {isPending ? (
             <LoaderIcon className="size-5 inline" />
           ) : (

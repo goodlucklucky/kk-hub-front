@@ -47,7 +47,7 @@ interface ProfileDialogProps {
 const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
   const [activeComponent, setActiveComponent] = useState("social");
   const [username, setUsername] = useState("KOKOMON118");
-  const { setIsBankingOpen, setIsProfileOpen, setIsXpOpen } = useApp();
+  const { setIsBankingOpen, setIsProfileOpen, setIsXpOpen, setWasProfileOpen } = useApp();
   const { user, userXp, isLoadingUserXp, sessionId, setUser } = useGeneral();
 
   useEffect(() => {
@@ -167,6 +167,7 @@ const ProfileDialog = ({ isOpen, onClose }: ProfileDialogProps) => {
                       className="bg-[#917377] w-[24px] h-[24px] rounded-[0px_3px_3px_0px] flex items-center justify-center"
                       onClick={() => {
                         setIsXpOpen(true);
+                        setWasProfileOpen(true);
                         setIsProfileOpen(false);
                       }}
                     >

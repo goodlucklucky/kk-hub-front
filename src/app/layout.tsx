@@ -7,7 +7,6 @@ import { Suspense } from "react";
 import Script from "next/script";
 import { ThirdwebProvider } from "thirdweb/react";
 import { AppProvider } from "./_contexts/appContext";
-import { ThirdWeb } from "./_providers/thirdWebProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,6 +26,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -47,13 +47,11 @@ export default function RootLayout({
         <Suspense fallback={<></>}>
           <ThirdwebProvider>
             <AppProvider>
-              <ThirdWeb>
-                {children}
-                <Toaster
-                  position="top-center"
-                  toastOptions={{ duration: 2000 }}
-                />
-              </ThirdWeb>
+              {children}
+              <Toaster
+                position="top-center"
+                toastOptions={{ duration: 2000 }}
+              />
             </AppProvider>
           </ThirdwebProvider>
         </Suspense>

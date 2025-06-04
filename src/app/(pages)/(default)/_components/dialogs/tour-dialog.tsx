@@ -201,7 +201,7 @@ const TourDialog = ({ isOpen, onClose }: TourDialogProps) => {
                       0.25
                     </div>
                   </div>
-                  <hr className="border-[rgba(138,105,114,0.20)] border-1" />
+                  <hr className="border-[rgba(138,105,114,0.20)] border-0.5" />
                   <p className="text-[rgba(95,63,87,0.75)] leading-[28px] text-center font-bumper-sticker text-[10px]">
                     One payment – unlimited attempts!
                   </p>

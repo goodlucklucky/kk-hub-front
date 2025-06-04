@@ -78,7 +78,7 @@ export default function GamesCard({
               />
             )
           )}
-        <div className="flex justify-center items-center w-9 bg-[#B1B5CCA8] border border-[#B1B5CC] rounded-r-lg">
+        <div className="flex justify-center items-center w-9 bg-[#B1B5CCA8] border border-[#B1B5CC] rounded-r-lg -mt-1 -mr-1 -mb-1">
           <RightArrow />
         </div>
       </div>

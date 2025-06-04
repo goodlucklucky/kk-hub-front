@@ -41,7 +41,7 @@ const ChallengeConfirmationDialog = ({
                 <>Ready to Win Some Cash?🤑</>
               )}
             </div>
-            <div className="bg-[#E3BEAA] overflow-none py-4 rounded-3xl px-8 my-2">
+            <div className="bg-[#E3BEAA] overflow-none rounded-3xl p-2 my-2">
               <div className="text-[16px] text-[#745061] font-bold text-center">
                 Confirm Tournament Entry Fee
               </div>
@@ -56,7 +56,7 @@ const ChallengeConfirmationDialog = ({
               </div>
             </div>
             <Button
-              className={`bg-green px-14 font-extrabold text-white h-8 rounded-xl hover:bg-emerald-500 shadow-[0_0.15rem] shadow-[#2C7C4C] ${
+              className={`border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] px-14 font-extrabold text-white h-8 rounded-xl shadow-[0_1px] shadow-[#2C7C4C] ${
                 isLoading ? "opacity-50 cursor-not-allowed" : ""
               }`}
               disabled={isLoading}

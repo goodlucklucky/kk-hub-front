@@ -252,7 +252,7 @@ export default function KokoSpinner() {
           </div>
           <Button
             onClick={() => setOpenReward(false)}
-            className={`py-2 h-auto w-full rounded-md hover:bg-green/80 text-white font-bold btn-animate !shadow-[0_0.15rem] bg-green !shadow-[#2C7C4C]`}
+            className={`py-2 h-auto w-full rounded-md hover:bg-green/80 text-white font-bold btn-animate !shadow-[0_1px] border border-[#24BE62] bg-gradient-to-b from-[#24BE62] from-10% to-[#1AB257] to-[201.67%] !shadow-[#2C7C4C]`}
           >
             Back to Spinner
           </Button>
