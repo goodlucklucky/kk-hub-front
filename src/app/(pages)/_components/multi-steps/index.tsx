@@ -115,7 +115,7 @@ export default function MultiSteps() {
                   className={cn(
                     "bg-gradient-to-b from-gold-light to-gold",
                     "h-5 rounded-lg contain-content",
-                    index == step && "bg-gold-dark",
+                    index != step && "opacity-30",
                     "border-2 border-solid border-gold-darker",
                     "relative z-10"
                   )}

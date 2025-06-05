@@ -144,7 +144,7 @@ function Item({
       )}
     >
       {Icon && <Icon className={cn(isPlay ? "size-7 mt-0.5" : "size-7")} />}
-      <p>{label}</p>
+      <p className="leading-[12px]">{label}</p>
       {isPlay && (
         <FooterSvg className="absolute -z-[1] top-0 left-0 w-full h-[76px]" />
       )}

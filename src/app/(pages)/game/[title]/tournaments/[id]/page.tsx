@@ -27,8 +27,9 @@ import { MarkPanelIcon } from "@/app/_assets/svg/mark-panel";
 import Button from "@/app/_components/shared/button";
 import tour_progress_back from "@assets/images/tour-progress-back.png";
 import tour_your_scorebadge from "@assets/svg/tour-your-scorebadge.svg";
-import tour_pointing_arrow from "@assets/svg/tour-pointing-arrow.svg";
 import tour_refresh_back from "@assets/svg/tour-refresh-back.svg";
+import dollar_effect from "@assets/svg/dollar-effect.svg";
+import star_effect from "@assets/images/star-effect.png";
 import PayDialog from "../../../../(default)/_components/dialogs/pay-dialog";
 import ChallengeConfirmationDialog from "../components/challenge-confirmation-dialog";
 import { QuestionMarkIcon } from "@/app/_assets/svg/template";
@@ -244,7 +245,7 @@ export default function TournamentEntryPage(props: Iprops) {
           loading="lazy"
           priority={false}
         />
-        <div className="flex gap-2 mt-4 absolute top-8 left-5">
+        <div className="flex gap-2 mt-4 absolute top-6 left-5">
           <Chat />
         </div>
         <Image
@@ -261,13 +262,23 @@ export default function TournamentEntryPage(props: Iprops) {
             className="w-[20px] h-[20px]"
           />
         </Button>
-        <div className="bg-[url(/images/tournament-panel.png)] bg-[size:100%_100%] fixed top-36 left-3 right-3 bottom-3 bg-no-repeat z-10 rounded-3xl mx-auto p-3 2xs:p-4 pt-2 2xs:pt-3 xs:pt-5">
+        <div className="bg-[url(/images/tournament-panel.png)] bg-[size:100%_100%] fixed top-34 left-3 right-3 bottom-3 bg-no-repeat z-10 rounded-3xl mx-auto p-3 2xs:p-4 pt-2 2xs:pt-3 xs:pt-5">
           <div className="rounded-3xl overflow-hidden h-full">
             <div className="flex flex-col gap-1.5 w-full h-full overflow-y-auto">
               <div className="text-[#5F3F57] text-center font-made-tommy text-[22px] font-extrabold tracking-[0.22px]">
                 {challenge?.name}
               </div>
               <div className="relative flex justify-center items-center">
+                <Image
+                  src={dollar_effect}
+                  alt="dollar_effect"
+                  className="absolute -top-[100px]"
+                />
+                <Image
+                  src={star_effect}
+                  alt="star_effect"
+                  className="absolute -top-3"
+                />
                 <LeafIcon
                   className="absolute -top-8 xs:-top-5"
                   style={{ width: "50%" }}
@@ -286,7 +297,7 @@ export default function TournamentEntryPage(props: Iprops) {
                 </div>
               </div>
               <div className="flex flex-1 flex-col mt-[70px] xs:mt-[80px] z-1">
-                <div className="rounded-t-[22px] border-[3px] border-[#C6654E] bg-[#FFD384] min-h-[200px] bg-gradient-to-b from-[#FFD384] to-[#FFD384] flex-1 px-1 flex justify-center items-center pt-2.5 relative">
+                <div className="rounded-t-[22px] border-[3px] border-[#C6654E] bg-[#FFD384] min-h-[150px] bg-gradient-to-b from-[#FFD384] to-[#FFD384] flex-1 px-1 flex justify-center items-center pt-2.5 relative">
                   <button
                     className="absolute top-2 right-2 w-[66px] h-[22px]"
                     onClick={refreshActiveChallenge}
@@ -300,7 +311,7 @@ export default function TournamentEntryPage(props: Iprops) {
                       Refresh
                     </p>
                   </button>
-                  <div className="relative w-full">
+                  <div className="relative w-full -mb-10">
                     <Image
                       src={tour_progress_back}
                       alt="tour_progress_back"
@@ -320,17 +331,10 @@ export default function TournamentEntryPage(props: Iprops) {
                         src={tour_your_scorebadge}
                         alt="tour_your_scorebadge"
                       />
-                      <p className="absolute bottom-3 w-full text-[#5F3F57] text-center font-made-tommy text-[16px] font-extrabold">
-                        {challenge?.score_summary?.yourTotalScore || "-"}
-                      </p>
                     </div>
-                    <div className="absolute bottom-[calc(100%)] left-12 -translate-x-1/2">
-                      <Image
-                        src={tour_pointing_arrow}
-                        alt="tour_pointing_arrow"
-                      />
-                      <div className="absolute bottom-10 left-2 -translate-x-1/2">
-                        <p className="text-[#745061] text-center font-made-tommy text-[12px] font-bold leading- tracking-[0.12px] whitespace-nowrap">
+                    <div className="absolute bottom-12 left-12 -translate-x-1/2">
+                      <div>
+                        <p className="text-[#745061] text-center font-made-tommy text-[12px] font-bold leading-[16px] tracking-[0.12px] whitespace-nowrap">
                           Current
                           <br />
                           Eligible Winners:

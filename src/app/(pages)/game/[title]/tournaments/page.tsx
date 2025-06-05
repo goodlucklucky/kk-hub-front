@@ -52,7 +52,7 @@ export default function StatsPage() {
         loading="lazy"
         priority={false}
       />
-      <div className="flex gap-2 mt-4 absolute top-8 left-5">
+      <div className="flex gap-2 mt-4 absolute top-6 left-5">
         <Chat />
       </div>
       <Image
@@ -69,7 +69,7 @@ export default function StatsPage() {
           className="w-[20px] h-[20px]"
         />
       </Button>
-      <div className="bg-[url(/images/tournament-panel.png)] bg-[size:100%_100%] fixed top-36 left-3 right-3 bottom-3 flex flex-col gap-1.5 bg-center bg-no-repeat z-10 rounded-3xl mx-auto p-4 pt-3">
+      <div className="bg-[url(/images/tournament-panel.png)] bg-[size:100%_100%] fixed top-34 left-3 right-3 bottom-3 flex flex-col gap-1.5 bg-center bg-no-repeat z-10 rounded-3xl mx-auto p-4 pt-3">
         <div className="text-[#5F3F57] text-center font-made-tommy text-[22px] font-extrabold tracking-[0.22px]">
           Tournaments
         </div>
