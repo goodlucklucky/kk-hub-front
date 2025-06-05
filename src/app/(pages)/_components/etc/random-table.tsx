@@ -15,14 +15,17 @@ type PrizeRow = {
   };
 };
 
+const gameNameList = ["Koko Snake", "Flappy Dunk", "Koko Spinner", "Daily Raffle"]
+
 export default function RandomTable() {
   // Function to generate a random prize row
   const generateRandomRow = (): PrizeRow => {
     const amount = parseFloat((Math.random() * 100 + 10).toFixed(2));
+    const randomGameName = gameNameList[Math.floor(Math.random() * gameNameList.length)];
     return {
       Icon: SnakeIcon,
       key: "snake",
-      name: "Koko Snake",
+      name: randomGameName,
       prize: { amount, currency: "USD" },
     };
   };

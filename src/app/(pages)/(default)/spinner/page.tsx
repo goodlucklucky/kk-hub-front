@@ -215,10 +215,15 @@ export default function KokoSpinner() {
           {({ handelClick, isSpinning }) => (
             <div className="relative bg-cover bg-center grid gap-4 p-4 pb-6">
               <ConnectButton
-                className="w-full justify-center"
+                className="w-full justify-center disabled:opacity-100"
                 onClick={handelClick}
                 disabled={
                   loading || isSpinning || (spins?.data?.total || 0) <= 0
+                }
+                color={
+                  (loading || isSpinning || (spins?.data?.total || 0) <= 0)
+                    ? "#6C6C00"
+                    : "#ECEC10"
                 }
               >
                 <span className="text-[20px] text-[#DDDB0A] px-1 rounded-[5px] !bg-[#57530A] text-center tracking-normal [text-shadow:0_0_1px_#000000]">

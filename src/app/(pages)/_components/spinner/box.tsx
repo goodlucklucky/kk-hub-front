@@ -4,7 +4,7 @@ import Spinner from "@/app/_components/spinner";
 import { formatBigNumber, shuffleArray } from "@/app/_utils/number";
 import { useCallback, useMemo, useState, useEffect } from "react";
 import { spinnerProbability, TSpinner } from "./probabilities";
-import { SpinWheelIcon } from "@/app/_assets/svg/etc";
+import { KeyIcon, SpinWheelIcon } from "@/app/_assets/svg/etc";
 import { Dialog, DialogContent } from "@/app/_components/ui/dialog";
 import { cn } from "@/app/_lib/utils";
 import Button from "@/app/_components/shared/button";
@@ -178,14 +178,14 @@ export default function SpinnerBox({ clearTimer }: SpinnerBoxProps) {
             <div className="bg-blown-light rounded-xl p-2">
               <div className="flex justify-center items-center">
                 <p className="text-[#491F36] font-made-tommy text-[18px] font-bold tracking-[0.18px] pr-1">
-                  Mamba Snake Skin
+                  Kokomo Collectible NFT
                 </p>
                 <div className="rounded-[5px] bg-[#853834] h-[18px] text-[#F5DDC4] font-made-tommy text-[14px] font-bold tracking-[0.14px] px-1 leading-[18px]">
                   NFT
                 </div>
               </div>
               <p className="text-[#745061] font-made-tommy text-[14px] font-bold tracking-[0.14px]">
-                Log In to Claim!
+              Free NFT. Log in to Claim!
               </p>
             </div>
             <div
@@ -196,14 +196,15 @@ export default function SpinnerBox({ clearTimer }: SpinnerBoxProps) {
               )}
             >
               <Button
-                className="rounded-[8px] bg-gradient-to-b from-[#A291FF] from-10% to-[#856FFF] to-[201.67%]"
+                className="rounded-[8px] bg-gradient-to-b from-[#A291FF] from-10% to-[#856FFF] to-[201.67%] flex gap-2 items-center justify-center text-center"
                 onClick={() => {
                   router.push("/home");
                 }}
               >
-                <span className="text-[#EFF6FF] font-made-tommy text-[20px] font-extrabold tracking-[0.4px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)]">
+                <KeyIcon />
+                <div className="text-[#EFF6FF] font-made-tommy text-[20px] font-extrabold tracking-[0.4px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)]">
                   Enter Now
-                </span>
+                </div>
               </Button>
               <Button
                 className={cn(
