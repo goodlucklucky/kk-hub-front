@@ -19,6 +19,9 @@ import banner from "@assets/images/header-board.png";
 import { CloseIcon } from "@/app/_assets/svg/close";
 import { useRouter } from "next/navigation";
 import { StaticImageData } from "next/image";
+import { HeartIcon } from "@/app/_assets/svg/game";
+import { PlayIcon } from "@/app/_assets/svg/etc";
+import { CheckIcon } from "@/app/_assets/svg/check";
 
 //interface
 interface PreviewDialogProps {
@@ -81,22 +84,24 @@ const PreviewDialog = ({
                   <p className="text-[#653F56] text-center font-made-tommy text-[16px] font-[900] leading-normal tracking-[0.16px] px-3">
                     {description}
                   </p>
-                  <p className="text-[#745061] text-center font-made-tommy text-[10px] font-[700] leading-normal">
+                  <p className="text-[#745061] text-center font-made-tommy text-[11px] font-[700] leading-normal px-2 pt-1">
                     {msg}
                   </p>
                 </div>
                 <Button
-                  className="w-full rounded-[8px] bg-gradient-to-b from-[#A291FF] from-10% to-[#856FFF] to-[201.67%]"
+                  className="w-full flex items-center justify-center rounded-[8px] bg-gradient-to-b from-[#A291FF] from-10% to-[#856FFF] to-[201.67%]"
                   onClick={() => {
                     router.push(link);
                   }}
                 >
-                  <span className="text-[#EFF6FF] text-center font-bumper-sticker text-[20px] font-normal tracking-[0.4px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)]">
+                  <PlayIcon />
+                  <span className="pl-2 text-[#EFF6FF] text-center font-bumper-sticker text-[20px] font-normal tracking-[0.4px] drop-shadow-[0px_1px_0px_rgba(62,36,105,0.20)]">
                     Play Now
                   </span>
                 </Button>
-                <Button className="px-3 py-0.5 rounded-[7px] border border-[rgba(116,80,97,0.70)] bg-[#E3BEAA] drop-shadow-[0px_1px_0px_rgba(0,0,0,0.70)]">
-                  <span className="text-[#745061] text-center font-made-tommy text-[14px] font-[800] leading-normal tracking-[0.28px]">
+                <Button className="w-full h-[34px] rounded-[8px] border border-[rgba(116,80,97,0.70)] bg-[#E3BEAA] drop-shadow-[0px_1px_0px_rgba(0,0,0,0.70)] flex items-center justify-center gap-1">
+                  <HeartIcon />
+                  <span className="text-[#745061] text-center font-bumper-sticker text-[20px] font-[400] leading-normal tracking-[0.28px]">
                     Add to Favourites
                   </span>
                 </Button>

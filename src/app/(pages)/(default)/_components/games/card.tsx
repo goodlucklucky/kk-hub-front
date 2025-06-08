@@ -32,6 +32,7 @@ export type TGamesCardProps = {
     description: string;
     msg: string;
   }) => void;
+  handleExpandToogle: () => void;
 };
 
 export default function GamesCard({
@@ -39,6 +40,7 @@ export default function GamesCard({
   // Icon = TrophyIcon,
   items = [],
   handlePreviewDialogToggle,
+  handleExpandToogle,
 }: TGamesCardProps) {
   return (
     <div className="p-2 py-0.5 2xs:py-1">
@@ -78,7 +80,10 @@ export default function GamesCard({
               />
             )
           )}
-        <div className="flex justify-center items-center w-9 bg-[#B1B5CCA8] border border-[#B1B5CC] rounded-r-lg -mt-1 -mr-1 -mb-1">
+        <div
+          className="flex justify-center items-center w-9 bg-[#B1B5CCA8] border border-[#B1B5CC] rounded-r-lg -mt-1 -mr-1 -mb-1"
+          onClick={handleExpandToogle}
+        >
           <RightArrow />
         </div>
       </div>

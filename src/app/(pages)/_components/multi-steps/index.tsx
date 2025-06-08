@@ -82,42 +82,26 @@ export default function MultiSteps() {
           {/* Indicator pills */}
           <div
             className={cn(
-              "bg-gradient-to-b from-golden-bright to-golden-brown scale-90",
-              "p-0.5 rounded-2xl contain-content grid",
+              "bg-[#00000055] text-golden-bright height-[16px] p-1",
+              "rounded-2xl contain-content grid",
               "2xs:mt-5 2xs:mb-5 mx-auto w-[min(80dvw,100%)] max-w-[40ch] shadow-xl",
               "relative z-10"
             )}
           >
             <div
               className={cn(
-                "bg-[url(/images/board_2.png)] rounded-2xl bg-cover bg-center text-golden-bright",
-                "p-1 flex gap-2 [&>*]:flex-1"
+                "rounded-2xl text-golden-bright",
+                "flex gap-2 [&>*]:flex-1"
               )}
             >
-              {/* {Masking wood texture} */}
-              <div className="absolute inset-0">
-                <Image
-                  src="/images/wood-texture.png"
-                  alt="Wood texture"
-                  fill
-                  className="object-cover object-center"
-                  style={{
-                    maskImage:
-                      "linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))",
-                    WebkitMaskImage:
-                      "linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,1))",
-                  }}
-                />
-              </div>
               {Array.from({ length: 3 }).map((_, index) => (
                 <button
                   key={index}
                   className={cn(
                     "bg-gradient-to-b from-gold-light to-gold",
-                    "h-5 rounded-lg contain-content",
-                    index != step && "opacity-30",
-                    "border-2 border-solid border-gold-darker",
-                    "relative z-10"
+                    "h-[8px] rounded-lg contain-content",
+                    index != step && "bg-[#B1B5CC]",
+                    "relative z-10 drop-shadow-[0px_1px_0px_rgba(0,0,0,0.30)]"
                   )}
                   disabled={index === step}
                   onClick={() => goToStep(index)}

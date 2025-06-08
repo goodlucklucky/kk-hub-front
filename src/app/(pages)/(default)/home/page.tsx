@@ -15,22 +15,24 @@ import { typeIcons } from "@/app/_constants/types";
 import { cn } from "@/app/_lib/utils";
 
 //import icons
-import { GameIcon } from "@assets/svg/game";
-import { StarIcon } from "@/app/_assets/svg/star";
+import { GameIcon, HeartIcon } from "@assets/svg/game";
 
 //import images
 import forestBack from "@assets/images/forest-back.png";
 import mainBack from "@assets/images/main-back.png";
 import MintDialog from "../_components/dialogs/mint-dialog";
 import PreviewDialog from "../_components/dialogs/preview-dialog";
+import GamesView from "./_components/games";
 
 export default function HomePage() {
   const groupedGames = Object.entries(_.groupBy(games, (game) => game?.type));
+  console.log(groupedGames);
 
   const [tabOpen, setTabOpen] = useState<"play" | "favourites">("play");
   const [isMinting, setIsMinting] = useState(false);
   const [isMintDialogOpen, setIsMintDialogOpen] = useState(false);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [isExpand, setIsExpand] = useState(0);
   const [previewData, setPreviewData] = useState<{
     title: string;
     link: string;
@@ -65,6 +67,10 @@ export default function HomePage() {
 
   const handleMintDialogClose = useCallback(() => {
     setIsMintDialogOpen(false);
+  }, []);
+
+  const handleExpandToogle = useCallback((value: number) => {
+    setIsExpand(value);
   }, []);
 
   return (
@@ -122,7 +128,7 @@ export default function HomePage() {
                 onClick={() => setTabOpen("favourites")}
               >
                 <div className="flex gap-x-2 items-center">
-                  <StarIcon
+                  <HeartIcon
                     fill={tabOpen === "favourites" ? "#5F3F57" : "#FFF"}
                   />
                   <span>FAVOURITES</span>
@@ -130,21 +136,32 @@ export default function HomePage() {
               </div>
             </div>
             <div className="bg-[#000000]/20 py-1 rounded-b-2xl">
-              {groupedGames?.slice(0, 2)?.map(([type, games]) => (
-                <GamesCard
-                  key={type}
-                  Icon={typeIcons?.[type]}
-                  title={type}
-                  items={games?.map((game) => ({
+              { isExpand === 0
+                ? groupedGames?.slice(0, 2)?.map(([type, games], index) => (
+                  <GamesCard
+                    key={type}
+                    Icon={typeIcons?.[type]}
+                    title={type}
+                    items={games?.map((game) => ({
                     title: game?.name,
                     image: game?.image,
                     isNew: game?.isNew,
                     number: game?.number,
                     link: `${game?.page}/`,
-                  }))}
-                  handlePreviewDialogToggle={handlePreviewDialogToggle}
-                />
-              ))}
+                    }))}
+                    handlePreviewDialogToggle={handlePreviewDialogToggle}
+                    handleExpandToogle={() => handleExpandToogle(index + 1)}
+                  />
+                ))
+                : groupedGames[0][1].map((game) => (
+                  <GamesView 
+                    key={game?.key}
+                    title={game?.name}
+                    image={game?.image}
+                    link={`${game?.page}/`}
+                  />
+                ))
+              }
             </div>
           </div>
           <div className="flex gap-2 mt-1 mb-2 2xs:mt-2">

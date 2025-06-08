@@ -74,7 +74,7 @@ export default function Gifts({ setIsOpen, setIsMinting }: GiftsProps) {
   return (
     <div className="flex items-center justify-center gap-3 pl-0 w-[335px]">
       {/* <div className="w-full"> */}
-      <Slider {...settings} className="w-full">
+      <Slider {...settings} className="w-full drop-shadow-[0px_2px_0px_rgba(0,0,0,0.30)]">
         <GiftSlide type="daily" onClick={() => router.push("/claim")} />
         <GiftSlide
           type="invite"

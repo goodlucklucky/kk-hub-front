@@ -17,3 +17,59 @@ export function GameIcon(props: React.ComponentProps<"svg">) {
     </svg>
   );
 }
+
+export function HeartIcon(props: React.ComponentProps<"svg">) {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g filter="url(#filter0_d_2614_14300)">
+        <path
+          d="M1.66699 7.6112C1.66699 11.6636 5.01652 13.8231 7.46843 15.756C8.33366 16.4381 9.16699 17.0803 10.0003 17.0803C10.8337 17.0803 11.667 16.4381 12.5322 15.756C14.9842 13.8231 18.3337 11.6636 18.3337 7.6112C18.3337 3.55875 13.7502 0.684836 10.0003 4.58081C6.25046 0.684836 1.66699 3.55875 1.66699 7.6112Z"
+          fill={props.fill ?? "#5F3F57"}
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_d_2614_14300"
+          x="1.66699"
+          y="2.73438"
+          width="16.667"
+          height="15.3438"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            result="hardAlpha"
+          />
+          <feOffset dy="1" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+          />
+          <feBlend
+            mode="normal"
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_2614_14300"
+          />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="effect1_dropShadow_2614_14300"
+            result="shape"
+          />
+        </filter>
+      </defs>
+    </svg>
+  );
+}

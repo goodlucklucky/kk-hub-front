@@ -160,7 +160,7 @@ const ChatDialog = ({ isOpen, onClose }: ChatDialogProps) => {
             </div>
             <form className="flex gap-x-1" onSubmit={sendMessages}>
               <textarea
-                className="w-full rounded-[5px] border-2 border-[#D2AA87] bg-[##F4F4F0] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.20)] text-[#653F56] text-[16px] font-made-tommy font-semibold px-3 py-2 h-11"
+                className="w-full rounded-[5px] border-2 border-[#D2AA87] bg-[#F4F4F0] shadow-[0px_1px_0px_0px_rgba(0,0,0,0.20)] text-[#653F56] text-[16px] font-made-tommy font-semibold px-3 py-2 h-11"
                 rows={1}
                 value={messageInput}
                 onChange={(e) => handleTyping(e)}

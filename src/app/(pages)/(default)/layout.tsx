@@ -11,7 +11,7 @@ export default function Layout({
     <ThirdWeb>
       <div className={cn("min-h-dvh flex flex-col max-h-dvh")}>
         <Header />
-        <main className="flex flex-col h-[calc(100vh-172px)] z-0">
+        <main className="flex flex-col max-h-[calc(100vh-172px)] flex-1 z-0">
           {children}
         </main>
         <Footer footerCategory="home" />

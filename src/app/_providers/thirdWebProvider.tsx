@@ -17,7 +17,7 @@ export function ThirdWeb({ children }: ThirdWebProps) {
   const searchParams = useSearchParams();
 
   // const profile = useProfiles({ client: client });
-  const account = useActiveAccount();
+  const account = { address: "0x123" }; //useActiveAccount();
   const sessionId = useMemo<TSessionId>(
     () => `${account?.address || ""}`,
     [account?.address]

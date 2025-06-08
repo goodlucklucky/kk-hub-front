@@ -1,4 +1,4 @@
-import { useWeb3Modal } from "@web3modal/wagmi/react";
+// import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useAccount, useChainId, useDisconnect } from "wagmi";
 import Button from "./button";
 import { cn } from "@/app/_lib/utils";
@@ -7,7 +7,7 @@ import { CloseSocialIcon } from "@/app/_assets/svg/close-social";
 import { useCallback } from "react";
 
 export default function WagmiConnectButton() {
-  const { open } = useWeb3Modal();
+  // const { open } = useWeb3Modal();
   const { disconnectAsync } = useDisconnect();
   const { address, isConnected } = useAccount();
 
@@ -41,7 +41,7 @@ export default function WagmiConnectButton() {
       <div className="flex justify-between w-full gap-x-1">
         <div
           className="flex bg-[#C7A797] w-full rounded-[17px] p-2 items-center gap-x-1"
-          onClick={() => open({ view: "Account" })}
+          // onClick={() => open({ view: "Account" })}
         >
           <WalletIcon />
           <div className="w-1 h-1 p-1 bg-[#126529] rounded-full" />
@@ -68,7 +68,7 @@ export default function WagmiConnectButton() {
         try {
           // console.log("open");
           // const a = await open({ view: "Connect" });
-          await open({ view: "Connect" });
+          // await open({ view: "Connect" });
           // console.log("a", a);
         } catch {
           // console.log("error", error);

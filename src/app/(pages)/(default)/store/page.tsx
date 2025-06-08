@@ -61,7 +61,7 @@ const ProductCategoryButtons = memo(
     onCategoryChange: (category: IStoreItemType) => void;
     isLoading: boolean;
   }) => (
-    <div className="w-full flex gap-x-1 overflow-x-auto">
+    <div className="w-full flex gap-x-1 overflow-x-auto pb-1">
       {isLoading ? (
         // Loading state
         <div className="w-full flex justify-center py-2">
@@ -75,7 +75,7 @@ const ProductCategoryButtons = memo(
             isActive={activeCategory === category.name}
             onClick={() => onCategoryChange(category)}
             className="rounded-full !text-sm !font-normal font-bumper-sticker"
-            lableClassName="!text-[14px] font-made-tommy font-bold whitespace-nowrap truncate"
+            lableClassName="!text-[14px] font-made-tommy font-bold whitespace-nowrap truncate drop-shadow-[0px_1px_0px_rgba(0,0,0,0.20)]"
           />
         ))
       )}
@@ -205,12 +205,14 @@ export default function StorePage() {
             </div>
           </div>
           <div className="bg-[#F5D6B1] rounded-2xl p-2 shadow-md border-2 border-[#A96415] flex flex-col flex-1 overflow-y-auto gap-2">
-            <ProductCategoryButtons
-              categories={productCategories}
-              activeCategory={activeProductCategory?.name || ""}
-              onCategoryChange={handleProductCategoryChange}
-              isLoading={isTypesLoading}
-            />
+            <div className="w-full overflow-x-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] px-1 pt-1">
+              <ProductCategoryButtons
+                categories={productCategories}
+                activeCategory={activeProductCategory?.name || ""}
+                onCategoryChange={handleProductCategoryChange}
+                isLoading={isTypesLoading}
+              />
+            </div>
             <div className="w-full flex-1 overflow-y-auto rounded-[7px] border-2 border-[#CDAA98] bg-[#E3BEAA] shadow-[inset_0px_4px_0px_0px_rgba(0,0,0,0.20)] p-2 pt-3">
               {isItemsLoading || isTypesLoading ? (
                 // Loading state

@@ -1,5 +1,5 @@
 import React from "react";
-import { createWeb3Modal } from "@web3modal/wagmi/react";
+// import { createWeb3Modal } from "@web3modal/wagmi/react";
 import { WagmiProvider, createConfig, http } from "wagmi";
 import { walletConnect } from "wagmi/connectors";
 import { avalanche } from "wagmi/chains";
@@ -28,12 +28,12 @@ const config = createConfig({
   },
 });
 
-createWeb3Modal({
-  wagmiConfig: config,
-  projectId,
-  themeMode: "light",
-  themeVariables: { "--w3m-font-family": "Inter, sans-serif" },
-});
+// createWeb3Modal({
+//   wagmiConfig: config,
+//   projectId,
+//   themeMode: "light",
+//   themeVariables: { "--w3m-font-family": "Inter, sans-serif" },
+// });
 
 export default function WalletProvider({
   children,
